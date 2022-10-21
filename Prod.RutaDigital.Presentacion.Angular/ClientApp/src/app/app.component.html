@@ -1,0 +1,17 @@
+<!-- app modal component -->
+<app-loading></app-loading>
+
+<app-toast aria-live="polite" aria-atomic="true"></app-toast>
+
+<ng-template modal>
+  <app-modal-component></app-modal-component>
+</ng-template>
+
+<app-nav-menu></app-nav-menu>
+
+<div class="container">
+  <router-outlet #o="outlet"></router-outlet>
+</div>
+
+<!-- footer component -->
+<app-footer></app-footer>
