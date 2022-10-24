@@ -6,26 +6,27 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
-import { HomeComponent } from './pages/home/home.component';
-import { CounterComponent } from './pages/counter/counter.component';
-import { FetchDataComponent } from './pages/fetch-data/fetch-data.component';
-import { AppRoutingModule } from './app-routing.module';
+import { InicioComponent } from './pages/inicio/inicio.component';
+import { CounterComponent } from './demo/counter/counter.component';
+import { WeatherForecastComponent } from './demo/weather-forecast/weather-forecast.component';
 import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
+import { ProduceMasBarComponent } from './components/produce-mas-bar/produce-mas-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 
+    ProduceMasBarComponent,
     NavMenuComponent,
-    HomeComponent,
+    InicioComponent,
     FooterComponent,
 
     CounterComponent,
-    FetchDataComponent,
+    WeatherForecastComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

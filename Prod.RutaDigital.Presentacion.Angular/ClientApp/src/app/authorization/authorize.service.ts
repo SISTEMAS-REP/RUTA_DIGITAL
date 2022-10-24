@@ -1,8 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserManager, WebStorageStateStore } from 'oidc-client';
+import { UserManager, WebStorageStateStore } from 'oidc-client';
 import { BehaviorSubject, concat, from, Observable } from 'rxjs';
 import { filter, map, mergeMap, take, tap } from 'rxjs/operators';
-import { ApplicationName, ApplicationPaths } from '../constants/auth.constants';
+import { INavigationState } from './interfaces/navigation-state';
+import { AppService } from '../shared/services/app.service';
+import { ExtranetUser } from '../shared/interfaces/extranet-user';
 
 export type IAuthenticationResult =
   | SuccessAuthenticationResult
@@ -21,6 +24,7 @@ export interface FailureAuthenticationResult {
 
 export interface RedirectAuthenticationResult {
   status: AuthenticationResultStatus.Redirect;
+  state: INavigationState;
 }
 
 export enum AuthenticationResultStatus {
@@ -29,10 +33,10 @@ export enum AuthenticationResultStatus {
   Fail,
 }
 
-export interface IUser extends User {
+/*export interface IUser extends User {
   name: string;
   role: string[];
-}
+}*/
 
 @Injectable({
   providedIn: 'root',
@@ -40,52 +44,53 @@ export interface IUser extends User {
 export class AuthorizeService {
   // By default pop ups are disabled because they don't work properly on Edge.
   // If you want to enable pop up authentication simply set this flag to false.
-  private _user: IUser;
+  private _user: ExtranetUser;
   private popUpDisabled = true;
   private userManager: UserManager;
-  private userSubject: BehaviorSubject<IUser | null> = new BehaviorSubject(
-    null
-  );
+  private userSubject: BehaviorSubject<ExtranetUser | null> =
+    new BehaviorSubject(null);
 
   get isLoggedIn(): boolean {
     return !!this.user;
   }
 
-  get user(): IUser {
+  get user(): ExtranetUser {
     return this._user;
   }
 
-  public hasRole(role: string): boolean {
+  constructor(private appService: AppService) {}
+
+  /*public hasRole(role: string): boolean {
     return this._user && this._user.role && this._user.role.indexOf(role) > -1;
-  }
+  }*/
 
   public isAuthenticated(): Observable<boolean> {
     return this.getUser().pipe(map((u) => !!u));
   }
 
-  public getUser(): Observable<IUser | null> {
+  public getUser(): Observable<ExtranetUser | null> {
     return concat(
       this.userSubject.pipe(
         take(1),
         filter((u) => !!u)
       ),
-      this.getUserFromStorage().pipe(
+      /*this.getUserFromStorage().pipe(
         filter((u) => !!u),
         tap((u) => {
           this._user = u;
           this.userSubject.next(u);
         })
-      ),
+      ),*/
       this.userSubject.asObservable()
     );
   }
 
-  public getAccessToken(): Observable<string> {
+  /*public getAccessToken(): Observable<string> {
     return from(this.ensureUserManagerInitialized()).pipe(
       mergeMap(() => from(this.userManager.getUser())),
       map((user) => user && user.access_token)
     );
-  }
+  }*/
 
   // We try to authenticate the user in three different ways:
   // 1) We try to see if we can authenticate the user silently. This happens
@@ -95,9 +100,9 @@ export class AuthorizeService {
   //    Pop-Up blocker or the user has disabled PopUps.
   // 3) If the two methods above fail, we redirect the browser to the IdP to perform a traditional
   //    redirect flow.
-  public async signIn(state: any): Promise<IAuthenticationResult> {
-    await this.ensureUserManagerInitialized();
-    let user: User = null;
+  public async signIn(state: INavigationState): Promise<IAuthenticationResult> {
+    //await this.ensureUserManagerInitialized();
+    /*let user: ExtranetUser = null;
     try {
       user = await this.userManager.signinSilent(this.createArguments());
       this.userSubject.next(user.profile as any);
@@ -121,26 +126,32 @@ export class AuthorizeService {
           return this.error('The user closed the window.');
         } else if (!this.popUpDisabled) {
           console.log('Popup authentication error: ', popupError);
-        }
+        }*/
 
-        // PopUps might be blocked by the user, fallback to redirect
-        try {
-          await this.userManager.signinRedirect(this.createArguments(state));
-          return this.redirect();
-        } catch (redirectError) {
-          console.log('Redirect authentication error: ', redirectError);
-          return this.error(redirectError);
-        }
-      }
+    // PopUps might be blocked by the user, fallback to redirect
+    try {
+      // TODO: hacer un redirect a login unico
+      // > el returnurl debe tener login-callback
+      //await this.userManager.signinRedirect(this.createArguments(state));
+      return this.redirect(state);
+    } catch (redirectError) {
+      console.log('Redirect authentication error: ', redirectError);
+      return this.error(redirectError);
     }
+    /*}
+    }*/
   }
 
   public async completeSignIn(url: string): Promise<IAuthenticationResult> {
     try {
-      await this.ensureUserManagerInitialized();
-      const user = await this.userManager.signinCallback(url);
-      this.userSubject.next(user && (user.profile as any));
-      return this.success(user && user.state);
+      //await this.ensureUserManagerInitialized();
+
+      // TODO: hacer petición al endpoint de check
+      //const response = await this.httpClient.get<ApiResponse<Ap>>('check');
+      //const user = await this.userManager.signinCallback(url);
+      //this.userSubject.next(user && (user.profile as any));
+      //return this.success(user && user.state);
+      return this.success();
     } catch (error) {
       console.log('There was an error signing in: ', error);
       return this.error('There was an error signing in.');
@@ -155,7 +166,7 @@ export class AuthorizeService {
         );
       }
 
-      await this.ensureUserManagerInitialized();
+      //await this.ensureUserManagerInitialized();
       await this.userManager.signoutPopup(this.createArguments());
       this.userSubject.next(null);
       return this.success(state);
@@ -163,7 +174,7 @@ export class AuthorizeService {
       console.log('Popup signout error: ', popupSignOutError);
       try {
         await this.userManager.signoutRedirect(this.createArguments(state));
-        return this.redirect();
+        return this.redirect(state);
       } catch (redirectSignOutError) {
         console.log('Redirect signout error: ', popupSignOutError);
         return this.error(redirectSignOutError);
@@ -172,7 +183,7 @@ export class AuthorizeService {
   }
 
   public async completeSignOut(url: string): Promise<IAuthenticationResult> {
-    await this.ensureUserManagerInitialized();
+    //await this.ensureUserManagerInitialized();
     try {
       const signoutResponse = await this.userManager.signoutCallback(url);
       this.userSubject.next(null);
@@ -191,15 +202,15 @@ export class AuthorizeService {
     return { status: AuthenticationResultStatus.Fail, message };
   }
 
-  private success(state: any): IAuthenticationResult {
+  private success(state?: any): IAuthenticationResult {
     return { status: AuthenticationResultStatus.Success, state };
   }
 
-  private redirect(): IAuthenticationResult {
-    return { status: AuthenticationResultStatus.Redirect };
+  private redirect(state: INavigationState): IAuthenticationResult {
+    return { status: AuthenticationResultStatus.Redirect, state };
   }
 
-  private async ensureUserManagerInitialized(): Promise<void> {
+  /*private async ensureUserManagerInitialized(): Promise<void> {
     if (this.userManager !== undefined) {
       return;
     }
@@ -223,10 +234,15 @@ export class AuthorizeService {
     });
   }
 
-  private getUserFromStorage(): Observable<IUser> {
+  private getUserFromStorage(): Observable<ExtranetUser> {
     return from(this.ensureUserManagerInitialized()).pipe(
       mergeMap(() => this.userManager.getUser()),
       map((u) => u && (u.profile as any))
     );
-  }
+  }*/
+
+  /*private getUserFromRemote(): Observable<ExtranetUser> {
+    const loginUnicoPath = this.appService.appData.content['loginUnicoPath'];
+    return this.
+  }*/
 }

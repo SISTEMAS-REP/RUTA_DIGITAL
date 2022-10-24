@@ -52,19 +52,19 @@ export class AppComponent implements OnInit {
   }
 
   private updateTitleAndMeta() {
-    this.title.setTitle(this.appService.appData.content['app_title']);
+    this.title.setTitle(this.appService.appData.content['applicationTitle']);
     this.meta.addTags([
       {
         name: 'description',
-        content: this.appService.appData.content['app_description'],
+        content: this.appService.appData.content['applicationDescription'],
       },
       {
         property: 'og:title',
-        content: this.appService.appData.content['app_title'],
+        content: this.appService.appData.content['applicationTitle'],
       },
       {
         property: 'og:description',
-        content: this.appService.appData.content['app_description'],
+        content: this.appService.appData.content['applicationDescription'],
       },
     ]);
   }

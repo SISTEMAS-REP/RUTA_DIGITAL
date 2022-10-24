@@ -35,9 +35,11 @@ public class AppController : Controller
     private Dictionary<string, string> GetContent()
     {
         var content = new Dictionary<string, string>();
-        content.Add("client_id", "97");
-        content.Add("app_title", "Ruta Digital");
-        content.Add("app_description", "Ruta Digital V2");
+        content.Add("applicationId", "97");
+        content.Add("applicationTitle", "Ruta Digital");
+        content.Add("applicationDescription", "Ruta Digital V2");
+        content.Add("loginUnicoApiPath", "https://localhost:7086/");
+        content.Add("loginUnicoWebPath", "https://localhost:44428/");
 
         return content;
     }

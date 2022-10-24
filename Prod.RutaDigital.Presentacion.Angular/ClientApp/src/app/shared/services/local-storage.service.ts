@@ -5,8 +5,8 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class LocalStorageService {
-  getAny(key: string): any {
-    const value = localStorage.getItem(key) || {};
+  getAny(key: string): any | undefined {
+    const value = localStorage.getItem(key);
     return value;
   }
 

@@ -10,8 +10,8 @@ import { tap } from 'rxjs/operators';
 import {
   ApplicationPaths,
   QueryParameterNames,
-} from '../constants/auth.constants';
-import { AuthorizeService } from '../services/authorize.service';
+} from './authorization.constants';
+import { AuthorizeService } from './authorize.service';
 
 @Injectable({
   providedIn: 'root',

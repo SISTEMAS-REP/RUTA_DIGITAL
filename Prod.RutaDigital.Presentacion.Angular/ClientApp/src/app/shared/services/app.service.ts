@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { ApiService } from './api.service';
+import { BaseService } from './base.service';
 import { map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
@@ -15,7 +15,7 @@ export function appServiceFactory(
 @Injectable({
   providedIn: 'root',
 })
-export class AppService extends ApiService {
+export class AppService extends BaseService {
   getControllerUrl(): string {
     return 'app';
   }

@@ -6,7 +6,7 @@ import { ApiResponse } from '../interfaces/api-response';
 @Injectable({
   providedIn: 'root',
 })
-export abstract class ApiService {
+export abstract class BaseService {
   baseUrl = `${this.BASE_URL}`;
 
   private readonly controllerUrl = this.getControllerUrl();
