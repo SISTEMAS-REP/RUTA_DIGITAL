@@ -15,11 +15,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { ProduceMasBarComponent } from './components/produce-mas-bar/produce-mas-bar.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
+    HeaderComponent,
     ProduceMasBarComponent,
     NavMenuComponent,
     InicioComponent,
