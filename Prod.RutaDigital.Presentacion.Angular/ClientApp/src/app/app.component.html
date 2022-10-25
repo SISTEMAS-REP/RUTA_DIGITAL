@@ -1,16 +1,9 @@
-<!-- app modal component -->
-<app-loading></app-loading>
 
-<app-toast aria-live="polite" aria-atomic="true"></app-toast>
-
-<ng-template modal>
-  <app-modal-component></app-modal-component>
-</ng-template>
-
+<app-header></app-header>
 <app-produce-mas-bar></app-produce-mas-bar>
 <app-nav-menu></app-nav-menu>
 
-<div class="container">
+<div>
   <router-outlet #o="outlet"></router-outlet>
 </div>
 

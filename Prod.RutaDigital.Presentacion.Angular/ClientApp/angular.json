@@ -25,10 +25,24 @@
               "src/manifest.json"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/assets/vendor/bootstrap/css/bootstrap.min.css",
+              "src/assets/css/base.css",
+              "src/assets/css/circle_progress_bar.css",
+              "src/assets/css/flex-slider.css",
+              "src/assets/css/fontawesome.css",
+              "src/assets/css/lightbox.css",
+              "src/assets/css/owl.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/vendor/jquery/jquery.min.js",
+              "src/assets/js/isotope.min.js",
+              "src/assets/js/owl-carousel.js",
+              "src/assets/js/lightbox.js",
+              "src/assets/js/tabs.js",
+              "src/assets/js/video.js",
+              "src/assets/js/slick-slider.js",
+              "src/assets/js/custom.js"
+            ]
           },
           "configurations": {
             "production": {

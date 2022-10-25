@@ -1,46 +1,29 @@
-<header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']"
-        >Prod.RutaDigital.Presentacion.Angular</a
-      >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/weather-forecast']"
-              >WeatherForecast</a
-            >
-          </li>
-        </ul>
-      </div>
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo pt-1">
+                    <img src="assets/images/logo-ruta.png"  alt=""/> </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class=""><a href="index.html" class="active">Inicio</a></li>
+                        <li><a href="#">Inicia tu<br> autodiagnóstico</a></li>
+                        <li class=""><a href="#">Resultados<br> Ruta Digital</a></li>
+            <li class=""><a href="avance.html">Tu avance en<br> Ruta Digital</a></li>
+                        <li class=""><a href="eventos.html">Eventos</a></li> 
+                        <li class=""><a href="catalogo_premios.html">Catálogo de<br> productos</a></li> 
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span style="color: #fff">Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
     </div>
-  </nav>
 </header>
+<!-- ***** Header Area End ***** -->
