@@ -6,7 +6,7 @@ using Prod.RutaDigital.Presentacion.Configuracion.Proxys;
 namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
 
 [ApiController]
-[Authorize]
+//[Authorize]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
@@ -17,7 +17,8 @@ public class WeatherForecastController : ControllerBase
         _weatherForecastConsulta = weatherForecastConsulta;
     }
 
-    [HttpGet]
+    [AllowAnonymous]
+    [HttpGet("GetWeatherForecasts")]
     public async Task<IActionResult> 
         GetWeatherForecasts([FromQuery] WeatherForecastRequest request)
     {

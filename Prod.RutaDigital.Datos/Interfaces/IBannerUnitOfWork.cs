@@ -6,11 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Prod.RutaDigital.Datos.Interfaces
+namespace Prod.RutaDigital.Datos.Interfaces;
+public interface IBannerUnitOfWork : IUnitOfWork
 {
-    public interface IBannerUnitOfWork : IUnitOfWork
-    {
-        Task<List<BannerResponse>> ListarBannerPrincipal();
-        Task<List<BannerResponse>> ListarBannerPiePagina();
-    }
+    Task<IEnumerable<BannerResponse>> ListarBannerPrincipal();
+    Task<IEnumerable<BannerResponse>> ListarBannerPiePagina();
 }

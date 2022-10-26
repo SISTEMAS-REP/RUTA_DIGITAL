@@ -11,6 +11,6 @@ export class WeatherForecastService extends BaseService {
   }
 
   GetWeatherForecasts = (): Observable<any> => {
-    return this.get('');
+    return this.get('GetWeatherForecasts');
   };
 }

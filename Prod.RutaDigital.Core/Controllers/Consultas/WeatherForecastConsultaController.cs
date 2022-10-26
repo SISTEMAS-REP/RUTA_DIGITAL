@@ -5,7 +5,7 @@ using Release.Helper;
 
 namespace Prod.RutaDigital.Core.Controllers.Consultas;
 
-[ApiController]
+//[ApiController]
 [Route("[controller]")]
 public class WeatherForecastConsultaController : ControllerBase
 {
@@ -15,7 +15,6 @@ public class WeatherForecastConsultaController : ControllerBase
     {
         _weatherForecastAplicacion = weatherForecastAplicacion;
     }
-
 
     [HttpGet]
     [Route("Listar")]

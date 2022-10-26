@@ -8,5 +8,11 @@ namespace Prod.RutaDigital.Entidades
 {
     public class BannerResponse
     {
+        public string? foto { get; set; }
+        public string? titulo { get; set; }
+        public string? nombre_empresa { get; set; }
+        public string? tipo_empresa { get; set; }
+        public string? url_web { get; set; }
+        public string? accion { get; set; }
     }
 }

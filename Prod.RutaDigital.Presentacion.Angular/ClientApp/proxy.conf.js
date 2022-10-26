@@ -26,6 +26,16 @@ const PROXY_CONFIG = [
   },
   {
     context: [
+      "/banner",
+   ],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: 'Keep-Alive'
+    }
+  },
+  {
+    context: [
       "/app",
    ],
     target: target,

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BannerRepository } from 'src/app/repositories/banner.repository';
+import { WeatherForecastRepository } from 'src/app/repositories/weather-forecast.repository';
+import { WeatherForecastService } from 'src/app/services/weather-forecast.service';
 import { InicioRepository } from '../../repositories/inicio.repository';
 
 @Component({
@@ -7,7 +10,27 @@ import { InicioRepository } from '../../repositories/inicio.repository';
   styleUrls: [],
 })
 export class InicioComponent implements OnInit {
-  constructor(private repository: InicioRepository) {}
+  
+  constructor(
+    private repository: InicioRepository,
+    private bannerRepository: BannerRepository,
+    private weatherForecastRepository: WeatherForecastRepository) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.ListarBannerPrincipal();
+  }
+
+  ListarBannerPrincipal = () => {
+    debugger
+    this.weatherForecastRepository
+    .listarWeatherForecast()
+    .subscribe({
+      next: (data) => {
+       debugger
+      },
+      error: (err) => {
+       
+      },
+    });
+  };
 }
