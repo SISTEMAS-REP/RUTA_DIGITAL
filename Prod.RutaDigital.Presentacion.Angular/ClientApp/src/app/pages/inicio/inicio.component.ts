@@ -22,8 +22,8 @@ export class InicioComponent implements OnInit {
 
   ListarBannerPrincipal = () => {
     debugger
-    this.weatherForecastRepository
-    .listarWeatherForecast()
+    this.bannerRepository
+    .ListarBannerPrincipal()
     .subscribe({
       next: (data) => {
        debugger

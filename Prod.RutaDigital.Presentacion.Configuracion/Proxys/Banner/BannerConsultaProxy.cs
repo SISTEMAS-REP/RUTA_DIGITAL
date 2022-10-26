@@ -22,7 +22,7 @@ namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys
 
         public Task<StatusResponse<List<BannerResponse>>> ListarBannerPrincipal()
         {
-            return this.CallWebApiAsync<StatusResponse<List<BannerResponse>>>(HttpMethod.Get, _url + "ListarBannerPiePagina", null);
+            return this.CallWebApiAsync<StatusResponse<List<BannerResponse>>>(HttpMethod.Get, _url + "ListarBannerPrincipal", null);
         }
         public Task<StatusResponse<List<BannerResponse>>> ListarBannerPiePagina()
         {
