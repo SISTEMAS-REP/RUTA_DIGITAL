@@ -35,7 +35,7 @@ public class BannerUnitOfWork : UnitOfWork, IBannerUnitOfWork
          };
 
         var result = ExecuteReader<BannerResponse>(
-            "Usp_listar_publicidad_inicio",
+            "Usp_listar_publicidad_pie",
             CommandType.StoredProcedure, ref parms).ToList();
 
         return await Task.FromResult(result);

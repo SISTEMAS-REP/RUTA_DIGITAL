@@ -293,77 +293,36 @@ https://support.zoom.us/hc/es/<br>articles/360000518526-URL-de-posasistente</p>
 
 
 <section class="our-facts" id="22">
-   
-<div class="container">
+  <div class="container">
     <div class="row">
-            <div id="carouselExampleCaptions2" class="carousel slide" data-bs-ride="false">
-
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaption2" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-
-    <div class="carousel-inner" id="33">
-
-      <div class="carousel-item active">
-       <div class="main-banner2" max-width="950px" height="550"></div>
-
-        <div class="carousel-caption2 d-md-block">
-        <div class="row pt-5">
-          <div class="col-lg-6 pt-5">
-        <p class="texto-bannerp px-5 pe-0">Todas las herramientas empresariales para las MYPE <strong>en un solo lugar</strong></p>
-      </div> 
-      <div class="col-lg-6 pt-5" align="center">
-        <img class="img-fluid" src="assets/images/produce-mas-blanco_2.png">
-    
-    <div class="main-button-yellow mt-5" align="center">
-                <div class=""><a href="#">¡Ingresa aquí!</a></div>
-            </div>
-      </div>
-          </div>
-            </div>
+      <div id="carouselExampleCaptions2" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="1" aria-label="Slide 2"></button>
         </div>
-    
-    <div class="carousel-item">
-       <div class="main-banner2" max-width="950px" height="550"></div>
-
-        <div class="carousel-caption2 d-md-block">
-        <div class="row pt-5">
-          <div class="col-lg-6 pt-5">
-        <p class="texto-bannerp px-5 pe-0">Todas las herramientas empresariales para las MYPE <strong>en un solo lugar</strong></p>
-      </div> 
-      <div class="col-lg-6 pt-5" align="center">
-        <img class="img-fluid" src="assets/images/produce-mas-blanco_2.png">
-    
-    <div class="main-button-yellow mt-5" align="center">
-                <div class=""><a href="#">¡Ingresa aquí!</a></div>
+        <div class="carousel-inner" id="33">
+          <div class="carousel-item active" *ngFor="let banner of listPiePagina">
+            <div max-width="950px" height="550">
+              <img
+                  class="main-banner"
+                  src="assets/images/{{banner.foto}}"
+                />
             </div>
-      </div>
+            <div class="carousel-caption2 d-md-block">
+              <div class="row pt-5">
+                <div class="col-lg-6 pt-5">
+                  <p class="texto-bannerp px-5 pe-0">{{banner.descripcion}}</p>
+                </div>
+                <div class="col-lg-6 pt-5" align="center">
+                  <img class="img-fluid" src="assets/images/{{banner.logo}}">
+                  <div class="main-button-yellow mt-5" align="center">
+                    <div class=""><a target="_blank" href="{{banner.url_web}}">¡Ingresa aquí!</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-            </div>
         </div>
-    
-    <div class="carousel-item">
-       <div class="main-banner2" max-width="950px" height="550"></div>
-
-        <div class="carousel-caption2 d-md-block">
-        <div class="row pt-5">
-          <div class="col-lg-6 pt-5">
-        <p class="texto-bannerp px-5 pe-0">Todas las herramientas empresariales para las MYPE <strong>en un solo lugar</strong></p>
-      </div> 
-      <div class="col-lg-6 pt-5" align="center">
-        <img class="img-fluid" src="assets/images/produce-mas-blanco_2.png">
-    
-    <div class="main-button-yellow mt-5" align="center">
-                <div class=""><a href="#">¡Ingresa aquí!</a></div>
-            </div>
-      </div>
-          </div>
-            </div>
-        </div>
-
-      </div>
 
       
     </div>

@@ -10,12 +10,14 @@ import { InicioRepository } from '../../repositories/inicio.repository';
 export class InicioComponent implements OnInit {
   
   listBanner : Array<any>;
+  listPiePagina : Array<any>;
 
   constructor(
     private bannerRepository: BannerRepository) {}
 
   ngOnInit(): void {
     this.ListarBannerPrincipal();
+    this.ListarBannerPiePagina();
   }
 
   ListarBannerPrincipal = () => {
@@ -25,6 +27,22 @@ export class InicioComponent implements OnInit {
       next: (data : Array<any>) => {
 
         this.listBanner = data;
+
+       
+      },
+      error: (err) => {
+       
+      },
+    });
+  };
+
+  ListarBannerPiePagina = () => {
+    this.bannerRepository
+    .ListarBannerPiePagina()
+    .subscribe({
+      next: (data : Array<any>) => {
+        debugger
+        this.listPiePagina = data;
 
        
       },

@@ -28,6 +28,6 @@ public class BannerController : ControllerBase
     public async Task<IActionResult> ListarBannerPiePagina()
     {
         var results = await _bannerConsulta.ListarBannerPiePagina();
-        return Ok(new JsonResult(results));
+        return Ok(results);
     }
 }

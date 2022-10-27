@@ -14,5 +14,7 @@ namespace Prod.RutaDigital.Entidades
         public string? tipo_empresa { get; set; }
         public string? url_web { get; set; }
         public string? accion { get; set; }
+        public string? logo { get; set; }
+        public string? descripcion { get; set; }
     }
 }
