@@ -867,21 +867,21 @@ banner
 .main-banner {
   position: relative;
   overflow: hidden;
-  background-image: url("../images/Foto_Home_RD.png");
+  /* background-image: url("../images/Foto_Home_RD.png"); */
 	background-size: cover;
   height: 550px;
 }
 .main-banner2 {
   position: relative;
   overflow: hidden;
-  background-image: url("../images/apply-bg.jpg");
+  /* background-image: url("../images/apply-bg.jpg"); */
 	background-size: cover;
   height: 550px;
 }
 .main-banner2 {
   position: relative;
   overflow: hidden;
-  background-image: url("../images/banner_PM.png");
+  /* background-image: url("../images/banner_PM.png"); */
 	background-size: cover;
   height: 550px;
 }
@@ -2037,7 +2037,7 @@ section.meetings-page .pagination ul li a:hover {
     position: relative;
     overflow: hidden;
     margin-bottom: -7px;
-    background-image: url("../images/Foto_Home_RD_p.png");
+    /* background-image: url("../images/Foto_Home_RD_p.png"); */
     background-size: cover;
     height: 500px;
 		background-position: right;
@@ -2046,7 +2046,7 @@ section.meetings-page .pagination ul li a:hover {
     position: relative;
     overflow: hidden;
     margin-bottom: -7px;
-    background-image: url("../images/apply-bg.jpg");
+    /* background-image: url("../images/apply-bg.jpg"); */
     background-size: cover;
     height: 500px;
 		background-position: right;

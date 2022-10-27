@@ -9,16 +9,15 @@ import { BannerService } from '../services/banner.service';
 export class BannerRepository {
   constructor(private bannerService: BannerService) {}
 
-  ListarBannerPrincipal = (): Observable<BannerResponse[]> => {
-    debugger
+  ListarBannerPrincipal = (): Observable<any> => {
     return this.bannerService
-      .ListarBannerPrincipal()
-      .pipe(map((response) => response.data as BannerResponse[]));
+      .ListarBannerPrincipal().pipe(
+        map((response) => response.data));
   };
 
-  ListarBannerPiePagina = (): Observable<BannerResponse[]> => {
+  ListarBannerPiePagina = (): Observable<any> => {
     return this.bannerService
       .ListarBannerPiePagina()
-      .pipe(map((response) => response.data as BannerResponse[]));
+      .pipe(map((response) => response.data));
   };
 }

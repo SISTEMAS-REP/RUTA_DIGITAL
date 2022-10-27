@@ -21,7 +21,7 @@ public class BannerController : ControllerBase
     public async Task<IActionResult> ListarBannerPrincipal()
     {
         var results = await _bannerConsulta.ListarBannerPrincipal();
-        return Ok(new JsonResult(results));
+        return Ok(results);
     }
     [AllowAnonymous]
     [HttpGet("ListarBannerPiePagina")]

@@ -11,7 +11,6 @@ export class BannerService extends BaseService {
   }
 
   ListarBannerPrincipal = (): Observable<any> => {
-    debugger
     return this.get('ListarBannerPrincipal');
   };
 

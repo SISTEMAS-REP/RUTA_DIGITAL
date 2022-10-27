@@ -1,87 +1,44 @@
-  <!-- ***** Main Banner Area Start ***** -->
-  <section class="section"  data-section="section1">
-
-    <div class="header-text">
-        <div class="container">
-          <div class="row">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-
-    <div class="carousel-inner">
-
-      <div class="carousel-item active">
-       <div class="main-banner" max-width="950px" height="500"></div>
-
-        <div class="carousel-caption d-md-block">
-       <p class="text-white">Cindy ya se parte de</p>
-              <h3 class="text-white" style="font-size: 2.9rem">Ruta Digital</h3>
-         <h1 class="text-white mt-0" style="font-size: 1.4rem">MARACUYÁ DETALLES</h1>
-         <h1 class="text-white mt-0" style="font-size: 1rem">Tienda de regalos</h1>
-      <h1 class="text-white" style="font-size: 1.3rem"><a href="#" class="text-white">ww.maracuyadetalles.pe</a></h1>
-              <div class="main-button-red mt-4">
-                <div class="catalogo_premios.html"><a href="#">¡Quiero iniciar mi test!</a></div>
-            </div>
-        </div>
-
-      </div>
-
-      <div class="carousel-item">
-       <div class="main-banner" max-width="950px" height="500"></div>
-
-        <div class="carousel-caption d-md-block">
-       <p class="text-white">Cindy ya se parte de</p>
-              <h3 class="text-white" style="font-size: 2.9rem">Ruta Digital</h3>
-         <h1 class="text-white mt-0" style="font-size: 1.4rem">MARACUYÁ DETALLES</h1>
-      <h1 class="text-white" style="font-size: 1.3rem"><a href="#" class="text-white">ww.maracuyadetalles.pe</a></h1>
-              <div class="main-button-red mt-4">
-                <div class="catalogo_premios.html"><a href="#">¡Quiero inicira mi test!</a></div>
-            </div>
-        </div>
-
-      </div>
-
-      <div class="carousel-item ">
-       <div class="main-banner" max-width="950px" height="500"></div>
-
-        <div class="carousel-caption d-md-block">
-       <p class="text-white">Cindy ya se parte de</p>
-              <h3 class="text-white" style="font-size: 2.9rem">Ruta Digital</h3>
-         <h1 class="text-white mt-0" style="font-size: 1.4rem">MARACUYÁ DETALLES</h1>
-      <h1 class="text-white" style="font-size: 1.3rem"><a href="#" class="text-white">ww.maracuyadetalles.pe</a></h1>
-              <div class="main-button-red mt-4">
-                <div class="catalogo_premios.html"><a href="#">¡Quiero inicira mi test!</a></div>
-            </div>
-        </div>
-
-      </div>
-
-    </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-
-      <span class="visually-hidden">Previous</span>
-
-    </button>
-
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-
-      <span class="visually-hidden">Next</span>
-
-    </button>
-
-  </div>
+<!-- ***** Main Banner Area Start ***** -->
+<section class="section"  data-section="section1">
+  <div class="header-text">
+    <div class="container">
+      <div class="row">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
           </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" *ngFor="let banner of listBanner">
+              <div max-width="950px" height="500" >
+                <img
+                  class="main-banner"
+                  src="assets/images/{{banner.foto}}"
+                />
+              </div>
+              <div class="carousel-caption d-md-block">
+                <h3 class="text-white" style="font-size: 2.9rem">{{ banner.titulo }}</h3>
+                <h1 class="text-white mt-0" style="font-size: 1.4rem">{{ banner.nombre_empresa }}</h1>
+                <h1 class="text-white mt-0" style="font-size: 1rem">{{ banner.tipo_empresa }}</h1>
+                <h1 class="text-white" style="font-size: 1.3rem"><a href="#" class="text-white">{{ banner.url_web }}</a></h1>
+                <div class="main-button-red mt-4">
+                  <div class="catalogo_premios.html"><a href="#">¡Quiero iniciar mi test!</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 <!-- ***** Main Banner Area End ***** -->
 
