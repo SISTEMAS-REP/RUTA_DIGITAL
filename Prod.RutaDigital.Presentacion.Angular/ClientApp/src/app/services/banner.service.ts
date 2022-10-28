@@ -17,4 +17,8 @@ export class BannerService extends BaseService {
   ListarBannerPiePagina = (): Observable<any> => {
     return this.get('ListarBannerPiePagina');
   };
+  
+  ListarEventos = (): Observable<any> => {
+    return this.get('ListarEvento');
+  };
 }

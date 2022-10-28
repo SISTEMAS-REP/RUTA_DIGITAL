@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Prod.RutaDigital.Entidades;
 using Prod.RutaDigital.Presentacion.Configuracion.Proxys;
 
 namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
@@ -11,9 +10,11 @@ namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
 public class BannerController : ControllerBase
 {
     private readonly BannerConsultaProxy _bannerConsulta;
-    public BannerController(BannerConsultaProxy bannerConsulta)
+    private readonly EventoConsultaProxy _eventoConsultaProxy;
+    public BannerController(BannerConsultaProxy bannerConsulta, EventoConsultaProxy eventoConsultaProxy)
     {
         _bannerConsulta = bannerConsulta;
+        _eventoConsultaProxy = eventoConsultaProxy;
     }
 
     [AllowAnonymous]
@@ -28,6 +29,13 @@ public class BannerController : ControllerBase
     public async Task<IActionResult> ListarBannerPiePagina()
     {
         var results = await _bannerConsulta.ListarBannerPiePagina();
+        return Ok(results);
+    }
+    [AllowAnonymous]
+    [HttpGet("ListarEvento")]
+    public async Task<IActionResult> ListarEvento()
+    {
+        var results = await _eventoConsultaProxy.ListarEventos();
         return Ok(results);
     }
 }

@@ -167,33 +167,46 @@
           </ng-template>
         </ng-container> -->
 
-        <ng-container *ngFor="let slide of slides">
+        <ng-container *ngFor="let slide of listEvento">
           <ng-template carouselSlide id="slide.id">
-            <div class="item">
-              <img src="assets/images/foto_act_1.png" alt="Course One">
+            <div class="item" style="padding: 10px;">
+              <img src="assets/images/evento/{{slide.foto}}"/>
               <div class="down-content pt-4">
-                <h4>Aprende a diseñar Productos innovadores<br>
-          <span style="font-size: 14px; font-weight: 400">Taller práctico</span>
+                <h4>{{slide.nombre}}<br>
+                <span style="font-size: 14px; font-weight: 400">{{slide.descripcion_corta}}</span>
                  </h4>
                 <div class="info">
                   <div class="row">
+                    <ng-container *ngIf="slide.id_tipo_modalidad == 2">
+                      <div class="col-3">
+                        <img src="assets/images/icon_video.png" style="max-width: 30px"> 
+                      </div>
+                      <div class="col-9 p-0 py-2">
+                         <span>EVENTO {{slide.modalidad}}</span>
+                      </div>
+                      <p class="py-2 pb-4" style="font-size: 14px; font-weight: 400; white-space: wrap; line-height: 13px">{{slide.lugar}}: <br>{{slide.url_evento}}</p>
+                    </ng-container>
+                   
+                    <ng-container *ngIf="slide.id_tipo_modalidad == 1">
+                      <div class="col-3">
+                        <img src="assets/images/icon_video.png" style="max-width: 30px"> 
+                      </div>
+                      <div class="col-9 p-0 py-2">
+                         <span>LUGAR</span>
+                      </div>
+                      <p class="py-2 pb-4" style="font-size: 14px; font-weight: 400; white-space: wrap; line-height: 13px">{{slide.lugar}}</p>
+                      <p class="py-2 pb-4" style="font-size: 14px; font-weight: 400; white-space: wrap; line-height: 13px">{{slide.direccion}}</p>
+                    </ng-container>
+                   
+                    
                     <div class="col-3">
-                      <img src="assets/images/icon_video.png" style="max-width: 30px"> 
-                    </div>
-                    <div class="col-9 p-0 py-2">
-                       <span>Evento virtual</span>
-                    </div>
-            <p class="py-2 pb-4" style="font-size: 14px; font-weight: 400; white-space: wrap; line-height: 13px">Vía zoom: <br>
-  https://support.zoom.us/hc/es/<br>articles/360000518526-URL-de-posasistente</p>
-            <div class="col-3">
                       <img src="assets/images/icon_calendario.png" style="max-width: 30px"> 
                     </div>
                     <div class="col-9 p-0 py-2">
                        <span>Fecha</span>
                     </div>
-            <p class="py-2 pb-4" style="font-size: 14px; font-weight: 400; white-space: wrap; line-height: 13px">
-            20 de noviembre del 2022</p>
-            <a href="eventos.html" style="text-align: right"> Ver más <i class="fa fa-chevron-right"></i></a>
+                    <p class="py-2 pb-4" style="font-size: 14px; font-weight: 400; white-space: wrap; line-height: 13px">{{slide.fecha_evento}}</p>
+                    <a href="eventos.html" style="text-align: right"> Ver más <i class="fa fa-chevron-right"></i></a>
                   </div>
                 </div>
               </div>

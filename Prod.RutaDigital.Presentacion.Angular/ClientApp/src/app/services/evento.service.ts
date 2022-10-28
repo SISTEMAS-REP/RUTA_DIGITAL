@@ -11,6 +11,6 @@ export class EventoService extends BaseService {
   }
 
   ListarEventos = (): Observable<any> => {
-    return this.get('ListarEventos');
+    return this.get('ListarEvento');
   };
 }

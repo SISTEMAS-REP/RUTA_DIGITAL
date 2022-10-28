@@ -98,11 +98,10 @@ export class InicioComponent implements OnInit {
   };
 
   ListarEvento = () => {
-    this.eventoRepository
+    this.bannerRepository
     .ListarEventos()
     .subscribe({
       next: (data : Array<any>) => {
-        debugger
         this.listEvento = data;
       },
       error: (err) => {

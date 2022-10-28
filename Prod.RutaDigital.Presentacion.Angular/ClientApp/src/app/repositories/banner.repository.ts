@@ -20,4 +20,10 @@ export class BannerRepository {
       .ListarBannerPiePagina()
       .pipe(map((response) => response.data));
   };
+
+  ListarEventos = (): Observable<any> => {
+    return this.bannerService
+      .ListarEventos().pipe(
+        map((response) => response.data));
+  };
 }
