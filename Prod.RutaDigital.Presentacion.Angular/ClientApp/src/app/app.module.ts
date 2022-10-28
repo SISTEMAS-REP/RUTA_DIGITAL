@@ -16,6 +16,8 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { ProduceMasBarComponent } from './components/produce-mas-bar/produce-mas-bar.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     BrowserAnimationsModule,
+    CarouselModule,
     //AppRoutingModule,
     RouterModule.forRoot(routes, {
       //initialNavigation: 'enabled',
