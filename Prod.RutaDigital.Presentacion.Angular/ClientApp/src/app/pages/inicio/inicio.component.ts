@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BannerRepository } from 'src/app/repositories/banner.repository';
+import { EventoRepository } from 'src/app/repositories/evento.repository';
 import { InicioRepository } from '../../repositories/inicio.repository';
 
 @Component({
@@ -11,13 +12,16 @@ export class InicioComponent implements OnInit {
   
   listBanner : Array<any>;
   listPiePagina : Array<any>;
+  listEvento: Array<any>;
 
   constructor(
-    private bannerRepository: BannerRepository) {}
+    private bannerRepository: BannerRepository,
+    private eventoRepository: EventoRepository) {}
 
   ngOnInit(): void {
     this.ListarBannerPrincipal();
     this.ListarBannerPiePagina();
+    this.ListarEvento();
   }
 
   ListarBannerPrincipal = () => {
@@ -41,7 +45,6 @@ export class InicioComponent implements OnInit {
     .ListarBannerPiePagina()
     .subscribe({
       next: (data : Array<any>) => {
-        debugger
         this.listPiePagina = data;
 
        
@@ -51,4 +54,20 @@ export class InicioComponent implements OnInit {
       },
     });
   };
+
+  ListarEvento = () => {
+    this.eventoRepository
+    .ListarEventos()
+    .subscribe({
+      next: (data : Array<any>) => {
+        debugger
+        this.listEvento = data;
+      },
+      error: (err) => {
+       
+      },
+    });
+  };
+
+
 }
