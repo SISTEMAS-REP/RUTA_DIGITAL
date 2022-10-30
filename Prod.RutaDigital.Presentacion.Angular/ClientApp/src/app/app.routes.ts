@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { CounterComponent } from './demo/counter/counter.component';
 import { WeatherForecastComponent } from './demo/weather-forecast/weather-forecast.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
-import { EventosComponent } from './pages/eventos/eventos.component';
 import { AuthorizeGuard } from './authorization/authorize.guard';
 
 export const routes: Routes = [
@@ -12,7 +11,15 @@ export const routes: Routes = [
     pathMatch: 'full',
     data: { state: 'inicio' },
   },
-  { path: 'eventos', component: EventosComponent },
+  { path: 'inicio', component: InicioComponent ,
+    loadChildren: () => import('./pages/inicio/inicio.module').then((m) => m.InicioModule)
+  },
+
+  {
+    path: 'eventos',
+    loadChildren: () => import('./pages/eventos/eventos.module').then((m) => m.EventosModule)
+  },
+
 
   /*DEMO*/
   {

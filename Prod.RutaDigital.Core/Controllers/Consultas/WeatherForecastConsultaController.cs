@@ -22,6 +22,6 @@ public class WeatherForecastConsultaController : ControllerBase
         Listar([FromQuery] WeatherForecastRequest request)
     {
         return await _weatherForecastAplicacion
-            .Listar(request);
+            .Listar(request); 
     }
 }
