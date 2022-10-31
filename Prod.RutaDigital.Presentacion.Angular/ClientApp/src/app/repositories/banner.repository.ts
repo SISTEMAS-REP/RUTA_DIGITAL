@@ -21,9 +21,9 @@ export class BannerRepository {
       .pipe(map((response) => response.data));
   };
 
-  ListarEventos = (): Observable<any> => {
+  ListarEventos = (request: any,): Observable<any> => {
     return this.bannerService
-      .ListarEventos().pipe(
+      .ListarEventos(request).pipe(
         map((response) => response.data));
   };
 }

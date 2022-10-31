@@ -5,6 +5,6 @@ namespace Prod.RutaDigital.Datos.Interfaces
 {
     public interface IEventoUnitOfWork : IUnitOfWork
     {
-        Task<IEnumerable<EventoResponse>> ListarEventos();
+        Task<IEnumerable<EventoResponse>> ListarEventos(EventoRequest request);
     }
 }

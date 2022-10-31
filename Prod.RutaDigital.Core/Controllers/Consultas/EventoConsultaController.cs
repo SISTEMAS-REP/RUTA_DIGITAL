@@ -23,10 +23,10 @@ namespace Prod.RutaDigital.Core.Controllers.Consultas
 
         [HttpGet]
         [Route("ListarEventos")]
-        public async Task<StatusResponse<List<EventoResponse>>> ListarEventos()
+        public async Task<StatusResponse<List<EventoResponse>>> ListarEventos([FromQuery] EventoRequest request)
         {
             return await _eventoAplicacion
-                .ListarEventos();
+                .ListarEventos(request);
         }
     }
 }

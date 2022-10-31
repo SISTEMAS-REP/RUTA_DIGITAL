@@ -5,6 +5,6 @@ namespace Prod.RutaDigital.Core.Aplicacion.Interfaces
 {
     public interface IEventoAplicacion
     {
-        Task<StatusResponse<List<EventoResponse>>> ListarEventos();
+        Task<StatusResponse<List<EventoResponse>>> ListarEventos(EventoRequest request);
     }
 }

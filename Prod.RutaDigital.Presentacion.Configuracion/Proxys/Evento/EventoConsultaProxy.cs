@@ -13,9 +13,9 @@ namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys
         {
             _url = string.Format("{0}EventoConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
         }
-        public Task<StatusResponse<List<EventoResponse>>> ListarEventos()
+        public Task<StatusResponse<List<EventoResponse>>> ListarEventos(EventoRequest request)
         {
-            return this.CallWebApiAsync<StatusResponse<List<EventoResponse>>>(HttpMethod.Get, _url + "ListarEventos", null);
+            return this.CallWebApiAsync<StatusResponse<List<EventoResponse>>>(HttpMethod.Get, _url + "ListarEventos", this.GetJsonParameters(request));
         }
     }
 }

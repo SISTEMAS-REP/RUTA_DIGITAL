@@ -17,11 +17,12 @@ namespace Prod.RutaDigital.Datos
         {
         }
 
-        public async Task<IEnumerable<EventoResponse>> ListarEventos()
+        public async Task<IEnumerable<EventoResponse>> ListarEventos(EventoRequest request)
         {
             var parms = new Parameter[]
             {
-
+                 new Parameter("@id_evento", request.id_evento),
+                 new Parameter("@id_filtro", request.id_filtro),
             };
 
             var result = ExecuteReader<EventoResponse>(

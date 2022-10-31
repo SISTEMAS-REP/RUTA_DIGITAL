@@ -17,13 +17,13 @@ namespace Prod.RutaDigital.Core.Aplicacion
         {
             this._uow = eventoUnitOfWork;
         }
-        public async Task<StatusResponse<List<EventoResponse>>> ListarEventos()
+        public async Task<StatusResponse<List<EventoResponse>>> ListarEventos(EventoRequest request)
         {
             var resultado = new StatusResponse<List<EventoResponse>>();
             try
             {
                 var data = await _uow
-                    .ListarEventos();
+                    .ListarEventos(request);
                 resultado.Success = true;
                 resultado.Data = data.ToList();
             }

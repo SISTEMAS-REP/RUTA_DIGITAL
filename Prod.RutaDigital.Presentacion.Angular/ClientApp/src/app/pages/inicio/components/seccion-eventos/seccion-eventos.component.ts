@@ -56,8 +56,14 @@ export class SeccionEventosComponent implements OnInit {
   }
 
   ListarEvento = () => {
+    var request: any = {
+      id_evento: null,
+      id_filtro: null
+    };
+
+    debugger
     this.bannerRepository
-    .ListarEventos()
+    .ListarEventos(request)
     .subscribe({
       next: (data : Array<any>) => {
         this.listEvento = data;

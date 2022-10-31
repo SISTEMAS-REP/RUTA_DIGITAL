@@ -18,7 +18,8 @@ export class BannerService extends BaseService {
     return this.get('ListarBannerPiePagina');
   };
   
-  ListarEventos = (): Observable<any> => {
-    return this.get('ListarEvento');
+  ListarEventos = (request?: any): Observable<any> => {
+    debugger
+    return this.get('ListarEvento', {params: request ? this.setParams(request) : {},});
   };
 }

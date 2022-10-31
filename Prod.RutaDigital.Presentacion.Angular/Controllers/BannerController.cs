@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Prod.RutaDigital.Entidades;
 using Prod.RutaDigital.Presentacion.Configuracion.Proxys;
 
 namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
@@ -33,9 +34,9 @@ public class BannerController : ControllerBase
     }
     [AllowAnonymous]
     [HttpGet("ListarEvento")]
-    public async Task<IActionResult> ListarEvento()
+    public async Task<IActionResult> ListarEvento([FromQuery] EventoRequest request)
     {
-        var results = await _eventoConsultaProxy.ListarEventos();
+        var results = await _eventoConsultaProxy.ListarEventos(request);
         return Ok(results);
     }
 }
