@@ -51,7 +51,7 @@
                          <span>Fecha</span>
                       </div>
                       <p class="py-2 pb-4" style="font-size: 14px; font-weight: 400; white-space: wrap; line-height: 13px">{{slide.fecha_evento}}</p>
-                      <a [routerLink]="['/eventos']" style="text-align: right"> Ver más <i class="fa fa-chevron-right"></i></a>
+                      <a (click)="verEvento(slide.id_evento)" style="text-align: right; cursor:pointer;"> Ver más <i class="fa fa-chevron-right"></i></a>
                     </div>
                   </div>
                 </div>

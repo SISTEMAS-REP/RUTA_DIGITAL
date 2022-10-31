@@ -1,7 +1,7 @@
 import {
   BrowserModule,
 } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { CounterComponent } from './demo/counter/counter.component';
@@ -39,5 +39,8 @@ import { CommonModule } from '@angular/common';
     SharedModule,
   ],
   bootstrap: [AppComponent],
+  // providers: [
+  //   { provide: LOCALE_ID, useValue: 'es' },
+  // ],
 })
 export class AppModule {}

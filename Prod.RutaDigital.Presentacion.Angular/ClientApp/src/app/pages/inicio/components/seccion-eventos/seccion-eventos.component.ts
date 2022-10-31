@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { BannerRepository } from 'src/app/repositories/banner.repository';
 
@@ -49,6 +50,7 @@ export class SeccionEventosComponent implements OnInit {
 
   constructor(
     private bannerRepository: BannerRepository,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -61,7 +63,6 @@ export class SeccionEventosComponent implements OnInit {
       id_filtro: null
     };
 
-    debugger
     this.bannerRepository
     .ListarEventos(request)
     .subscribe({
@@ -73,5 +74,11 @@ export class SeccionEventosComponent implements OnInit {
       },
     });
   };
+
+  verEvento = (id) =>{
+    debugger
+    this.router.navigate(['/eventos', id]);
+  }
+ 
 
 }

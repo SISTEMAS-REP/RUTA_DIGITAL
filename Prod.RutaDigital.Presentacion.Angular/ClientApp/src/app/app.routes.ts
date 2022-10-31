@@ -14,12 +14,14 @@ export const routes: Routes = [
   { path: 'inicio', component: InicioComponent ,
     loadChildren: () => import('./pages/inicio/inicio.module').then((m) => m.InicioModule)
   },
-
   {
     path: 'eventos',
     loadChildren: () => import('./pages/eventos/eventos.module').then((m) => m.EventosModule)
   },
-
+  {
+    path: 'eventos/:id',
+    loadChildren: () => import('./pages/eventos/eventos.module').then((m) => m.EventosModule)
+  },
 
   /*DEMO*/
   {

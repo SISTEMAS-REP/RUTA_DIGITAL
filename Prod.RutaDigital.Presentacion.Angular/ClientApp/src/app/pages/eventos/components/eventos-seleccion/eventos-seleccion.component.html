@@ -1,95 +1,41 @@
+<div class="col-lg-12 redes1">
+  <div class="filters">
+    <ul>
+      <li (click)="filter(0)">Todo</li>
+      <li (click)="filter(1)">Hoy</li>
+      <li (click)="filter(2)">Mañana</li>
+      <li (click)="filter(3)">Esta semana</li>
+      <li (click)="filter(4)">La próxima semana</li>
+    </ul>
+  </div>
+</div>
 <div class="row">
     <div class="col-4 pb-5 redes1">
-    <div class="meeting-item box-eventos">
-      <div class="down-content d-flex">
-            <div class="col-2 date py-4">
-              <h6><span>02</span>OCT </h6>
+      <div class="meeting-item box-eventos" *ngFor="let evento of listEvento">
+        <div class="down-content d-flex"  (click)="SeleccionarEvento( evento.id_evento)" style="cursor:pointer;">
+              <div class="col-2 date py-4">
+                <h6><span>{{ evento.fecha_evento | date: 'dd'  }}</span>{{ evento.fecha_evento | date: 'MMM'  }} </h6>
+              </div>
+            <div class="col-5 pe-2">
+              <h3 style="text-align: left p-0 mx-0">{{ evento.descripcion_corta}}</h3>
+            <h6 align="left" style="font-size: 18px"> {{ evento.fecha_evento | date: 'DDD'  }}, {{ evento.fecha_evento | date: 'shortTime'  }} </h6>
+              <h6 class="pt-3" align="left">{{ evento.lugar}}</h6>
+              </div>
+            <div class="col-4">
+                <img class="img-fluid" src="assets/images/evento/{{evento.foto}}">
             </div>
-          <div class="col-5 pe-2">
-            <h3 style="text-align: left p-0 mx-0">Registro Mype</h3>
-          <h6 align="left" style="font-size: 18px">mie, 4:00 pm </h6>
-            <h6 class="pt-3" align="left">Produce Guardía Civil Lima</h6>
-            </div>
-          <div class="col-4">
-              <img class="img-fluid" src="assets/images/foto_evento1.png">
-          </div>
-          
-          </div>
-    </div>
-        <div class="meeting-item box-eventos">
-      <div class="down-content d-flex">
-            <div class="col-2 date py-4">
-              <h6><span>06</span>OCT </h6>
-            </div>
-          <div class="col-5 pe-2">
-            <h3 style="text-align: left p-0 mx-0">Registro Mype</h3>
-          <h6 align="left" style="font-size: 18px">mie, 4:00 pm </h6>
-            <h6 class="pt-3" align="left">Produce Guardía Civil Lima</h6>
-            </div>
-          <div class="col-4">
-              <img class="img-fluid" src="assets/images/foto_evento1.png">
-          </div>
-          
-          </div>
-    </div>
-        <div class="meeting-item box-eventos">
-      <div class="down-content d-flex">
-            <div class="col-2 date py-4">
-              <h6><span>11</span>OCT </h6>
-            </div>
-          <div class="col-5 pe-2">
-            <h3 style="text-align: left p-0 mx-0">Registro Mype</h3>
-          <h6 align="left" style="font-size: 18px">mie, 4:00 pm </h6>
-            <h6 class="pt-3" align="left">Produce Guardía Civil Lima</h6>
-            </div>
-          <div class="col-4">
-              <img class="img-fluid" src="assets/images/foto_evento1.png">
-          </div>
-          
-          </div>
-    </div>
-        <div class="meeting-item box-eventos">
-      <div class="down-content d-flex">
-            <div class="col-2 date py-4">
-              <h6><span>21</span>OCT </h6>
-            </div>
-          <div class="col-5 pe-2">
-            <h3 style="text-align: left p-0 mx-0">Registro Mype</h3>
-          <h6 align="left" style="font-size: 18px">mie, 4:00 pm </h6>
-            <h6 class="pt-3" align="left">Produce Guardía Civil Lima</h6>
-            </div>
-          <div class="col-4">
-              <img class="img-fluid" src="assets/images/foto_evento1.png">
-          </div>
-          
-          </div>
-    </div>
-        <div class="meeting-item box-eventos">
-      <div class="down-content d-flex">
-            <div class="col-2 date py-4">
-              <h6><span>28</span>OCT </h6>
-            </div>
-          <div class="col-5 pe-2">
-            <h3 style="text-align: left p-0 mx-0">Registro Mype</h3>
-          <h6 align="left" style="font-size: 18px">mie, 4:00 pm </h6>
-            <h6 class="pt-3" align="left">Produce Guardía Civil Lima</h6>
-            </div>
-          <div class="col-4">
-              <img class="img-fluid" src="assets/images/foto_evento1.png">
-          </div>
-          
-          </div>
-    </div>
-  </div>
-         
-       <div class="col-lg-8 mb-5 p-4 box-eventos-detalle">
-  
-  <div class="num-calendario pb-5 redes1" style="font-size: 40px"><strong>28</strong> <span class="mes-calendario" style="font-size: 24px; font-family: Montserrat-medium">Registro MYPE</span>
+            
+        </div>
       </div>
-  <img class="img-responsive" src="assets/images/foot_evento1-g.png">
-<div class="mes-calendario pt-3 pb-3" style="font-size: 26px; font-family: Montserrat-medium">Registra tu marca de productos o servicios</div>
+    </div>
+    <div class="col-lg-8 mb-5 p-4 box-eventos-detalle">
+  
+  <div class="num-calendario pb-5 redes1" style="font-size: 40px"><strong>{{ Evento.fecha_evento | date: 'dd' }}</strong> <span class="mes-calendario" style="font-size: 24px; font-family: Montserrat-medium">{{ Evento.descripcion_corta}}</span>
+      </div>
+  <img class="img-responsive" src="assets/images/evento/evento_general/{{Evento.foto}}">
+<div class="mes-calendario pt-3 pb-3" style="font-size: 26px; font-family: Montserrat-medium">{{ Evento.nombre }}</div>
   <p class="text-calendario">
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium.
+    {{ Evento.descripcion}}
   </p>
   <div class="">
       <div class="col-12">
@@ -100,12 +46,12 @@
           </div>
       <div class="col-12">
           <div class="d-flex align-items-center pb-3">
-      <i><img class="pe-3" src="assets/images/icon_calendario.png"></i><span class="dir-calendario mb- pb-0">20 de julio del 2022</span>
+      <i><img class="pe-3" src="assets/images/icon_calendario.png"></i><span class="dir-calendario mb- pb-0">{{ Evento.fecha_evento | date: 'dd' }} de {{ Evento.fecha_evento | date: 'MMMM' }} del {{ Evento.fecha_evento | date: 'yyyy' }}</span>
   </div>
           </div>
       <div class="col-12">
           <div class="d-flex align-items-center pb-3">
-      <i><img class="pe-3" src="assets/images/icon_reloj.png"></i><span class="dir-calendario pb-0">10:00 a.m.</span>
+      <i><img class="pe-3" src="assets/images/icon_reloj.png"></i><span class="dir-calendario pb-0">{{ Evento.fecha_evento | date: 'shortTime' }}</span>
   </div>
           </div>
       <div class="col-8">
@@ -131,4 +77,4 @@
 </div>
          
         
-     </div>
+</div>

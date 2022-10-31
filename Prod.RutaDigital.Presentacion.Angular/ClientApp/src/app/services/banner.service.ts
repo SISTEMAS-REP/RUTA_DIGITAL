@@ -19,7 +19,6 @@ export class BannerService extends BaseService {
   };
   
   ListarEventos = (request?: any): Observable<any> => {
-    debugger
     return this.get('ListarEvento', {params: request ? this.setParams(request) : {},});
   };
 }
