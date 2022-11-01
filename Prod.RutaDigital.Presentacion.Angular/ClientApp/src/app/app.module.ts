@@ -39,8 +39,8 @@ import { CommonModule } from '@angular/common';
     SharedModule,
   ],
   bootstrap: [AppComponent],
-  // providers: [
-  //   { provide: LOCALE_ID, useValue: 'es' },
-  // ],
+   providers: [
+     { provide: LOCALE_ID, useValue: 'es' },
+   ],
 })
 export class AppModule {}

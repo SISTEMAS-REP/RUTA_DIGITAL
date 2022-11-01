@@ -1,7 +1,7 @@
 <div class="col-lg-12 redes1">
   <div class="filters">
     <ul>
-      <li (click)="filter(0)">Todo</li>
+      <li (click)="filter(0)">Todos</li>
       <li (click)="filter(1)">Hoy</li>
       <li (click)="filter(2)">Mañana</li>
       <li (click)="filter(3)">Esta semana</li>
@@ -16,12 +16,13 @@
               <div class="col-2 date py-4">
                 <h6><span>{{ evento.fecha_evento | date: 'dd'  }}</span>{{ evento.fecha_evento | date: 'MMM'  }} </h6>
               </div>
-            <div class="col-5 pe-2">
+            <div class="col-6 pe-2">
               <h3 style="text-align: left p-0 mx-0">{{ evento.descripcion_corta}}</h3>
-            <h6 align="left" style="font-size: 18px"> {{ evento.fecha_evento | date: 'DDD'  }}, {{ evento.fecha_evento | date: 'shortTime'  }} </h6>
-              <h6 class="pt-3" align="left">{{ evento.lugar}}</h6>
+            <h6 align="left" style="font-size: 18px"> {{ evento.fecha_evento | date: 'EE, hh:mm a'}} </h6>
+              <h6 class="pt-3" align="left" *ngIf="evento.id_tipo_modalidad == 1">{{ evento.lugar}}</h6>
+              <h6 class="pt-3" align="left" *ngIf="evento.id_tipo_modalidad == 2">Evento {{ evento.modalidad}}</h6>
               </div>
-            <div class="col-4">
+            <div class="col-3">
                 <img class="img-fluid" src="assets/images/evento/{{evento.foto}}">
             </div>
             
@@ -30,41 +31,48 @@
     </div>
     <div class="col-lg-8 mb-5 p-4 box-eventos-detalle">
   
-  <div class="num-calendario pb-5 redes1" style="font-size: 40px"><strong>{{ Evento.fecha_evento | date: 'dd' }}</strong> <span class="mes-calendario" style="font-size: 24px; font-family: Montserrat-medium">{{ Evento.descripcion_corta}}</span>
+  <div class="num-calendario pb-4 redes1" style="font-size: 40px"><strong class="pe-2">{{ Evento.fecha_evento | date: 'dd' }}</strong> <span class="mes-calendario" style="font-size: 24px; font-family: Montserrat-medium">{{ Evento.descripcion_corta}}</span>
       </div>
   <img class="img-responsive" src="assets/images/evento/evento_general/{{Evento.foto}}">
 <div class="mes-calendario pt-3 pb-3" style="font-size: 26px; font-family: Montserrat-medium">{{ Evento.nombre }}</div>
-  <p class="text-calendario">
-    {{ Evento.descripcion}}
-  </p>
-  <div class="">
-      <div class="col-12">
-          <div class="d-flex align-items-center pb-3">
-      <i><img class="pe-3" src="assets/images/iocn_lugar.png"></i><span class="dir-calendario mb- pb-0" style="display: block"> Hall del Ministerio de Producción<br>
-       Calle Uno Oeste 60, San Isidro 15036</span>
-  </div>
+<div class="col-12">
+    <p class="text-calendario pb-3">
+       {{ Evento.descripcion}}
+    </p>
+</div>
+
+    <div class="col-12">
+      
+      <div class="d-flex align-items-center pb-3" *ngIf="Evento.id_tipo_modalidad == 1">
+        <i><img class="pe-4" src="assets/images/iocn_lugar.png"></i><span class="dir-calendario mb- pb-0" style="display: block"> {{Evento.lugar}} <br> {{Evento.direccion}}</span> 
+      </div>
+
+      <div class="d-flex align-items-center pb-3" *ngIf="Evento.id_tipo_modalidad == 2">
+        <i><img class="pe-4" src="assets/images/iocn_lugar.png"></i><span class="dir-calendario mb- pb-0" style="display: block"> Evento {{Evento.modalidad}} <br> {{Evento.url_evento}}</span> 
+      </div>
+      
           </div>
-      <div class="col-12">
-          <div class="d-flex align-items-center pb-3">
-      <i><img class="pe-3" src="assets/images/icon_calendario.png"></i><span class="dir-calendario mb- pb-0">{{ Evento.fecha_evento | date: 'dd' }} de {{ Evento.fecha_evento | date: 'MMMM' }} del {{ Evento.fecha_evento | date: 'yyyy' }}</span>
+    <div class="col-12">
+        <div class="d-flex align-items-center pb-3">
+          <i><img class="pe-4" src="assets/images/icon_calendario.png"></i><span class="dir-calendario mb- pb-0">{{ Evento.fecha_evento | date: 'longDate' }} </span>
+        </div>
+    </div>
+    <div class="col-12">
+      <div class="d-flex align-items-center pb-3">
+        <i><img class="pe-3" src="assets/images/icon_reloj.png"></i><span class="dir-calendario pb-0">{{ Evento.fecha_evento | date: 'hh:mm a' }}</span>
+      </div>
   </div>
-          </div>
-      <div class="col-12">
-          <div class="d-flex align-items-center pb-3">
-      <i><img class="pe-3" src="assets/images/icon_reloj.png"></i><span class="dir-calendario pb-0">{{ Evento.fecha_evento | date: 'shortTime' }}</span>
-  </div>
-          </div>
       <div class="col-8">
           <div class="d-flex align-items-center pb-3">
-      <i><img class="pe-3" src="assets/images/icon_conpartir.png"></i><span class="dir-calendario pb-0">Compartir</span>
+      <i><img class="pe-2" src="assets/images/icon_conpartir.png"></i><span class="dir-calendario pb-0">Compartir</span>
   </div>
           </div>
       
-      <p style="font-size: 20px; font-weight: 700">
-      Mapa<br>
-          <img class="img-fluid" src="assets/images/mapa.png">
-          
-          </p>
+    <div class="col-12">
+      <p style="font-size: 20px; font-weight: 700;" class="pb-2">Mapa<br></p>
+      <img class="img-fluid" src="assets/images/mapa.png">       
+    </div>
+
       <div class="col-12 mt-5" align="center">
   <div class="main-button-red">
         <div class="scroll-to-section"><a href="#contact">¡Quiero iniciar mi test!</a></div>
@@ -72,9 +80,6 @@
 </div>
   <p></p>
       
-      </div>
+</div>           
+</div>
 
-</div>
-         
-        
-</div>

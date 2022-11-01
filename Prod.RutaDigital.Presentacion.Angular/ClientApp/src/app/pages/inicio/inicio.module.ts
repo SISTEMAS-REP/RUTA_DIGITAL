@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID,NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioRoutingModule } from './inicio-routing.module';
 import { InicioComponent } from './inicio.component';
@@ -10,7 +10,8 @@ import { SeccionPremiosComponent } from './components/seccion-premios/seccion-pr
 import { SeccionEventosComponent } from './components/seccion-eventos/seccion-eventos.component';
 import { SeccionBannerPieComponent } from './components/seccion-banner-pie/seccion-banner-pie.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-
+import LocalES from '@angular/common/locales/es';
+registerLocaleData(LocalES,'es')
 
 
 
@@ -33,7 +34,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     
   ],
   providers: [
- ],
+    { provide: LOCALE_ID, useValue: 'es' },
+  ],
 
 })
 export class InicioModule {}
