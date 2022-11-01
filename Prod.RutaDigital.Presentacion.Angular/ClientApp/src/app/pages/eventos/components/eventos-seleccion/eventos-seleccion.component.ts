@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BannerRepository } from 'src/app/repositories/banner.repository';
+// import { MapsAPILoader, MouseEvent } from "@agm/core";
 
 @Component({
   selector: 'app-eventos-seleccion',
@@ -12,6 +13,7 @@ export class EventosSeleccionComponent implements OnInit {
   Evento: any;
   id_filtro: number = null;
   id_evento: number = null;
+  is_verdetalle: boolean = true;
   constructor(
     private bannerRepository: BannerRepository,
     private router: ActivatedRoute
@@ -31,6 +33,7 @@ export class EventosSeleccionComponent implements OnInit {
   }
 
   filter = (evento) =>{
+    this.is_verdetalle = false;
     this.id_filtro = evento;
     this.ListarEventos();
   }
@@ -50,6 +53,13 @@ export class EventosSeleccionComponent implements OnInit {
     .ListarEventos(request)
     .subscribe({
       next: (data : Array<any>) => {
+        debugger
+        // if(data.length == 0){
+        //   this.is_verdetalle = false;
+        // }
+        // else{
+        //   this.is_verdetalle = true;
+        // }
         this.listEvento = data;
       },
       error: (err) => {
@@ -68,6 +78,7 @@ export class EventosSeleccionComponent implements OnInit {
     .ListarEventos(request)
     .subscribe({
       next: (data : Array<any>) => {
+        this.is_verdetalle = true;
         this.Evento = data[0];
       },
       error: (err) => {
@@ -76,6 +87,13 @@ export class EventosSeleccionComponent implements OnInit {
     });
   };
 
+
+  markerDragEnd($event: MouseEvent) {
+    debugger
+    // this.form.latitud = $event.coords.lat;
+    // this.form.longitud = $event.coords.lng;
+    // this.getAddress(this.form.latitud, this.form.longitud);
+  }
   
 
 }
