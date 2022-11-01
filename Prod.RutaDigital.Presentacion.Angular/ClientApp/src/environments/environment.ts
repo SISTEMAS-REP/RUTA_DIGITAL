@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   loginUnicoUrl: 'https://localhost:7086/',
+  key:'AIzaSyDVkwDOtL8o4SKVS7SUvrz4yZdGtYD0AR'
 };
 
 /*

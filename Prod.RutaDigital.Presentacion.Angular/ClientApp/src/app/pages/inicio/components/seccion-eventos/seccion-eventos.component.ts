@@ -11,13 +11,12 @@ import { BannerRepository } from 'src/app/repositories/banner.repository';
 export class SeccionEventosComponent implements OnInit {
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
+    mouseDrag: true,
+    touchDrag: true,
     pullDrag: false,
     autoplay: true,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
     responsive: {
       0: {
         items: 1
@@ -31,8 +30,7 @@ export class SeccionEventosComponent implements OnInit {
       940: {
         items: 4
       }
-    },
-    nav: true
+    }
   }
    
     slides = [

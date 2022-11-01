@@ -13,6 +13,9 @@ export class EventosSeleccionComponent implements OnInit {
   Evento: any;
   id_filtro: number = null;
   id_evento: number = null;
+  latitud: number = -12.011307;
+  longitud: number = -77.0033325;
+  
   is_verdetalle: boolean = true;
   constructor(
     private bannerRepository: BannerRepository,
@@ -31,6 +34,7 @@ export class EventosSeleccionComponent implements OnInit {
     this.ListarEventos();
     this.VerEvento();
   }
+   
 
   filter = (evento) =>{
     this.is_verdetalle = false;
@@ -87,13 +91,17 @@ export class EventosSeleccionComponent implements OnInit {
     });
   };
 
-
-  markerDragEnd($event: MouseEvent) {
-    debugger
-    // this.form.latitud = $event.coords.lat;
-    // this.form.longitud = $event.coords.lng;
-    // this.getAddress(this.form.latitud, this.form.longitud);
-  }
+center: google.maps.LatLngLiteral = {
+    lat: this.latitud,
+    lng: this.longitud,   
+};
+zoom = 18;
+markerOptions: google.maps.MarkerOptions = {
+    draggable: true
+};
+markerPositions: google.maps.LatLngLiteral[] = [];
+addMarker(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());
+}
   
-
 }

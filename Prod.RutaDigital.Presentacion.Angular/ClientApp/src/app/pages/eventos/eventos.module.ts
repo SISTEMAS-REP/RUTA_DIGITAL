@@ -6,6 +6,7 @@ import { EventosComponent } from './eventos.component';
 import { RouterModule } from '@angular/router';
 import { EventosSeleccionComponent } from './components/eventos-seleccion/eventos-seleccion.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { GoogleMapsModule } from '@angular/google-maps'
 import LocalES from '@angular/common/locales/es';
 registerLocaleData(LocalES,'es')
 
@@ -21,6 +22,7 @@ registerLocaleData(LocalES,'es')
     RouterModule,
     EventosRoutingModule,
     CarouselModule,
+    GoogleMapsModule
     
   ],
   providers: [

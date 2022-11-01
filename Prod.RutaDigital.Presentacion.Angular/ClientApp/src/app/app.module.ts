@@ -14,7 +14,9 @@ import { routes } from './app.routes';
 import { ProduceMasBarComponent } from './components/produce-mas-bar/produce-mas-bar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { CommonModule } from '@angular/common';
+import { CommonModule , registerLocaleData} from '@angular/common';
+import LocalES from '@angular/common/locales/es';
+registerLocaleData(LocalES,'es')
 
 @NgModule({
   declarations: [

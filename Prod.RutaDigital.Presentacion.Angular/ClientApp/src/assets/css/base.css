@@ -1395,7 +1395,7 @@ section.our-courses {
 
 .our-courses .item .down-content {
   background-color: #fff;
-	padding: 0 15px;
+	padding: 0 0px;
 }
 .our-courses.item .down-content .thumb .price {
     position: absolute;
@@ -1498,7 +1498,7 @@ section.our-courses {
   font-size: 25px;
   font-weight: 700;
   content: '\f104';
-  background-color: #EAEAEA;
+  background-color: #089F42;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -1537,7 +1537,7 @@ section.our-courses {
   font-size: 25px;
   font-weight: 700;
   content: '\f105';
-  background-color: #EAEAEA;
+  background-color: #089F42;
   width: 50px;
   height: 50px;
   border-radius: 50%;
