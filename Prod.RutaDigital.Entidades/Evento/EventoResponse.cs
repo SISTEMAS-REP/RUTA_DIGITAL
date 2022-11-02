@@ -19,7 +19,7 @@ namespace Prod.RutaDigital.Entidades
         public string? url_evento { get; set; }
         public DateTime? fecha_evento { get; set; }
         public string? modalidad { get; set; }
-        public float latitud { get; set; }
-        public float longitud { get; set; }
+        public decimal latitud { get; set; }
+        public decimal longitud { get; set; }
     }
 }

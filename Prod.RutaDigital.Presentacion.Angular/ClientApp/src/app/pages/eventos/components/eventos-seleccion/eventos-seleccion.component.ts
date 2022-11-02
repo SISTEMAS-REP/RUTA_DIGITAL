@@ -13,8 +13,22 @@ export class EventosSeleccionComponent implements OnInit {
   Evento: any;
   id_filtro: number = null;
   id_evento: number = null;
-  latitud: number = -12.011307;
-  longitud: number = -77.0033325;
+  latitud: number = 0;
+  longitud: number = 0;
+  is_ver_mapa: Boolean = false;
+  center: google.maps.LatLngLiteral = {
+    lat: 0,
+    lng: 0
+  };
+  
+  zoom = 18;
+  
+  markerOptions: google.maps.MarkerOptions = {
+    draggable: true
+  };
+  
+  markerPositions: google.maps.LatLngLiteral[] = [];
+
   
   is_verdetalle: boolean = true;
   constructor(
@@ -57,13 +71,6 @@ export class EventosSeleccionComponent implements OnInit {
     .ListarEventos(request)
     .subscribe({
       next: (data : Array<any>) => {
-        debugger
-        // if(data.length == 0){
-        //   this.is_verdetalle = false;
-        // }
-        // else{
-        //   this.is_verdetalle = true;
-        // }
         this.listEvento = data;
       },
       error: (err) => {
@@ -73,6 +80,7 @@ export class EventosSeleccionComponent implements OnInit {
   };
 
   VerEvento = () => {
+    this.is_ver_mapa = false;
     var request: any = {
       id_evento: this.id_evento,
       id_filtro: null
@@ -82,8 +90,13 @@ export class EventosSeleccionComponent implements OnInit {
     .ListarEventos(request)
     .subscribe({
       next: (data : Array<any>) => {
-        this.is_verdetalle = true;
+        this.is_verdetalle = true;        
+        this.is_ver_mapa = true;
         this.Evento = data[0];
+        this.center['lat'] = null;
+        this.center['lng'] = null;
+        this.center['lat'] =this.Evento.latitud;
+        this.center['lng'] =this.Evento.longitud;
       },
       error: (err) => {
        
@@ -91,15 +104,8 @@ export class EventosSeleccionComponent implements OnInit {
     });
   };
 
-center: google.maps.LatLngLiteral = {
-    lat: this.latitud,
-    lng: this.longitud,   
-};
-zoom = 18;
-markerOptions: google.maps.MarkerOptions = {
-    draggable: true
-};
-markerPositions: google.maps.LatLngLiteral[] = [];
+
+
 addMarker(event: google.maps.MapMouseEvent) {
     if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());
 }

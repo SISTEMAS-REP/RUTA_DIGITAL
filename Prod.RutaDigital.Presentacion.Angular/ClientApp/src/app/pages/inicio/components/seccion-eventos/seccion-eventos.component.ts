@@ -74,7 +74,6 @@ export class SeccionEventosComponent implements OnInit {
   };
 
   verEvento = (id) =>{
-    debugger
     this.router.navigate(['/eventos', id]);
   }
  
