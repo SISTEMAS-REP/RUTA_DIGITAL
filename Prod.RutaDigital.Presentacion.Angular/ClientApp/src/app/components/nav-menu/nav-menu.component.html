@@ -10,11 +10,11 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class=""><a href="index.html" class="active">Inicio</a></li>
+                        <li class=""><a [routerLink]="['/Inicio']" class="active">Inicio</a></li>
                         <li><a href="#">Inicia tu<br> autodiagnóstico</a></li>
                         <li class=""><a href="#">Resultados<br> Ruta Digital</a></li>
-            <li class=""><a href="avance.html">Tu avance en<br> Ruta Digital</a></li>
-                        <li class=""><a href="eventos.html">Eventos</a></li> 
+                        <li class=""><a >Tu avance en<br> Ruta Digital</a></li>
+                        <li class=""><a (click)="verEventos()">Eventos</a></li> 
                         <li class=""><a href="catalogo_premios.html">Catálogo de<br> productos</a></li> 
                     </ul>        
                     <a class='menu-trigger'>
