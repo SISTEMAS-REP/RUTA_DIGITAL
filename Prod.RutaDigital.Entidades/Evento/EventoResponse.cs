@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Prod.RutaDigital.Entidades
+﻿namespace Prod.RutaDigital.Entidades
 {
     public class EventoResponse
     {
@@ -19,7 +13,7 @@ namespace Prod.RutaDigital.Entidades
         public string? url_evento { get; set; }
         public DateTime? fecha_evento { get; set; }
         public string? modalidad { get; set; }
-        public decimal? latitud { get; set; }
-        public decimal? longitud { get; set; }
+        public double latitud { get; set; }
+        public double longitud { get; set; }
     }
 }

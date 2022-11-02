@@ -27,7 +27,7 @@ export class SeccionEventosComponent implements OnInit {
       740: {
         items: 3
       },
-      940: {
+      980: {
         items: 4
       }
     }
