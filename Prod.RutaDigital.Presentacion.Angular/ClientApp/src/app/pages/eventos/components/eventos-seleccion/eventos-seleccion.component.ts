@@ -21,7 +21,7 @@ export class EventosSeleccionComponent implements OnInit {
     lng: 0
   };
   
-  zoom = 18;
+  zoom = 16;
   
   markerOptions: google.maps.MarkerOptions = {
     draggable: true
