@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
 namespace Prod.RutaDigital.Presentacion.Configuracion._Modules;

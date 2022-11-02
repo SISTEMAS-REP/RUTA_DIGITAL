@@ -29,11 +29,6 @@ public class ContextDbModule : Autofac.Module
             .WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("context"));*/
 
         builder
-            .RegisterType<PokemonUnitOfWork>()
-            .As<IPokemonUnitOfWork>()
-            .WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("context"));
-
-        builder
             .RegisterType<WeatherForecastUnitOfWork>()
             .As<IWeatherForecastUnitOfWork>()
             .WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("context"));
