@@ -20,8 +20,8 @@ public class BannerAplicacion : IBannerAplicacion
     }
     public async Task<StatusResponse<List<BannerResponse>>> ListarBannerPrincipal()
     {
-        var resultado = new StatusResponse<List<BannerResponse>>();
         string connectionString = this._configuration.GetSection("fileServer").Value;
+        var resultado = new StatusResponse<List<BannerResponse>>();
         try
         {
             var data = await _uow

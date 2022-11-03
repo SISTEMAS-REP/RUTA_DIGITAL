@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { EventoResponse } from 'src/app/interfaces/evento';
 import { BannerRepository } from 'src/app/repositories/banner.repository';
 // import { MapsAPILoader, MouseEvent } from "@agm/core";
 
@@ -9,8 +11,8 @@ import { BannerRepository } from 'src/app/repositories/banner.repository';
 })
 export class EventosSeleccionComponent implements OnInit {
 
-  listEvento: Array<any>;
-  Evento: any;
+  listEvento: Array<EventoResponse>;
+  Evento: EventoResponse;
   id_filtro: number = null;
   id_evento: number = null;
   latitud: number = 0;
@@ -33,7 +35,8 @@ export class EventosSeleccionComponent implements OnInit {
   is_verdetalle: boolean = true;
   constructor(
     private bannerRepository: BannerRepository,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private sanitizer: DomSanitizer
   ) { 
     
   }
@@ -70,8 +73,12 @@ export class EventosSeleccionComponent implements OnInit {
     this.bannerRepository
     .ListarEventos(request)
     .subscribe({
-      next: (data : Array<any>) => {
+      next: (data : Array<EventoResponse>) => {
         this.listEvento = data;
+        this.listEvento.forEach(element => {
+          let objectURL = 'data:image/png;base64,' + element.numArray;
+          element.imagenEvento = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        });
       },
       error: (err) => {
        
@@ -89,10 +96,13 @@ export class EventosSeleccionComponent implements OnInit {
     this.bannerRepository
     .ListarEventos(request)
     .subscribe({
-      next: (data : Array<any>) => {
+      next: (data : Array<EventoResponse>) => {
         this.is_verdetalle = true;        
         this.is_ver_mapa = true;
+
         this.Evento = data[0];
+        let objectURL = 'data:image/png;base64,' + this.Evento.numArray;
+        this.Evento.imagenEvento = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         this.center['lat'] = null;
         this.center['lng'] = null;
         this.center['lat'] =this.Evento.latitud;

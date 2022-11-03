@@ -23,7 +23,8 @@
           <h6 class="pt-3" align="left" *ngIf="evento.id_tipo_modalidad == 2">Evento {{ evento.modalidad}}</h6>
         </div>
         <div class="col-3">
-          <img class="img-fluid" src="assets/images/evento/{{evento.foto}}">
+          <!-- <img class="img-fluid" src="assets/images/evento/{{evento.foto}}"> -->
+          <img class="img-fluid" [src]="evento.imagenEvento"/>
         </div>
       </div>
     </div>
@@ -32,7 +33,8 @@
     <div >
       <div class="num-calendario pb-4 redes1" style="font-size: 40px"><strong class="pe-2">{{ Evento.fecha_evento | date: 'dd' }}</strong> <span class="mes-calendario" style="font-size: 24px; font-family: Montserrat-medium">{{ Evento.descripcion_corta}}</span>
       </div>
-  <img class="img-responsive" src="assets/images/evento/evento_general/{{Evento.foto}}">
+  <!-- <img class="img-responsive" src="assets/images/evento/evento_general/{{Evento.foto}}"> -->
+  <img class="img-responsive" [src]="Evento.imagenEvento"/>
 <div class="mes-calendario pt-3 pb-3" style="font-size: 26px; font-family: Montserrat-medium">{{ Evento.nombre }}</div>
 <div class="col-12">
     <p class="text-calendario pb-3">

@@ -15,5 +15,6 @@
         public string? modalidad { get; set; }
         public double latitud { get; set; }
         public double longitud { get; set; }
+        public byte[]? numArray { get; set; }
     }
 }

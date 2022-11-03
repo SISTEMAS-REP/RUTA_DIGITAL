@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { EventoResponse } from 'src/app/interfaces/evento';
 import { BannerRepository } from 'src/app/repositories/banner.repository';
 
 
@@ -39,6 +41,7 @@ export class SeccionEventosComponent implements OnInit {
   constructor(
     private bannerRepository: BannerRepository,
     private router: Router,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -54,8 +57,13 @@ export class SeccionEventosComponent implements OnInit {
     this.bannerRepository
     .ListarEventos(request)
     .subscribe({
-      next: (data : Array<any>) => {
+      next: (data : Array<EventoResponse>) => {
+        
         this.listEvento = data;
+        this.listEvento.forEach(element => {
+          let objectURL = 'data:image/png;base64,' + element.numArray;
+          element.imagenEvento = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        });
       },
       error: (err) => {
        
