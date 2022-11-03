@@ -16,5 +16,6 @@ namespace Prod.RutaDigital.Entidades
         public string? accion { get; set; }
         public string? logo { get; set; }
         public string? descripcion { get; set; }
+        public byte[]? numArray { get; set; }
     }
 }

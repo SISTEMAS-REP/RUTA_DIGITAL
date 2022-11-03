@@ -22,10 +22,18 @@ public class BannerAplicacion : IBannerAplicacion
     {
         string connectionString = this._configuration.GetSection("fileServer").Value;
         var resultado = new StatusResponse<List<BannerResponse>>();
+
         try
         {
             var data = await _uow
                 .ListarBannerPrincipal();
+
+            foreach (BannerResponse x in data)
+            {
+                var imagenPath = Path.Combine(connectionString, x.foto!);
+                x.numArray = File.ReadAllBytes(imagenPath);
+            }
+
             resultado.Success = true;
             resultado.Data = data.ToList();
         }
@@ -43,12 +51,19 @@ public class BannerAplicacion : IBannerAplicacion
 
     public async Task<StatusResponse<List<BannerResponse>>> ListarBannerPiePagina()
     {
+        string connectionString = this._configuration.GetSection("fileServer").Value;
         var resultado = new StatusResponse<List<BannerResponse>>();
 
         try
         {
             var data = await _uow
                 .ListarBannerPiePagina();
+
+            foreach (BannerResponse x in data)
+            {
+                var imagenPath = Path.Combine(connectionString, x.foto!);
+                x.numArray = File.ReadAllBytes(imagenPath);
+            }
 
             resultado.Success = true;
             resultado.Data = data.ToList();
