@@ -43,6 +43,11 @@ public class ContextDbModule : Autofac.Module
          .As<IEventoUnitOfWork>()
          .WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("context"));
 
+        builder
+        .RegisterType<PremioUnitOfWork>()
+        .As<IPremioUnitOfWork>()
+        .WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("context"));
+
         //-> Aplicacion
         builder.RegisterAssemblyTypes(Assembly.Load(new AssemblyName("Prod.RutaDigital.Core")))
             .Where(t => t.Name.EndsWith("Aplicacion", StringComparison.Ordinal) && t.GetTypeInfo().IsClass)
