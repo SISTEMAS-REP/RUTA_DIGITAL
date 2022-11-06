@@ -26,7 +26,7 @@ namespace Prod.RutaDigital.Datos
             };
 
             var result = ExecuteReader<EventoResponse>(
-                "Usp_listar_eventos",
+                "USP_LISTAR_EVENTOS",
                 CommandType.StoredProcedure, ref parms).ToList();
 
             return await Task.FromResult(result);
