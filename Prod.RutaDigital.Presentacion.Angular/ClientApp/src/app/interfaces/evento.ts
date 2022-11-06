@@ -15,6 +15,7 @@ export interface EventoResponse {
     modalidad?: string;
     latitud?: number;
     longitud?: number;
+    plataforma?: string;
     numArray?: Blob;
     imagenEvento?: SafeUrl;
   }
