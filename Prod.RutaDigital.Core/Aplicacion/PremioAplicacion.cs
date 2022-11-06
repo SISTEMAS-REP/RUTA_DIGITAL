@@ -30,11 +30,11 @@ namespace Prod.RutaDigital.Core.Aplicacion
                 var data = await _uow
                     .ListarPublicidadPremio();
 
-                //foreach (EventoResponse x in data)
-                //{
-                //    var imagenPath = Path.Combine(connectionString, x.foto!);
-                //    x.numArray = File.ReadAllBytes(imagenPath);
-                //}
+                foreach (PremioPublicidadResponse x in data)
+                {
+                    var imagenPath = Path.Combine(connectionString, x.imagen!);
+                    x.numArray = File.ReadAllBytes(imagenPath);
+                }
 
                 resultado.Success = true;
                 resultado.Data = data.ToList();
@@ -60,11 +60,11 @@ namespace Prod.RutaDigital.Core.Aplicacion
                 var data = await _uow
                     .ListarTipoPremio();
 
-                //foreach (EventoResponse x in data)
-                //{
-                //    var imagenPath = Path.Combine(connectionString, x.foto!);
-                //    x.numArray = File.ReadAllBytes(imagenPath);
-                //}
+                foreach (PremioTipoResponse x in data)
+                {
+                    var imagenPath = Path.Combine(connectionString, x.imagen!);
+                    x.numArray = File.ReadAllBytes(imagenPath);
+                }
 
                 resultado.Success = true;
                 resultado.Data = data.ToList();
@@ -90,11 +90,11 @@ namespace Prod.RutaDigital.Core.Aplicacion
                 var data = await _uow
                     .ListarPremio();
 
-                //foreach (EventoResponse x in data)
-                //{
-                //    var imagenPath = Path.Combine(connectionString, x.foto!);
-                //    x.numArray = File.ReadAllBytes(imagenPath);
-                //}
+                foreach (PremioResponse x in data)
+                {
+                    var imagenPath = Path.Combine(connectionString, x.foto!);
+                    x.numArray = File.ReadAllBytes(imagenPath);
+                }
 
                 resultado.Success = true;
                 resultado.Data = data.ToList();

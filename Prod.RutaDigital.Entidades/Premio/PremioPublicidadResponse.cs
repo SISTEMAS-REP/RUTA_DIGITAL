@@ -10,5 +10,6 @@ namespace Prod.RutaDigital.Entidades
     {
         public int? id_publicidad_premio { get; set; }
         public string? imagen { get; set; }
+        public byte[]? numArray { get; set; }
     }
 }

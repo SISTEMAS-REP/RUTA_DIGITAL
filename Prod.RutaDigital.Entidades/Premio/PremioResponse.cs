@@ -21,5 +21,6 @@ namespace Prod.RutaDigital.Entidades
         public string? detalle_premio { get; set; }
         public int? puntos_produce { get; set; }
         public string? correo { get; set; }
+        public byte[]? numArray { get; set; }
     }
 }
