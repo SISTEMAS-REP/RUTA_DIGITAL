@@ -22,6 +22,10 @@ export const routes: Routes = [
     path: 'eventos/:id',
     loadChildren: () => import('./pages/eventos/eventos.module').then((m) => m.EventosModule)
   },
+  {
+    path: 'premios',
+    loadChildren: () => import('./pages/premios/premios.module').then((m) => m.PremiosModule)
+  },
 
   /*DEMO*/
   {
