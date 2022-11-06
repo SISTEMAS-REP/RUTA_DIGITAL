@@ -25,7 +25,7 @@ namespace Prod.RutaDigital.Datos
             };
 
             var result = ExecuteReader<PremioPublicidadResponse>(
-                "Usp_listar_publicidad_premio",
+                "USP_LISTAR_PUBLICIDAD_PREMIO",
                 CommandType.StoredProcedure, ref parms).ToList();
 
             return await Task.FromResult(result);
@@ -40,7 +40,22 @@ namespace Prod.RutaDigital.Datos
             };
 
             var result = ExecuteReader<PremioTipoResponse>(
-                "Usp_listar_publicidad_premio",
+                "USP_LISTAR_TIPO_PREMIO",
+                CommandType.StoredProcedure, ref parms).ToList();
+
+            return await Task.FromResult(result);
+
+        }
+
+        public async Task<IEnumerable<PremioResponse>> ListarPremio()
+        {
+            var parms = new Parameter[]
+            {
+
+            };
+
+            var result = ExecuteReader<PremioResponse>(
+                "USP_LISTAR_PREMIOS",
                 CommandType.StoredProcedure, ref parms).ToList();
 
             return await Task.FromResult(result);

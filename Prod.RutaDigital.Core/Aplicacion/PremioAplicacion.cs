@@ -80,5 +80,35 @@ namespace Prod.RutaDigital.Core.Aplicacion
 
             return resultado;
         }
+
+        public async Task<StatusResponse<List<PremioResponse>>> ListarPremio()
+        {
+            string connectionString = this._configuration.GetSection("fileServer").Value;
+            var resultado = new StatusResponse<List<PremioResponse>>();
+            try
+            {
+                var data = await _uow
+                    .ListarPremio();
+
+                //foreach (EventoResponse x in data)
+                //{
+                //    var imagenPath = Path.Combine(connectionString, x.foto!);
+                //    x.numArray = File.ReadAllBytes(imagenPath);
+                //}
+
+                resultado.Success = true;
+                resultado.Data = data.ToList();
+            }
+            catch (Exception ex)
+            {
+                resultado.Success = true;
+                resultado.Messages = new()
+            {
+                ex.Message
+            };
+            }
+
+            return resultado;
+        }
     }
 }

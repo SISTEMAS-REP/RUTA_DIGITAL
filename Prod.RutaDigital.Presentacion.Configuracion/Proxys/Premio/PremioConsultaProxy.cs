@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys.Premio
+namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys
 {
     public class PremioConsultaProxy : BaseProxy
     {
@@ -26,6 +26,11 @@ namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys.Premio
         public Task<StatusResponse<List<PremioTipoResponse>>> ListarTipoPremio()
         {
             return this.CallWebApiAsync<StatusResponse<List<PremioTipoResponse>>>(HttpMethod.Get, _url + "ListarTipoPremio", null);
+        }
+
+        public Task<StatusResponse<List<PremioResponse>>> ListarPremio()
+        {
+            return this.CallWebApiAsync<StatusResponse<List<PremioResponse>>>(HttpMethod.Get, _url + "ListarPremio", null);
         }
     }
 }

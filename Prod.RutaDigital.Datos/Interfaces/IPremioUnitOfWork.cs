@@ -12,5 +12,6 @@ namespace Prod.RutaDigital.Datos.Interfaces
     {
         Task<IEnumerable<PremioPublicidadResponse>> ListarPublicidadPremio();
         Task<IEnumerable<PremioTipoResponse>> ListarTipoPremio();
+        Task<IEnumerable<PremioResponse>> ListarPremio();
     }
 }

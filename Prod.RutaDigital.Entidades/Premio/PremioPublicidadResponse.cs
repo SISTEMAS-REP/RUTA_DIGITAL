@@ -8,5 +8,7 @@ namespace Prod.RutaDigital.Entidades
 {
     public class PremioPublicidadResponse
     {
+        public int? id_publicidad_premio { get; set; }
+        public string? imagen { get; set; }
     }
 }
