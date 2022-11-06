@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { PremioResponse } from 'src/app/interfaces/premio';
+import { BannerRepository } from 'src/app/repositories/banner.repository';
 
 @Component({
   selector: 'app-premios-detalle',
@@ -29,10 +32,27 @@ export class PremiosDetalleComponent implements OnInit {
       }
     }
   }
-
-  constructor() { }
+  listPremio : PremioResponse;
+  constructor( private premioRepository: BannerRepository,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this.ListarPremio();
   }
+
+  ListarPremio = () => {
+    this.premioRepository
+    .ListarPremio()
+    .subscribe({
+      next: (data : Array<PremioResponse>) => {       
+        this.listPremio = data[0];
+        let objectURL = 'data:image/png;base64,' + this.listPremio.numArray;
+        this.listPremio.imagenPremio = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      },
+      error: (err) => {
+       
+      },
+    });
+  };
 
 }

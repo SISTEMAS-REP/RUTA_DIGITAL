@@ -12,10 +12,12 @@ public class BannerController : ControllerBase
 {
     private readonly BannerConsultaProxy _bannerConsulta;
     private readonly EventoConsultaProxy _eventoConsultaProxy;
-    public BannerController(BannerConsultaProxy bannerConsulta, EventoConsultaProxy eventoConsultaProxy)
+    private readonly PremioConsultaProxy _premioConsulta;
+    public BannerController(BannerConsultaProxy bannerConsulta, EventoConsultaProxy eventoConsultaProxy, PremioConsultaProxy premioConsulta)
     {
         _bannerConsulta = bannerConsulta;
         _eventoConsultaProxy = eventoConsultaProxy;
+        _premioConsulta = premioConsulta;
     }
 
     [AllowAnonymous]
@@ -37,6 +39,30 @@ public class BannerController : ControllerBase
     public async Task<IActionResult> ListarEvento([FromQuery] EventoRequest request)
     {
         var results = await _eventoConsultaProxy.ListarEventos(request);
+        return Ok(results);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("ListarPublicidadPremio")]
+    public async Task<IActionResult> ListarPublicidadPremio()
+    {
+        var results = await _premioConsulta.ListarPublicidadPremio();
+        return Ok(results);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("ListarTipoPremio")]
+    public async Task<IActionResult> ListarTipoPremio()
+    {
+        var results = await _premioConsulta.ListarTipoPremio();
+        return Ok(results);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("ListarPremio")]
+    public async Task<IActionResult> ListarPremio()
+    {
+        var results = await _premioConsulta.ListarPremio();
         return Ok(results);
     }
 }

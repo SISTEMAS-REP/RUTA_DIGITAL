@@ -21,4 +21,16 @@ export class BannerService extends BaseService {
   ListarEventos = (request?: any): Observable<any> => {
     return this.get('ListarEvento', {params: request ? this.setParams(request) : {},});
   };
+
+  ListarPublicidadPremio = (): Observable<any> => {
+    return this.get('ListarPublicidadPremio');
+  };
+
+  ListarTipoPremio = (): Observable<any> => {
+    return this.get('ListarTipoPremio');
+  };
+
+  ListarPremio = (): Observable<any> => {
+    return this.get('ListarPremio');
+  };
 }

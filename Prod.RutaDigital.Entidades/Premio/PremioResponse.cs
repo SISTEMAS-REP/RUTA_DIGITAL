@@ -19,7 +19,7 @@ namespace Prod.RutaDigital.Entidades
         public string? nombre { get; set; }
         public string? descripcion_corta { get; set; }
         public string? detalle_premio { get; set; }
-        public int? puntos_produce { get; set; }
+        public Int16? puntos_produce { get; set; }
         public string? correo { get; set; }
         public byte[]? numArray { get; set; }
     }

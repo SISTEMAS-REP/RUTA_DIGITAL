@@ -90,211 +90,30 @@
 				   
 			     <div class="col-lg-9">
           <div class="row">
-            <div class="col-lg-4 mb-3">
+            <div class="col-lg-4 mb-3" *ngFor="let premio of listPremio let i = index">
               <div class="meeting-item fact-item">
                 <div class="thumb">
                   <div class="price">
                     <img src="assets/images/et_verde.png">
                   </div>
-                  <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png" alt="New Lecturer Meeting"></a>
-					<div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
+                  <a href="meeting-details.html">
+                    <!-- <img class="img-fluid" src="assets/images/premios_img_1.png" alt="New Lecturer Meeting"> -->
+                    <img class="img-fluid" [src]="premio.imagenPremio" alt="Course One"/>
+                  </a>
+					      <div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
                 </div>
                 <div class="down-content">
-                <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-				  1 cupo por edición
-                <div class="info px-0 pt-4">
-                  <div class="row px-0 mx-0 subt-nuevospremios">
-                    500<br>
-                  <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-					<div class="main-button-yellowp mt-3" align="center">
-                  <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo quiero!</a></div>
-              </div>
-                </div>
-              </div>
-              </div>
-            </div>
-			  <div class="col-lg-4 mb-3">
-              <div class="meeting-item fact-item">
-                <div class="thumb">
-                  <div class="price">
-                    <img src="assets/images/et_verde.png">
+                  <h5 class="mb-0">{{premio.nombre}}</h5>
+                  {{premio.descripcion_corta}}
+                  <div class="info px-0">
+                    <div class="row px-0 mx-0 subt-nuevospremios">
+                      {{premio.puntos_produce}}<br>
+                    <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
+                      <div class="main-button-yellowp mt-3" align="center">
+                    <div class="catalogo_premios_detalle.html"><a href="#">¡Lo quiero!</a></div>
+                   </div>
                   </div>
-                  <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png" alt="New Lecturer Meeting"></a>
-					<div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
                 </div>
-                <div class="down-content">
-                <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-				  1 cupo por edición
-                <div class="info px-0 pt-4">
-                  <div class="row px-0 mx-0 subt-nuevospremios">
-                    500<br>
-                  <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-					<div class="main-button-yellowp mt-3" align="center">
-                  <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo quiero!</a></div>
-              </div>
-                </div>
-              </div>
-              </div>
-            </div>
-			  <div class="col-lg-4 mb-3">
-              <div class="meeting-item fact-item">
-                <div class="thumb">
-                  <div class="price">
-                    <img src="assets/images/et_verde.png">
-                  </div>
-                  <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png" alt="New Lecturer Meeting"></a>
-					<div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                </div>
-                <div class="down-content">
-                <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-				  1 cupo por edición
-                <div class="info px-0 pt-4">
-                  <div class="row px-0 mx-0 subt-nuevospremios">
-                    500<br>
-                  <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-					<div class="main-button-yellowp mt-3" align="center">
-                  <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo quiero!</a></div>
-              </div>
-                </div>
-              </div>
-              </div>
-            </div>
-			  <div class="col-lg-4 mb-3">
-              <div class="meeting-item fact-item">
-                <div class="thumb">
-                  <div class="price">
-                    <img src="assets/images/et_verde.png">
-                  </div>
-                  <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png" alt="New Lecturer Meeting"></a>
-					<div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                </div>
-                <div class="down-content">
-                <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-				  1 cupo por edición
-                <div class="info px-0 pt-4">
-                  <div class="row px-0 mx-0 subt-nuevospremios">
-                    500<br>
-                  <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-					<div class="main-button-yellowp mt-3" align="center">
-                  <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo quiero!</a></div>
-              </div>
-                </div>
-              </div>
-              </div>
-            </div>
-            <div class="col-lg-4 mb-3">
-              <div class="meeting-item fact-item">
-                <div class="thumb">
-                  <div class="price">
-                    <img src="assets/images/et_verde.png">
-                  </div>
-                  <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png" alt="New Lecturer Meeting"></a>
-					<div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                </div>
-                <div class="down-content">
-                <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-				  1 cupo por edición
-                <div class="info px-0 pt-4">
-                  <div class="row px-0 mx-0 subt-nuevospremios">
-                    500<br>
-                  <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-					<div class="main-button-yellowp mt-3" align="center">
-                  <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo quiero!</a></div>
-              </div>
-                </div>
-              </div>
-              </div>
-            </div>
-            <div class="col-lg-4 mb-3">
-              <div class="meeting-item fact-item">
-                <div class="thumb">
-                  <div class="price">
-                    <img src="assets/images/et_verde.png">
-                  </div>
-                  <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png" alt="New Lecturer Meeting"></a>
-					<div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                </div>
-                <div class="down-content">
-                <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-				  1 cupo por edición
-                <div class="info px-0 pt-4">
-                  <div class="row px-0 mx-0 subt-nuevospremios">
-                    500<br>
-                  <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-					<div class="main-button-yellowp mt-3" align="center">
-                 <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo quiero!</a></div>
-              </div>
-                </div>
-              </div>
-              </div>
-            </div>
-            <div class="col-lg-4 mb-3">
-              <div class="meeting-item fact-item">
-                <div class="thumb">
-                  <div class="price">
-                    <img src="assets/images/et_verde.png">
-                  </div>
-                  <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png" alt="New Lecturer Meeting"></a>
-					<div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                </div>
-                <div class="down-content">
-                <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-				  1 cupo por edición
-                <div class="info px-0 pt-4">
-                  <div class="row px-0 mx-0 subt-nuevospremios">
-                    500<br>
-                  <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-					<div class="main-button-yellowp mt-3" align="center">
-                  <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo quiero!</a></div>
-              </div>
-                </div>
-              </div>
-              </div>
-            </div>
-			  <div class="col-lg-4 mb-3">
-              <div class="meeting-item fact-item">
-                <div class="thumb">
-                  <div class="price">
-                    <img src="assets/images/et_verde.png">
-                  </div>
-                  <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png" alt="New Lecturer Meeting"></a>
-					<div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                </div>
-                <div class="down-content">
-                <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-				  1 cupo por edición
-                <div class="info px-0 pt-4">
-                  <div class="row px-0 mx-0 subt-nuevospremios">
-                    500<br>
-                  <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-					<div class="main-button-yellowp mt-3" align="center">
-                  <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo quiero!</a></div>
-              </div>
-                </div>
-              </div>
-              </div>
-            </div>
-			  <div class="col-lg-4 mb-3">
-              <div class="meeting-item fact-item">
-                <div class="thumb">
-                  <div class="price">
-                    <img src="assets/images/et_verde.png">
-                  </div>
-                  <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png" alt="New Lecturer Meeting"></a>
-					<div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                </div>
-                <div class="down-content">
-                <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-				  1 cupo por edición
-                <div class="info px-0 pt-4">
-                  <div class="row px-0 mx-0 subt-nuevospremios">
-                    500<br>
-                  <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-					<div class="main-button-yellowp mt-3" align="center">
-                  <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo quiero!</a></div>
-              </div>
-                </div>
-              </div>
               </div>
             </div>
 			  
