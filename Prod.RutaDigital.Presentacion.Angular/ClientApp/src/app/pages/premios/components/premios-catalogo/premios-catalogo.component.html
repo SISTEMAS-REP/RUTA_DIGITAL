@@ -22,7 +22,8 @@
 
       <div class="carousel-inner" >
 
-        <div class="carousel-item active" *ngFor="let banner of listBanner let i = index">
+        <div class="carousel-item active" *ngFor="let banner of listBanner let i = index" [ngClass]="{'active': i == 0 }" data-bs-interval="8000">
+
           <img class="d-block w-100" [src]="banner.imagenPremioPublicidad"/>
           <div class="carousel-caption d-md-block">
 				 <p>Se parte de los</p>
@@ -86,30 +87,28 @@
 			</div>
 			
 	</section> 
-	
-<section class="our-courses bg-white p-0 m-0" id="">
-    <div class="container">
+
+  <section class="our-courses bg-white p-0 m-0" id="">
+     <div class="container">
       <div class="row">
-        <div class="col-lg-12">
-            <owl-carousel-o [options]="customOptions" >
-              <ng-container >
-                <ng-template carouselSlide id="slide.id">
-                    <div class="item" style="padding: 10px;" *ngFor="let tipo of listTipoPremio let i = index">
-                        <!-- <img src="assets/images/icon_5.png" alt="Course One" style="max-width: 100px"> -->
-                        <img [src]="tipo.imagenTipoPremio" alt="Course One" style="max-width: 100px"/>
-                        <div class="down-content">
-                          <div class="info">
-                            {{tipo.descripcion}}
-                          </div>
-                        </div>
-                      </div>
-               </ng-template>>
-             </ng-container>      
-           </owl-carousel-o>
+     <div class="col-lg-12">
+     <owl-carousel-o class="item fact-item" [options]="customOptions">
+       <ng-container   *ngFor="let tipo of listTipoPremio let i = index">
+         <ng-template  carouselSlide id="slide.id">
+          <img [src]="tipo.imagenTipoPremio" alt="Course One"  style="max-width: 100px">
+          <div class="down-content">
+          <div class="info">
+            {{tipo.descripcion}}
           </div>
-      </div>
-    </div>
-  </section>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+  </div>
+  </div>
+</div>
+</section>
+
 	
 	<section class="our-courses bg-white pb-0" id="">
      <div class="container">
@@ -121,39 +120,36 @@
         </div>
 		  <div class="col-lg-6">
         <h1 class="vermas"><a [routerLink]="['/premios-listado']">Ver más <i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i></a></h1>
-
 		  </div>
 
 
-          <div class="col-lg-12">
-            <owl-carousel-o [options]="customOptions" >
-              <ng-container >
-                <ng-template carouselSlide id="slide.id">
-                  <div class="item col-12 fact-item" style="padding: 10px;" *ngFor="let nuevo of listNuevoPremio let i = index">
-                    <div class="position-absolute"><img class="px-3" src="assets/images/et_verde.png" alt=""></div>
-                    <!-- <img src="assets/images/premios_img_1.png" alt="Course One"> -->
-                    <img [src]="nuevo.imagenPremio" alt="Course One"/>
-                      <div class="etiqueta_nuevo"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                    <div class="down-content">
-                      <h5 class="mb-0">{{nuevo.nombre}}</h5>
-                      {{nuevo.descripcion_corta}}
-                      <div class="info px-0">
-                        <div class="row px-0 mx-0 subt-nuevospremios">
-                          {{nuevo.puntos_produce}}<br>
-                        <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-                          <div class="main-button-yellowp mt-3" align="center">
-                        <div class="catalogo_premios_detalle.html"><a href="#">¡Lo quiero!</a></div>
-                       </div>
-                      </div>
-                    </div>
-                    </div>
-                    </ng-template>
-                 </ng-container>
-             </owl-carousel-o>
-         </div>
-      </div>
-    </div>
-  </section><br><br>
+      <div class="col-lg-12">
+        <owl-carousel-o class="item fact-item" [options]="customOptions">
+          <ng-container   *ngFor="let nuevo of listNuevoPremio let i = index">
+            <ng-template  carouselSlide id="slide.id">
+              <div class="item" style="padding: 10px;">
+              <div class="position-absolute"><img class="px-3" src="assets/images/et_verde.png" alt=""></div>
+              <!-- <img src="assets/images/premios_img_1.png" alt="Course One"> -->
+              <img [src]="nuevo.imagenPremio" alt="Course One"/>
+                <div class="etiqueta_nuevo"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
+              <div class="down-content">
+                <h5 class="mb-0">{{nuevo.nombre}}</h5>
+                {{nuevo.descripcion_corta}}
+                <div class="info px-0">
+                  <div class="row px-0 mx-0 subt-nuevospremios">
+                    {{nuevo.puntos_produce}}<br>
+                  <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
+                    <div class="main-button-yellowp mt-3" align="center">
+                  <div class="catalogo_premios_detalle.html"><a href="#">¡Lo quiero!</a></div>
+                 </div>
+                </div>
+              </div>
+              </div>
+         </ng-template>
+       </ng-container>
+     </owl-carousel-o>
+     </div>
+<br><br>
 	
 	<section class="our-courses bg-white pt-0" id="">
     <div class="container">
@@ -165,33 +161,32 @@
         </div>
 		  <div class="col-lg-6">
 			  		  <h1 class="vermas"><a [routerLink]="['/premios-listado']">Ver más <i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i></a></h1>
-
 		  </div>
-          <div class="col-lg-12">
-            <owl-carousel-o [options]="customOptions" >
-              <ng-container >
-                <ng-template carouselSlide id="slide.id">
-                  <div class="item col-12 fact-item" style="padding: 10px;" *ngFor="let nivel of listNivelPremio let i = index">
-                    <div class="position-absolute"><img class="px-3" src="assets/images/et_verde.png" alt=""></div>
-                    <img [src]="nivel.imagenPremio" alt="Course One"/>
-                      <div class="etiqueta_nuevo"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                      <div class="down-content">
-                        <h5 class="mb-0">{{nivel.nombre}}</h5>
-                        {{nivel.descripcion_corta}}
-                        <div class="info px-0">
-                          <div class="row px-0 mx-0 subt-nuevospremios">
-                            {{nivel.puntos_produce}}<br>
-                          <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-                            <div class="main-button-yellowp mt-3" align="center">
-                          <div class="catalogo_premios_detalle.html"><a href="#">¡Lo quiero!</a></div>
-                         </div>
-                        </div>
-                      </div>
-                    </div>
-                    </ng-template>
-                 </ng-container>
-             </owl-carousel-o>
-         </div>
+      <div class="col-lg-12">
+        <owl-carousel-o class="item fact-item" [options]="customOptions">
+          <ng-container   *ngFor="let nivel of listNuevoPremio let i = index">
+            <ng-template   carouselSlide id="slide.id">
+              <div class="item" style="padding: 10px;">
+              <div class="position-absolute"><img class="px-3" src="assets/images/et_verde.png" alt=""></div>
+              <img [src]="nivel.imagenPremio" alt="Course One"/>
+                <div class="etiqueta_nuevo"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
+                <div class="down-content">
+                  <h5 class="mb-0">{{nivel.nombre}}</h5>
+                  {{nivel.descripcion_corta}}
+                  <div class="info px-0">
+                    <div class="row px-0 mx-0 subt-nuevospremios">
+                      {{nivel.puntos_produce}}<br>
+                    <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
+                      <div class="main-button-yellowp mt-3" align="center">
+                    <div class="catalogo_premios_detalle.html"><a href="#">¡Lo quiero!</a></div>
+                   </div>
+                  </div>
+                </div>
+                </div>
+         </ng-template>
+       </ng-container>
+     </owl-carousel-o>
+     </div>
       </div>
     </div>
   </section>

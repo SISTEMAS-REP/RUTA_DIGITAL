@@ -18,6 +18,7 @@ export class PremiosCatalogoComponent implements OnInit {
     autoplay: true,
     dots: false,
     navSpeed: 700,
+    navText: ['', ''],
     responsive: {
       0: {
         items: 1
@@ -28,7 +29,7 @@ export class PremiosCatalogoComponent implements OnInit {
       740: {
         items: 3
       },
-      980: {
+      940: {
         items: 4
       }
     }
