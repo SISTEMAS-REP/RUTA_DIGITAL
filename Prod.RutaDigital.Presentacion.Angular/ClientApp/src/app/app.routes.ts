@@ -26,7 +26,6 @@ export const routes: Routes = [
     path: 'premios',
     loadChildren: () => import('./pages/premios/premios.module').then((m) => m.PremiosModule)
   },
-
   /*DEMO*/
   {
     path: 'counter',

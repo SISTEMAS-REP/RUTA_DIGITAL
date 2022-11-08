@@ -1,35 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PremiosCatalogoComponent } from './components/premios-catalogo/premios-catalogo.component';
-import { PremiosDetalleComponent } from './components/premios-detalle/premios-detalle.component';
-import { PremiosListadoComponent } from './components/premios-listado/premios-listado.component';
 import { PremiosComponent } from './premios.component';
 
 
 export const PremiosRoutes: Routes = [
-  {
-    path: '',
-    component: PremiosComponent,
-    children: [
-      { path: '', redirectTo: '', pathMatch: 'full' },     
-      {
-        path: 'premios-catalogo',
-        component: PremiosCatalogoComponent,
-      }, 
-      {
-        path: 'premios-listado',
-        component: PremiosListadoComponent,
-      }, 
-      {
-        path: 'premios-detalle',
-        component: PremiosDetalleComponent,
-      }, 
-      {
-        path: 'premios-detalle/:id',
-        component: PremiosDetalleComponent,
-      }, 
-    ],
-  },
+  { path: "", component: PremiosComponent },
+  { path: "premios-catalogo", component: PremiosComponent, loadChildren: () => import("./components/premios-catalogo/premios-catalogo.module").then(m => m.PremiosCatalogoModule) },
+  { path: "premios-detalle", component: PremiosComponent, loadChildren: () => import("./components/premios-detalle/premios-detalle.module").then(m => m.PremiosDetalleModule) },
+  { path: "premios-listado", component: PremiosComponent, loadChildren: () => import("./components/premios-listado/premios-listado.module").then(m => m.PremiosListadoModule) },
 ];
 
 @NgModule({
