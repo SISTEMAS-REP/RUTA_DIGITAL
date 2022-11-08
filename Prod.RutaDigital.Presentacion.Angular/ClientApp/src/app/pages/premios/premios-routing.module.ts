@@ -6,8 +6,8 @@ import { PremiosComponent } from './premios.component';
 export const PremiosRoutes: Routes = [
   { path: "", component: PremiosComponent },
   { path: "premios-catalogo", component: PremiosComponent, loadChildren: () => import("./components/premios-catalogo/premios-catalogo.module").then(m => m.PremiosCatalogoModule) },
-  { path: "premios-detalle", component: PremiosComponent, loadChildren: () => import("./components/premios-detalle/premios-detalle.module").then(m => m.PremiosDetalleModule) },
-  { path: "premios-listado", component: PremiosComponent, loadChildren: () => import("./components/premios-listado/premios-listado.module").then(m => m.PremiosListadoModule) },
+  { path: "premios-detalle/:id", component: PremiosComponent, loadChildren: () => import("./components/premios-detalle/premios-detalle.module").then(m => m.PremiosDetalleModule) },
+  { path: "premios-listado/:id", component: PremiosComponent, loadChildren: () => import("./components/premios-listado/premios-listado.module").then(m => m.PremiosListadoModule) },
 ];
 
 @NgModule({

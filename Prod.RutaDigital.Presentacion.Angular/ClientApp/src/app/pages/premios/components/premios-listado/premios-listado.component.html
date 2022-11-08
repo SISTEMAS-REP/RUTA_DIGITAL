@@ -46,18 +46,10 @@
 			
 			<div class="subt-filtros pt-5 pb-2 linea_inferior">Categorías</div>
 			
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Cursos</label>
-</div>
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Asesorías</label>
-</div>
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Experiencias</label>
-</div>
+			<div class="form-check pt-2 pb-2" *ngFor="let tipo of listTipoPremio">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+        <label class="form-check-label texto-filtros" for="flexCheckDefault">{{tipo.descripcion}}</label>
+      </div>
 			
 						<div class="subt-filtros pt-5 pb-2 linea_inferior">Niveles</div>
 			
@@ -110,7 +102,9 @@
                       {{premio.puntos_produce}}<br>
                     <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
                       <div class="main-button-yellowp mt-3" align="center">
-                    <div class="catalogo_premios_detalle.html"><a href="#">¡Lo quiero!</a></div>
+                    <div class="catalogo_premios_detalle.html">
+                      <a (click)="loQuiero(premio.id_premio)" href="#">¡Lo quiero!</a>
+                    </div>
                    </div>
                   </div>
                 </div>

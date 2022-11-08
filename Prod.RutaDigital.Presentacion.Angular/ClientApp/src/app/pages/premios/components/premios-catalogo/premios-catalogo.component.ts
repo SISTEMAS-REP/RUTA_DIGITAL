@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { PremioPublicidadResponse, PremioResponse, PremioTipoResponse } from 'src/app/interfaces/premio';
 import { BannerRepository } from 'src/app/repositories/banner.repository';
@@ -40,11 +41,11 @@ export class PremiosCatalogoComponent implements OnInit {
   listNivelPremio : Array<any>;
   constructor(
     private premioRepository: BannerRepository,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    debugger
     this.ListarPublicidadPremio();
     this.ListarTipoPremio();
     this.ListarPremioNuevo();
@@ -68,6 +69,11 @@ export class PremiosCatalogoComponent implements OnInit {
       },
     });
   };
+
+  verMas = (item) =>
+  {
+    this.router.navigate(['/premios/premios-listado', item]);
+  }
 
   ListarTipoPremio = () => {
     this.premioRepository

@@ -52,6 +52,8 @@ namespace Prod.RutaDigital.Datos
             var parms = new Parameter[]
             {
                 new Parameter("@CantReg", request.CantReg),
+                new Parameter("@IdPremio", request.id_premio),
+                new Parameter("@IdListCatalogo", request.IdListCatalogo),
             };
 
             var result = ExecuteReader<PremioResponse>(

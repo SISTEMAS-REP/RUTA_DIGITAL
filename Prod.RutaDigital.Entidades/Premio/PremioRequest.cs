@@ -9,5 +9,7 @@ namespace Prod.RutaDigital.Entidades
     public class PremioRequest
     {
         public int? CantReg { get; set; }
+        public int? id_premio { get; set; }
+        public int? IdListCatalogo { get; set; }
     }
 }
