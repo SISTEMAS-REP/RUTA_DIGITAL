@@ -38,10 +38,10 @@ namespace Prod.RutaDigital.Core.Controllers.Consultas
 
         [HttpGet]
         [Route("ListarPremio")]
-        public async Task<StatusResponse<List<PremioResponse>>> ListarPremio()
+        public async Task<StatusResponse<List<PremioResponse>>> ListarPremio(PremioRequest request)
         {
             return await premioAplicacion
-                .ListarPremio();
+                .ListarPremio(request);
         }
     }
 }

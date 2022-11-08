@@ -8,5 +8,6 @@ namespace Prod.RutaDigital.Entidades
 {
     public class PremioRequest
     {
+        public int? CantReg { get; set; }
     }
 }

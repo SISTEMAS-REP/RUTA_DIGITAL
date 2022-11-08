@@ -81,14 +81,14 @@ namespace Prod.RutaDigital.Core.Aplicacion
             return resultado;
         }
 
-        public async Task<StatusResponse<List<PremioResponse>>> ListarPremio()
+        public async Task<StatusResponse<List<PremioResponse>>> ListarPremio(PremioRequest request)
         {
             string connectionString = this._configuration.GetSection("fileServer").Value;
             var resultado = new StatusResponse<List<PremioResponse>>();
             try
             {
                 var data = await _uow
-                    .ListarPremio();
+                    .ListarPremio(request);
 
                 foreach (PremioResponse x in data)
                 {

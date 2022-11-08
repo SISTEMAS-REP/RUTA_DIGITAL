@@ -35,9 +35,9 @@ namespace Prod.RutaDigital.Presentacion.Angular.Controllers
 
         [AllowAnonymous]
         [HttpGet("ListarPremio")]
-        public async Task<IActionResult> ListarPremio()
+        public async Task<IActionResult> ListarPremio(PremioRequest request)
         {
-            var results = await _premioConsulta.ListarPremio();
+            var results = await _premioConsulta.ListarPremio(request);
             return Ok(results);
         }
     }

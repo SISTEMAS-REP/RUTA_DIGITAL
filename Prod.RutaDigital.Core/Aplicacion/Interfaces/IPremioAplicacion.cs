@@ -12,6 +12,6 @@ namespace Prod.RutaDigital.Core.Aplicacion.Interfaces
     {
         Task<StatusResponse<List<PremioPublicidadResponse>>> ListarPublicidadPremio();
         Task<StatusResponse<List<PremioTipoResponse>>> ListarTipoPremio();
-        Task<StatusResponse<List<PremioResponse>>> ListarPremio();
+        Task<StatusResponse<List<PremioResponse>>> ListarPremio(PremioRequest request);
     }
 }

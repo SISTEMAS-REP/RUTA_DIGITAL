@@ -41,8 +41,11 @@ export class PremiosDetalleComponent implements OnInit {
   }
 
   ListarPremio = () => {
+    var request: any = {
+      CantReg: null
+    };
     this.premioRepository
-    .ListarPremio()
+    .ListarPremio(request)
     .subscribe({
       next: (data : Array<PremioResponse>) => {       
         this.listPremio = data[0];

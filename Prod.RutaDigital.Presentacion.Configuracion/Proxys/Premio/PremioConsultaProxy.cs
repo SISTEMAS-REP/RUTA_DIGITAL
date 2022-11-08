@@ -28,9 +28,9 @@ namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys
             return this.CallWebApiAsync<StatusResponse<List<PremioTipoResponse>>>(HttpMethod.Get, _url + "ListarTipoPremio", null);
         }
 
-        public Task<StatusResponse<List<PremioResponse>>> ListarPremio()
+        public Task<StatusResponse<List<PremioResponse>>> ListarPremio(PremioRequest request)
         {
-            return this.CallWebApiAsync<StatusResponse<List<PremioResponse>>>(HttpMethod.Get, _url + "ListarPremio", null);
+            return this.CallWebApiAsync<StatusResponse<List<PremioResponse>>>(HttpMethod.Get, _url + "ListarPremio", this.GetJsonParameters(request));
         }
     }
 }

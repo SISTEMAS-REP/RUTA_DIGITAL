@@ -60,9 +60,9 @@ public class BannerController : ControllerBase
 
     [AllowAnonymous]
     [HttpGet("ListarPremio")]
-    public async Task<IActionResult> ListarPremio()
+    public async Task<IActionResult> ListarPremio([FromQuery] PremioRequest request)
     {
-        var results = await _premioConsulta.ListarPremio();
+        var results = await _premioConsulta.ListarPremio(request);
         return Ok(results);
     }
 }

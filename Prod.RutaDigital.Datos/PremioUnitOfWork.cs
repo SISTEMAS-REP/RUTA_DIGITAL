@@ -47,11 +47,11 @@ namespace Prod.RutaDigital.Datos
 
         }
 
-        public async Task<IEnumerable<PremioResponse>> ListarPremio()
+        public async Task<IEnumerable<PremioResponse>> ListarPremio(PremioRequest request)
         {
             var parms = new Parameter[]
             {
-
+                new Parameter("@CantReg", request.CantReg),
             };
 
             var result = ExecuteReader<PremioResponse>(

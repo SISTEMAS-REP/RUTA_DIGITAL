@@ -20,8 +20,11 @@ export class PremiosListadoComponent implements OnInit {
   }
 
   ListarPremioNivel = () => {
+    var request: any = {
+      CantReg: 10
+    };
     this.premioRepository
-    .ListarPremio()
+    .ListarPremio(request)
     .subscribe({
       next: (data : Array<PremioResponse>) => {
         

@@ -88,8 +88,11 @@ export class PremiosCatalogoComponent implements OnInit {
   };
 
   ListarPremioNuevo = () => {
+    var request: any = {
+      CantReg: 3
+    };
     this.premioRepository
-    .ListarPremio()
+    .ListarPremio(request)
     .subscribe({
       next: (data : Array<PremioResponse>) => {
         
@@ -106,8 +109,11 @@ export class PremiosCatalogoComponent implements OnInit {
   };
 
   ListarPremioNivel = () => {
+    var request: any = {
+      CantReg: 10
+    };
     this.premioRepository
-    .ListarPremio()
+    .ListarPremio(request)
     .subscribe({
       next: (data : Array<PremioResponse>) => {
         

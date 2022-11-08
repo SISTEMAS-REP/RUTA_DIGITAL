@@ -20,7 +20,7 @@ export class BannerRepository {
       .pipe(map((response) => response.data));
   };
 
-  ListarEventos = (request: any,): Observable<any> => {
+  ListarEventos = (request: any): Observable<any> => {
     return this.bannerService
       .ListarEventos(request).pipe(
         map((response) => response.data));
@@ -38,9 +38,9 @@ export class BannerRepository {
         map((response) => response.data));
   };
 
-  ListarPremio = (): Observable<any> => {
+  ListarPremio = (request: any): Observable<any> => {
     return this.bannerService
-      .ListarPremio().pipe(
+      .ListarPremio(request).pipe(
         map((response) => response.data));
   };
 }
