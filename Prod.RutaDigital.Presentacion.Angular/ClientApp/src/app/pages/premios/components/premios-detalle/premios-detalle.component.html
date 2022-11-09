@@ -4,95 +4,14 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="section-heading redes1" align="left">
-            <h2>Cursos</h2>
+            <h2>Detalle del evento</h2>
           </div>
         </div>
 
         <div class="col-lg-12">
-          <div class="row">
-			  			  
-			   <div class="row">
-			  <div class="col-lg-3 redes1">
-			<form>
-		<div class="box-buscador p-4 mx-3 pb-5">
-			<div class="d-flex pb-5 linea_inferior">
-			<div class="col-lg-6 titulo-filtros">Filtros</div>
-			<div class="col-lg-6 limpiar-filtros">Limpiar filtros</div>
-			
-		</div>
-			
-			<div class="subt-filtros pt-4 pb-2 linea_inferior">Rango de puntos</div>
-			
-		<div class="d-flex pt-3">
-			<div class="col-lg-5 me-4">
-			<select class="form-select form-select-sm" aria-label=".form-select-sm example">
-			   <option selected="">desde</option>
-  				<option value="1">1</option>
-  				<option value="2">2</option>
-  				<option value="3">3</option>
-			</select>
-			</div>
-			<div class="col-lg-5">
-			<select class="form-select form-select-sm" aria-label=".form-select-sm example">
-			  <option> hasta </option>
-				<option value="1">1</option>
-  				<option value="2">2</option>
-  				<option value="3">3</option>
-			</select>
-			</div>
-			
-		  </div>
-			
-			 <div class="btn btn-sm btn-buscador mt-2 px-4"> Filtrar </div>
-			
-			<div class="subt-filtros pt-5 pb-2 linea_inferior">Categorías</div>
-			
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Cursos</label>
-</div>
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Asesorías</label>
-</div>
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Experiencias</label>
-</div>
-			
-						<div class="subt-filtros pt-5 pb-2 linea_inferior">Niveles</div>
-			
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Inicial</label>
-</div>
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Básico</label>
-</div>
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault6">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Intermedio</label>
-</div>
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault7">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Avanzado</label>
-</div>
-			<div class="form-check pt-2 pb-2">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
-  <label class="form-check-label texto-filtros" for="flexCheckDefault">Experto</label>
-</div>
-
-			</div>
-				
-				
-			</form>
-			</div>
-				   
-			     <div class="col-lg-9">
-          <div class="row"> 
-		<div class="col-lg-5 mb-4">
-				<img class="img-fluid" src="assets/images/img_premios_detalle.png"> 
+        <div class="row">
+		    <div class="col-lg-5 mb-4">
+        <img class="img-fluid" [src]="listPremio.imagenPremio" />
 				</div>
 				
 				<div class="col-lg-6 mb-4">
@@ -113,112 +32,53 @@
 					
 					<div class="main-button-red mt-3" align="center">
                   <div class="catalogo_premios_detalle.html"><a href="#">Canjear</a></div>
-              </div>
-				</div>
-			
-				
-		</div>
-					 
-					
-        </div>
-				   
-				  
-				   
-				  
-            </div>
-			  </div>
-            
-			
-
-			
-        </div>
-		  
-		  
-      </div>
-		</div>
+              </div>			 			
+        </div> 
+		 </div>  
+   </div>
+  </div>
+	</div>
 	</section>
-		
-		<section class="our-courses bg-white pb-0" id="">
-    <div class="container redes1">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="section-heading">
-            <h2>Descubre nuevos premios</h2>
-          </div>
-        </div>
-		  
-        <div class="col-lg-12">
-            <owl-carousel-o [options]="customOptions" >
-                <ng-container >
-                  <ng-template carouselSlide id="slide.id">
-                    <div class="item col-12 fact-item" style="padding: 10px;">
-                      <div class="position-absolute"><img class="px-3" src="assets/images/et_verde.png" alt=""></div>
-                      <img src="assets/images/premios_img_1.png" alt="Course One">
-                        <div class="etiqueta_nuevo"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                      <div class="down-content">
-                        <h5 class="mb-0">CyberWow</h5>
-                          1 cupo por edición
-                        <div class="info px-0">
-                          <div class="row px-0 mx-0 subt-nuevospremios">
-                            500<br>
-                          <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
-                            <div class="main-button-yellowp mt-3" align="center">
-                          <div class="catalogo_premios_detalle.html"><a href="#">¡Lo quiero!</a></div>
-                         </div>
-                        </div>
-                      </div>
-                      </div>
-                      </ng-template>
-                   </ng-container>
-               </owl-carousel-o>
-			<div class="col-lg-12 mb-5" align="center"><div class="main-button-red">
-                  <div class="scroll-to-section"><a href="#contact">¡Quiere iniciar mi test!</a></div>
-              </div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-		
-  <section class="contact-us" id="contact">
+
+  <section class="our-courses bg-white pb-0" id="">
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 col-md-6 redes1">
-                    <h5 class="mb-4"><strong>Síguenos:</strong></h5>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-square" href="https://www.facebook.com/tuempresagobpe" target="_blank"><img src="assets/images/FACEBOOK.png"></a>
-                        <a class="btn btn-square" href="https://twitter.com/tuempresagobpe" target="_blank"><img src="assets/images/TWITTER.png"></a>
-                        <a class="btn btn-square" href="https://www.instagram.com/tuempresagobpe/" target="_blank"><img src="assets/images/INSTAGRAM.png"></a>
-                        <a class="btn btn-square" href="#"><img src="assets/images/YOUTUBE.png"></a>
-						<a class="btn btn-square" href="#"><img src="assets/images/Flickr.png"></a>
-                    </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <h5 class="mb-1"><strong>Dirección</strong></h5>
-          <p>Ca. Uno Oeste 060.<br>
- Urb. Cópac.<br>
- San Isidro - Lima, Perú</p>
-					
-<h5 class="mt-4 mb-1"><strong>Contáctanos</strong></h5>
-                    <p>(01) 616 2222<br>
- +51 987 654 321<br>
- mesadeayuda@produce.gob.pe</p>
-        </div>
-		  
-		  <div class="col-lg-4 col-md-6 logo-footer redes1" align="right">
-                    <img src="assets/images/logo_produce.png">
-                  
-                </div>
-		  <div class="col-lg-4 col-md-6 redes">
-                    <h5 class="mb-4"><strong>Síguenos:</strong></h5>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-square" href="https://www.facebook.com/tuempresagobpe" target="_blank"><img src="assets/images/FACEBOOK.png"></a>
-                        <a class="btn btn-square" href="https://twitter.com/tuempresagobpe" target="_blank"><img src="assets/images/TWITTER.png"></a>
-                        <a class="btn btn-square" href="https://www.instagram.com/tuempresagobpe/" target="_blank"><img src="assets/images/INSTAGRAM.png"></a>
-                        <a class="btn btn-square" href="#"><img src="assets/images/YOUTUBE.png"></a>
-						<a class="btn btn-square" href="#"><img src="assets/images/Flickr.png"></a>
-                    </div>
-        </div>
-      </div>
+       <div class="col-lg-12">
+         <div class="section-heading">
+           <h2>Descubre nuevos premios</h2>
+         </div>
+       </div>
+
+     <div class="col-lg-12">
+       <owl-carousel-o class="item fact-item" [options]="customOptions">
+         <ng-container   *ngFor="let descubre of listDescubrePremios let i = index">
+           <ng-template  carouselSlide id="slide.id">
+             <div class="item fact-item"  style="padding: 10px;" align="center">
+             <div class="position-absolute"><img class="px-3" src="assets/images/et_verde.png" alt=""></div>
+             <!-- <img src="assets/images/premios_img_1.png" alt="Course One"> -->
+             <img [src]="descubre.imagenPremio" alt="Course One"/>
+               <div class="etiqueta_nuevo"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
+             <div class="down-content">
+               <h5 class="mb-0">{{descubre.nombre}}</h5>
+               {{descubre.descripcion_corta}}
+               <div class="info px-0">
+                 <div class="row px-0 mx-0 subt-nuevospremios">
+                   {{descubre.puntos_produce}}<br>
+                 <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
+                   <div class="main-button-yellowp mt-3" align="center">
+                     <div class="catalogo_premios_detalle.html">
+                       <a (click)="loQuiero(descubre.id_premio)">¡Lo quiero!</a>
+                     </div>
+                   </div>
+                 </div>
+             </div>
+             </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
     </div>
- 
-  </section>
+    </div>
+   </div>
+ </section>
+
+		

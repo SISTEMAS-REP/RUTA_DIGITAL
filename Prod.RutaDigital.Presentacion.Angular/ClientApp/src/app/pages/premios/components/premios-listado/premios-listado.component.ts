@@ -20,7 +20,7 @@ export class PremiosListadoComponent implements OnInit {
   constructor(
     private premioRepository: BannerRepository,
     private sanitizer: DomSanitizer,
-    private routerr: Router,
+    private Router: Router,
     private router: ActivatedRoute,
   ) { }
 
@@ -90,7 +90,7 @@ export class PremiosListadoComponent implements OnInit {
   
   loQuiero = (item) =>
   {
-    this.routerr.navigate(['/premios/premios-detalle', item]);
+    this.Router.navigate(['/premios/premios-detalle', item]);
   }
 
   ListarTipoPremio = () => {
