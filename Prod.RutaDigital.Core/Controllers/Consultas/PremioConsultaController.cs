@@ -43,5 +43,21 @@ namespace Prod.RutaDigital.Core.Controllers.Consultas
             return await premioAplicacion
                 .ListarPremio(request);
         }
+
+        [HttpGet]
+        [Route("ListarNivelPremio")]
+        public async Task<StatusResponse<List<PremioNivelResponse>>> ListarNivelPremio()
+        {
+            return await premioAplicacion
+                .ListarNivelPremio();
+        }
+
+        [HttpGet]
+        [Route("ListarPuntajePremio")]
+        public async Task<StatusResponse<List<PremioPuntajeResponse>>> ListarPuntajePremio()
+        {
+            return await premioAplicacion
+                .ListarPuntajePremio();
+        }
     }
 }

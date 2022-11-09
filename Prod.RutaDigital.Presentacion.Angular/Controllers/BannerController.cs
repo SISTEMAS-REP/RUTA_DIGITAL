@@ -65,4 +65,20 @@ public class BannerController : ControllerBase
         var results = await _premioConsulta.ListarPremio(request);
         return Ok(results);
     }
+
+    [AllowAnonymous]
+    [HttpGet("ListarNivelPremio")]
+    public async Task<IActionResult> ListarNivelPremio()
+    {
+        var results = await _premioConsulta.ListarNivelPremio();
+        return Ok(results);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("ListarPuntajePremio")]
+    public async Task<IActionResult> ListarPuntajePremio()
+    {
+        var results = await _premioConsulta.ListarPuntajePremio();
+        return Ok(results);
+    }
 }

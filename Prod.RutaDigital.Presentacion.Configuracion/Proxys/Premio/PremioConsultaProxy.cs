@@ -32,5 +32,15 @@ namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys
         {
             return this.CallWebApiAsync<StatusResponse<List<PremioResponse>>>(HttpMethod.Get, _url + "ListarPremio", this.GetJsonParameters(request));
         }
+
+        public Task<StatusResponse<List<PremioNivelResponse>>> ListarNivelPremio()
+        {
+            return this.CallWebApiAsync<StatusResponse<List<PremioNivelResponse>>>(HttpMethod.Get, _url + "ListarNivelPremio", null);
+        }
+
+        public Task<StatusResponse<List<PremioPuntajeResponse>>> ListarPuntajePremio()
+        {
+            return this.CallWebApiAsync<StatusResponse<List<PremioPuntajeResponse>>>(HttpMethod.Get, _url + "ListarPuntajePremio", null);
+        }
     }
 }

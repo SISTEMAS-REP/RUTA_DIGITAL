@@ -9,7 +9,6 @@ import { BannerRepository } from 'src/app/repositories/banner.repository';
   templateUrl: './premios-listado.component.html'
 })
 export class PremiosListadoComponent implements OnInit {
-
   listTipoPremio : Array<any>;
   listPremio : Array<any>;
   IdListCatalogo : number = 0;
@@ -39,8 +38,7 @@ export class PremiosListadoComponent implements OnInit {
     this.ListarPremioNivel();
   }
   tipoSeleccionado: string = "";
-  changeTipoPremio = (value: string[]) => {
-    debugger
+  changeTipoPremio = () => {
     this.tipoSeleccionado = "";
     let element = <any> document.getElementsByName("tipoList");  
     element.forEach(element => {
@@ -50,9 +48,6 @@ export class PremiosListadoComponent implements OnInit {
       
     });
     this.tipoSeleccionado = this.tipoSeleccionado.substr(0, this.tipoSeleccionado.length - 1);
-    // const respuesta = value.toString();
-    // this.tipoSeleccionado = respuesta.split(',').join('|');
-    debugger
     this.IdTipo = this.tipoSeleccionado;
     this.ListarPremioNivel();
   }

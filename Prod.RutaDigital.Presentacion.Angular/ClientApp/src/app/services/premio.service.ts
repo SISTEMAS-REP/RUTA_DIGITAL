@@ -21,4 +21,12 @@ export class PremioService extends BaseService {
   ListarPremio = (): Observable<any> => {
     return this.get('ListarPremio');
   };
+
+  ListarNivelPremio = (): Observable<any> => {
+    return this.get('ListarNivelPremio');
+  };
+
+  ListarPuntajePremio = (): Observable<any> => {
+    return this.get('ListarPuntajePremio');
+  };
 }

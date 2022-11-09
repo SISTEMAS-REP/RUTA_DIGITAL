@@ -25,4 +25,16 @@ export class PremioRepository {
       .ListarPremio().pipe(
         map((response) => response.data));
   };
+
+  ListarNivelPremio = (): Observable<any> => {
+    return this.premioService
+      .ListarNivelPremio().pipe(
+        map((response) => response.data));
+  };
+
+  ListarPuntajePremio = (): Observable<any> => {
+    return this.premioService
+      .ListarPuntajePremio().pipe(
+        map((response) => response.data));
+  };
 }

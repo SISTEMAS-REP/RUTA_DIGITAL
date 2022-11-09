@@ -43,4 +43,16 @@ export class BannerRepository {
       .ListarPremio(request).pipe(
         map((response) => response.data));
   };
+
+  ListarNivelPremio = (): Observable<any> => {
+    return this.bannerService
+      .ListarNivelPremio().pipe(
+        map((response) => response.data));
+  };
+
+  ListarPuntajePremio = (): Observable<any> => {
+    return this.bannerService
+      .ListarPuntajePremio().pipe(
+        map((response) => response.data));
+  };
 }
