@@ -17,6 +17,20 @@ export interface PremioTipoResponse {
     imagenTipoPremio?: SafeUrl;
 }
   
+export interface PremioNivelResponse {
+    codigo?: number;
+    nombre?: string;
+    descripcion?: string;
+    valor_min?: number;
+    valor_max?: number;
+}
+
+export interface PremioPuntajeResponse {
+    // foto: string;
+    codigo?: number;
+    puntos_produce?: number;
+}
+
 export interface PremioResponse {
     id_premio?: number;
     id_tipo_premio?: number;

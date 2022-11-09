@@ -8,7 +8,7 @@ namespace Prod.RutaDigital.Entidades
 {
     public class PremioPuntajeResponse
     {
-        public int? codigo { get; set; }
-        public int? puntos_produce { get; set; }
+        //public int? codigo { get; set; }
+        public Int16? puntos_produce { get; set; }
     }
 }

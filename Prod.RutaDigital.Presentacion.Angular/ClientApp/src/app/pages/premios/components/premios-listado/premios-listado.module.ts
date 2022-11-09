@@ -6,6 +6,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import LocalES from '@angular/common/locales/es';
 import { PremiosListadoComponent } from './premios-listado.component';
 import { PremiosListadoRoutingModule } from './premios-listado-routing.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 registerLocaleData(LocalES,'es')
 
 @NgModule({
@@ -18,7 +19,8 @@ registerLocaleData(LocalES,'es')
     ReactiveFormsModule,
     RouterModule,
     PremiosListadoRoutingModule,
-    CarouselModule
+    CarouselModule,
+    NgSelectModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },

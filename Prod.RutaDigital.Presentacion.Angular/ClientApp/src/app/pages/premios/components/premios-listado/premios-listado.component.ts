@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PremioResponse, PremioTipoResponse } from 'src/app/interfaces/premio';
+import { PremioNivelResponse, PremioPuntajeResponse, PremioResponse, PremioTipoResponse } from 'src/app/interfaces/premio';
 import { BannerRepository } from 'src/app/repositories/banner.repository';
 
 @Component({
@@ -10,9 +10,13 @@ import { BannerRepository } from 'src/app/repositories/banner.repository';
 })
 export class PremiosListadoComponent implements OnInit {
   listTipoPremio : Array<any>;
+  listNivelPremio : Array<any>;
+  listPuntajePremio : Array<any>;
   listPremio : Array<any>;
   IdListCatalogo : number = 0;
   IdTipo : string = null;
+  desdeSeleccionado: string = null;
+  hastaSeleccionado: string = null;
   constructor(
     private premioRepository: BannerRepository,
     private sanitizer: DomSanitizer,
@@ -36,9 +40,17 @@ export class PremiosListadoComponent implements OnInit {
 
     this.ListarTipoPremio();
     this.ListarPremioNivel();
+    this.ListarNivelPremio();
+    this.ListarPuntajePremio();
   }
+
+  fnFiltrar = () =>{
+    this.IdListCatalogo = null;
+    this.ListarPremioNivel();
+  }
+
   tipoSeleccionado: string = "";
-  changeTipoPremio = () => {
+  changeTipoPremio = (item) => {
     this.tipoSeleccionado = "";
     let element = <any> document.getElementsByName("tipoList");  
     element.forEach(element => {
@@ -55,7 +67,9 @@ export class PremiosListadoComponent implements OnInit {
   ListarPremioNivel = () => {
     var request: any = {
       IdListCatalogo : this.IdListCatalogo,
-      IdTipo: this.IdTipo.toString()
+      IdTipo: this.IdTipo,
+      PuntosDesde: this.desdeSeleccionado,
+      PuntosHasta: this.hastaSeleccionado
     };
     this.premioRepository
     .ListarPremio(request)
@@ -85,6 +99,32 @@ export class PremiosListadoComponent implements OnInit {
     .subscribe({
       next: (data : Array<PremioTipoResponse>) => {
         this.listTipoPremio = data;
+      },
+      error: (err) => {
+       
+      },
+    });
+  };
+
+  ListarNivelPremio = () => {
+    this.premioRepository
+    .ListarNivelPremio()
+    .subscribe({
+      next: (data : Array<PremioNivelResponse>) => {
+        this.listNivelPremio = data;
+      },
+      error: (err) => {
+       
+      },
+    });
+  };
+
+  ListarPuntajePremio = () => {
+    this.premioRepository
+    .ListarPuntajePremio()
+    .subscribe({
+      next: (data : Array<PremioPuntajeResponse>) => {
+        this.listPuntajePremio = data;
       },
       error: (err) => {
        

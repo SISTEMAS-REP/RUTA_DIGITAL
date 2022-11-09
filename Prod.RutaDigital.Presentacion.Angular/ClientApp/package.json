@@ -26,6 +26,7 @@
     "@angular/platform-server": "^14.2.8",
     "@angular/router": "^14.2.8",
     "@ng-bootstrap/ng-bootstrap": "^13.1.0",
+    "@ng-select/ng-select": "^9.0.2",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
     "date-fns": "^2.29.3",
