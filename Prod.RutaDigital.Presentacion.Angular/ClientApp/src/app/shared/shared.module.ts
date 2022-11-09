@@ -2,11 +2,7 @@ import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import {
-  NgbDateAdapter,
-  NgbDateParserFormatter,
-  NgbModule,
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoadingComponent } from './components/loading/loading.component';
@@ -17,8 +13,6 @@ import { TimingInterceptor } from './interceptors/timing.interceptor';
 import { GlobalErrorHandler } from './services/global-error.service';
 import { AppService, appServiceFactory } from './services/app.service';
 import { TranslatePipe } from './pipes/translate.pipe';
-import { CustomDateFormatter } from './services/custom-date-formatter.service';
-import { CustomNgbDateNativeUTCAdapter } from './services/custom-date-adapter.service';
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalTemplateDirective } from './components/modal/modal-template.directive';
 
@@ -68,8 +62,6 @@ import { ModalTemplateDirective } from './components/modal/modal-template.direct
       multi: true,
     },
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
-    { provide: NgbDateParserFormatter, useClass: CustomDateFormatter },
-    { provide: NgbDateAdapter, useClass: CustomNgbDateNativeUTCAdapter },
   ],
 })
 export class SharedModule {}

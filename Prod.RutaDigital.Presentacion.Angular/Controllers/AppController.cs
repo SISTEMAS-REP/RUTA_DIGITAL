@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Prod.RutaDigital.Presentacion.Configuracion;
 using Release.Helper;
 
 namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
@@ -9,10 +10,12 @@ namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
 public class AppController : Controller
 {
     private readonly IHttpContextAccessor _contextAccessor;
+    private readonly AppConfig _appConfig;
 
-    public AppController(IHttpContextAccessor contextAccessor)
+    public AppController(IHttpContextAccessor contextAccessor, AppConfig appConfig)
     {
         _contextAccessor = contextAccessor;
+        _appConfig = appConfig;
     }
 
     [HttpGet]
@@ -38,8 +41,7 @@ public class AppController : Controller
         content.Add("applicationId", "97");
         content.Add("applicationTitle", "Ruta Digital");
         content.Add("applicationDescription", "Ruta Digital V2");
-        content.Add("loginUnicoApiPath", "https://localhost:7086/");
-        content.Add("loginUnicoWebPath", "https://localhost:44428/");
+        content.Add("loginUnicoWebPath", _appConfig.Urls.URL_LOGIN_UNICO_WEB);
 
         return content;
     }

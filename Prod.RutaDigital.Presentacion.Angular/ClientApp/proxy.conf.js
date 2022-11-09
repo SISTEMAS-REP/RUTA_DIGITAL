@@ -16,16 +16,6 @@ const PROXY_CONFIG = [
   },
   {
     context: [
-      "/pokemon",
-   ],
-    target: target,
-    secure: false,
-    headers: {
-      Connection: 'Keep-Alive'
-    }
-  },
-  {
-    context: [
       "/banner",
    ],
     target: target,
