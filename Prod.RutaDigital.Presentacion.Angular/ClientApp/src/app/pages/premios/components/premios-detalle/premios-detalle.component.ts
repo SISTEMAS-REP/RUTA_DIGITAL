@@ -96,7 +96,9 @@ export class PremiosDetalleComponent implements OnInit {
 
   loQuiero = (item) =>
   {
-    this.Router.navigate(['/premios/premios-detalle', item]);
+    this.id_premio = item;
+    this.ListarPremio();
+    this.ListarDescubrePremios(); 
   }
 
 }
