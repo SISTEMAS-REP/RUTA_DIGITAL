@@ -13,6 +13,7 @@ export class PremiosListadoComponent implements OnInit {
   listTipoPremio : Array<any>;
   listPremio : Array<any>;
   IdListCatalogo : number = 0;
+  IdTipo : string = null;
   constructor(
     private premioRepository: BannerRepository,
     private sanitizer: DomSanitizer,
@@ -22,19 +23,44 @@ export class PremiosListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
-      const id_premio = params["id"];
-      this.IdListCatalogo = id_premio;
+      const id = params["id"];
+      var constante = id.split("-");
+      if(constante.length == 1){
+        this.IdListCatalogo = parseInt(constante[0]);
+        this.IdTipo = null;
+      }else{
+        this.IdListCatalogo = null;
+        this.IdTipo = constante[1];
+      }
     });
 
 
     this.ListarTipoPremio();
     this.ListarPremioNivel();
   }
+  tipoSeleccionado: string = "";
+  changeTipoPremio = (value: string[]) => {
+    debugger
+    this.tipoSeleccionado = "";
+    let element = <any> document.getElementsByName("tipoList");  
+    element.forEach(element => {
+      if(element.checked){
+        this.tipoSeleccionado += element.id + ",";
+      }
+      
+    });
+    this.tipoSeleccionado = this.tipoSeleccionado.substr(0, this.tipoSeleccionado.length - 1);
+    // const respuesta = value.toString();
+    // this.tipoSeleccionado = respuesta.split(',').join('|');
+    debugger
+    this.IdTipo = this.tipoSeleccionado;
+    this.ListarPremioNivel();
+  }
 
   ListarPremioNivel = () => {
     var request: any = {
-      CantReg: null,
-      IdListCatalogo : this.IdListCatalogo
+      IdListCatalogo : this.IdListCatalogo,
+      IdTipo: this.IdTipo.toString()
     };
     this.premioRepository
     .ListarPremio(request)

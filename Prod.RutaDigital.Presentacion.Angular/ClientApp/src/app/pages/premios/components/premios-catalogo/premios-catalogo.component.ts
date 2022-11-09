@@ -70,10 +70,7 @@ export class PremiosCatalogoComponent implements OnInit {
     });
   };
 
-  verMas = (item) =>
-  {
-    this.router.navigate(['/premios/premios-listado', item]);
-  }
+  
 
   ListarTipoPremio = () => {
     this.premioRepository
@@ -95,7 +92,8 @@ export class PremiosCatalogoComponent implements OnInit {
 
   ListarPremioNuevo = () => {
     var request: any = {
-      CantReg: 3
+      CantReg: 10,
+      IdListCatalogo: 1
     };
     this.premioRepository
     .ListarPremio(request)
@@ -116,7 +114,8 @@ export class PremiosCatalogoComponent implements OnInit {
 
   ListarPremioNivel = () => {
     var request: any = {
-      CantReg: 10
+      CantReg: 10,
+      IdListCatalogo: 2
     };
     this.premioRepository
     .ListarPremio(request)
@@ -135,4 +134,17 @@ export class PremiosCatalogoComponent implements OnInit {
     });
   };
 
+  loQuiero = (item) =>
+  {
+    this.router.navigate(['/premios/premios-detalle', item]);
+  }
+  verMas = (item) =>
+  {
+    this.router.navigate(['/premios/premios-listado', item]);
+  }
+
+  fnVerTipoPremio = (item) =>
+  {
+    this.router.navigate(['/premios/premios-listado', "tipo-" + item]);
+  }
 }

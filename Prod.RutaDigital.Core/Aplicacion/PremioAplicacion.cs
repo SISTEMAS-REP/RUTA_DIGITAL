@@ -110,5 +110,51 @@ namespace Prod.RutaDigital.Core.Aplicacion
 
             return resultado;
         }
+
+        public async Task<StatusResponse<List<PremioNivelResponse>>> ListarNivelPremio()
+        {
+            var resultado = new StatusResponse<List<PremioNivelResponse>>();
+            try
+            {
+                var data = await _uow
+                    .ListarNivelPremio();
+
+                resultado.Success = true;
+                resultado.Data = data.ToList();
+            }
+            catch (Exception ex)
+            {
+                resultado.Success = true;
+                resultado.Messages = new()
+            {
+                ex.Message
+            };
+            }
+
+            return resultado;
+        }
+
+        public async Task<StatusResponse<List<PremioPuntajeResponse>>> ListarPuntajePremio()
+        {
+            var resultado = new StatusResponse<List<PremioPuntajeResponse>>();
+            try
+            {
+                var data = await _uow
+                    .ListarPuntajePremio();
+
+                resultado.Success = true;
+                resultado.Data = data.ToList();
+            }
+            catch (Exception ex)
+            {
+                resultado.Success = true;
+                resultado.Messages = new()
+            {
+                ex.Message
+            };
+            }
+
+            return resultado;
+        }
     }
 }

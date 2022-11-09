@@ -42,14 +42,15 @@
 			
 		  </div>
 			
-			 <div class="btn btn-sm btn-buscador mt-2 px-4"> Filtrar </div>
+			 <div class="btn btn-sm btn-buscador mt-2 px-4" (click)="ListarPremioNivel()"> Filtrar </div>
 			
 			<div class="subt-filtros pt-5 pb-2 linea_inferior">Categorías</div>
 			
 			<div class="form-check pt-2 pb-2" *ngFor="let tipo of listTipoPremio">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+        <input class="form-check-input" type="checkbox" value="" id="{{ tipo.id_tipo_premio }}" name="tipoList" (change)="changeTipoPremio(tipo.id_tipo_premio);">
         <label class="form-check-label texto-filtros" for="flexCheckDefault">{{tipo.descripcion}}</label>
       </div>
+
 			
 						<div class="subt-filtros pt-5 pb-2 linea_inferior">Niveles</div>
 			
@@ -103,7 +104,7 @@
                     <strong class="p-0">PUNTOS<br> PRODUCE</strong> </div>
                       <div class="main-button-yellowp mt-3" align="center">
                     <div class="catalogo_premios_detalle.html">
-                      <a (click)="loQuiero(premio.id_premio)" href="#">¡Lo quiero!</a>
+                      <a (click)="loQuiero(premio.id_premio)">¡Lo quiero!</a>
                     </div>
                    </div>
                   </div>
