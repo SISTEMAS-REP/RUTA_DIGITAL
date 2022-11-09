@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { PremioResponse } from 'src/app/interfaces/premio';
 import { BannerRepository } from 'src/app/repositories/banner.repository';
@@ -34,10 +34,12 @@ export class PremiosDetalleComponent implements OnInit {
     }
   }
   listPremio : PremioResponse;
+  listDescubrePremios : Array<any>;
   id_premio: number;
   constructor( private premioRepository: BannerRepository,
     private sanitizer: DomSanitizer,
-    private router: ActivatedRoute,) { }
+    private Router: Router,
+    private router: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
@@ -46,6 +48,7 @@ export class PremiosDetalleComponent implements OnInit {
     });
 
     this.ListarPremio();
+    this.ListarDescubrePremios();
   }
 
   ListarPremio = () => {
@@ -66,5 +69,34 @@ export class PremiosDetalleComponent implements OnInit {
       },
     });
   };
+
+
+  ListarDescubrePremios = () => {
+    debugger;
+    var request: any = {
+      CantReg: 10,
+      IdListCatalogo: 3,
+      id_premio: this.id_premio
+    };
+    this.premioRepository
+    .ListarPremio(request)
+    .subscribe({
+      next: (data : Array<PremioResponse>) => {
+        
+        this.  listDescubrePremios = data;
+        this.  listDescubrePremios.forEach(element => {
+          let objectURL = 'data:image/png;base64,' + element.numArray;
+          element.imagenPremio = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        });
+      },
+      error: (err) => {     
+      },
+    });
+  };
+
+  loQuiero = (item) =>
+  {
+    this.Router.navigate(['/premios/premios-detalle', item]);
+  }
 
 }
