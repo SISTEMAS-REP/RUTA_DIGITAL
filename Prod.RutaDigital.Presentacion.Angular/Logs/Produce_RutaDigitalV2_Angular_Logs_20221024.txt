@@ -1,0 +1,6 @@
+Fecha Evento: 2022-10-24 15:35:14.416 -05:00
+Tipo Evento: ERROR
+Clase: Microsoft.AspNetCore.SpaProxy.SpaProxyLaunchManager
+Mensaje: Unable to connect to the SPA development server at 'https://localhost:44431'.
+Detalle del evento: 
+
