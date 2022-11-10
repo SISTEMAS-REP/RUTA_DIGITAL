@@ -72,7 +72,6 @@ export class PremiosDetalleComponent implements OnInit {
 
 
   ListarDescubrePremios = () => {
-    debugger;
     var request: any = {
       CantReg: 10,
       IdListCatalogo: 3,

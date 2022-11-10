@@ -16,7 +16,7 @@
 		<div class="box-buscador p-4 mx-3 pb-5">
 			<div class="d-flex pb-5 linea_inferior">
         <div class="col-lg-6 titulo-filtros">Filtros</div>
-        <div class="col-lg-6 limpiar-filtros">Limpiar filtros</div>
+        <div class="col-lg-6 limpiar-filtros" (click)="fnLimpiarFiltros()">Limpiar filtros</div>
 			</div>
 			
 			<div class="subt-filtros pt-4 pb-2 linea_inferior">Rango de puntos</div>
@@ -49,7 +49,7 @@
 			<div class="subt-filtros pt-5 pb-2 linea_inferior">Niveles</div>
 			
 			<div class="form-check pt-2 pb-2" *ngFor="let nivel of listNivelPremio">
-        <input class="form-check-input" type="checkbox" value="" id="{{ nivel.codigo }}" name="nivelList" (change)="changeTipoPremio(nivel.codigo);">
+        <input class="form-check-input" type="checkbox" value="" id="{{ nivel.codigo }}" name="nivelList" (change)="changeNivelPremio(nivel.codigo);">
         <label class="form-check-label texto-filtros" for="flexCheckDefault">{{nivel.nombre}}</label>
       </div>
 

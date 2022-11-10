@@ -61,6 +61,22 @@ export class PremiosListadoComponent implements OnInit {
     });
     this.tipoSeleccionado = this.tipoSeleccionado.substr(0, this.tipoSeleccionado.length - 1);
     this.IdTipo = this.tipoSeleccionado;
+    this.IdListCatalogo = null;
+    this.ListarPremioNivel();
+  }
+
+  nivelSeleccionado: string = "";
+  changeNivelPremio = (item) => {
+    this.nivelSeleccionado = "";
+    let element = <any> document.getElementsByName("nivelList");  
+    element.forEach(element => {
+      if(element.checked){
+        this.nivelSeleccionado += element.id + ",";
+      }
+      
+    });
+    this.nivelSeleccionado = this.nivelSeleccionado.substr(0, this.nivelSeleccionado.length - 1);
+    this.IdListCatalogo = null;
     this.ListarPremioNivel();
   }
 
@@ -68,6 +84,7 @@ export class PremiosListadoComponent implements OnInit {
     var request: any = {
       IdListCatalogo : this.IdListCatalogo,
       IdTipo: this.IdTipo,
+      IdNivel: this.nivelSeleccionado,
       PuntosDesde: this.desdeSeleccionado,
       PuntosHasta: this.hastaSeleccionado
     };
@@ -131,4 +148,30 @@ export class PremiosListadoComponent implements OnInit {
       },
     });
   };
+
+  fnLimpiarFiltros = () => {
+    this.IdListCatalogo = null;
+    this.IdTipo = null;
+    this.nivelSeleccionado = null;
+    this.desdeSeleccionado = null;
+    this.hastaSeleccionado = null;
+
+    let elementNivel = <any> document.getElementsByName("nivelList");  
+    let elementTipo = <any> document.getElementsByName("tipoList");  
+
+    elementNivel.forEach(element => {
+      debugger;
+      element.checked = false;
+    });
+
+    elementTipo.forEach(element => {
+      debugger;
+      element.checked = false;
+    });
+
+    this.ListarPremioNivel();
+  }
+
+
+
 }
