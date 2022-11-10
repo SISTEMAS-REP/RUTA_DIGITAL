@@ -26,7 +26,15 @@ export const routes: Routes = [
     path: 'premios',
     loadChildren: () => import('./pages/premios/premios.module').then((m) => m.PremiosModule)
   },
-  /*DEMO*/
+
+  /*AVANCE DE VERONICA*/
+  {
+    path: 'veronica',
+    loadChildren: () => import('./pages/veronica/veronica.module').then((m) => m.VeronicaModule)
+  },
+  
+    /*****************/
+
   {
     path: 'counter',
     component: CounterComponent,

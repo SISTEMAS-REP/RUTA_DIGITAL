@@ -10,7 +10,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-4 pb-5 redes1">
+  <div class="col-4 pb-5">
     <div class="meeting-item box-eventos" *ngFor="let evento of listEvento">
       <div class="down-content d-flex"  (click)="SeleccionarEvento( evento.id_evento)" style="cursor:pointer;">
         <div class="col-2 date py-4">
@@ -24,7 +24,11 @@
         </div>
         <div class="col-3">
           <!-- <img class="img-fluid" src="assets/images/evento/{{evento.foto}}"> -->
-          <img class="img-fluid" [src]="evento.imagenEvento"/>
+
+          <div class="imagen_evento_calendario" max-width="" height="">
+            <img class="img-fluid d-block w-100" [src]="evento.imagenEvento"/>
+          </div>
+          
         </div>
       </div>
     </div>

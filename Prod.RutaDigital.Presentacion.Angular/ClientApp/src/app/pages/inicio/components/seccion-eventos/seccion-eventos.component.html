@@ -14,7 +14,9 @@
             <ng-template carouselSlide id="slide.id">
               <div class="item" style="padding: 10px;">
                 <!-- <img style="height:350px" src="assets/images/evento/{{slide.foto}}"/> -->
-                <img style="height:350px" [src]="slide.imagenEvento"/>
+                <div class="imagen_evento"  height="350px">
+                  <img class="img-fluid d-block w-100" [src]="slide.imagenEvento"/>
+                </div>
                 <div class="down-content pt-4" style="height: 450px;">
                   <h4>{{slide.nombre}}<br>
                   <span style="font-size: 14px; font-weight: 400">{{slide.descripcion_corta}}</span>
