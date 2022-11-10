@@ -22,5 +22,6 @@ namespace Prod.RutaDigital.Entidades
         public Int16? puntos_produce { get; set; }
         public string? correo { get; set; }
         public byte[]? numArray { get; set; }
+        public string? etiqueta { get; set; }
     }
 }

@@ -47,5 +47,6 @@ export interface PremioResponse {
     correo? : string;
     numArray?: Blob;
     imagenPremio?: SafeUrl;
+    etiqueta?: string;
 }
   

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { PremioPublicidadResponse, PremioResponse, PremioTipoResponse } from 'src/app/interfaces/premio';
 import { BannerRepository } from 'src/app/repositories/banner.repository';
-import { PremioRepository } from 'src/app/repositories/premio.repository';
 
 @Component({
   selector: 'app-premios-catalogo',
