@@ -64,8 +64,8 @@
             <div class="col-lg-4 mb-3" *ngFor="let premio of listPremio let i = index">
               <div class="meeting-item fact-item">
                 <div class="thumb">
-                  <div class="price">
-                    <img [src]="premio.imagenTipoPremio"/>
+                  <div class="position-absolute ms-4">
+                    <div class="etiqueta_verde"><img class="svg" [src]="premio.imagenTipoPremio"/></div> 
                   </div>
                   <a href="meeting-details.html">
                     <img class="img-fluid" [src]="premio.imagenPremio" alt="Course One"/>

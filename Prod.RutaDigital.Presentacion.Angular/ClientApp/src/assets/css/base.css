@@ -263,6 +263,29 @@ body {
     bottom: 40px;
     float: right;
 }
+
+.svg{
+  width: 60px;
+  height: 70px;
+  filter: brightness(0.10) invert(1);
+}
+.svg2{
+  width: 80px;
+  height: 90px;
+}
+
+.etiqueta_verde {
+  background-color: #089F42;
+  width: 60px;
+  height: 70px;
+  border-radius: 0px 0px 5px 5px;
+}
+.etiqueta_azul {
+  background-color: #1D71B8;
+  width: 60px;
+  height: 70px;
+  border-radius: 0px 0px 5px 5px;
+}
 .etiqueta_corona {
     position: relative;
 	text-align: center;
@@ -2297,7 +2320,9 @@ responsive
     color: #1f272b;
   }
 
+
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
 
 }

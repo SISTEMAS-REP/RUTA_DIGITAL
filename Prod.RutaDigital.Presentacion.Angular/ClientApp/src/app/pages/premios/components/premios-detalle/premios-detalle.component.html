@@ -54,7 +54,9 @@
          <ng-container   *ngFor="let descubre of listDescubrePremios let i = index">
            <ng-template  carouselSlide id="slide.id">
             <div class="item col-12 fact-item">
-             <div class="position-absolute"><img class="px-3" src="assets/images/et_verde.png" alt=""></div>
+             <div class="position-absolute ms-4">
+              <div class="etiqueta_verde"><img class="svg" [src]="descubre.imagenTipoPremio"/></div> 
+            </div>
              <img [src]="descubre.imagenPremio" alt="Course One"/>
              <div class="etiqueta_premio">
               <button class="btn btn-danger py-0 px-3 me-3 fs-5"> <strong> {{descubre.etiqueta}} </strong> </button>

@@ -103,6 +103,9 @@ export class PremiosCatalogoComponent implements OnInit {
         this.listNuevoPremio.forEach(element => {
           let objectURL = 'data:image/png;base64,' + element.numArray;
           element.imagenPremio = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+          let objectURLTipo = 'data:image/png;base64,' + element.fotoTipoArray;
+          element.imagenTipoPremio = this.sanitizer.bypassSecurityTrustUrl(objectURLTipo);
         });
       },
       error: (err) => {
@@ -125,6 +128,9 @@ export class PremiosCatalogoComponent implements OnInit {
         this.listNivelPremio.forEach(element => {
           let objectURL = 'data:image/png;base64,' + element.numArray;
           element.imagenPremio = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+          let objectURLTipo = 'data:image/png;base64,' + element.fotoTipoArray;
+          element.imagenTipoPremio = this.sanitizer.bypassSecurityTrustUrl(objectURLTipo);
         });
       },
       error: (err) => {

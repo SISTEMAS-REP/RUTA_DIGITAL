@@ -4,7 +4,7 @@
         <div class="col-lg-12">
           <div class="section-heading" align="left">
             <h2 style="margin-bottom: 0; padding-bottom: 10px">Catálogo de premios</h2>
-			      <span class="">Canjea tus PuntosProduce</span>
+			      <span class="">Canjea tus Puntos Produce</span>
           </div>
 		</div>
 			
@@ -127,7 +127,9 @@
           <ng-container   *ngFor="let nuevo of listNuevoPremio let i = index">
             <ng-template  carouselSlide id="slide.id">
               <div class="item col-12 fact-item">
-              <div class="position-absolute"><img class="px-3" src="assets/images/et_verde.png" alt=""></div>
+              <div class="position-absolute ms-4">
+                <div class="etiqueta_verde"><img class="svg" [src]="nuevo.imagenTipoPremio"/></div> 
+              </div>
               <img [src]="nuevo.imagenPremio" alt="Course One"/>
               <div class="etiqueta_premio">
                 <button class="btn btn-danger py-0 px-3 me-3 fs-5"> <strong> {{nuevo.etiqueta}}</strong> </button>
@@ -170,7 +172,9 @@
           <ng-container   *ngFor="let nivel of listNivelPremio let i = index">
             <ng-template   carouselSlide id="slide.id">
               <div class="item col-12 fact-item">
-              <div class="position-absolute"><img class="px-3" src="assets/images/et_verde.png" alt=""></div>
+              <div class="position-absolute ms-4">
+                <div class="etiqueta_verde"><img class="svg" [src]="nivel.imagenTipoPremio"/></div> 
+              </div>
               <img [src]="nivel.imagenPremio" alt="Course One"/>
                 <div class="etiqueta_premio">
                     <button class="btn btn-danger py-0 px-3 me-3 fs-5"> <strong> {{nivel.etiqueta}} </strong> </button>
