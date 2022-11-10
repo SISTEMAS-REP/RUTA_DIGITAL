@@ -48,5 +48,8 @@ export interface PremioResponse {
     numArray?: Blob;
     imagenPremio?: SafeUrl;
     etiqueta?: string;
+
+    fotoTipoArray?: Blob;
+    imagenTipoPremio?: SafeUrl;
 }
   

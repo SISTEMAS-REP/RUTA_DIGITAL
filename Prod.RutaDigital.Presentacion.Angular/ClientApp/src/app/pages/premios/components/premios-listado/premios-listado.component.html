@@ -24,11 +24,13 @@
       <div class="d-flex pt-3">
         <div class="col-lg-5 me-4">
         <select class="form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="desdeSeleccionado" name="Desdesomething">
+          <option [value]="''" >Desde</option>
            <option [value]="tipoDesde.puntos_produce" *ngFor="let tipoDesde of listPuntajePremio">{{tipoDesde.puntos_produce}}</option>
         </select>
         </div>
         <div class="col-lg-5">
           <select class="form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="hastaSeleccionado" name="Hastasomething">
+            <option [value]="''" >Hasta</option>
             <option [value]="tipoHasta.puntos_produce"  *ngFor="let tipoHasta of listPuntajePremio">{{tipoHasta.puntos_produce}}</option>
           </select>
         </div>     
@@ -63,7 +65,7 @@
               <div class="meeting-item fact-item">
                 <div class="thumb">
                   <div class="price">
-                    <img src="assets/images/et_verde.png">
+                    <img [src]="premio.imagenTipoPremio"/>
                   </div>
                   <a href="meeting-details.html">
                     <img class="img-fluid" [src]="premio.imagenPremio" alt="Course One"/>

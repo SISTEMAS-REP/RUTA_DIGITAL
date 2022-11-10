@@ -94,6 +94,9 @@ namespace Prod.RutaDigital.Core.Aplicacion
                 {
                     var imagenPath = Path.Combine(connectionString, x.foto!);
                     x.numArray = File.ReadAllBytes(imagenPath);
+
+                    var imagenTipoPath = Path.Combine(connectionString, x.foto_tipo!);
+                    x.fotoTipoArray = File.ReadAllBytes(imagenTipoPath);
                 }
 
                 resultado.Success = true;

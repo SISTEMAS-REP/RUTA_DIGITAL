@@ -23,5 +23,7 @@ namespace Prod.RutaDigital.Entidades
         public string? correo { get; set; }
         public byte[]? numArray { get; set; }
         public string? etiqueta { get; set; }
+        public string? foto_tipo { get; set; }
+        public byte[]? fotoTipoArray { get; set; }
     }
 }

@@ -15,8 +15,8 @@ export class PremiosListadoComponent implements OnInit {
   listPremio : Array<any>;
   IdListCatalogo : number = 0;
   IdTipo : string = null;
-  desdeSeleccionado: string = null;
-  hastaSeleccionado: string = null;
+  desdeSeleccionado: string = "";
+  hastaSeleccionado: string = "";
   constructor(
     private premioRepository: BannerRepository,
     private sanitizer: DomSanitizer,
@@ -96,7 +96,12 @@ export class PremiosListadoComponent implements OnInit {
         this.listPremio = data;
         this.listPremio.forEach(element => {
           let objectURL = 'data:image/png;base64,' + element.numArray;
+          // let objectURL = 'data:image/svg+xml;base64,' + element.numArray;
           element.imagenPremio = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+          let objectURLTipo = 'data:image/png;base64,' + element.fotoTipoArray;
+          // let objectURLTipo = 'data:image/svg+xml;base64,' + element.fotoTipoArray;
+          element.imagenTipoPremio = this.sanitizer.bypassSecurityTrustUrl(objectURLTipo);
         });
       },
       error: (err) => {
@@ -153,8 +158,8 @@ export class PremiosListadoComponent implements OnInit {
     this.IdListCatalogo = null;
     this.IdTipo = null;
     this.nivelSeleccionado = null;
-    this.desdeSeleccionado = null;
-    this.hastaSeleccionado = null;
+    this.desdeSeleccionado = "";
+    this.hastaSeleccionado = "";
 
     let elementNivel = <any> document.getElementsByName("nivelList");  
     let elementTipo = <any> document.getElementsByName("tipoList");  
