@@ -6,11 +6,23 @@ import { ComunService } from '../services/comun.service';
   providedIn: 'root',
 })
 export class ComunRepository {
-  constructor(private eventoService: ComunService) {}
+  constructor(private comunService: ComunService) {}
 
   RedireccionarLoginUnico = (request: any): Observable<any> => {
-    return this.eventoService
+    return this.comunService
       .RedireccionarLoginUnico(request).pipe(
+        map((response) => response.data));
+  };
+
+  VerificarAutoDiagnosticoHistorico = (request: any): Observable<any> => {
+    return this.comunService
+      .VerificarAutoDiagnosticoHistorico(request).pipe(
+        map((response) => response.data));
+  };
+
+  VerificarAutoDiagnostico = (request: any): Observable<any> => {
+    return this.comunService
+      .VerificarAutoDiagnostico(request).pipe(
         map((response) => response.data));
   };
 }

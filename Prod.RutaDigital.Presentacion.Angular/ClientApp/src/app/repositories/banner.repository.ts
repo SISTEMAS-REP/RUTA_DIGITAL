@@ -61,4 +61,16 @@ export class BannerRepository {
       .RedireccionarLoginUnico(request).pipe(
         map((response) => response.data));
   };
+
+  VerificarAutoDiagnosticoHistorico = (request: any): Observable<any> => {
+    return this.bannerService
+      .VerificarAutoDiagnosticoHistorico(request).pipe(
+        map((response) => response.data));
+  };
+
+  VerificarAutoDiagnostico = (request: any): Observable<any> => {
+    return this.bannerService
+      .VerificarAutoDiagnostico(request).pipe(
+        map((response) => response.data));
+  };
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Prod.RutaDigital.Entidades;
 using Prod.RutaDigital.Presentacion.Configuracion.Proxys;
+using Prod.RutaDigital.Presentacion.Configuracion.Proxys.Comun;
 
 namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
 
@@ -13,13 +14,15 @@ public class BannerController : ControllerBase
     private readonly BannerConsultaProxy _bannerConsulta;
     private readonly EventoConsultaProxy _eventoConsultaProxy;
     private readonly PremioConsultaProxy _premioConsulta;
+    private readonly ComunConsultaProxy _comunConsulta;
     private readonly IConfiguration _configuration;
-    public BannerController(BannerConsultaProxy bannerConsulta, EventoConsultaProxy eventoConsultaProxy, PremioConsultaProxy premioConsulta, IConfiguration configuration)
+    public BannerController(BannerConsultaProxy bannerConsulta, EventoConsultaProxy eventoConsultaProxy, PremioConsultaProxy premioConsulta, IConfiguration configuration, ComunConsultaProxy comunConsulta)
     {
         _bannerConsulta = bannerConsulta;
         _eventoConsultaProxy = eventoConsultaProxy;
         _premioConsulta = premioConsulta;
         _configuration = configuration;
+        _comunConsulta = comunConsulta;
     }
 
     [AllowAnonymous]
@@ -125,5 +128,22 @@ public class BannerController : ControllerBase
             Succeeded = true,
             Value = results
         });
+    }
+
+
+    [AllowAnonymous]
+    [HttpGet("VerificarAutoDiagnosticoHistorico")]
+    public IActionResult VerificarAutoDiagnosticoHistorico([FromQuery] LoginUnicoRequest request)
+    {
+        var results = _comunConsulta.VerificarAutoDiagnosticoHistorico(request);
+        return Ok(results);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("VerificarAutoDiagnostico")]
+    public IActionResult VerificarAutoDiagnostico([FromQuery] LoginUnicoRequest request)
+    {
+        var results = _comunConsulta.VerificarAutoDiagnostico(request);
+        return Ok(results);
     }
 }

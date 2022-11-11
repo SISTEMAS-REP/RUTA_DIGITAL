@@ -13,4 +13,12 @@ export class ComunService extends BaseService {
   RedireccionarLoginUnico = (request?: any): Observable<any> => {
     return this.get('RedireccionarLoginUnico', {params: request ? this.setParams(request) : {},});
   };
+
+  VerificarAutoDiagnosticoHistorico = (request?: any): Observable<any> => {
+    return this.get('VerificarAutoDiagnosticoHistorico', {params: request ? this.setParams(request) : {},});
+  };
+
+  VerificarAutoDiagnostico = (request?: any): Observable<any> => {
+    return this.get('VerificarAutoDiagnostico', {params: request ? this.setParams(request) : {},});
+  };
 }
