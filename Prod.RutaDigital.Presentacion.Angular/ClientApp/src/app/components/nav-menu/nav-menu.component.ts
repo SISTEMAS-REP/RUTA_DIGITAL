@@ -23,7 +23,4 @@ export class NavMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  verEventos = () =>{
-    this.router.navigate(['/eventos']);
-  }
 }
