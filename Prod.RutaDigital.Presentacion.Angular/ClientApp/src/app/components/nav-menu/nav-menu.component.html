@@ -11,12 +11,12 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li class=""><a href="index.html" >Inicio</a></li>
-                        <li class=""><a href="index.html" >Autodiagnóstico<br> histórico</a></li>
-                        <li class=""><a href="#">Inicia tu<br> autodiagnóstico</a></li>
-                        <li class=""><a href="#">Resultados<br> Ruta Digital</a></li>
-                        <li class=""><a>Tu avance en<br> Ruta Digital</a></li>
-                        <li class=""><a [routerLink]="['/eventos']">Eventos</a></li> 
-                        <li class=""><a [routerLink]="['/premios/premios-catalogo/']">Catálogo de<br> premios</a></li> 
+                        <li class=""><a (click)="fnAutoDiagnosticoHistorico()"  >Autodiagnóstico<br> histórico</a></li>
+                        <li class=""><a (click)="fnIniciarAutoDiagnostico()" >Inicia tu<br> autodiagnóstico</a></li>
+                        <li class=""><a (click)="fnResultado()">Resultados<br> Ruta Digital</a></li>
+                        <li class=""><a (click)="fnAvance()">Tu avance en<br> Ruta Digital</a></li>
+                        <li class=""><a (click)="fnEvento()" [routerLink]="['/eventos']">Eventos</a></li> 
+                        <li class=""><a (click)="fnCatalogoPemio()" [routerLink]="['/premios/premios-catalogo/']">Catálogo de<br> premios</a></li> 
                     </ul>        
                     <a class='menu-trigger'>
                         <span style="color: #fff">Menu</span>

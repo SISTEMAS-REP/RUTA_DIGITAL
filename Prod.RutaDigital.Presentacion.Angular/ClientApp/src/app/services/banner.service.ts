@@ -41,4 +41,8 @@ export class BannerService extends BaseService {
   ListarPuntajePremio = (): Observable<any> => {
     return this.get('ListarPuntajePremio');
   };
+
+  RedireccionarLoginUnico = (request?: any): Observable<any> => {
+    return this.get('RedireccionarLoginUnico', {params: request ? this.setParams(request) : {},});
+  };
 }

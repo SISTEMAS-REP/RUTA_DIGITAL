@@ -13,11 +13,13 @@ public class BannerController : ControllerBase
     private readonly BannerConsultaProxy _bannerConsulta;
     private readonly EventoConsultaProxy _eventoConsultaProxy;
     private readonly PremioConsultaProxy _premioConsulta;
-    public BannerController(BannerConsultaProxy bannerConsulta, EventoConsultaProxy eventoConsultaProxy, PremioConsultaProxy premioConsulta)
+    private readonly IConfiguration _configuration;
+    public BannerController(BannerConsultaProxy bannerConsulta, EventoConsultaProxy eventoConsultaProxy, PremioConsultaProxy premioConsulta, IConfiguration configuration)
     {
         _bannerConsulta = bannerConsulta;
         _eventoConsultaProxy = eventoConsultaProxy;
         _premioConsulta = premioConsulta;
+        _configuration = configuration;
     }
 
     [AllowAnonymous]
@@ -80,5 +82,48 @@ public class BannerController : ControllerBase
     {
         var results = await _premioConsulta.ListarPuntajePremio();
         return Ok(results);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("RedireccionarLoginUnico")]
+    public IActionResult RedireccionarLoginUnico([FromQuery] LoginUnico request)
+    {
+        string IdApp = this._configuration.GetSection("IdApp").Value;
+        string urlLogin = this._configuration.GetSection("URL_LOGIN_UNICO").Value;
+
+        string URL_LOGIN_UNICO_CORE_PERSON = this._configuration.GetSection("AppConfig:Urls:URL_LOGIN_UNICO_CORE_PERSON").Value;
+        string URL_LOGIN_UNICO_CORE_COMPANY = this._configuration.GetSection("AppConfig:Urls:URL_LOGIN_UNICO_CORE_COMPANY").Value;
+        string URL_LOGIN_UNICO_CORE_PROFILE = this._configuration.GetSection("AppConfig:Urls:URL_LOGIN_UNICO_CORE_PROFILE").Value;
+        string URL_LOGIN_UNICO_CORE_LOGOUT = this._configuration.GetSection("AppConfig:Urls:URL_LOGIN_UNICO_CORE_LOGOUT").Value;
+
+        var results = "";
+        switch (request.id_tipo_url)
+        {
+            case 1:
+                results = URL_LOGIN_UNICO_CORE_PERSON + "?applicationId=" + IdApp + "&returnUrl=" + urlLogin;
+                Redirect(results);
+                break;
+            case 2:
+                results = URL_LOGIN_UNICO_CORE_COMPANY + "?applicationId=" + IdApp + "&returnUrl=" + urlLogin;
+                Redirect(results);
+                break;
+            case 3:
+                results = URL_LOGIN_UNICO_CORE_PROFILE + "?applicationId=" + IdApp + "&returnUrl=" + urlLogin;
+                Redirect(results);
+                break;
+            case 4:
+                results = URL_LOGIN_UNICO_CORE_LOGOUT + "?applicationId=" + IdApp + "&returnUrl=" + urlLogin;
+                Redirect(results);
+                break;
+            default:
+                results = "Error";
+                break;
+        }
+
+        return Ok(new 
+        {
+            Succeeded = true,
+            Value = results
+        });
     }
 }

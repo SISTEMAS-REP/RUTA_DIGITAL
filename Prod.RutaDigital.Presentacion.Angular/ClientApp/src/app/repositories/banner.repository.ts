@@ -55,4 +55,10 @@ export class BannerRepository {
       .ListarPuntajePremio().pipe(
         map((response) => response.data));
   };
+
+  RedireccionarLoginUnico = (request: any): Observable<any> => {
+    return this.bannerService
+      .RedireccionarLoginUnico(request).pipe(
+        map((response) => response.data));
+  };
 }

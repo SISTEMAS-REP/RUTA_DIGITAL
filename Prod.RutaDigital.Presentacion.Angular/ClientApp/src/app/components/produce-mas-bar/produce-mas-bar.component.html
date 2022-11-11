@@ -25,11 +25,10 @@
 
 					<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-4 bg-white" aria-labelledby="profileDropdown" style="text-align: center; border-radius: 20px">
 						<!-- Links -->
-						<li><a class="dropdown-item btn mb-3 text-center" href="#" style="display: flow-root !important">Persona natural</a></li>
-						<li><a class="dropdown-item btn mb-3 text-center" href="#" style="display: flow-root!important">Persona juridica</a></li>
-						<li><a class="dropdown-item btn mb-3 text-center" href="#" style="display: flow-root!important">Perfil</a></li>
-						<div class="main-button-azul mb-4"><a class="text-white" href="#"> Cerrar sesión</a></div>
-
+						<li *ngIf="!isCokies"><a (click)="RedireccionarLoginUnico(1)" class="dropdown-item btn mb-3 text-center" style="display: flow-root !important">Persona natural</a></li>
+						<li *ngIf="!isCokies"><a (click)="RedireccionarLoginUnico(2)" class="dropdown-item btn mb-3 text-center" style="display: flow-root!important">Persona juridica</a></li>
+						<li *ngIf="isCokies"><a (click)="RedireccionarLoginUnico(3)" class="dropdown-item btn mb-3 text-center" style="display: flow-root!important">Perfil</a></li>
+						<div *ngIf="isCokies" (click)="RedireccionarLoginUnico(4)" class="main-button-azul mb-4"><a class="text-white"> Cerrar sesión</a></div>
 					</ul>
 				</li>
             </ul>
