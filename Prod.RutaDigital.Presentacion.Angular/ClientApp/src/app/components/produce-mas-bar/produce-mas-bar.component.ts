@@ -1,41 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { BannerRepository } from 'src/app/repositories/banner.repository';
-import { ComunRepository } from 'src/app/repositories/comun.repository';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+  ApplicationPaths,
+  QueryParameterNames,
+} from 'src/app/authorization/authorization.constants';
 
 @Component({
   selector: 'app-produce-mas-bar',
-  templateUrl: './produce-mas-bar.component.html'
+  templateUrl: './produce-mas-bar.component.html',
 })
 export class ProduceMasBarComponent implements OnInit {
-  isCokies: Boolean = false;
-  id_usuario: number = 78128;
-  constructor(
-    private comunRepository: BannerRepository,
-  ) { }
+  @Input() isAutenticated: boolean;
 
-  ngOnInit(): void {
-    if(this.id_usuario != null){
-      this.isCokies = true;
-    }
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {}
+
+  loginPersonaNatural() {
+    this.router.navigate(ApplicationPaths.LoginPersonPathComponents);
   }
 
-  RedireccionarLoginUnico = (item) =>{
-    var request: any = {
-      id_tipo_url: item
-    };
-    this.comunRepository.RedireccionarLoginUnico(request)
-    .subscribe({
-      next: (data : any) => {
-        debugger
-      },
-      error: (err) => {
-       
-      },
-    });
+  loginPersonaJuridica() {
+    this.router.navigate(ApplicationPaths.LoginCompanyPathComponents);
   }
-
-  // fnObtenerIdusuarii = () =>{
-    
-  // }
-
 }

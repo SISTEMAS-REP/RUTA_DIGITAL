@@ -1,46 +1,35 @@
-﻿using Prod.RutaDigital.Entidades;
-using Release.Helper;
+﻿using Release.Helper;
 using Release.Helper.Proxy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys
+using Prod.RutaDigital.Entidades;
+
+namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys;
+
+public class PremioConsultaProxy : BaseProxy
 {
-    public class PremioConsultaProxy : BaseProxy
-    {
-        private readonly string _url;
-        public PremioConsultaProxy(AppConfig appConfig,
+    private readonly string _url;
+
+    public PremioConsultaProxy(AppConfig appConfig,
         IHttpClientFactory httpClientFactory)
         : base(httpClientFactory)
-        {
-            _url = string.Format("{0}PremioConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
-        }
-        public Task<StatusResponse<List<PremioPublicidadResponse>>> ListarPublicidadPremio()
-        {
-            return this.CallWebApiAsync<StatusResponse<List<PremioPublicidadResponse>>>(HttpMethod.Get, _url + "ListarPublicidadPremio", null);
-        }
+    {
+        _url = string.Format("{0}PremioConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
+    }
 
-        public Task<StatusResponse<List<PremioTipoResponse>>> ListarTipoPremio()
-        {
-            return this.CallWebApiAsync<StatusResponse<List<PremioTipoResponse>>>(HttpMethod.Get, _url + "ListarTipoPremio", null);
-        }
+    public Task<StatusResponse<IEnumerable<PremioResponse>>>
+        ListarPremios(PremioRequest request)
+    {
+        return CallWebApiAsync<StatusResponse<IEnumerable<PremioResponse>>>(
+            HttpMethod.Get, 
+            _url + "ListarPremios", 
+            GetJsonParameters(request));
+    }
 
-        public Task<StatusResponse<List<PremioResponse>>> ListarPremio(PremioRequest request)
-        {
-            return this.CallWebApiAsync<StatusResponse<List<PremioResponse>>>(HttpMethod.Get, _url + "ListarPremio", this.GetJsonParameters(request));
-        }
-
-        public Task<StatusResponse<List<PremioNivelResponse>>> ListarNivelPremio()
-        {
-            return this.CallWebApiAsync<StatusResponse<List<PremioNivelResponse>>>(HttpMethod.Get, _url + "ListarNivelPremio", null);
-        }
-
-        public Task<StatusResponse<List<PremioPuntajeResponse>>> ListarPuntajePremio()
-        {
-            return this.CallWebApiAsync<StatusResponse<List<PremioPuntajeResponse>>>(HttpMethod.Get, _url + "ListarPuntajePremio", null);
-        }
+    public Task<StatusResponse<IEnumerable<Premio>>>
+        ListarPuntajesPremios()
+    {
+        return CallWebApiAsync<StatusResponse<IEnumerable<Premio>>>(
+            HttpMethod.Get, 
+            _url + "ListarPuntajesPremios");
     }
 }

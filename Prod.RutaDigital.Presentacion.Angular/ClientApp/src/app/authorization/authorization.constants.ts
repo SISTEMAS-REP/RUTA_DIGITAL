@@ -20,7 +20,8 @@ export const LogoutActions = {
 };
 
 export const LoginActions = {
-  Login: 'login',
+  LoginPerson: 'login-person',
+  LoginCompany: 'login-person',
   LoginCallback: 'login-callback',
   LoginFailed: 'login-failed',
   Profile: 'profile',
@@ -29,9 +30,9 @@ export const LoginActions = {
 
 let applicationPaths: ApplicationPathsType = {
   DefaultLoginRedirectPath: '/',
-  //ApiAuthorizationClientConfigurationUrl: `${environment.loginUnicoUrl}_configuration/${ApplicationName}`,
 
-  Login: `authentication/${LoginActions.Login}`,
+  LoginPerson: `authentication/${LoginActions.LoginPerson}`,
+  LoginCompany: `authentication/${LoginActions.LoginCompany}`,
   LoginFailed: `authentication/${LoginActions.LoginFailed}`,
   LoginCallback: `authentication/${LoginActions.LoginCallback}`,
   Register: `authentication/${LoginActions.Register}`,
@@ -41,7 +42,8 @@ let applicationPaths: ApplicationPathsType = {
   LoggedOut: `authentication/${LogoutActions.LoggedOut}`,
   LogOutCallback: `authentication/${LogoutActions.LogoutCallback}`,
 
-  LoginPathComponents: [],
+  LoginPersonPathComponents: [],
+  LoginCompanyPathComponents: [],
   LoginFailedPathComponents: [],
   LoginCallbackPathComponents: [],
   RegisterPathComponents: [],
@@ -52,17 +54,16 @@ let applicationPaths: ApplicationPathsType = {
   LogOutCallbackPathComponents: [],
 
   Check: `authorization/check`,
-  IdentityLogin: `auth/login-person`,
+  IdentityLoginPerson: `auth/login/person`,
+  IdentityLoginCompany: `auth/login/company`,
   IdentityRegister: `auth/register-person`,
   IdentityManage: `home/profile`,
-  //IdentityLoginPath: `${environment.loginUnicoUrl}auth/login-person`,
-  //IdentityRegisterPath: `${environment.loginUnicoUrl}auth/register`,
-  //IdentityManagePath: `${environment.loginUnicoUrl}profile`,
 };
 
 applicationPaths = {
   ...applicationPaths,
-  LoginPathComponents: applicationPaths.Login.split('/'),
+  LoginPersonPathComponents: applicationPaths.LoginPerson.split('/'),
+  LoginCompanyPathComponents: applicationPaths.LoginCompany.split('/'),
   LoginFailedPathComponents: applicationPaths.LoginFailed.split('/'),
   RegisterPathComponents: applicationPaths.Register.split('/'),
   ProfilePathComponents: applicationPaths.Profile.split('/'),
@@ -76,7 +77,8 @@ interface ApplicationPathsType {
   readonly DefaultLoginRedirectPath: string;
   //readonly ApiAuthorizationClientConfigurationUrl: string;
 
-  readonly Login: string;
+  readonly LoginPerson: string;
+  readonly LoginCompany: string;
   readonly LoginFailed: string;
   readonly LoginCallback: string;
   readonly Register: string;
@@ -86,7 +88,8 @@ interface ApplicationPathsType {
   readonly LoggedOut: string;
   readonly LogOutCallback: string;
 
-  readonly LoginPathComponents: string[];
+  readonly LoginPersonPathComponents: string[];
+  readonly LoginCompanyPathComponents: string[];
   readonly LoginFailedPathComponents: string[];
   readonly LoginCallbackPathComponents: string[];
   readonly RegisterPathComponents: string[];
@@ -97,13 +100,10 @@ interface ApplicationPathsType {
   readonly LogOutCallbackPathComponents: string[];
 
   readonly Check: string;
-  readonly IdentityLogin: string;
+  readonly IdentityLoginPerson: string;
+  readonly IdentityLoginCompany: string;
   readonly IdentityRegister: string;
   readonly IdentityManage: string;
-  //readonly IdentityCheckPath: string;
-  //readonly IdentityLoginPath: string;
-  //readonly IdentityRegisterPath: string;
-  //readonly IdentityManagePath: string;
 }
 
 export const ApplicationPaths: ApplicationPathsType = applicationPaths;

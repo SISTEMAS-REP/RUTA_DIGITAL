@@ -12,7 +12,6 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { TimingInterceptor } from './interceptors/timing.interceptor';
 import { GlobalErrorHandler } from './services/global-error.service';
 import { AppService, appServiceFactory } from './services/app.service';
-import { TranslatePipe } from './pipes/translate.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalTemplateDirective } from './components/modal/modal-template.directive';
 
@@ -25,8 +24,6 @@ import { ModalTemplateDirective } from './components/modal/modal-template.direct
     NgbModule,
   ],
   declarations: [
-    // pipes
-    TranslatePipe,
     // Custom components
     LoadingComponent,
     ToastComponent,
@@ -39,8 +36,6 @@ import { ModalTemplateDirective } from './components/modal/modal-template.direct
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    // pipes
-    TranslatePipe,
     // Custom components
     ModalComponent,
     ModalTemplateDirective,

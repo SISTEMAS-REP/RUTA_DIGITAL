@@ -1,25 +1,18 @@
-﻿using Prod.RutaDigital.Datos.Comun;
+﻿using Release.Helper.Data.Core;
 using Prod.RutaDigital.Datos.Interfaces;
 using Prod.RutaDigital.Entidades;
-using Release.Helper.Data.Core;
 
 namespace Prod.RutaDigital.Datos;
 
-public class WeatherForecastUnitOfWork : UnitOfWork, IWeatherForecastUnitOfWork
+public partial class UnitOfWork : IUnitOfWork
 {
     private static readonly string[] Summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    public WeatherForecastUnitOfWork(IDbContext context) 
-        : base(context)
-    {
-
-    }
-
     public async Task<IEnumerable<WeatherForecastResponse>> 
-        Listar(WeatherForecastRequest request)
+        ListarWeatherForecast(WeatherForecastRequest request)
     {
         var result = Enumerable
             .Range(1, 5)

@@ -5,8 +5,8 @@ using Prod.RutaDigital.Presentacion.Configuracion.Proxys;
 
 namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
 
+[Authorize]
 [ApiController]
-//[Authorize]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
@@ -23,7 +23,7 @@ public class WeatherForecastController : ControllerBase
         GetWeatherForecasts([FromQuery] WeatherForecastRequest request)
     {
         var result = await _weatherForecastConsulta
-            .Listar(request);
+            .ListarWeatherForecast(request);
         return Ok(result);
     }
 }

@@ -26,4 +26,6 @@
     <ProjectReference Include="..\Prod.RutaDigital.Datos\Prod.RutaDigital.Datos.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

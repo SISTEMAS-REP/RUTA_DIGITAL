@@ -1,10 +1,11 @@
-﻿using Prod.RutaDigital.Datos.Comun;
+﻿using Release.Helper.Data.ICore;
+
 using Prod.RutaDigital.Entidades;
 
 namespace Prod.RutaDigital.Datos.Interfaces;
 
-public interface IWeatherForecastUnitOfWork : IUnitOfWork
+public partial interface IUnitOfWork : IBaseUnitOfWork
 {
     Task<IEnumerable<WeatherForecastResponse>>
-        Listar(WeatherForecastRequest request);
+        ListarWeatherForecast(WeatherForecastRequest request);
 }

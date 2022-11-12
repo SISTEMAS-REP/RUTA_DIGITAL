@@ -6,9 +6,9 @@ namespace Prod.RutaDigital.Core.Aplicacion.Validacion;
 
 public class WeatherForecastValidacion : ValidacionGenerica
 {
-    private IWeatherForecastUnitOfWork _uow;
+    private IUnitOfWork _uow;
 
-    public WeatherForecastValidacion(IWeatherForecastUnitOfWork uow)
+    public WeatherForecastValidacion(IUnitOfWork uow)
     {
         _uow = uow;
     }

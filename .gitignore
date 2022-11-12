@@ -10,6 +10,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/angular
 # Edit at https://www.toptal.com/developers/gitignore?templates=angular
 
+[Ll]ogs/
+
 ### Angular ###
 ## Angular ##
 # compiled output

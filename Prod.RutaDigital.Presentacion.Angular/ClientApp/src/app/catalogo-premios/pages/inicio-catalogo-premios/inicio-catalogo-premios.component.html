@@ -1,0 +1,190 @@
+<section class="our-courses bg-white" id="courses">
+  <div class="contrainer">
+    <div class="col-lg-12">
+      <div class="count-area-content mb-5">
+        <div class="count-digit counter-loaded">1230</div>
+        <div class="count-title">Tus puntos disponibles</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3" align="center"></div>
+        <div class="col-lg-3" align="center">
+          <div
+            class="count-digit2 counter-loaded"
+            style="border-right: 5px solid #089f42"
+          >
+            980
+          </div>
+          <div class="count-title">Puntos canjeados</div>
+        </div>
+        <div class="col-lg-3" align="center">
+          <div class="count-digit2 counter-loaded">1320</div>
+          <div class="count-title">Puntos canjeados</div>
+        </div>
+        <div class="col-lg-3" align="center"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="our-courses bg-white p-0 m-0" id="">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 ml-2">
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let tipo of tiposPremio; let i = index">
+            <ng-template carouselSlide id="tipo.id">
+              <div
+                class="item fact-item"
+                align="center"
+                (click)="fnVerTipoPremio(tipo.id_tipo_premio)"
+              >
+                <img
+                  [src]="tipo.imagenTipoPremio"
+                  alt="Course One"
+                  style="max-width: 100px"
+                />
+                <div class="down-content">
+                  <div class="info">
+                    {{ tipo.descripcion }}
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="our-courses bg-white pb-0" id="">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="section-heading">
+          <h2>Nuevos premios</h2>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h1 class="vermas">
+          <a (click)="verMas(1)"
+            >Ver más <i class="fa fa-angle-right"></i
+            ><i class="fa fa-angle-right"></i
+          ></a>
+        </h1>
+      </div>
+      <div class="col-lg-12">
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let nuevo of nuevosPremios; let i = index">
+            <ng-template carouselSlide id="slide.id">
+              <div class="item col-12 fact-item">
+                <div class="position-absolute ms-4">
+                  <div class="etiqueta_verde">
+                    <img class="svg" [src]="nuevo.imagenTipoPremio" />
+                  </div>
+                </div>
+                <img [src]="nuevo.imagenPremio" alt="Course One" />
+                <div class="etiqueta_premio">
+                  <button class="btn btn-danger py-0 px-3 me-3 fs-5">
+                    <strong> {{ nuevo.etiqueta }}</strong>
+                  </button>
+                </div>
+                <div class="down-content">
+                  <h5 class="mb-0">{{ nuevo.nombre }}</h5>
+                  {{ nuevo.descripcion_corta }}
+                  <div class="info px-0">
+                    <div class="row px-0 mx-0 subt-nuevospremios">
+                      {{ nuevo.puntos_produce }}<br />
+                      <strong class="p-0"
+                        >PUNTOS<br />
+                        PRODUCE</strong
+                      >
+                    </div>
+                    <div class="main-button-yellowp mt-3" align="center">
+                      <div>
+                        <a
+                          class="main-button-yellowp"
+                          (click)="loQuiero(nuevo.id_premio)"
+                          >¡Lo quiero!</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</section>
+<br /><br />
+
+<section class="our-courses bg-white pt-0" id="">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="section-heading">
+          <h2>Premios por nivel</h2>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h1 class="vermas">
+          <a (click)="verMas(2)"
+            >Ver más <i class="fa fa-angle-right"></i
+            ><i class="fa fa-angle-right"></i
+          ></a>
+        </h1>
+      </div>
+      <div class="col-lg-12">
+        <owl-carousel-o [options]="customOptions">
+          <ng-container
+            *ngFor="let nivelPremio of nivelesPremios; let i = index"
+          >
+            <ng-template carouselSlide id="slide.id">
+              <div class="item col-12 fact-item">
+                <div class="position-absolute ms-4">
+                  <div class="etiqueta_verde">
+                    <img class="svg" [src]="nivelPremio.imagenTipoPremio" />
+                  </div>
+                </div>
+                <img [src]="nivelPremio.imagenPremio" alt="Course One" />
+                <div class="etiqueta_premio">
+                  <button class="btn btn-danger py-0 px-3 me-3 fs-5">
+                    <strong> {{ nivelPremio.etiqueta }} </strong>
+                  </button>
+                </div>
+                <div class="down-content">
+                  <h5 class="mb-0">{{ nivelPremio.nombre }}</h5>
+                  {{ nivelPremio.descripcion_corta }}
+                  <div class="info px-0">
+                    <div class="row px-0 mx-0 subt-nuevospremios">
+                      {{ nivelPremio.puntos_produce }}<br />
+                      <strong class="p-0"
+                        >PUNTOS<br />
+                        PRODUCE</strong
+                      >
+                    </div>
+                    <div class="main-button-yellowp mt-3" align="center">
+                      <div>
+                        <a
+                          class="main-button-yellowp"
+                          (click)="loQuiero(nivelPremio.id_premio)"
+                          >¡Lo quiero!</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</section>

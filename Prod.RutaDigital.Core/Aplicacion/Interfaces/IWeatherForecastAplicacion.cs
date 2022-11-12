@@ -5,6 +5,6 @@ namespace Prod.RutaDigital.Core.Aplicacion.Interfaces;
 
 public interface IWeatherForecastAplicacion
 {
-    Task<StatusResponse<List<WeatherForecastResponse>>>
-        Listar(WeatherForecastRequest request);
+    Task<StatusResponse<IEnumerable<WeatherForecastResponse>>>
+        ListarWeatherForecast(WeatherForecastRequest request);
 }

@@ -1,7 +1,8 @@
+using Release.Helper;
 using Microsoft.AspNetCore.Mvc;
+
 using Prod.RutaDigital.Core.Aplicacion.Interfaces;
 using Prod.RutaDigital.Entidades;
-using Release.Helper;
 
 namespace Prod.RutaDigital.Core.Controllers.Consultas;
 
@@ -17,11 +18,11 @@ public class WeatherForecastConsultaController : ControllerBase
     }
 
     [HttpGet]
-    [Route("Listar")]
-    public async Task<StatusResponse<List<WeatherForecastResponse>>>
-        Listar([FromQuery] WeatherForecastRequest request)
+    [Route("ListarWeatherForecast")]
+    public async Task<StatusResponse<IEnumerable<WeatherForecastResponse>>>
+        ListarWeatherForecast(WeatherForecastRequest request)
     {
         return await _weatherForecastAplicacion
-            .Listar(request); 
+            .ListarWeatherForecast(request); 
     }
 }

@@ -13,9 +13,9 @@ public class BootstrapperContainer
         configuration.GetSection("AppConfig").Bind(appConfig);
         builder.Register(c => appConfig);
 
-        /*var appVariables = new AppVariables();
+        var appVariables = new AppVariables();
         configuration.GetSection("AppConfig:AppVariables").Bind(appVariables);
-        builder.Register(c => appVariables);*/
+        builder.Register(c => appVariables);
 
         //Proxys  
         ProxyModule.AppConfig = appConfig;

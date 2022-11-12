@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
 
   public applicationId: string;
   public loginUnicoWebPath: string;
-  public loginUnicoApiPath: string;
 
   constructor(
     @Inject('BASE_URL') private BASE_URL: string,
@@ -38,16 +37,24 @@ export class LoginComponent implements OnInit {
     this.applicationId = this.appService.appData.content['applicationId'];
     this.loginUnicoWebPath =
       this.appService.appData.content['loginUnicoWebPath'];
-    this.loginUnicoApiPath =
-      this.appService.appData.content['loginUnicoApiPath'];
   }
 
   async ngOnInit() {
     var snapshot = this.activatedRoute.snapshot;
     const action = this.activatedRoute.snapshot.url[1];
     switch (action.path) {
-      case LoginActions.Login:
-        await this.login(this.getReturnUrl());
+      case LoginActions.LoginPerson:
+        await this.login(
+          this.getReturnUrl(),
+          ApplicationPaths.IdentityLoginPerson
+        );
+        //this.redirectToLogin();
+        break;
+      case LoginActions.LoginCompany:
+        await this.login(
+          this.getReturnUrl(),
+          ApplicationPaths.IdentityLoginCompany
+        );
         //this.redirectToLogin();
         break;
       case LoginActions.LoginCallback:
@@ -70,13 +77,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  private async login(returnUrl: string): Promise<void> {
+  private async login(
+    returnUrl: string,
+    applicationPath: string
+  ): Promise<void> {
     const state: INavigationState = { returnUrl };
     const result = await this.authorizeService.signIn(state);
     this.message.next(undefined);
     switch (result.status) {
       case AuthenticationResultStatus.Redirect:
-        await this.redirectToLogin(result.state);
+        await this.redirectToLogin(result.state, applicationPath);
         break;
       case AuthenticationResultStatus.Success:
         await this.navigateToReturnUrl(returnUrl);
@@ -107,16 +117,21 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  private redirectToLogin(state: INavigationState): any {
-    const redirectUrl = `${this.loginUnicoWebPath}${
-      ApplicationPaths.IdentityLogin
-    }?applicationId=${this.applicationId}&${ReturnUrlType}=${encodeURI(
-      this.url +
-        ApplicationPaths.LoginCallback +
+  private redirectToLogin(
+    state: INavigationState,
+    applicationPath: string
+  ): any {
+    const redirectUrl = `${
+      this.loginUnicoWebPath
+    }${applicationPath}?applicationId=${
+      this.applicationId
+    }&${ReturnUrlType}=${encodeURI(
+      this.BASE_URL +
+        ApplicationPaths.LoginCallback /*+
         '?' +
         ReturnUrlType +
         '=' +
-        state.returnUrl
+        state.returnUrl*/
     )}`;
     console.log('redirectToLogin', redirectUrl);
     this.redirectToApiAuthorizationPath(redirectUrl);

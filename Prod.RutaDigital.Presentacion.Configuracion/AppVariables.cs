@@ -2,4 +2,8 @@
 
 public class AppVariables
 {
+    public string IdAplicacion { get; set; }
+    public string TituloAplicacion { get; set; }
+    public string DescripcionAplicacion { get; set; }
+    public string RutaArchivos { get; set; }
 }

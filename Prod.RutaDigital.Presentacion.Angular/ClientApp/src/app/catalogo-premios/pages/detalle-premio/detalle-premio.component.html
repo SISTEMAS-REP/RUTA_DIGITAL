@@ -1,0 +1,125 @@
+<section id="top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-regresar">
+        <i class="fa fa-arrow-left">
+          <a href="index.html"
+            ><span class="text-regresar">Regresar</span></a
+          ></i
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="meetings-page" id="">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading redes1" align="left">
+          <h2>Detalle del evento</h2>
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-5 mb-4">
+            <img class="img-fluid" [src]="premio.imagenPremio" />
+          </div>
+
+          <div class="col-lg-6 mb-4">
+            <h6 class="titulos-nuevospremios mb-0">{{ premio.nombre }}</h6>
+            <p class="subt-nuevospremios mb-0" style="font-size: 25px">
+              {{ premio.descripcion_corta }}
+            </p>
+
+            <p class="subt-nuevospremios2 mb-0 pt-3 pb-3">
+              <span style="font-weight: 600"
+                >Este beneficio pertenece al nivel:</span
+              ><span style="color: #1d71b8; font-weight: 700">
+                {{ premio.nivel_madurez }} </span
+              ><br />
+              <span style="font-weight: 600">Puntos requeridos:</span>
+              <span style="color: #1d71b8; font-weight: 700"
+                >{{ premio.puntos_produce }} Puntos Produce</span
+              ><br />
+              <span style="font-weight: 600">Tipo de canje:</span
+              ><span style="color: #1d71b8; font-weight: 700">
+                {{ premio.tipo_canje }}</span
+              >
+            </p>
+
+            <p class="mb-2">
+              <strong>Detalles del beneficio:</strong>
+            </p>
+            <p class="mb-4">
+              {{ premio.detalle_premio }}
+            </p>
+
+            <div class="main-button-red mt-3" align="center">
+              <div class="catalogo_premios_detalle.html">
+                <a href="#">Canjear</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="our-courses bg-white pb-0" id="">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading">
+          <h2>Descubre nuevos premios</h2>
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let premio of premios; let i = index">
+            <ng-template carouselSlide id="slide.id">
+              <div class="item col-12 fact-item">
+                <div class="position-absolute ms-4">
+                  <div class="etiqueta_verde">
+                    <img class="svg" [src]="premio.imagenTipoPremio" />
+                  </div>
+                </div>
+                <img [src]="premio.imagenPremio" alt="Course One" />
+                <div class="etiqueta_premio">
+                  <button class="btn btn-danger py-0 px-3 me-3 fs-5">
+                    <strong> {{ premio.etiqueta }} </strong>
+                  </button>
+                </div>
+                <div class="down-content">
+                  <h5 class="mb-0">{{ premio.nombre }}</h5>
+                  {{ premio.descripcion_corta }}
+                  <div class="info px-0">
+                    <div class="row px-0 mx-0 subt-nuevospremios">
+                      {{ premio.puntos_produce }}<br />
+                      <strong class="p-0"
+                        >PUNTOS<br />
+                        PRODUCE</strong
+                      >
+                    </div>
+                    <div class="main-button-yellowp mt-3" align="center">
+                      <div class="catalogo_premios_detalle.html">
+                        <a
+                          class="main-button-yellowp"
+                          (click)="loQuiero(premio.id_premio)"
+                          >¡Lo quiero!</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</section>

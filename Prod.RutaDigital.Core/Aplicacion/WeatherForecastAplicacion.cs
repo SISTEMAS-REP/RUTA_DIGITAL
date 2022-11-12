@@ -7,22 +7,22 @@ namespace Prod.RutaDigital.Core.Aplicacion;
 
 public class WeatherForecastAplicacion : IWeatherForecastAplicacion
 {
-    private IWeatherForecastUnitOfWork _uow;
+    private IUnitOfWork _uow;
 
-    public WeatherForecastAplicacion(IWeatherForecastUnitOfWork uow)
+    public WeatherForecastAplicacion(IUnitOfWork uow)
     {
         _uow = uow;
     }
 
-    public async Task<StatusResponse<List<WeatherForecastResponse>>>
-        Listar(WeatherForecastRequest request)
+    public async Task<StatusResponse<IEnumerable<WeatherForecastResponse>>>
+        ListarWeatherForecast(WeatherForecastRequest request)
     {
-        var resultado = new StatusResponse<List<WeatherForecastResponse>>();
+        var resultado = new StatusResponse<IEnumerable<WeatherForecastResponse>>();
 
         try
         {
             var data = await _uow
-                .Listar(request);
+                .ListarWeatherForecast(request);
 
             resultado.Success = true;
             resultado.Data = data.ToList();

@@ -1,19 +1,14 @@
-﻿using Prod.RutaDigital.Datos.Comun;
-using Prod.RutaDigital.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Release.Helper.Data.ICore;
 
-namespace Prod.RutaDigital.Datos.Interfaces
+using Prod.RutaDigital.Entidades;
+
+namespace Prod.RutaDigital.Datos.Interfaces;
+
+public partial interface IUnitOfWork : IBaseUnitOfWork
 {
-    public interface IPremioUnitOfWork : IUnitOfWork
-    {
-        Task<IEnumerable<PremioPublicidadResponse>> ListarPublicidadPremio();
-        Task<IEnumerable<PremioTipoResponse>> ListarTipoPremio();
-        Task<IEnumerable<PremioResponse>> ListarPremio(PremioRequest request);
-        Task<IEnumerable<PremioNivelResponse>> ListarNivelPremio();
-        Task<IEnumerable<PremioPuntajeResponse>> ListarPuntajePremio();
-    }
+    Task<IEnumerable<PremioResponse>> 
+        ListarPremios(PremioRequest request);
+
+    Task<IEnumerable<Premio>>
+        ListarPuntajesPremios();
 }

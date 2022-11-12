@@ -6,9 +6,9 @@ namespace Prod.RutaDigital.Core.Aplicacion.Procesos;
 
 public class WeatherForecastProceso : AccionGenerica<WeatherForecastRequest>
 {
-    private IWeatherForecastUnitOfWork _uow;
+    private IUnitOfWork _uow;
 
-    public WeatherForecastProceso(IWeatherForecastUnitOfWork uow)
+    public WeatherForecastProceso(IUnitOfWork uow)
     {
         _uow = uow;
     }

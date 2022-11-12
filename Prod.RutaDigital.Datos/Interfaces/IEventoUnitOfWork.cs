@@ -1,10 +1,11 @@
-﻿using Prod.RutaDigital.Datos.Comun;
+﻿using Release.Helper.Data.ICore;
+
 using Prod.RutaDigital.Entidades;
 
-namespace Prod.RutaDigital.Datos.Interfaces
+namespace Prod.RutaDigital.Datos.Interfaces;
+
+public partial interface IUnitOfWork : IBaseUnitOfWork
 {
-    public interface IEventoUnitOfWork : IUnitOfWork
-    {
-        Task<IEnumerable<EventoResponse>> ListarEventos(EventoRequest request);
-    }
+    Task<IEnumerable<EventoResponse>> 
+        ListarEventos(EventoRequest request);
 }

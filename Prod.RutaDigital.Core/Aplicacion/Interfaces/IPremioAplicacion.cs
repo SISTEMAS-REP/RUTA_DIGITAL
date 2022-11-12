@@ -1,19 +1,13 @@
 ﻿using Prod.RutaDigital.Entidades;
 using Release.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Prod.RutaDigital.Core.Aplicacion.Interfaces
+namespace Prod.RutaDigital.Core.Aplicacion.Interfaces;
+
+public interface IPremioAplicacion
 {
-    public interface IPremioAplicacion
-    {
-        Task<StatusResponse<List<PremioPublicidadResponse>>> ListarPublicidadPremio();
-        Task<StatusResponse<List<PremioTipoResponse>>> ListarTipoPremio();
-        Task<StatusResponse<List<PremioResponse>>> ListarPremio(PremioRequest request);
-        Task<StatusResponse<List<PremioNivelResponse>>> ListarNivelPremio();
-        Task<StatusResponse<List<PremioPuntajeResponse>>> ListarPuntajePremio();
-    }
+    Task<StatusResponse<IEnumerable<PremioResponse>>> 
+        ListarPremios(PremioRequest request);
+
+    Task<StatusResponse<IEnumerable<Premio>>>
+        ListarPuntajesPremios();
 }

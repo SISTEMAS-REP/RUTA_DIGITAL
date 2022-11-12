@@ -14,7 +14,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     CommonModule,
 
     RouterModule.forChild([
-      { path: ApplicationPaths.Login, component: LoginComponent },
+      { path: ApplicationPaths.LoginPerson, component: LoginComponent },
+      { path: ApplicationPaths.LoginCompany, component: LoginComponent },
 
       { path: ApplicationPaths.Register, component: LoginComponent },
       { path: ApplicationPaths.Profile, component: LoginComponent },

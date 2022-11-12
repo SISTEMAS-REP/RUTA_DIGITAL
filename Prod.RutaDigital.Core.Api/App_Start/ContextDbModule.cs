@@ -1,10 +1,10 @@
 ﻿using Autofac;
+using System.Reflection;
+using Release.Helper.Data.Core;
+
 using Prod.RutaDigital.Datos;
-using Prod.RutaDigital.Datos.Comun;
 using Prod.RutaDigital.Datos.Contexto;
 using Prod.RutaDigital.Datos.Interfaces;
-using Release.Helper.Data.Core;
-using System.Reflection;
 
 namespace Prod.RutaDigital.Core.Api.App_Start;
 
@@ -23,12 +23,12 @@ public class ContextDbModule : Autofac.Module
             .Named<IDbContext>("context")
             .WithParameter("connstr", connectionString).InstancePerLifetimeScope();
 
-        /*builder
+        builder
             .RegisterType<UnitOfWork>()
             .As<IUnitOfWork>()
-            .WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("context"));*/
+            .WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("context"));
 
-        builder
+        /*builder
             .RegisterType<WeatherForecastUnitOfWork>()
             .As<IWeatherForecastUnitOfWork>()
             .WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("context"));
@@ -46,7 +46,7 @@ public class ContextDbModule : Autofac.Module
         builder
         .RegisterType<PremioUnitOfWork>()
         .As<IPremioUnitOfWork>()
-        .WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("context"));
+        .WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("context"));*/
 
         //-> Aplicacion
         builder.RegisterAssemblyTypes(Assembly.Load(new AssemblyName("Prod.RutaDigital.Core")))

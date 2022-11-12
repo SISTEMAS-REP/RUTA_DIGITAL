@@ -1,10 +1,11 @@
-﻿using Prod.RutaDigital.Entidades;
-using Release.Helper;
+﻿using Release.Helper;
 
-namespace Prod.RutaDigital.Core.Aplicacion.Interfaces
+using Prod.RutaDigital.Entidades;
+
+namespace Prod.RutaDigital.Core.Aplicacion.Interfaces;
+
+public interface IEventoAplicacion
 {
-    public interface IEventoAplicacion
-    {
-        Task<StatusResponse<List<EventoResponse>>> ListarEventos(EventoRequest request);
-    }
+    Task<StatusResponse<IEnumerable<EventoResponse>>>
+        ListarEventos(EventoRequest request);
 }

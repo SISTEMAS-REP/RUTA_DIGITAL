@@ -1,0 +1,104 @@
+<section id="top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-regresar">
+        <i class="fa fa-arrow-left">
+          <a href="index.html"
+            ><span class="text-regresar">Regresar</span></a
+          ></i
+        >
+      </div>
+    </div>
+  </div>
+</section>
+<section class="meetings-page" id="meetings">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading" align="left">
+          <h2 style="margin-bottom: 0; padding-bottom: 10px">
+            Catálogo de premios
+          </h2>
+          <span class="">Canjea tus Puntos Produce</span>
+        </div>
+      </div>
+
+      <!-- Carousel Start -->
+      <div
+        id="carouselExampleCaptions"
+        class="carousel slide"
+        data-bs-ride="false"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div
+            class="carousel-item active"
+            *ngFor="let premioPublicidad of premiosPublicidad; let i = index"
+            [ngClass]="{ active: i == 0 }"
+            data-bs-interval="8000"
+          >
+            <img
+              class="d-block w-100"
+              [src]="premioPublicidad.imagenPremioPublicidad"
+            />
+            <div class="carousel-caption d-md-block">
+              <p>Se parte de los</p>
+              <h3>¡CyberWow!</h3>
+              <div class="main-button-yellow">
+                <div class="catalogo_premios.html">
+                  <a href="#">Ir a Catálogo de premios</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Carousel End -->
+<router-outlet></router-outlet>

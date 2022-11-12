@@ -1,14 +1,15 @@
-using Autofac.Extensions.DependencyInjection;
 using Autofac;
-using Microsoft.AspNetCore.Mvc;
-using Prod.RutaDigital.Presentacion.Configuracion._Modules;
-using Serilog;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
+using Prod.RutaDigital.Presentacion.Configuracion._Modules;
+using Serilog;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpClient();
+builder.Services
+    .AddHttpClient();
 
 builder.Host
     .UseServiceProviderFactory(new AutofacServiceProviderFactory())
@@ -26,9 +27,11 @@ var configBuilder = new ConfigurationBuilder()
     .AddJsonFile($"appsettings.{env ?? "Production"}.json", optional: true)
     .AddEnvironmentVariables()
     .Build();
+
 builder.WebHost.UseConfiguration(configBuilder);
 
 builder.Host.UseSerilog();
+
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .CreateLogger();
@@ -37,15 +40,23 @@ builder.Services
     .AddHttpContextAccessor()
     .AddResponseCompression();
 
-builder.Services.AddControllersWithViews(options =>
-{
-    options.Filters.Add(new ProducesAttribute("application/json"));
-});
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    });
 
 builder.Services
+    .AddHttpContextAccessor();
+
+#region cookie
+builder.Services
     .AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo("C:/Key"))
-    .SetApplicationName("SharedCookieApp");
+    .PersistKeysToFileSystem(new DirectoryInfo(builder.Configuration
+        .GetSection("SecuritySettings:KeyDirectory").Value))
+    .SetApplicationName(builder.Configuration
+        .GetSection("SecuritySettings:ApplicationName").Value);
 
 builder.Services
     .AddAuthentication(o =>
@@ -55,7 +66,11 @@ builder.Services
     })
     .AddCookie(IdentityConstants.ApplicationScheme, options =>
     {
-        options.Cookie.Name = ".AspNet.SharedCookie.Extranet";
+        options.Cookie.Name = builder.Configuration
+        .GetSection("SecuritySettings:CookieName").Value;
+        options.Cookie.SameSite = SameSiteMode.Lax;
+        options.Cookie.Domain = builder.Configuration
+        .GetSection("SecuritySettings:DomainSecure").Value;
         options.Events.OnRedirectToLogin = context =>
         {
             context.Response.StatusCode = 401;
@@ -63,12 +78,13 @@ builder.Services
         };
     });
 
-builder.Services
+/*builder.Services
     .ConfigureApplicationCookie(options =>
     {
         options.Cookie.Name = ".AspNet.SharedCookie.Extranet";
         options.Cookie.SameSite = SameSiteMode.Lax;
-    });
+    });*/
+#endregion cookie
 
 var app = builder.Build();
 

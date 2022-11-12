@@ -36,11 +36,12 @@ export class AuthorizeGuard implements CanActivate {
     state: RouterStateSnapshot
   ) {
     if (!isAuthenticated) {
-      this.router.navigate(ApplicationPaths.LoginPathComponents, {
+      this.router.navigate([ApplicationPaths.DefaultLoginRedirectPath]);
+      /*this.router.navigate(ApplicationPaths.LoginPathComponents, {
         queryParams: {
           [QueryParameterNames.ReturnUrl]: state.url,
         },
-      });
+      });*/
     }
   }
 }
