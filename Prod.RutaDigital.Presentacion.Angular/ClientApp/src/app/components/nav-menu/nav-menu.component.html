@@ -14,25 +14,25 @@
             <li>
               <a [routerLink]="['/']">Inicio</a>
             </li>
-            <li>
+            <li  *ngIf="verificacionDiagHistorico && isCokies">
               <a [routerLink]="['/']"
                 >Autodiagnóstico<br />
                 histótico</a
               >
             </li>
-            <li>
-              <a [routerLink]="['/']"
+            <li *ngIf="!verificacionDiag">
+              <a (click)="fnIniciarAutoDiagnostico()"
                 >Inicia tu<br />
                 autodiagnóstico</a
               >
             </li>
-            <li>
+            <li *ngIf="verificacionDiag && isCokies">
               <a [routerLink]="['/']"
                 >Resultados<br />
                 Ruta Digital</a
               >
             </li>
-            <li>
+            <li *ngIf="verificacionDiag && isCokies">
               <a [routerLink]="['/']"
                 >Tu avance en<br />
                 Ruta Digital</a
@@ -40,7 +40,7 @@
             </li>
             <li><a  [routerLink]="['/inicio/eventos']">Eventos</a></li>
             <li>
-              <a [routerLink]="['catalogo-premios']"
+              <a (click)="fnCatalogoPremio()"
                 >Catálogo de<br />
                 premios</a
               >

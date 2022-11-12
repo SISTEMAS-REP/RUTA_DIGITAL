@@ -14,6 +14,8 @@ export class NavMenuComponent implements OnInit {
   isExpanded = false;
   isCokies: Boolean = false;
   id_usuario: number = null;
+  verificacionDiagHistorico: boolean = false;
+  verificacionDiag: boolean = false;
   collapse() {
     this.isExpanded = false;
   }
@@ -36,46 +38,48 @@ export class NavMenuComponent implements OnInit {
     //     this.isCokies = true;
     //   }
     // });
-    if( this.user != null){
-      this.user.id_usuario_extranet = 12594;
-      this.isCokies = true;
-    }
+    // if( this.user != null){
+    //   this.user.id_usuario_extranet = 12594;
+    //   this.isCokies = true;
+    // }
 
     this.VerificarAutoDiagnosticoHistorico();
     this.VerificarAutoDiagnostico();
   }
 
   VerificarAutoDiagnosticoHistorico = () => {
-    debugger
-    var request: any = {
-      id_usuario_extranet: 12594,
-    };
-    this.autodiagnostico
-    .VerificarAutoDiagnosticoHistorico(request)
-    .subscribe({
-      next: (data : Array<any>) => {
-        debugger
-      },
-      error: (err) => {
+    this.verificacionDiagHistorico = true;
+
+    // var request: any = {
+    //   id_usuario_extranet: 12594,
+    // };
+    // this.autodiagnostico
+    // .VerificarAutoDiagnosticoHistorico(request)
+    // .subscribe({
+    //   next: (data : Array<any>) => {
+    //     debugger
+    //   },
+    //   error: (err) => {
        
-      },
-    });
+    //   },
+    // });
   };
 
   VerificarAutoDiagnostico = () => {
-    var request: any = {
-      id_usuario_extranet: 12594,
-    };
-    this.autodiagnostico
-    .VerificarAutoDiagnostico(request)
-    .subscribe({
-      next: (data : Array<any>) => {
-        debugger
-      },
-      error: (err) => {
+    this.verificacionDiag = false;
+  //   var request: any = {
+  //     id_usuario_extranet: 12594,
+  //   };
+  //   this.autodiagnostico
+  //   .VerificarAutoDiagnostico(request)
+  //   .subscribe({
+  //     next: (data : Array<any>) => {
+  //       debugger
+  //     },
+  //     error: (err) => {
        
-      },
-    });
+  //     },
+  //   });
   };
 
 
@@ -98,16 +102,16 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/eventos']);
     }
     else{
-      //mensaje
+      alert("debe iniciar sesion");
     }
   }
 
-  fnCatalogoPemio = () =>{
+  fnCatalogoPremio = () =>{
     if(this.isCokies){
-      this.router.navigate(['/premios/premios-catalogo']);
+      this.router.navigate(['/catalogo-premios']);
     }
     else{
-      //mensaje
+      alert("debe iniciar sesion");
     }
   }
 
@@ -117,7 +121,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/premios/premios-catalogo']);
     }
     else{
-      //mensaje
+      alert("debe iniciar sesion");
     }
   }
 
@@ -126,7 +130,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/premios/premios-catalogo']);
     }
     else{
-      //mensaje
+      alert("debe iniciar sesion");
     }
   }
 
@@ -135,7 +139,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/premios/premios-catalogo']);
     }
     else{
-      //mensaje
+      alert("debe iniciar sesion");
     }
   }
 
@@ -144,7 +148,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/premios/premios-catalogo']);
     }
     else{
-      //mensaje
+      alert("debe iniciar sesion");
     }
   }
 
