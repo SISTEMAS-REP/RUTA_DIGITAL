@@ -47,7 +47,6 @@ export class SeccionEventosComponent implements OnInit {
   }
 
   listarEventos = () => {
-    debugger;
     var request: any = {
       id_evento: null,
       id_filtro: null,
@@ -55,10 +54,8 @@ export class SeccionEventosComponent implements OnInit {
 
     this.repository.listarEventos(request).subscribe({
       next: (data: EventoResponse[]) => {
-        debugger;
         this.eventos = data.map((evento) => {
           const objectURL = 'data:image/png;base64,' + evento.numArray;
-          debugger;
           evento.imagenEvento =
             this.sanitizer.bypassSecurityTrustUrl(objectURL);
 

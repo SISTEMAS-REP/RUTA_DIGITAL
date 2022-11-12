@@ -158,12 +158,10 @@ export class CategoriaPremiosComponent implements OnInit {
     let elementTipo = <any>document.getElementsByName('tipoList');
 
     elementNivel.forEach((element) => {
-      debugger;
       element.checked = false;
     });
 
     elementTipo.forEach((element) => {
-      debugger;
       element.checked = false;
     });
 
