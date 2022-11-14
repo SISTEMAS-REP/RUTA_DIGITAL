@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { EventoResponse } from 'src/app/inicio/interfaces/evento.response';
-import { InicioRepository } from '../../../../repositories/inicio.repository';
+import { EventoResponse } from 'src/app/eventos/interfaces/evento.response';
+import { EventosRepository } from '../../eventos.repository';
 
 @Component({
   selector: 'app-eventos-seleccion',
@@ -31,7 +31,7 @@ export class EventosSeleccionComponent implements OnInit {
 
   is_verdetalle: boolean = true;
   constructor(
-    private repository: InicioRepository,
+    private repository: EventosRepository,
     private router: ActivatedRoute,
     private sanitizer: DomSanitizer
   ) {}

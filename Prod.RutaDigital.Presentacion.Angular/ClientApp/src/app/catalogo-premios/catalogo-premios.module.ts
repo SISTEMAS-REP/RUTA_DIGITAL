@@ -11,6 +11,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 @NgModule({
   declarations: [
     CatalogoPremiosComponent,
+
     InicioCatalogoPremiosComponent,
     CategoriaPremiosComponent,
     DetallePremioComponent,

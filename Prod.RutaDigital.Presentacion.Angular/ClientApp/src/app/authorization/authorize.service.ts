@@ -72,28 +72,9 @@ export class AuthorizeService extends BaseService {
     );
   }
 
-  public async signIn(state: INavigationState): Promise<IAuthenticationResult> {
+  public async completeSignIn(): Promise<IAuthenticationResult> {
     try {
-      // > el returnurl debe tener login-callback
-      return this.redirect(state);
-    } catch (redirectError) {
-      console.log('Redirect authentication error: ', redirectError);
-      return this.error(redirectError);
-    }
-    /*}
-    }*/
-  }
-
-  public async completeSignIn(url: string): Promise<IAuthenticationResult> {
-    try {
-      //await this.ensureUserManagerInitialized();
-
-      // TODO: hacer petición al endpoint de check
-      //const response = await this.httpClient.get<ApiResponse<Ap>>('check');
-      //const user = await this.userManager.signinCallback(url);
-      //this.userSubject.next(user && (user.profile as any));
-      //return this.success(user && user.state);
-      const user = await this.getUser().pipe();
+      const user = await this.getUser().pipe(take(1));
       console.log('user', user);
       return this.success();
     } catch (error) {
@@ -102,39 +83,15 @@ export class AuthorizeService extends BaseService {
     }
   }
 
-  public async signOut(state: any): Promise<IAuthenticationResult> {
-    try {
-      //await this.ensureUserManagerInitialized();
-      //await this.userManager.signoutPopup(this.createArguments());
-      this.userSubject.next(null);
-      return this.success(state);
-    } catch (popupSignOutError) {
-      console.log('Popup signout error: ', popupSignOutError);
-      try {
-        //await this.userManager.signoutRedirect(this.createArguments(state));
-        return this.redirect(state);
-      } catch (redirectSignOutError) {
-        console.log('Redirect signout error: ', popupSignOutError);
-        return this.error(redirectSignOutError);
-      }
-    }
-  }
-
-  public async completeSignOut(url: string): Promise<IAuthenticationResult> {
+  public async completeSignOut(): Promise<IAuthenticationResult> {
     //await this.ensureUserManagerInitialized();
     try {
-      //const signoutResponse = await this.userManager.signoutCallback(url);
-      //this.userSubject.next(null);
-      //return this.success(signoutResponse && signoutResponse.state.data);
+      this.userSubject.next(null);
       return this.success();
     } catch (error) {
       console.log(`There was an error trying to log out '${error}'.`);
       return this.error(error);
     }
-  }
-
-  private createArguments(state?: any): any {
-    return { useReplaceToNavigate: true, data: state };
   }
 
   private error(message: string): IAuthenticationResult {
@@ -143,10 +100,6 @@ export class AuthorizeService extends BaseService {
 
   private success(state?: any): IAuthenticationResult {
     return { status: AuthenticationResultStatus.Success, state };
-  }
-
-  private redirect(state: INavigationState): IAuthenticationResult {
-    return { status: AuthenticationResultStatus.Redirect, state };
   }
 
   private getUserFromRemote(): Observable<ExtranetUser> {

@@ -32,7 +32,7 @@ const PROXY_CONFIG = [
     },
   },
   {
-    context: ["/eventos"],
+    context: ["/eventos/ListarEventos"],
     target: target,
     secure: false,
     headers: {

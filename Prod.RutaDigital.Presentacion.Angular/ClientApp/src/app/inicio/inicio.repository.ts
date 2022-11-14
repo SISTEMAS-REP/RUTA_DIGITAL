@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { EventosService } from '../services/eventos.service';
-import { InicioService } from '../services/inicio.service';
-import { EventoResponse } from '../interfaces/evento.response';
-import { BannerResponse } from '../interfaces/banner.response';
+import { EventosService } from '../eventos/eventos.service';
+import { InicioService } from './inicio.service';
+import { EventoResponse } from '../eventos/interfaces/evento.response';
+import { BannerResponse } from './interfaces/banner.response';
 
 @Injectable({
   providedIn: 'root',

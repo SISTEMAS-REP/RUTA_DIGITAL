@@ -23,4 +23,12 @@ export class ProduceMasBarComponent implements OnInit {
   loginPersonaJuridica() {
     this.router.navigate(ApplicationPaths.LoginCompanyPathComponents);
   }
+
+  profile() {
+    this.router.navigate(ApplicationPaths.ProfilePathComponents);
+  }
+
+  logout() {
+    this.router.navigate(ApplicationPaths.LogOutPathComponents);
+  }
 }

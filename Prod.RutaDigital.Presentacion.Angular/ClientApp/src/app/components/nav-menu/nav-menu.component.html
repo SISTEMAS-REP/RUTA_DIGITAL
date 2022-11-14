@@ -27,18 +27,18 @@
               >
             </li>
             <li *ngIf="verificacionDiag && isCokies">
-              <a [routerLink]="['/']"
+              <a [routerLink]="['autodiagnostico']"
                 >Resultados<br />
                 Ruta Digital</a
               >
             </li>
             <li *ngIf="verificacionDiag && isCokies">
-              <a [routerLink]="['/']"
+              <a [routerLink]="['perfil-avance']"
                 >Tu avance en<br />
                 Ruta Digital</a
               >
             </li>
-            <li><a  [routerLink]="['/inicio/eventos']">Eventos</a></li>
+            <li><a [routerLink]="['eventos']">Eventos</a></li>
             <li>
               <a (click)="fnCatalogoPremio()"
                 >Catálogo de<br />

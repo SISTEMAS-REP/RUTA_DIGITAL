@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BannerResponse } from 'src/app/inicio/interfaces/banner.response';
-import { InicioRepository } from 'src/app/inicio/repositories/inicio.repository';
+import { InicioRepository } from 'src/app/inicio/inicio.repository';
 
 @Component({
   selector: 'app-seccion-banner-principal',

@@ -84,13 +84,13 @@
                   <li *ngIf="isAutenticated">
                     <a
                       class="dropdown-item btn mb-3 text-center"
-                      href="#"
+                      (click)="profile()"
                       style="display: flow-root !important"
                       >Perfil</a
                     >
                   </li>
                   <div *ngIf="isAutenticated" class="main-button-azul mb-4">
-                    <a class="text-white" href="#"> Cerrar sesión</a>
+                    <a class="text-white" (click)="logout()"> Cerrar sesión</a>
                   </div>
                 </ul>
               </li>

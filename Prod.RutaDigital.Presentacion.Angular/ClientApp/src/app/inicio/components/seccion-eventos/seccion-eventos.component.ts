@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { EventoResponse } from 'src/app/inicio/interfaces/evento.response';
-import { InicioRepository } from '../../../../repositories/inicio.repository';
+import { EventoResponse } from 'src/app/eventos/interfaces/evento.response';
+import { InicioRepository } from '../../inicio.repository';
 
 @Component({
   selector: 'app-seccion-eventos',

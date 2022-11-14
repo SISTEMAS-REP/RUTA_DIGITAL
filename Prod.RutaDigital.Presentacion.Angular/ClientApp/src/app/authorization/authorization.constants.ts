@@ -1,5 +1,3 @@
-//import { environment } from '../../../environments/environment';
-
 export const ApplicationName = document.baseURI
   .replace(/\//g, '')
   .replace(/:/g, '')
@@ -8,8 +6,11 @@ export const ApplicationName = document.baseURI
 
 export const ReturnUrlType = 'returnUrl';
 
+export const ApplicationIdType = 'applicationId';
+
 export const QueryParameterNames = {
   ReturnUrl: ReturnUrlType,
+  ApplicationId: ApplicationIdType,
   Message: 'message',
 };
 
@@ -57,7 +58,8 @@ let applicationPaths: ApplicationPathsType = {
   IdentityLoginPerson: `auth/login/person`,
   IdentityLoginCompany: `auth/login/company`,
   IdentityRegister: `auth/register-person`,
-  IdentityManage: `home/profile`,
+  IdentityProfile: `account/profile`,
+  IdentityLogout: `auth/logout`,
 };
 
 applicationPaths = {
@@ -103,7 +105,8 @@ interface ApplicationPathsType {
   readonly IdentityLoginPerson: string;
   readonly IdentityLoginCompany: string;
   readonly IdentityRegister: string;
-  readonly IdentityManage: string;
+  readonly IdentityProfile: string;
+  readonly IdentityLogout: string;
 }
 
 export const ApplicationPaths: ApplicationPathsType = applicationPaths;

@@ -8,6 +8,11 @@ export const AppRoutes: Routes = [
       import('./inicio/inicio.module').then((m) => m.InicioModule),
   },
   {
+    path: 'eventos',
+    loadChildren: () =>
+      import('./eventos/eventos.module').then((m) => m.EventosModule),
+  },
+  {
     path: 'autodiagnostico',
     loadChildren: () =>
       import('./autodiagnostico/autodiagnostico.module').then(

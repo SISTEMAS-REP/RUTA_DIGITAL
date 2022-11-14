@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { InicioRepository } from '../../../../repositories/inicio.repository';
+import { InicioRepository } from '../../inicio.repository';
 import { BannerResponse } from 'src/app/inicio/interfaces/banner.response';
 
 @Component({

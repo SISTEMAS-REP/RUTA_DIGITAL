@@ -39,15 +39,7 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/vendor/jquery/jquery.min.js",
-              "src/assets/js/isotope.min.js",
-              "src/assets/js/owl-carousel.js",
-              "src/assets/js/lightbox.js",
-              "src/assets/js/tabs.js",
-              "src/assets/js/video.js",
-              "src/assets/js/slick-slider.js",
-              "src/assets/js/custom.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -102,7 +94,7 @@
             "browserTarget": "Prod.RutaDigital.Presentacion.Angular:build"
           }
         },
-       
+
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {

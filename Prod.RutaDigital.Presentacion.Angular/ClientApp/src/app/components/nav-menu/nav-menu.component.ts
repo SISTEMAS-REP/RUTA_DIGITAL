@@ -31,6 +31,8 @@ export class NavMenuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    debugger;
+    this.isAutenticated;
     // this.repository.getUser().subscribe((user) => {
     //   debugger
     //   this.user = user;
