@@ -9,7 +9,6 @@ export class AutodiagnosticoRepository {
   constructor(private autodiagnosticoService: AutodiagnosticoService) {}
 
   VerificarAutoDiagnosticoHistorico = (request: any): Observable<any> => {
-    debugger
     return this.autodiagnosticoService
       .VerificarAutoDiagnosticoHistorico(request).pipe(
         map((response) => response.data));
