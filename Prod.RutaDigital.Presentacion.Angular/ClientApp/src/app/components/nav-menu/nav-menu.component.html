@@ -40,44 +40,53 @@
               <a (click)="fnCatalogoPremio()">Catálogo de<br/>premios</a>
             </li>
 
-          </ul>        
+          </ul>   
+
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-<span class="navbar-toggler-icon"></span>
-</button>
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
           <div class="offcanvas offcanvas-end text-bg-dark bg-verde" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-<div class="offcanvas-header">
-<h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"></h5>
-<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-</div>
+             <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"></h5>
+             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
               <div class="offcanvas-body text-white">
-<ul class="navbar-nav justify-content-end flex-grow-1 pe-3 text-white">
-<li class="nav-item text-white">
-<a class="nav-link text-white active" aria-current="page" href="#">Inicio</a>
-</li>
-<li class="nav-item text-white">
-<a class="nav-link text-white" href="#">Autodiagnóstico histótico</a>
-</li>
-<li class="nav-item text-white">
-  <a class="nav-link text-white" href="#">Inicia tu autodiagnóstico</a>
-</li>
-<li class="nav-item text-white">
-  <a class="nav-link text-white" href="#">Resultados Ruta Digital</a>
-</li>
-<li class="nav-item text-white">
-  <a class="nav-link text-white" href="#">Tu avance en Ruta Digital</a>
-</li>
-<li class="nav-item text-white">
-  <a class="nav-link text-white" href="#">Eventos</a>
-</li>
-<li class="nav-item text-white">
-  <a class="nav-link text-white" href="#">Catálogo de Premios</a>
-</li>
-</ul>
-     </div>
-              </div>
-          <!-- ***** Menu End ***** -->
-      </nav>
      
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 text-white">
+
+                  <li class="nav-item text-white">
+                     <a class="nav-link text-white active" aria-current="page" [routerLink]="['/']">Inicio</a>
+                  </li>
+                  
+                  <li class="nav-item text-white" *ngIf="verificacionDiagHistorico && isAutenticated">
+                     <a class="nav-link text-white" [routerLink]="['/']">Autodiagnóstico histórico</a>
+                  </li>
+
+                  <li class="nav-item text-white" *ngIf="!verificacionDiag">
+                     <a class="nav-link text-white" (click)="fnIniciarAutoDiagnostico()">Inicia tu autodiagnóstico</a>
+                  </li>
+                   
+                  <li class="nav-item text-white" *ngIf="verificacionDiag && isAutenticated">
+                     <a class="nav-link text-white" [routerLink]="['autodiagnostico']">Resultados Ruta Digital</a>
+                  </li>
+                  
+                  <li class="nav-item text-white" *ngIf="verificacionDiag && isAutenticated">
+                      <a class="nav-link text-white" [routerLink]="['perfil-avance']">Tu avance en Ruta Digital</a>
+                  </li>
+
+                  <li class="nav-item text-white">
+                     <a class="nav-link text-white" (click)="fnEvento()">Eventos</a>
+                  </li>
+
+                  <li class="nav-item text-white">
+                      <a class="nav-link text-white" (click)="fnCatalogoPremio()">Catálogo de Premios</a>
+                  </li>
+                </ul>
+             </div>
+          </div>
+       <!-- ***** Menu End ***** -->
+      </nav>   
   </div>
 </div>
 </div>

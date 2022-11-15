@@ -22,9 +22,7 @@ export class NavMenuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.repository.getUser().subscribe((user) => {
-      debugger
       this.id_usuario_extranet = user.id_usuario_extranet;
       if( this.id_usuario_extranet != null){
         this.VerificarAutoDiagnosticoHistorico();
@@ -34,15 +32,14 @@ export class NavMenuComponent implements OnInit {
   }
 
   VerificarAutoDiagnosticoHistorico = () => {
-    debugger;
     var request: any = {
       id_usuario_extranet: this.id_usuario_extranet,
     };
     this.autodiagnostico
     .VerificarAutoDiagnosticoHistorico(request)
     .subscribe({
-      next: (data : Array<any>) => {
-        debugger
+      next: (data : any) => {
+        this.verificacionDiagHistorico = data.flag;
       },
       error: (err) => {
        
@@ -51,15 +48,14 @@ export class NavMenuComponent implements OnInit {
   };
 
   VerificarAutoDiagnostico = () => {
-    debugger;
     var request: any = {
       id_usuario_extranet: this.id_usuario_extranet,
     };
     this.autodiagnostico
     .VerificarAutoDiagnostico(request)
     .subscribe({
-      next: (data : Array<any>) => {
-        debugger
+      next: (data : any) => {
+        this.verificacionDiag = data.flag;
       },
       error: (err) => {
        
