@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AutodiagnosticoRepository } from 'src/app/autodiagnostico/repositories/autodiagnostico.repository';
-import { CounterRepository } from 'src/app/demo/repositories/counter.repository.ts';
+import { ComponentsRepository } from 'src/app/components/repositories/components.repository.ts';
 import { ExtranetUser } from 'src/app/shared/interfaces/extranet-user';
 
 @Component({
@@ -11,96 +11,65 @@ import { ExtranetUser } from 'src/app/shared/interfaces/extranet-user';
 export class NavMenuComponent implements OnInit {
   @Input() isAutenticated: boolean;
   user: ExtranetUser;
-  isExpanded = false;
-  isCokies: Boolean = false;
-  id_usuario: number = null;
+  id_usuario_extranet: number = null;
   verificacionDiagHistorico: boolean = false;
   verificacionDiag: boolean = false;
-  collapse() {
-    this.isExpanded = false;
-  }
-
-  toggle() {
-    this.isExpanded = !this.isExpanded;
-  }
 
   constructor(
     private router: Router,
     private autodiagnostico: AutodiagnosticoRepository,
-    private repository: CounterRepository
+    private repository: ComponentsRepository
   ) { }
 
   ngOnInit(): void {
-    debugger;
-    this.isAutenticated;
-    // this.repository.getUser().subscribe((user) => {
-    //   debugger
-    //   this.user = user;
-    //   if( this.user != null){
-    //     this.isCokies = true;
-    //   }
-    // });
-    // if( this.user != null){
-    //   this.user.id_usuario_extranet = 12594;
-    //   this.isCokies = true;
-    // }
 
-    this.VerificarAutoDiagnosticoHistorico();
-    this.VerificarAutoDiagnostico();
+    this.repository.getUser().subscribe((user) => {
+      debugger
+      this.id_usuario_extranet = user.id_usuario_extranet;
+      if( this.id_usuario_extranet != null){
+        this.VerificarAutoDiagnosticoHistorico();
+        this.VerificarAutoDiagnostico();
+      }
+    });
   }
 
   VerificarAutoDiagnosticoHistorico = () => {
-    this.verificacionDiagHistorico = true;
-
-    // var request: any = {
-    //   id_usuario_extranet: 12594,
-    // };
-    // this.autodiagnostico
-    // .VerificarAutoDiagnosticoHistorico(request)
-    // .subscribe({
-    //   next: (data : Array<any>) => {
-    //     debugger
-    //   },
-    //   error: (err) => {
+    debugger;
+    var request: any = {
+      id_usuario_extranet: this.id_usuario_extranet,
+    };
+    this.autodiagnostico
+    .VerificarAutoDiagnosticoHistorico(request)
+    .subscribe({
+      next: (data : Array<any>) => {
+        debugger
+      },
+      error: (err) => {
        
-    //   },
-    // });
+      },
+    });
   };
 
   VerificarAutoDiagnostico = () => {
-    this.verificacionDiag = false;
-  //   var request: any = {
-  //     id_usuario_extranet: 12594,
-  //   };
-  //   this.autodiagnostico
-  //   .VerificarAutoDiagnostico(request)
-  //   .subscribe({
-  //     next: (data : Array<any>) => {
-  //       debugger
-  //     },
-  //     error: (err) => {
+    debugger;
+    var request: any = {
+      id_usuario_extranet: this.id_usuario_extranet,
+    };
+    this.autodiagnostico
+    .VerificarAutoDiagnostico(request)
+    .subscribe({
+      next: (data : Array<any>) => {
+        debugger
+      },
+      error: (err) => {
        
-  //     },
-  //   });
+      },
+    });
   };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   fnEvento = () =>{
-    if(this.isCokies){
+    if(this.isAutenticated){
       this.router.navigate(['/eventos']);
     }
     else{
@@ -109,7 +78,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   fnCatalogoPremio = () =>{
-    if(this.isCokies){
+    if(this.isAutenticated){
       this.router.navigate(['/catalogo-premios']);
     }
     else{
@@ -119,7 +88,7 @@ export class NavMenuComponent implements OnInit {
 
 
   fnAutoDiagnosticoHistorico = () =>{
-    if(this.isCokies){
+    if(this.isAutenticated){
       this.router.navigate(['/premios/premios-catalogo']);
     }
     else{
@@ -128,7 +97,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   fnIniciarAutoDiagnostico = () =>{
-    if(this.isCokies){
+    if(this.isAutenticated){
       this.router.navigate(['/premios/premios-catalogo']);
     }
     else{
@@ -137,7 +106,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   fnResultado = () =>{
-    if(this.isCokies){
+    if(this.isAutenticated){
       this.router.navigate(['/premios/premios-catalogo']);
     }
     else{
@@ -146,7 +115,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   fnAvance = () =>{
-    if(this.isCokies){
+    if(this.isAutenticated){
       this.router.navigate(['/premios/premios-catalogo']);
     }
     else{

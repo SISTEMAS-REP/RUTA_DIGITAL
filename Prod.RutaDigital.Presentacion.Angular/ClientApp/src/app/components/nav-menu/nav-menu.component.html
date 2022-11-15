@@ -11,41 +11,37 @@
           <!-- ***** Logo End ***** -->
           <!-- ***** Menu Start ***** -->
           <ul class="nav">
+
             <li>
               <a [routerLink]="['/']">Inicio</a>
             </li>
-            <li  *ngIf="verificacionDiagHistorico && isCokies">
-              <a [routerLink]="['/']"
-                >Autodiagnóstico<br />
-                histótico</a
-              >
+
+            <li  *ngIf="verificacionDiagHistorico && isAutenticated">
+              <a [routerLink]="['/']">Autodiagnóstico<br/>histórico</a>
             </li>
+
             <li *ngIf="!verificacionDiag">
-              <a (click)="fnIniciarAutoDiagnostico()"
-                >Inicia tu<br />
-                autodiagnóstico</a
-              >
+              <a (click)="fnIniciarAutoDiagnostico()">Inicia tu<br/>autodiagnóstico</a>
             </li>
-            <li *ngIf="verificacionDiag && isCokies">
-              <a [routerLink]="['autodiagnostico']"
-                >Resultados<br />
-                Ruta Digital</a
-              >
+
+            <li *ngIf="verificacionDiag && isAutenticated">
+              <a [routerLink]="['autodiagnostico']">Resultados<br/>Ruta Digital</a>
             </li>
-            <li *ngIf="verificacionDiag && isCokies">
-              <a [routerLink]="['perfil-avance']"
-                >Tu avance en<br />
-                Ruta Digital</a
-              >
+
+            <li *ngIf="verificacionDiag && isAutenticated">
+              <a [routerLink]="['perfil-avance']">Tu avance en<br/>Ruta Digital</a>
             </li>
-            <li><a [routerLink]="['eventos']">Eventos</a></li>
+
             <li>
-              <a (click)="fnCatalogoPremio()"
-                >Catálogo de<br />
-                premios</a
-              >
+              <a (click)="fnEvento()">Eventos</a>
             </li>
+
+            <li >
+              <a (click)="fnCatalogoPremio()">Catálogo de<br/>premios</a>
+            </li>
+
           </ul>
+
           <a class="menu-trigger">
             <span style="color: #fff">Menu</span>
           </a>
