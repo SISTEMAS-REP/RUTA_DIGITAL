@@ -9,6 +9,9 @@ export class TestAutodiagnosticoModuloComponent implements OnInit {
 
   steps: Array<any>;
   prueba : number = 6;
+
+  listadoPreguntas : Array<any>;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -33,12 +36,19 @@ export class TestAutodiagnosticoModuloComponent implements OnInit {
                     porcentaje:"100"
                   },
                 ];
-    this.ListarStep();
+                this.btn_step("1");
   }
 
-  ListarStep = () =>{
-debugger
-   
+  btn_step = (item) =>{
+    const fruits = [];    
+    var numero = parseInt(item);
+    for(var i = 0; i < numero; i++){
+      fruits.push( {
+        numero_pregunta: i + 1,
+        pregunta:"¿Tus clientes pueden encontrarte en internet?"
+      });
+    }
+    this.listadoPreguntas = fruits;
   }
 
 }
