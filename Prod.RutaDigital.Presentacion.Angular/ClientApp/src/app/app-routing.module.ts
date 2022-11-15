@@ -16,7 +16,14 @@ export const AppRoutes: Routes = [
     path: 'autodiagnostico',
     loadChildren: () =>
       import('./autodiagnostico/autodiagnostico.module').then(
-        (m) => m.AutodiagnosticoModule
+        (m) => m.AutoDiagnosticoModule
+      ),
+  },
+  {
+    path: 'auto-diagnostico',
+    loadChildren: () =>
+      import('./auto-diagnostico/auto-diagnostico.module').then(
+        (m) => m.AutoDiagnosticoModule
       ),
   },
   {

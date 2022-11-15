@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AutodiagnosticoComponent } from './pages/autodiagnostico/autodiagnostico.component';
+import { AutodiagnosticoComponent } from './autodiagnostico.component';
 import { TestAutodiagnosticoComponent } from './pages/test-autodiagnostico/test-autodiagnostico.component';
 
 export const AutodiagnosticoRoutes: Routes = [
