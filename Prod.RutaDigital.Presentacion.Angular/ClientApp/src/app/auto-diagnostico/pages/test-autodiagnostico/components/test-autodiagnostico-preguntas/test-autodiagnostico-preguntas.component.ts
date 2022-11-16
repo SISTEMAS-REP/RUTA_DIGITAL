@@ -11,7 +11,6 @@ export class TestAutodiagnosticoPreguntasComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    debugger
   }
 
 }

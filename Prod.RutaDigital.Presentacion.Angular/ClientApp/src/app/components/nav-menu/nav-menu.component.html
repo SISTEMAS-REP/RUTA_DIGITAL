@@ -21,11 +21,11 @@
             </li>
 
             <li *ngIf="!verificacionDiag">
-              <a (click)="fnIniciarAutoDiagnostico()">Inicia tu<br/>autodiagnóstico</a>
+              <a (click)="fnAutoDiagnostico()">Inicia tu<br/>autodiagnóstico</a>
             </li>
 
             <li *ngIf="verificacionDiag && isAutenticated">
-              <a [routerLink]="['autodiagnostico']">Resultados<br/>Ruta Digital</a>
+              <a (click)="fnAutoDiagnostico()">Resultados<br/>Ruta Digital</a>
             </li>
 
             <li *ngIf="verificacionDiag && isAutenticated">
@@ -36,7 +36,7 @@
               <a (click)="fnEvento()">Eventos</a>
             </li>
 
-            <li >
+            <li>
               <a (click)="fnCatalogoPremio()">Catálogo de<br/>premios</a>
             </li>
 
@@ -64,11 +64,11 @@
                   </li>
 
                   <li class="nav-item text-white" *ngIf="!verificacionDiag">
-                     <a class="nav-link text-white" (click)="fnIniciarAutoDiagnostico()">Inicia tu autodiagnóstico</a>
+                     <a class="nav-link text-white" (click)="fnAutoDiagnostico()">Inicia tu autodiagnóstico</a>
                   </li>
                    
                   <li class="nav-item text-white" *ngIf="verificacionDiag && isAutenticated">
-                     <a class="nav-link text-white" [routerLink]="['autodiagnostico']">Resultados Ruta Digital</a>
+                     <a class="nav-link text-white" (click)="fnAutoDiagnostico()">Resultados Ruta Digital</a>
                   </li>
                   
                   <li class="nav-item text-white" *ngIf="verificacionDiag && isAutenticated">

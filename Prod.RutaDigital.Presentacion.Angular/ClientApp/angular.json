@@ -33,6 +33,7 @@
               "src/assets/css/fontawesome.css",
               "src/assets/css/lightbox.css",
               "src/assets/css/owl.css",
+              "src/assets/css/bs-stepper.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
             ],

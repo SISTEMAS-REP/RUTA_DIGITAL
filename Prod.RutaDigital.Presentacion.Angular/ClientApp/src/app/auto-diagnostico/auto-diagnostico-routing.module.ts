@@ -8,7 +8,7 @@ export const AutoDiagnosticoRoutes: Routes = [
     component: AutoDiagnosticoComponent,
   },
   { path: "test", component: AutoDiagnosticoComponent, loadChildren: () => import("./pages/test-autodiagnostico/test-autodiagnostico.module").then(m => m.TestAutoDiagnosticoModule) },  
-  { path: "resultado-autodiagnostico", component: AutoDiagnosticoComponent, loadChildren: () => import("./pages/resultado-autodiagnostico/resultado-autodiagnostico.module").then(m => m.ResultadoAutoDiagnosticoModule) },
+  { path: "resultado-test", component: AutoDiagnosticoComponent, loadChildren: () => import("./pages/resultado-autodiagnostico/resultado-autodiagnostico.module").then(m => m.ResultadoAutoDiagnosticoModule) },
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AutodiagnosticoRepository } from 'src/app/autodiagnostico/repositories/autodiagnostico.repository';
+import { AutodiagnosticoRepository } from 'src/app/auto-diagnostico/repositories/auto-diagnostico.repository';
 import { ComponentsRepository } from 'src/app/components/repositories/components.repository.ts';
 import { ExtranetUser } from 'src/app/shared/interfaces/extranet-user';
 
@@ -69,7 +69,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/eventos']);
     }
     else{
-      alert("debe iniciar sesion");
+      alert("Debe iniciar sesion");
     }
   }
 
@@ -78,7 +78,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/catalogo-premios']);
     }
     else{
-      alert("debe iniciar sesion");
+      alert("Debe iniciar sesion");
     }
   }
 
@@ -88,34 +88,34 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/premios/premios-catalogo']);
     }
     else{
-      alert("debe iniciar sesion");
+      alert("Debe iniciar sesion");
     }
   }
 
-  fnIniciarAutoDiagnostico = () =>{
+  fnAutoDiagnostico = () =>{
     if(this.isAutenticated){
-      this.router.navigate(['/premios/premios-catalogo']);
+      this.router.navigate(['/auto-diagnostico']);
     }
     else{
-      alert("debe iniciar sesion");
+      alert("Debe iniciar sesion");
     }
   }
 
   fnResultado = () =>{
     if(this.isAutenticated){
-      this.router.navigate(['/premios/premios-catalogo']);
+      this.router.navigate(['/auto-diagnostico']);
     }
     else{
-      alert("debe iniciar sesion");
+      alert("Debe iniciar sesion");
     }
   }
 
   fnAvance = () =>{
     if(this.isAutenticated){
-      this.router.navigate(['/premios/premios-catalogo']);
+      this.router.navigate(['']);
     }
     else{
-      alert("debe iniciar sesion");
+      alert("Debe iniciar sesion");
     }
   }
 

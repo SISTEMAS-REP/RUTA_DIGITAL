@@ -871,7 +871,33 @@ text-align: center;
     background-color: #089F42;
     border-color: #089F42;
 }
-
+.bs-stepper-circle {
+  display: inline-flex;
+  align-content: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  padding: 0.5em 0;
+  margin: 0.25rem;
+  line-height: 1em;
+  color: rgb(255, 255, 255);
+  background-color: #089F42!important;
+  border-radius: 1em;
+}
+.bs-stepper-circle2 {
+  display: inline-flex;
+  align-content: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  padding: 0.5em 0;
+  margin: 0.25rem;
+  line-height: 1em;
+  color: #089F42!important;
+  background-color: #fff!important;
+  border-radius: 1em;
+  border: #089F42 1px solid;
+}
 #oculto1 {
 	background-color: #1D71B8;
 	color: #fff;

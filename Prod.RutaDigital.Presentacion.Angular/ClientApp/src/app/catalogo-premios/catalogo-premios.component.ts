@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PremioPublicidadResponse } from './interfaces/premio-publicidad.response';
 import { CatalogoPremiosRepository } from './catalogo-premios.repository';
+import { AuthorizeService } from '../authorization/authorize.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalogo-premios',
@@ -9,15 +11,35 @@ import { CatalogoPremiosRepository } from './catalogo-premios.repository';
   styleUrls: [],
 })
 export class CatalogoPremiosComponent implements OnInit {
+  isAuthenticated: boolean = false;
   premiosPublicidad: PremioPublicidadResponse[];
 
   constructor(
     private repository: CatalogoPremiosRepository,
-    private sanitizer: DomSanitizer
-  ) {}
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    private authorizeService: AuthorizeService
+  ) {
+    this.authorizeService.isAuthenticated().subscribe((status) => {
+      this.isAuthenticated = status;
+    });
+  }
 
   ngOnInit(): void {
+    this.fnVerificacionCookies();
     this.listarPublicidadPremio();
+
+  }
+
+  
+  fnVerificacionCookies= () =>{
+    if(this.isAuthenticated){
+        this.router.navigate(['/catalogo-premios/categoria-premios']);
+    }
+    else{
+      alert("Debe iniciar sesion");
+      this.router.navigate(['/']);
+    }
   }
 
   listarPublicidadPremio = () => {

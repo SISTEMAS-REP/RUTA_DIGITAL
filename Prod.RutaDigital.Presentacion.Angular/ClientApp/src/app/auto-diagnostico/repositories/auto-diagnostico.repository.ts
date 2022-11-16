@@ -1,12 +1,24 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { AutodiagnosticoService } from '../services/autodiagnostico.service';
+import { AutodiagnosticoService } from '../services/auto-diagnostico.service';
+import { AuthorizeService } from '../../authorization/authorize.service';
+import { ExtranetUser } from '../../shared/interfaces/extranet-user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AutodiagnosticoRepository {
-  constructor(private autodiagnosticoService: AutodiagnosticoService) {}
+  constructor(private autodiagnosticoService: AutodiagnosticoService,
+  private authorizeService: AuthorizeService
+  ) {
+
+  }
+  
+  getUser = (): Observable<ExtranetUser> => {
+    return this.authorizeService
+      .getUser()
+      .pipe(map((response) => response as ExtranetUser));
+  };
 
   VerificarAutoDiagnosticoHistorico = (request: any): Observable<any> => {
     return this.autodiagnosticoService

@@ -13,13 +13,6 @@ export const AppRoutes: Routes = [
       import('./eventos/eventos.module').then((m) => m.EventosModule),
   },
   {
-    path: 'autodiagnostico',
-    loadChildren: () =>
-      import('./autodiagnostico/autodiagnostico.module').then(
-        (m) => m.AutoDiagnosticoModule
-      ),
-  },
-  {
     path: 'auto-diagnostico',
     loadChildren: () =>
       import('./auto-diagnostico/auto-diagnostico.module').then(

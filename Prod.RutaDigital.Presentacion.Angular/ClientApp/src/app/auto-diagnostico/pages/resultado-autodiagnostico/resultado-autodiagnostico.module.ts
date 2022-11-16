@@ -4,10 +4,12 @@ import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ResultadoAutodiagnosticoComponent } from './resultado-autodiagnostico.component';
 import { ResultadoAutoDiagnosticoRoutingModule } from './resultado-autodiagnostico-routing.module';
+import { ResultadoDiagnosticoDetalleComponent } from './components/resultado-diagnostico-detalle/resultado-diagnostico-detalle.component';
 
 @NgModule({
   declarations: [
-    ResultadoAutodiagnosticoComponent
+    ResultadoAutodiagnosticoComponent,
+    ResultadoDiagnosticoDetalleComponent
   ],
   imports: [
     CommonModule,

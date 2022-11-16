@@ -6,6 +6,7 @@ import { PremioPuntajeResponse } from '../../interfaces/premio-puntaje.response'
 import { PremioTipoResponse } from '../../interfaces/premio-tipo.response';
 import { PremioResponse } from '../../interfaces/premio.response';
 import { CatalogoPremiosRepository } from '../../catalogo-premios.repository';
+import { AuthorizeService } from 'src/app/authorization/authorize.service';
 
 @Component({
   selector: 'app-categoria-premios',
@@ -13,6 +14,7 @@ import { CatalogoPremiosRepository } from '../../catalogo-premios.repository';
   styleUrls: [],
 })
 export class CategoriaPremiosComponent implements OnInit {
+  isAuthenticated: boolean = false;
   tiposPremio: PremioTipoResponse[];
   nivelesPremio: PremioNivelResponse[];
   puntajesPremio: PremioPuntajeResponse[];
@@ -29,8 +31,13 @@ export class CategoriaPremiosComponent implements OnInit {
     private repository: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,
     private Router: Router,
-    private router: ActivatedRoute
-  ) {}
+    private router: ActivatedRoute,
+    private authorizeService: AuthorizeService
+  ) {
+    this.authorizeService.isAuthenticated().subscribe((status) => {
+      this.isAuthenticated = status;
+    });
+  }
 
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
@@ -44,11 +51,18 @@ export class CategoriaPremiosComponent implements OnInit {
         this.IdTipo = constante[1];
       }
     });
-
+    this.fnVerificacionCookies();
     this.listarTipoPremio();
     this.listarPremioNivel();
     this.listarNivelPremio();
     this.listarPuntajePremio();
+  }
+
+  fnVerificacionCookies= () =>{
+    if(this.isAuthenticated == false){
+      alert("Debe iniciar sesion");
+      this.Router.navigate(['/']);
+    }
   }
 
   fnFiltrar = () => {

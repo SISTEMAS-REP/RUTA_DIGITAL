@@ -4,10 +4,19 @@
       <div class="pb-3">
         <div class="position-relative m-4">
           <div class="progress" style="height: 1px;">
-            <div class="progress-bar bg-verde" role="progressbar" aria-label="Progress" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-verde" role="progressbar" aria-label="Progress" style="width: 15%;"
+              aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-          <div *ngFor="let item of steps; let i = index">
-            <button type="button" class="position-absolute top-0 start-{{item.porcentaje}} translate-middle btn btn-sm btn-verde rounded-pill" style="width: 2rem; height:2rem;" (click)="btn_step(item.step)">{{ item.step }}</button>
+          <div class="bs-stepper">
+            <div class="bs-stepper-header">
+              <div class="step" *ngFor="let item of steps; let i = index">
+                <button
+                  class="step-trigger top-0 start-{{item.porcentaje}} translate-middle btn btn-sm btn-verde rounded-pill"
+                  (click)="btn_step(item.step)">
+                  <span class="bs-stepper-circle">{{ item.step }}</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -18,29 +27,32 @@
 <section class="meetings-page" id="meetings2">
   <div class="container">
     <div class="row">
-      <h1 class="titu_cap mb-4">Marketing Digital  </h1>
+      <h1 class="titu_cap mb-4">Marketing Digital </h1>
     </div>
-  
+
     <div class="row">
       <div class="col-12" align="center">
-        <img class="img-responsive" src="assets/images/test_autodiagnostico/Herramientas_digitales_1.png" alt=""/>
+        <img class="img-responsive" src="assets/images/test_autodiagnostico/Herramientas_digitales_1.png" alt="" />
       </div>
     </div>
-    <div *ngFor="let item of listadoPreguntas; let i = index" >
-      <app-test-autodiagnostico-preguntas
-      [numero]="item.numero_pregunta"
-      [pregunta]="item.pregunta"
-      ></app-test-autodiagnostico-preguntas>
+    <div *ngFor="let item of listadoPreguntas; let i = index">
+
+      <app-test-autodiagnostico-preguntas 
+      [numero]="item.numero_pregunta" 
+      [pregunta]="item.pregunta">
+      </app-test-autodiagnostico-preguntas>
+
     </div>
-   
+
     <div class="container">
       <div class="row mb-5 mt-5">
-        <div class="col-6"><button class="btn btn-verde" role="button" aria-disabled="true"><i class="fa fa-arrow-circle-left"></i> Anterior</button></div>
-        <div class="col-6"><button class="btn btn-verde float-end" role="button" aria-disabled="true">Siguiente <i class="fa fa-arrow-circle-right"></i></button></div>
-        <div class="col-12" align="center"><button class="btn btn-verde" role="button" aria-disabled="true"> Enviar test </button></div>
+        <div class="col-6"><button class="btn btn-verde" role="button" aria-disabled="true"><i
+              class="fa fa-arrow-circle-left"></i> Anterior</button></div>
+        <div class="col-6"><button class="btn btn-verde float-end" role="button" aria-disabled="true">Siguiente <i
+              class="fa fa-arrow-circle-right"></i></button></div>
+        <div class="col-12" align="center"><button class="btn btn-verde" role="button" aria-disabled="true"> Enviar test
+          </button></div>
       </div>
     </div>
   </div>
 </section>
-
-

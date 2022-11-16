@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { PremioResponse } from '../../interfaces/premio.response';
 import { CatalogoPremiosRepository } from '../../catalogo-premios.repository';
+import { AuthorizeService } from 'src/app/authorization/authorize.service';
 
 @Component({
   selector: 'app-detalle-premio',
@@ -11,6 +12,7 @@ import { CatalogoPremiosRepository } from '../../catalogo-premios.repository';
   styleUrls: [],
 })
 export class DetallePremioComponent implements OnInit {
+  isAuthenticated: boolean = false;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -43,19 +45,32 @@ export class DetallePremioComponent implements OnInit {
   constructor(
     private repository: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,
-    private router: ActivatedRoute
-  ) {}
+    private Router: Router,
+    private router: ActivatedRoute,
+    private authorizeService: AuthorizeService,
+  ) {
+    this.authorizeService.isAuthenticated().subscribe((status) => {
+      this.isAuthenticated = status;
+    });
+  }
 
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
       const id_premio = params['premio'];
       this.id_premio = id_premio;
     });
-
+    this.fnVerificacionCookies();
     this.listarPremio();
     this.listarDescubrePremios();
   }
 
+  fnVerificacionCookies= () =>{
+    if(this.isAuthenticated == false){
+      alert("Debe iniciar sesion");
+      this.Router.navigate(['/']);
+    }
+  }
+  
   listarPremio = () => {
     var request: any = {
       CantReg: null,
