@@ -706,87 +706,43 @@
 
         <div class="col-lg-12">
             <div class="row">
-                <div class="col-lg-1 mb-3"></div>
-                <div class="col-lg-1 mb-3"></div>
-                <div class="col-lg-3 mb-3">
-                    <div class="meeting-item fact-item">
-                        <div class="thumb">
-                            <div class="price">
-                                <img src="assets/images/et_verde.png">
-                            </div>
-                            <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png"
-                                    alt="New Lecturer Meeting"></a>
-                            <div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                        </div>
-                        <div class="down-content">
-                            <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-                            1 cupo por edición
-                            <div class="info px-0 pt-4">
-                                <div class="row px-0 mx-0 subt-nuevospremios">
-                                    500<br>
-                                    <strong class="p-0">PUNTOS<br> PRODUCE</strong>
-                                </div>
-                                <div class="main-button-yellowp mt-3" align="center">
-                                    <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo
-                                            quiero!</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-lg-3 mb-3" *ngFor="let nuevo of nuevosPremios; let i = index">
+                     <div class="item col-12 fact-item">
+                <div class="position-absolute ms-4">
+                  <div class="etiqueta_verde">
+                    <img class="svg" [src]="nuevo.imagenTipoPremio" />
+                  </div>
                 </div>
-                <div class="col-lg-3 mb-3">
-                    <div class="meeting-item fact-item">
-                        <div class="thumb">
-                            <div class="price">
-                                <img src="assets/images/et_verde.png">
-                            </div>
-                            <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png"
-                                    alt="New Lecturer Meeting"></a>
-                            <div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                        </div>
-                        <div class="down-content">
-                            <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-                            1 cupo por edición
-                            <div class="info px-0 pt-4">
-                                <div class="row px-0 mx-0 subt-nuevospremios">
-                                    500<br>
-                                    <strong class="p-0">PUNTOS<br> PRODUCE</strong>
-                                </div>
-                                <div class="main-button-yellowp mt-3" align="center">
-                                    <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo
-                                            quiero!</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <img [src]="nuevo.imagenPremio" alt="Course One" />
+                <div class="etiqueta_premio">
+                  <button class="btn btn-danger py-0 px-3 me-3 fs-5">
+                    <strong> {{ nuevo.etiqueta }}</strong>
+                  </button>
                 </div>
-                <div class="col-lg-3 mb-3">
-                    <div class="meeting-item fact-item">
-                        <div class="thumb">
-                            <div class="price">
-                                <img src="assets/images/et_verde.png">
-                            </div>
-                            <a href="meeting-details.html"><img class="img-fluid" src="assets/images/premios_img_1.png"
-                                    alt="New Lecturer Meeting"></a>
-                            <div class="price2"><img class="px-3" src="assets/images/et_nuevo.png" alt=""></div>
-                        </div>
-                        <div class="down-content">
-                            <h5 class="mb-0 titulos-nuevospremios mb-4">CyberWow</h5>
-                            1 cupo por edición
-                            <div class="info px-0 pt-4">
-                                <div class="row px-0 mx-0 subt-nuevospremios">
-                                    500<br>
-                                    <strong class="p-0">PUNTOS<br> PRODUCE</strong>
-                                </div>
-                                <div class="main-button-yellowp mt-3" align="center">
-                                    <div class="catalogo_premios.html px-2"><a href="catalogo_premios_detalle.html">¡Lo
-                                            quiero!</a></div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="down-content">
+                  <h5 class="mb-0">{{ nuevo.nombre }}</h5>
+                  {{ nuevo.descripcion_corta }}
+                  <div class="info px-0">
+                    <div class="row px-0 mx-0 subt-nuevospremios">
+                      {{ nuevo.puntos_produce }}<br />
+                      <strong class="p-0"
+                        >PUNTOS<br />
+                        PRODUCE</strong
+                      >
                     </div>
+                    <div class="main-button-yellowp mt-3" align="center">
+                      <div>
+                        <a
+                          class="main-button-yellowp"
+                          (click)="loQuiero(nuevo.id_premio)"
+                          >¡Lo quiero!</a
+                        >
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-lg-1 mb-3"></div>
+              </div>
+                </div>
             </div>
         </div>
     </div>
