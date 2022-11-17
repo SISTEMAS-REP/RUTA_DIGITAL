@@ -4,8 +4,8 @@ import { BaseService } from '../shared/services/base.service';
 @Injectable({
   providedIn: 'root',
 })
-export class PerfilService extends BaseService {
+export class PerfilAvanceService extends BaseService {
   getControllerUrl(): string {
-    return 'perfil';
+    return 'perfil-avance';
   }
 }
