@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AutodiagnosticoRepository } from 'src/app/auto-diagnostico/repositories/auto-diagnostico.repository';
 import { ComponentsRepository } from 'src/app/components/repositories/components.repository.ts';
 import { ExtranetUser } from 'src/app/shared/interfaces/extranet-user';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -18,7 +19,8 @@ export class NavMenuComponent implements OnInit {
   constructor(
     private router: Router,
     private autodiagnostico: AutodiagnosticoRepository,
-    private repository: ComponentsRepository
+    private repository: ComponentsRepository,
+    private toastService: ToastService
   ) { }
 
   ngOnInit(): void {
@@ -69,7 +71,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/eventos']);
     }
     else{
-      alert("Debe iniciar sesion");
+      this.toastService.danger("Debe iniciar sesión", "Error");
     }
   }
 
@@ -78,7 +80,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/catalogo-premios']);
     }
     else{
-      alert("Debe iniciar sesion");
+      this.toastService.danger("Debe iniciar sesión", "Error");
     }
   }
 
@@ -88,7 +90,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/premios/premios-catalogo']);
     }
     else{
-      alert("Debe iniciar sesion");
+      this.toastService.danger("Debe iniciar sesión", "Error");
     }
   }
 
@@ -97,7 +99,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/auto-diagnostico']);
     }
     else{
-      alert("Debe iniciar sesion");
+      this.toastService.danger("Debe iniciar sesión", "Error");
     }
   }
 
@@ -106,7 +108,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['/auto-diagnostico']);
     }
     else{
-      alert("Debe iniciar sesion");
+      this.toastService.danger("Debe iniciar sesión", "Error");
     }
   }
 
@@ -115,7 +117,7 @@ export class NavMenuComponent implements OnInit {
       this.router.navigate(['']);
     }
     else{
-      alert("Debe iniciar sesion");
+      this.toastService.danger("Debe iniciar sesión", "Error");
     }
   }
 

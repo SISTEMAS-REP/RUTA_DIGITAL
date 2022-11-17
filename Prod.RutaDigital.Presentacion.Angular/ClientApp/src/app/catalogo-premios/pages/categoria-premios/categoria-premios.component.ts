@@ -7,6 +7,7 @@ import { PremioTipoResponse } from '../../interfaces/premio-tipo.response';
 import { PremioResponse } from '../../interfaces/premio.response';
 import { CatalogoPremiosRepository } from '../../catalogo-premios.repository';
 import { AuthorizeService } from 'src/app/authorization/authorize.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-categoria-premios',
@@ -32,7 +33,8 @@ export class CategoriaPremiosComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private Router: Router,
     private router: ActivatedRoute,
-    private authorizeService: AuthorizeService
+    private authorizeService: AuthorizeService,
+    private toastService: ToastService
   ) {
     this.authorizeService.isAuthenticated().subscribe((status) => {
       this.isAuthenticated = status;
@@ -60,7 +62,7 @@ export class CategoriaPremiosComponent implements OnInit {
 
   fnVerificacionCookies= () =>{
     if(this.isAuthenticated == false){
-      alert("Debe iniciar sesion");
+      this.toastService.danger("Debe iniciar sesión", "Error");
       this.Router.navigate(['/']);
     }
   }

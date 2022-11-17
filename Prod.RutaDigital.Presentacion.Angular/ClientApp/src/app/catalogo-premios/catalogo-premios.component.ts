@@ -4,6 +4,7 @@ import { PremioPublicidadResponse } from './interfaces/premio-publicidad.respons
 import { CatalogoPremiosRepository } from './catalogo-premios.repository';
 import { AuthorizeService } from '../authorization/authorize.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../shared/services/toast.service';
 
 @Component({
   selector: 'app-catalogo-premios',
@@ -18,7 +19,8 @@ export class CatalogoPremiosComponent implements OnInit {
     private repository: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private authorizeService: AuthorizeService
+    private authorizeService: AuthorizeService,
+    private toastService: ToastService
   ) {
     this.authorizeService.isAuthenticated().subscribe((status) => {
       this.isAuthenticated = status;
@@ -37,7 +39,7 @@ export class CatalogoPremiosComponent implements OnInit {
         this.router.navigate(['/catalogo-premios/categoria-premios']);
     }
     else{
-      alert("Debe iniciar sesion");
+      this.toastService.danger("Debe iniciar sesión", "Error");
       this.router.navigate(['/']);
     }
   }

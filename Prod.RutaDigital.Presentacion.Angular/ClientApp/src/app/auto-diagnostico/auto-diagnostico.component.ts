@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ExtranetUser } from '../shared/interfaces/extranet-user';
 import { AutodiagnosticoRepository } from 'src/app/auto-diagnostico/repositories/auto-diagnostico.repository';
 import { AuthorizeService } from '../authorization/authorize.service';
+import { ToastService } from '../shared/services/toast.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class AutoDiagnosticoComponent implements OnInit {
   constructor(
     private router: Router,
     private repository: AutodiagnosticoRepository,
-    private authorizeService: AuthorizeService
+    private authorizeService: AuthorizeService,
+    private toastService: ToastService
   ) { 
     this.authorizeService.isAuthenticated().subscribe((status) => {
       this.isAuthenticated = status;
@@ -43,7 +45,7 @@ export class AutoDiagnosticoComponent implements OnInit {
       }
     }
     else{
-      alert("Debe iniciar sesion");
+      this.toastService.danger("Debe iniciar sesión", "Error");
       this.router.navigate(['/']);
     }
   }

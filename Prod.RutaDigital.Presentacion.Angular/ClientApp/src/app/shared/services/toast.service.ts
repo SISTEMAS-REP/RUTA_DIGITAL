@@ -1,32 +1,57 @@
-import { Injectable, TemplateRef } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToastService {
-  toasts: any[] = [];
+toasts: any[] = [];
+  private readonly defaultWargErrMessage: string =
+    'Ocurrió un problema para procesar su solicitud, inténtelo nuevamente';
 
-  success(message: string | TemplateRef<any>) {
-    this.show(message, { classname: 'bg-success' });
+  constructor(private toastrService: ToastrService) {}
+
+  default(message?: string, title?: string, type: string = 'default') {
+    this.show(message ?? '', title ?? '', type);
   }
 
-  info(message: string | TemplateRef<any>) {
-    this.show(message, { classname: 'bg-info' });
+  info(message?: string, title?: string, type: string = 'info') {
+    this.show(message ?? '', title ?? 'Información', type);
   }
 
-  warn(message: string | TemplateRef<any>) {
-    this.show(message, { classname: 'bg-warning' });
+  success(message?: string, title?: string, type: string = 'success') {
+    this.show(message ?? '', title ?? 'Éxito', type);
   }
 
-  danger(message: string | TemplateRef<any>) {
-    this.show(message, { classname: 'bg-danger' });
+  warning(message?: string, title?: string, type: string = 'warning') {
+    this.show(
+      message ?? this.defaultWargErrMessage,
+      title ?? 'Importante',
+      type
+    );
   }
 
-  private show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
-    this.toasts.push({ textOrTpl, ...options });
+  danger(message?: string, title?: string, type: string = 'error') {
+    this.show(message ?? this.defaultWargErrMessage, title ?? 'Atención', type);
   }
-
   remove(toast) {
     this.toasts = this.toasts.filter((t) => t !== toast);
+  }
+
+  private show(
+    message: string,
+    titlle: string,
+    type: string = 'default',
+    position: string = 'top-right'
+  ) {
+    this.toastrService.show(message, titlle, {
+      timeOut: 8000,
+      tapToDismiss: false,
+      closeButton: true,
+      enableHtml: true,
+      positionClass: `toast-${position}`,
+      //toastClass: `ngx-toastr alert alert-dismissible alert-${type} alert-notify`,
+      toastClass: `ngx-toastr alter alert-dismissible toast-${type} alert-notify`,
+    });
   }
 }

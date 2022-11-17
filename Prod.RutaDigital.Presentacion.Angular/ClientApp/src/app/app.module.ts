@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ProduceMasBarComponent } from './components/produce-mas-bar/produce-mas-bar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CommonModule, registerLocaleData } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import LocalES from '@angular/common/locales/es';
 import { AuthorizationModule } from './authorization/authorization.module';
@@ -29,7 +30,9 @@ registerLocaleData(LocalES, 'es');
     BrowserAnimationsModule,
     RouterModule,
     AppRoutingModule,
-
+    ToastrModule.forRoot({
+      preventDuplicates: false,
+    }),
     AuthorizationModule,
     SharedModule,
   ],
