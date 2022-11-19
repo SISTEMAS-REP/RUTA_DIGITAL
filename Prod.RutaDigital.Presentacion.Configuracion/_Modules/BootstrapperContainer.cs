@@ -17,6 +17,10 @@ public class BootstrapperContainer
         configuration.GetSection("AppConfig:AppVariables").Bind(appVariables);
         builder.Register(c => appVariables);
 
+        var appAuditoria = new AppAuditoria();
+        configuration.GetSection("AppConfig:AppAuditoria").Bind(appAuditoria);
+        builder.Register(c => appAuditoria);
+
         //Proxys  
         ProxyModule.AppConfig = appConfig;
         builder.RegisterModule<ProxyModule>();
