@@ -10,4 +10,5 @@ public interface IPremioAplicacion
 
     Task<StatusResponse<IEnumerable<Premio>>>
         ListarPuntajesPremios();
+    Task<StatusResponse<PremioCanjeResponse>> CanjePremio(PremioCanjeRequest request);
 }

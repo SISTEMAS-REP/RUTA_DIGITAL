@@ -67,10 +67,10 @@ export class DetallePremioComponent implements OnInit {
   }
 
   fnVerificacionCookies= () =>{
-    if(this.isAuthenticated == false){
-      this.toastService.danger("Debe iniciar sesión", "Error");
-      this.Router.navigate(['/']);
-    }
+    // if(this.isAuthenticated == false){
+    //   this.toastService.danger("Debe iniciar sesión", "Error");
+    //   this.Router.navigate(['/']);
+    // }
   }
   
   listarPremio = () => {
@@ -117,4 +117,22 @@ export class DetallePremioComponent implements OnInit {
     this.listarPremio();
     this.listarDescubrePremios();
   };
+
+  fnCanjear= () =>{
+    var request: any = {
+      id_premio: this.premio.id_premio,
+      id_usuario_extranet: 15399,
+      cantidad: this.premio.puntos_produce,
+      descripcion_premio: this.premio.descripcion_corta
+    };
+    this.repository.CanjePremio(request).subscribe({
+      next: (data: any) => {
+       if(data.flag){
+        //poner el comentario
+        debugger
+       }
+      },
+      error: (err) => {},
+    });
+  }
 }

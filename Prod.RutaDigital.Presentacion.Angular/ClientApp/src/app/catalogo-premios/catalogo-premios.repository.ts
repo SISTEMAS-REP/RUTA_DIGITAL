@@ -42,4 +42,10 @@ export class CatalogoPremiosRepository {
       .listarNivelPremio()
       .pipe(map((response) => response.data as PremioNivelResponse[]));
   };
+
+  CanjePremio = (request: any): Observable<PremioResponse[]> => {
+    return this.catalogoPremiosService
+      .CanjePremio(request)
+      .pipe(map((response) => response.data as PremioResponse[]));
+  };
 }

@@ -65,6 +65,31 @@ public class PremioAplicacion : IPremioAplicacion
         return resultado;
     }
 
+
+    public async Task<StatusResponse<PremioCanjeResponse>> CanjePremio(PremioCanjeRequest request)
+    {
+        var resultado = new StatusResponse<PremioCanjeResponse>();
+        try
+        {
+            var data = await _uow
+                .CanjePremio(request);
+
+            resultado.Success = true;
+            resultado.Data = data;
+        }
+        catch (Exception ex)
+        {
+            resultado.Success = false;
+            resultado.Messages = new()
+            {
+                ex.Message
+            };
+        }
+
+        return resultado;
+    }
+
+
     /*
     public async Task<StatusResponse<List<PremioPublicidadResponse>>> ListarPublicidadPremio()
     {

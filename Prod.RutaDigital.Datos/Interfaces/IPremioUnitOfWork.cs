@@ -11,4 +11,5 @@ public partial interface IUnitOfWork : IBaseUnitOfWork
 
     Task<IEnumerable<Premio>>
         ListarPuntajesPremios();
+    Task<PremioCanjeResponse> CanjePremio(PremioCanjeRequest request);
 }

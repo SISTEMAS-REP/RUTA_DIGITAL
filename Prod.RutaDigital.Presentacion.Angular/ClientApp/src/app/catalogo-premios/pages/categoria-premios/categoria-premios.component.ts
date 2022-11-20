@@ -61,10 +61,10 @@ export class CategoriaPremiosComponent implements OnInit {
   }
 
   fnVerificacionCookies= () =>{
-    if(this.isAuthenticated == false){
-      this.toastService.danger("Debe iniciar sesión", "Error");
-      this.Router.navigate(['/']);
-    }
+    // if(this.isAuthenticated == false){
+    //   this.toastService.danger("Debe iniciar sesión", "Error");
+    //   this.Router.navigate(['/']);
+    // }
   }
 
   fnFiltrar = () => {

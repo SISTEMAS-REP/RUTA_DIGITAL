@@ -3,6 +3,7 @@ using Release.Helper.Data.Core;
 
 using Prod.RutaDigital.Datos.Interfaces;
 using Prod.RutaDigital.Entidades;
+using Release.Helper;
 
 namespace Prod.RutaDigital.Datos;
 
@@ -39,6 +40,26 @@ public partial class UnitOfWork : IUnitOfWork
 
         var result = ExecuteReader<Premio>(
             "USP_LISTAR_PUNTAJE_PREMIO",
+            CommandType.StoredProcedure, ref parms);
+
+        return await Task.FromResult(result);
+    }
+
+    public async Task<PremioCanjeResponse>
+        CanjePremio(PremioCanjeRequest request)
+    {
+        var parms = new Parameter[]
+        {
+             new Parameter("@id_premio", request.id_premio),
+             new Parameter("@id_usuario_extranet", request.id_usuario_extranet),
+             new Parameter("@cantidad", request.cantidad),
+             new Parameter("@usuario_registro", request.usuario_registro),
+             new Parameter("@fecha_registro", request.fecha_registro)
+
+        };
+
+        var result = ExecuteScalar<PremioCanjeResponse>(
+            "USP_DAT_PREMIO_CONSUMO_REGISTRAR",
             CommandType.StoredProcedure, ref parms);
 
         return await Task.FromResult(result);

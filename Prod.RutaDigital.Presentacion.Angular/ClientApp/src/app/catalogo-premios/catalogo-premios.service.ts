@@ -31,4 +31,11 @@ export class CatalogoPremiosService extends BaseService {
   listarPuntajePremio = (): Observable<any> => {
     return this.get('ListarPuntajePremio');
   };
+
+  CanjePremio = (request?: any): Observable<any> => {
+    return this.get('CanjePremio', {
+      params: request ? this.setParams(request) : {},
+    });
+  };
+  
 }

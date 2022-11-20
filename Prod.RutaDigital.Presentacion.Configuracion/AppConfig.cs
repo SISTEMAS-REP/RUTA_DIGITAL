@@ -13,4 +13,5 @@ public class Urls
     public string URL_LOGIN_UNICO_WEB { get; set; }
     public string URL_LOGIN_UNICO_WEB_NET { get; set; }
     public string URL_LOGIN_UNICO_WEB_CORE_API { get; set; }
+    public string URL_CORREO_API { get; set; }
 }

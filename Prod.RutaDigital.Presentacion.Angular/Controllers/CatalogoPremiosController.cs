@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Prod.RutaDigital.Entidades;
 using Prod.RutaDigital.Presentacion.Configuracion;
 using Prod.RutaDigital.Presentacion.Configuracion.Proxys;
+using Prod.ServiciosExternos;
 using Release.Helper;
+using System.Web;
 
 namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
 
@@ -14,21 +17,26 @@ public class CatalogoPremiosController : ControllerBase
 {
     private readonly PublicidadPremioConsultaProxy _publicidadPremioConsultaProxy;
     private readonly PremioConsultaProxy _premioConsultaProxy;
+    private readonly PremioComandoProxy _premioComandoProxy;
     private readonly TipoPremioConsultaProxy _tipoPremioConsultaProxy;
     private readonly NivelMadurezConsultaProxy _nivelMadurezConsultaProxy;
     private readonly AppVariables _appVariables;
-
+    private readonly IEmailSender _emailSender;
     public CatalogoPremiosController(PublicidadPremioConsultaProxy publicidadPremioConsultaProxy,
         PremioConsultaProxy premioConsultaProxy,
+        PremioComandoProxy premioComandoProxy,
         TipoPremioConsultaProxy tipoPremioConsultaProxy,
         NivelMadurezConsultaProxy nivelMadurezConsultaProxy,
-        AppVariables appVariables)
+        AppVariables appVariables,
+        IEmailSender emailSender)
     {
         _publicidadPremioConsultaProxy = publicidadPremioConsultaProxy;
         _premioConsultaProxy = premioConsultaProxy;
+        _premioComandoProxy = premioComandoProxy;
         _tipoPremioConsultaProxy = tipoPremioConsultaProxy;
         _nivelMadurezConsultaProxy = nivelMadurezConsultaProxy;
         _appVariables = appVariables;
+        _emailSender = emailSender;
     }
 
     [HttpGet("ListarPublicidadPremio")]
@@ -176,6 +184,33 @@ public class CatalogoPremiosController : ControllerBase
     {
         var result = await _premioConsultaProxy
             .ListarPuntajesPremios();
+        return Ok(result);
+    }
+
+    [HttpGet("CanjePremio")]
+    public async Task<IActionResult>
+        CanjePremio([FromQuery] PremioCanjeRequest requests)
+    {
+        var result = await _premioComandoProxy
+            .CanjePremio(requests);
+
+        if (result.Success) 
+        {
+            var data = new
+            {
+                cantidad = requests.cantidad
+            };
+
+            await _emailSender.SendAsync(templateName: "CanjePremio",
+               request: new()
+               {
+                   to = result.Data.email,
+                   isBodyHtml = true,
+                   subject = $"prueba"
+               },
+               data: data);
+        }
+
         return Ok(result);
     }
 }

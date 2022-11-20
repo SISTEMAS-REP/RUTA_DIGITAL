@@ -35,7 +35,7 @@ export class CatalogoPremiosComponent implements OnInit {
 
   
   fnVerificacionCookies= () =>{
-    if(this.isAuthenticated){
+    if(true){ //this.isAuthenticated
         this.router.navigate(['/catalogo-premios/categoria-premios']);
     }
     else{
