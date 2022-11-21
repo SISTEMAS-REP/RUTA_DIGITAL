@@ -32,6 +32,12 @@
     <ProjectReference Include="..\Prod.RutaDigital.Presentacion.Configuracion\Prod.RutaDigital.Presentacion.Configuracion.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Plantillas\CanjePremio.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

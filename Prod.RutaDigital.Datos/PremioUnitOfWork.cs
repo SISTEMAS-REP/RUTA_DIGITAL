@@ -54,14 +54,14 @@ public partial class UnitOfWork : IUnitOfWork
              new Parameter("@id_usuario_extranet", request.id_usuario_extranet),
              new Parameter("@cantidad", request.cantidad),
              new Parameter("@usuario_registro", request.usuario_registro),
-             new Parameter("@fecha_registro", request.fecha_registro)
+             new Parameter("@fecha_registro", DateTime.Now)
 
         };
 
-        var result = ExecuteScalar<PremioCanjeResponse>(
+        var result = ExecuteReader<PremioCanjeResponse>(
             "USP_DAT_PREMIO_CONSUMO_REGISTRAR",
             CommandType.StoredProcedure, ref parms);
 
-        return await Task.FromResult(result);
+        return await Task.FromResult(result.FirstOrDefault());
     }
 }

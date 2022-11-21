@@ -14,11 +14,11 @@ namespace Prod.RutaDigital.Core.Controllers
     [ApiController]
     [Route("[controller]")]
 
-    public class PremioComandoControlador : ControllerBase
+    public class PremioComandoController : ControllerBase
     {
         private readonly IPremioAplicacion _premioAplicacion;
 
-        public PremioComandoControlador(IPremioAplicacion premioAplicacion)
+        public PremioComandoController(IPremioAplicacion premioAplicacion)
         {
             _premioAplicacion = premioAplicacion;
         }

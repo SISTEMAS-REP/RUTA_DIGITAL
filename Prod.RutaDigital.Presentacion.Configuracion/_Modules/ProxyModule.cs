@@ -22,14 +22,14 @@ public class ProxyModule : Autofac.Module
 
         //Proxy Externos
 
-        var baseFolder = AppDomain.CurrentDomain.BaseDirectory;
-        var rootTemplates = Path.Combine(baseFolder, "Plantillas");
-        EmailSender.Templates = SenderManager
-            .GetEmailTemplates(rootTemplates, EmailSender.Templates);
-        builder
-            .RegisterType<EmailSender>()
-            .As<IEmailSender>()
-            .WithParameter("route", AppConfig.Urls.URL_CORREO_API);
+        //var baseFolder = AppDomain.CurrentDomain.BaseDirectory;
+        //var rootTemplates = Path.Combine(baseFolder, "Plantillas");
+        //EmailSender.Templates = SenderManager
+        //    .GetEmailTemplates(rootTemplates, EmailSender.Templates);
+        //builder
+        //    .RegisterType<EmailSender>()
+        //    .As<IEmailSender>()
+        //    .WithParameter("route", AppConfig.Urls.URL_CORREO_API);
 
 
         base.Load(builder);

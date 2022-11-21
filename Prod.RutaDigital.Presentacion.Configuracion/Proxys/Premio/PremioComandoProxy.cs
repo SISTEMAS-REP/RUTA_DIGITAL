@@ -23,7 +23,7 @@ namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys
 
         public Task<StatusResponse<PremioCanjeResponse>> CanjePremio(PremioCanjeRequest request)
         {
-            return CallWebApiAsync<StatusResponse<PremioCanjeResponse>>(HttpMethod.Get,_url + "CanjePremio", GetJsonParameters(request));
+            return CallWebApiAsync<StatusResponse<PremioCanjeResponse>>(HttpMethod.Post,_url + "CanjePremio", GetJsonParameters(request));
         }
     }
 }

@@ -10,6 +10,6 @@ namespace Prod.RutaDigital.Entidades
     {
         public int? id_premio_consumo { get;set;}
         public string? email { get;set;}
-        public bool? flag { get;set;}
+        public bool flag { get;set;}
     }
 }
