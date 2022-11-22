@@ -78,61 +78,15 @@
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-12" align="center">
-                                    <a class="btn mb-4 niveles_autodiagnostico" aign="center">
+                                    <a  *ngFor="let item of ListNivelAutodiagnostico; let i = index" class="btn mb-4 niveles_autodiagnostico" aign="center">
                                         <div style="width: 130px">
-                                            <div class="circle-avance-verde">1</div>
+                                            <div class="circle-avance-verde">{{ item.numero_avance }}</div>
                                         </div>
                                         <div class="mb-1 circle-avance" align="center">
-                                            <span class="subt-nivel mt-5">Nivel Básico</span>
+                                            <span class="subt-nivel mt-5">{{ item.nivel }}</span>
                                         </div>
-                                        <span style="font-size: 1rem">Marketing Digital</span>
+                                        <span style="font-size: 1rem">{{ item.tipo_nivel }}</span>
                                     </a>
-                                    <a class="btn mb-4 niveles_autodiagnostico" align="center">
-                                        <div style="width: 130px">
-                                            <div class="circle-avance-verde">2</div>
-                                            <div class="mb-1 circle-avance" align="center">
-                                                <span class="subt-nivel">Nivel Incial</span>
-                                            </div>
-                                            <span style="font-size: 1rem">Comercio electrónico</span>
-                                        </div>
-                                    </a>
-                                    <a class="btn mb-4 niveles_autodiagnostico" align="center">
-                                        <div style="width: 130px">
-                                            <div class="circle-avance-verde">3</div>
-                                        </div>
-                                        <div class="mb-1 circle-avance" align="center">
-                                            <span class="subt-nivel">Nivel Básico</span>
-                                        </div>
-                                        <span style="font-size: 1rem">Gestión Empresarial</span>
-                                    </a>
-                                    <a class="btn mb-4 niveles_autodiagnostico" align="center">
-                                        <div style="width: 130px">
-                                            <div class="circle-avance-verde">4</div>
-                                        </div>
-                                        <div class="mb-1 circle-avance" align="center">
-                                            <span class="subt-nivel">Nivel Básico</span>
-                                        </div>
-                                        <span style="font-size: 1rem">Finanzas</span>
-                                    </a>
-                                    <a class="btn mb-4 niveles_autodiagnostico" align="center">
-                                        <div style="width: 130px">
-                                            <div class="circle-avance-verde">5</div>
-                                        </div>
-                                        <div class="mb-1 circle-avance" align="center">
-                                            <span class="subt-nivel">Nivel Inicial</span>
-                                        </div>
-                                        <span style="font-size: 1rem">Medios de pago</span>
-                                    </a>
-                                    <a class="btn mb-4 niveles_autodiagnostico" align="center">
-                                        <div style="width: 130px">
-                                            <div class="circle-avance-verde">6</div>
-                                        </div>
-                                        <div class="mb-1 circle-avance" align="center">
-                                            <span class="subt-nivel">Nivel Básico</span>
-                                        </div>
-                                        <span style="font-size: 1rem">Análisis de datos</span>
-                                    </a>
-
                                 </div>
                             </div>
                         </div>
@@ -159,42 +113,10 @@
                             <div class="row">
 
                                 <div class="col-lg-1" align="center"></div>
-
-                                <div class="col-lg-2" align="center">
-                                    <div class="new-niveles-on pb-3 mb-4">
-                                        <div class="etiqueta_coronap pt-4"></div>
-                                        <h6 class="text-white pt-0"><strong>Inicial</strong></h6>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-lg-2" align="center">
+                                <div class="col-lg-2" align="center" *ngFor="let item of ListNivel; let i = index">
                                     <div class="new-niveles pb-3 mb-4">
-                                        <div class="etiqueta_coronap"><img class="" src="assets/images/icon_coronap.png"
-                                                alt=""></div>
-                                        <h6 class="text-white pt-0"><strong>Básico</strong></h6>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-lg-2" align="center">
-                                    <div class="new-niveles-on pb-3 mb-4">
-                                        <div class="etiqueta_coronap pt-4"></div>
-                                        <h6 class="text-white pt-0"><strong>Intermedio</strong></h6>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-2" align="center">
-                                    <div class="new-niveles-on pb-3 mb-4">
-                                        <div class="etiqueta_coronap pt-4"></div>
-                                        <h6 class="text-white pt-0"><strong>Avanzado</strong></h6>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-2" align="center">
-                                    <div class="new-niveles-on pb-3 mb-4">
-                                        <div class="etiqueta_coronap pt-4"></div>
-                                        <h6 class="text-white pt-0"><strong>Experto</strong></h6>
+                                        <div class="etiqueta_coronap" *ngIf="item.flag"><img class="" src="assets/images/icon_coronap.png" alt=""></div>
+                                        <h6 class="text-white pt-0"><strong>{{ item.nivel }}</strong></h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-1" align="center"></div>
@@ -408,13 +330,13 @@
             </div>
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-lg-4 mb-4" *ngFor="let item of ListCapacitando; let i = index">
                         <div class="box_capacitacion_azul p-4">
                             <div class="col-lg-12 d-flex">
                                 <div class="col-lg-8">
-                                    <p class="text-white"><strong>Nivel Básico</strong></p>
-                                    <p class="text-blanco"><strong>Gestión Empresarial</strong></p>
-                                    <p class="text-white">Recomendación #4</p>
+                                    <p class="text-white"><strong>{{ item.nivel }}</strong></p>
+                                    <p class="text-blanco"><strong>{{ item.tipo_nivel }}</strong></p>
+                                    <p class="text-white">{{ item.recomendacion }}</p>
                                     <div class="main-button-avance mt-3">
                                         <a href="#">Continuar</a>
                                     </div>
@@ -429,244 +351,7 @@
                                                 <div class="outer">
                                                 </div>
                                                 <div class="numb text-white">
-                                                    0%</div>
-                                                <div class="circle">
-                                                    <div class="dot" style="background-color: #fff;">
-                                                        <span style="background-color: #fff;"></span>
-                                                    </div>
-                                                    <div class="bar left"
-                                                        style="background-color: rgba(255, 255, 255, 0.25);">
-                                                        <div class="progress" style="background-color: #fff;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="bar right"
-                                                        style="background-color: rgba(255, 255, 255, 0.25);">
-                                                        <div class="progress" style="background-color: #fff;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="col-lg-4 mb-4">
-                        <div class="box_capacitacion_verde p-4">
-                            <div class="col-lg-12 d-flex">
-                                <div class="col-lg-8">
-                                    <p class="text-white"><strong>Nivel Básico</strong></p>
-                                    <p class="text-blanco"><strong>Gestión Empresarial</strong></p>
-                                    <p class="text-white">Recomendación #4</p>
-                                    <div class="main-button-avance mt-3">
-                                        <a href="#" class="bg-azul">Continuar</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="col-xl-3 col-lg-6 mb-4" align="center">
-                                        <div class="">
-
-                                            <div class="circular">
-                                                <div class="inner bg-verde">
-                                                </div>
-                                                <div class="outer">
-                                                </div>
-                                                <div class="numb text-white">
-                                                    0%</div>
-                                                <div class="circle">
-                                                    <div class="dot" style="background-color: #fff;">
-                                                        <span style="background-color: #fff;"></span>
-                                                    </div>
-                                                    <div class="bar left"
-                                                        style="background-color: rgba(255, 255, 255, 0.25);">
-                                                        <div class="progress" style="background-color: #fff;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="bar right"
-                                                        style="background-color: rgba(255, 255, 255, 0.25);">
-                                                        <div class="progress" style="background-color: #fff;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-4 mb-4">
-                        <div class="box_capacitacion_azul p-4">
-                            <div class="col-lg-12 d-flex">
-                                <div class="col-lg-8">
-                                    <p class="text-white"><strong>Nivel Básico</strong></p>
-                                    <p class="text-blanco"><strong>Gestión Empresarial</strong></p>
-                                    <p class="text-white">Recomendación #4</p>
-                                    <div class="main-button-avance mt-3">
-                                        <a href="#">Continuar</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="col-xl-3 col-lg-6 mb-4" align="center">
-                                        <div class="">
-
-                                            <div class="circular">
-                                                <div class="inner bg-azul">
-                                                </div>
-                                                <div class="outer">
-                                                </div>
-                                                <div class="numb text-white">
-                                                    0%</div>
-                                                <div class="circle">
-                                                    <div class="dot" style="background-color: #fff;">
-                                                        <span style="background-color: #fff;"></span>
-                                                    </div>
-                                                    <div class="bar left"
-                                                        style="background-color: rgba(255, 255, 255, 0.25);">
-                                                        <div class="progress" style="background-color: #fff;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="bar right"
-                                                        style="background-color: rgba(255, 255, 255, 0.25);">
-                                                        <div class="progress" style="background-color: #fff;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-4 mb-4">
-                        <div class="box_capacitacion_verde p-4">
-                            <div class="col-lg-12 d-flex">
-                                <div class="col-lg-8">
-                                    <p class="text-white"><strong>Nivel Básico</strong></p>
-                                    <p class="text-blanco"><strong>Gestión Empresarial</strong></p>
-                                    <p class="text-white">Recomendación #4</p>
-                                    <div class="main-button-avance mt-3">
-                                        <a href="#" class="bg-azul">Continuar</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="col-xl-3 col-lg-6 mb-4" align="center">
-                                        <div class="">
-
-                                            <div class="circular">
-                                                <div class="inner bg-verde">
-                                                </div>
-                                                <div class="outer">
-                                                </div>
-                                                <div class="numb text-white">
-                                                    0%</div>
-                                                <div class="circle">
-                                                    <div class="dot" style="background-color: #fff;">
-                                                        <span style="background-color: #fff;"></span>
-                                                    </div>
-                                                    <div class="bar left"
-                                                        style="background-color: rgba(255, 255, 255, 0.25);">
-                                                        <div class="progress" style="background-color: #fff;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="bar right"
-                                                        style="background-color: rgba(255, 255, 255, 0.25);">
-                                                        <div class="progress" style="background-color: #fff;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="col-lg-4 mb-4">
-                        <div class="box_capacitacion_azul p-4">
-                            <div class="col-lg-12 d-flex">
-                                <div class="col-lg-8">
-                                    <p class="text-white"><strong>Nivel Básico</strong></p>
-                                    <p class="text-blanco"><strong>Gestión Empresarial</strong></p>
-                                    <p class="text-white">Recomendación #4</p>
-                                    <div class="main-button-avance mt-3">
-                                        <a href="#" class="">Continuar</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="col-xl-3 col-lg-6 mb-4" align="center">
-                                        <div class="">
-
-                                            <div class="circular">
-                                                <div class="inner bg-azul">
-                                                </div>
-                                                <div class="outer">
-                                                </div>
-                                                <div class="numb text-white">
-                                                    0%</div>
-                                                <div class="circle">
-                                                    <div class="dot" style="background-color: #fff;">
-                                                        <span style="background-color: #fff;"></span>
-                                                    </div>
-                                                    <div class="bar left"
-                                                        style="background-color: rgba(255, 255, 255, 0.25);">
-                                                        <div class="progress" style="background-color: #fff;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="bar right"
-                                                        style="background-color: rgba(255, 255, 255, 0.25);">
-                                                        <div class="progress" style="background-color: #fff;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-4 mb-4">
-                        <div class="box_capacitacion_verde p-4">
-                            <div class="col-lg-12 d-flex">
-                                <div class="col-lg-8">
-                                    <p class="text-white"><strong>Nivel Básico</strong></p>
-                                    <p class="text-blanco"><strong>Gestión Empresarial</strong></p>
-                                    <p class="text-white">Recomendación #4</p>
-                                    <div class="main-button-avance mt-3">
-                                        <a href="#" class="bg-azul">Continuar</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="col-xl-3 col-lg-6 mb-4" align="center">
-                                        <div class="">
-
-                                            <div class="circular">
-                                                <div class="inner bg-verde">
-                                                </div>
-                                                <div class="outer">
-                                                </div>
-                                                <div class="numb text-white">
-                                                    0%</div>
+                                                    {{ item.porcentaje }}</div>
                                                 <div class="circle">
                                                     <div class="dot" style="background-color: #fff;">
                                                         <span style="background-color: #fff;"></span>
