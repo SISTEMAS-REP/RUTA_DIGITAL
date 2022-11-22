@@ -20,7 +20,8 @@ export class PerfilAvanceComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+    ngOnInit(): void {
+    this.listarPremioNuevo();
     this.ListNivelAutodiagnostico = [
       {
         numero_avance:"1",
@@ -113,7 +114,7 @@ export class PerfilAvanceComponent implements OnInit {
 
   listarPremioNuevo = () => {
     var request: any = {
-      CantReg: 10,
+      CantReg: 4,
       IdListCatalogo: 1,
     };
     this.catalogoPremios.listarPremio(request).subscribe({
