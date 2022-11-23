@@ -6,12 +6,21 @@ import { PremioPublicidadResponse } from './interfaces/premio-publicidad.respons
 import { PremioPuntajeResponse } from './interfaces/premio-puntaje.response';
 import { PremioTipoResponse } from './interfaces/premio-tipo.response';
 import { PremioResponse } from './interfaces/premio.response';
+import { AuthorizeService } from '../authorization/authorize.service';
+import { ExtranetUser } from '../shared/interfaces/extranet-user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CatalogoPremiosRepository {
-  constructor(private catalogoPremiosService: CatalogoPremiosService) {}
+  constructor(private catalogoPremiosService: CatalogoPremiosService,
+    private authorizeService: AuthorizeService) {}
+
+  getUser = (): Observable<ExtranetUser> => {
+    return this.authorizeService
+      .getUser()
+      .pipe(map((response) => response as ExtranetUser));
+  };
 
   listarPublicidadPremio = (): Observable<PremioPublicidadResponse[]> => {
     return this.catalogoPremiosService

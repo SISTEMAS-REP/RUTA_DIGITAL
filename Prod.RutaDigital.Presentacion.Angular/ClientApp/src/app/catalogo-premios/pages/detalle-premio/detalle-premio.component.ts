@@ -14,6 +14,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 })
 export class DetallePremioComponent implements OnInit {
   isAuthenticated: boolean = false;
+  id_usuario_extranet: number = null;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -64,13 +65,16 @@ export class DetallePremioComponent implements OnInit {
     this.fnVerificacionCookies();
     this.listarPremio();
     this.listarDescubrePremios();
+    this.repository.getUser().subscribe((user) => {
+      this.id_usuario_extranet = user.id_usuario_extranet;
+    });
   }
 
   fnVerificacionCookies= () =>{
-    // if(this.isAuthenticated == false){
-    //   this.toastService.danger("Debe iniciar sesión", "Error");
-    //   this.Router.navigate(['/']);
-    // }
+    if(this.isAuthenticated == false){
+      this.toastService.danger("Debe iniciar sesión", "Error");
+      this.Router.navigate(['/']);
+    }
   }
   
   listarPremio = () => {
@@ -121,15 +125,17 @@ export class DetallePremioComponent implements OnInit {
   fnCanjear= () =>{
     var request: any = {
       id_premio: this.premio.id_premio,
-      id_usuario_extranet: 15399,
+      id_usuario_extranet: this.id_usuario_extranet,
       cantidad: this.premio.puntos_produce,
       descripcion_premio: this.premio.descripcion_corta
     };
     this.repository.CanjePremio(request).subscribe({
       next: (data: any) => {
        if(data.flag){
-        //poner el comentario
-        debugger
+        this.toastService.success("Se canjeó el premio", "Exito");
+       }
+       else {
+        this.toastService.danger("Puntos insuficientes para canjear", "Error");
        }
       },
       error: (err) => {},
