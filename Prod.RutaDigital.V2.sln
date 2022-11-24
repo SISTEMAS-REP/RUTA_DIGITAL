@@ -9,21 +9,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Servicios", "2. Servicio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Transversal", "3. Transversal", "{4977FC44-4AEE-455C-A24E-C71D3066D7DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prod.RutaDigital.Presentacion.Angular", "Prod.RutaDigital.Presentacion.Angular\Prod.RutaDigital.Presentacion.Angular.csproj", "{5CAF9951-D8DA-41B4-8CE2-7877C4A75A44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prod.RutaDigital.Presentacion.Angular", "Prod.RutaDigital.Presentacion.Angular\Prod.RutaDigital.Presentacion.Angular.csproj", "{5CAF9951-D8DA-41B4-8CE2-7877C4A75A44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prod.RutaDigital.Core.Api", "Prod.RutaDigital.Core.Api\Prod.RutaDigital.Core.Api.csproj", "{6DBE2F87-3B5E-4BBE-A7C4-238073979FBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prod.RutaDigital.Core.Api", "Prod.RutaDigital.Core.Api\Prod.RutaDigital.Core.Api.csproj", "{6DBE2F87-3B5E-4BBE-A7C4-238073979FBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prod.RutaDigital.Core", "Prod.RutaDigital.Core\Prod.RutaDigital.Core.csproj", "{60603595-5EDC-4D7F-9158-F7C4D9507AFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prod.RutaDigital.Core", "Prod.RutaDigital.Core\Prod.RutaDigital.Core.csproj", "{60603595-5EDC-4D7F-9158-F7C4D9507AFE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoreApi", "CoreApi", "{04B075C8-AD56-4563-8AF2-2FE885E32D3D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructura", "Infraestructura", "{A4B45D9B-CB69-4676-ACDA-C72E9F5D2343}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prod.RutaDigital.Datos", "Prod.RutaDigital.Datos\Prod.RutaDigital.Datos.csproj", "{2641C0C8-6530-46AC-96CD-67A1968EFA59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prod.RutaDigital.Datos", "Prod.RutaDigital.Datos\Prod.RutaDigital.Datos.csproj", "{2641C0C8-6530-46AC-96CD-67A1968EFA59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prod.RutaDigital.Entidades", "Prod.RutaDigital.Entidades\Prod.RutaDigital.Entidades.csproj", "{90637CEB-99CD-4918-BE71-BCDDD4BE1F74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prod.RutaDigital.Entidades", "Prod.RutaDigital.Entidades\Prod.RutaDigital.Entidades.csproj", "{90637CEB-99CD-4918-BE71-BCDDD4BE1F74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prod.RutaDigital.Presentacion.Configuracion", "Prod.RutaDigital.Presentacion.Configuracion\Prod.RutaDigital.Presentacion.Configuracion.csproj", "{C9C1EC92-5246-4548-9E13-4EB77228EA00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prod.RutaDigital.Presentacion.Configuracion", "Prod.RutaDigital.Presentacion.Configuracion\Prod.RutaDigital.Presentacion.Configuracion.csproj", "{C9C1EC92-5246-4548-9E13-4EB77228EA00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prod.RutaDigital.Enumerados", "Prod.RutaDigital.Enumerados\Prod.RutaDigital.Enumerados.csproj", "{3603BA56-43B8-48DA-9454-31AD8647325F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{C9C1EC92-5246-4548-9E13-4EB77228EA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9C1EC92-5246-4548-9E13-4EB77228EA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9C1EC92-5246-4548-9E13-4EB77228EA00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3603BA56-43B8-48DA-9454-31AD8647325F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3603BA56-43B8-48DA-9454-31AD8647325F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3603BA56-43B8-48DA-9454-31AD8647325F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3603BA56-43B8-48DA-9454-31AD8647325F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{2641C0C8-6530-46AC-96CD-67A1968EFA59} = {A4B45D9B-CB69-4676-ACDA-C72E9F5D2343}
 		{90637CEB-99CD-4918-BE71-BCDDD4BE1F74} = {4977FC44-4AEE-455C-A24E-C71D3066D7DD}
 		{C9C1EC92-5246-4548-9E13-4EB77228EA00} = {E68DCCDE-FD9E-45D9-8C98-682DB050BFCD}
+		{3603BA56-43B8-48DA-9454-31AD8647325F} = {4977FC44-4AEE-455C-A24E-C71D3066D7DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4AE0915C-351C-46A4-B6FD-C5E871E14938}

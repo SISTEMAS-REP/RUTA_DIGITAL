@@ -42,13 +42,11 @@
             </li>
 
             <li>
-              <a [routerLink]="['/eventos']">Eventos</a>
+              <a (click)="fnEvento()">Eventos</a>
             </li>
 
             <li>
-              <a [routerLink]="['/catalogo-premios']"
-                >Catálogo de<br />premios</a
-              >
+              <a (click)="fnCatalogoPremio()">Catálogo de<br />premios</a>
             </li>
           </ul>
 

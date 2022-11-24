@@ -19,4 +19,23 @@ export class NavMenuComponent implements OnInit {
   constructor(private router: Router, private toastService: ToastService) {}
 
   ngOnInit(): void {}
+
+  fnEvento = () =>{
+    if(this.isAutenticated){
+      this.router.navigate(['/eventos']);
+    }
+    else{
+      this.toastService.danger("Debe iniciar sesión", "Error");
+    }
+  }
+
+  fnCatalogoPremio = () =>{
+    if(this.isAutenticated){
+      this.router.navigate(['/catalogo-premios']);
+    }
+    else{
+      this.toastService.danger("Debe iniciar sesión", "Error");
+    }
+  }
+
 }
