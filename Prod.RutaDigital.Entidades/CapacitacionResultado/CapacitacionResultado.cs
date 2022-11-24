@@ -9,5 +9,5 @@ public class CapacitacionResultado : Auditoria
     public DateTime? fecha_fin { get; set; }
     public decimal progreso { get; set; }
     public bool concluido { get; set; }
-    public int calificacion { get; set; }
+    public int? calificacion { get; set; }
 }

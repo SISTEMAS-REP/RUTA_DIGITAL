@@ -1,7 +1,6 @@
 ﻿
-namespace Prod.RutaDigital.Core.Aplicacion.Interfaces
+namespace Prod.RutaDigital.Core.Aplicacion.Interfaces;
+
+public interface IPerfilAvanceAplicacion
 {
-    public interface IPerfilAvanceAplicacion
-    {
-    }
 }

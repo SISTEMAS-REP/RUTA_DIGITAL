@@ -7,7 +7,7 @@ namespace Prod.RutaDigital.Core.Aplicacion.Interfaces;
 public interface ICapacitacionResultadoAplicacion
 {
     Task<StatusResponse<IEnumerable<CapacitacionResultadoResponse>>>
-        ListarCapacitacionResultado(CapacitacionResultadoRequest request);
+        ListarCapacitacionesResultado(CapacitacionResultadoRequest request);
 
     Task<StatusResponse<int>>
         InsertarCapacitacionResultado(CapacitacionResultadoRequest request);

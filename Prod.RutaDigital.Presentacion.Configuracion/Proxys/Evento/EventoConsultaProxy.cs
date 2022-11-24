@@ -1,5 +1,5 @@
 ﻿using Release.Helper;
-using Release.Helper.Proxy;
+using Release.Helper.ProxyV2;
 
 using Prod.RutaDigital.Entidades;
 

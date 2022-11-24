@@ -26,20 +26,13 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/vendor/bootstrap/css/bootstrap.min.css",
               "src/assets/css/base.css",
-              "src/assets/css/circle_progress_bar.css",
-              "src/assets/css/flex-slider.css",
+              "src/assets/css/toastr.css",
               "src/assets/css/fontawesome.css",
-              "src/assets/css/lightbox.css",
-              "src/assets/css/owl.css",
-              "src/assets/css/bs-stepper.css",
-              "src/assets/css/toastr.css",           
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
@@ -96,7 +89,6 @@
             "browserTarget": "Prod.RutaDigital.Presentacion.Angular:build"
           }
         },
-
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {

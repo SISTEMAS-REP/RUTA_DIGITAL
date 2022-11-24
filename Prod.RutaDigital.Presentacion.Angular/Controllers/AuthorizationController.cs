@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prod.RutaDigital.Entidades;
+using Prod.RutaDigital.Presentacion.Configuracion.Proxys;
 using Release.Helper;
 using System.Security.Claims;
 
@@ -12,19 +13,22 @@ namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
 public class AuthorizationController : ControllerBase
 {
     private readonly IHttpContextAccessor? _httpContextAccessor;
+    private readonly UsuarioExtranetConsultaProxy _usuarioExtranetConsultaProxy;
 
-    public AuthorizationController(IHttpContextAccessor? httpContextAccessor)
+    public AuthorizationController(IHttpContextAccessor? httpContextAccessor, 
+        UsuarioExtranetConsultaProxy usuarioExtranetConsultaProxy)
     {
         _httpContextAccessor = httpContextAccessor;
+        _usuarioExtranetConsultaProxy = usuarioExtranetConsultaProxy;
     }
 
     [HttpGet]
     public async Task<IActionResult>
         Cookie()
     {
-        var response = new StatusResponse<UsuarioExtranet>();
-        
-        if (_httpContextAccessor is null 
+        var response = new StatusResponse<UsuarioExtranetResponse>();
+
+        if (_httpContextAccessor is null
             || _httpContextAccessor.HttpContext is null
             || !_httpContextAccessor.HttpContext.User.Identity!.IsAuthenticated)
         {
@@ -34,25 +38,26 @@ public class AuthorizationController : ControllerBase
 
         var httpContext = _httpContextAccessor.HttpContext;
 
-        var userId = httpContext.User
+        var idUsuarioExtranet = httpContext.User
             .FindFirstValue(ClaimTypes.NameIdentifier);
 
-        var userName = httpContext.User
-            .FindFirstValue(ClaimTypes.Name);
+        var usuarioResponse = await _usuarioExtranetConsultaProxy
+            .BuscarUsuario(new()
+            {
+                id_usuario_extranet = int.Parse(idUsuarioExtranet)
+            });
 
-        var email = httpContext?.User
-                .FindFirstValue(ClaimTypes.Email);
-
-        var data = new UsuarioExtranet()
+        if (usuarioResponse is null
+            || !usuarioResponse.Success
+            || usuarioResponse.Data is null)
         {
-            id_usuario_extranet = int.Parse(userId),
-            user_name = userName,
-            email = email
-        };
+            response.StatusCode = HttpStatusCodes.Status404NotFound;
+            return new ObjectResult(response);
+        }
 
         response.StatusCode = HttpStatusCodes.Status200OK;
         response.Success = true;
-        response.Data = data;
+        response.Data = usuarioResponse.Data;
 
         return await Task.FromResult(Ok(response));
     }

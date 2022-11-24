@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-12">
+    <div class="pb-5" style="z-index: 5">
+      <div
+        style="
+          background-color: #1d71b8;
+          height: 2px;
+          width: 100%;
+          position: relative;
+          top: 20px;
+        "
+      ></div>
+      <a
+        class="btn btn-azulredondo rounded-circle"
+        role="button"
+        aria-disabled="true"
+        >{{ pregunta.orden }}</a
+      >
+      <div
+        class="btn-bordeazul rounded-circle position-relative float-end"
+      ></div>
+    </div>
+  </div>
+  <p class="fs-3 pb-5">{{ pregunta.descripcion }}</p>
+</div>
+<div class="row mb-5">
+  <div class="col-12" align="center">
+    <ng-container *ngFor="let respuesta of pregunta.respuestas; let i = index">
+      <!-- <input
+        [type]="pregunta.id_tipo_respuesta === 1 ? 'checkbox' : 'radio'"
+        class="btn-check"
+        [id]="'respuesta-' + respuesta.id_respuesta"
+        [name]="'pregunta-' + pregunta.id_pregunta"
+        [checked]="respuesta.respuesta"
+        (change)="toogle(i, respuesta)"
+      /> -->
+      <!-- *ngIf="pregunta.id_tipo_respuesta == 1; else unica" -->
+      <input
+        type="checkbox"
+        class="btn-check"
+        [id]="'respuesta-' + respuesta.id_respuesta"
+        [name]="'respuesta-' + respuesta.id_respuesta"
+        [checked]="respuesta.respuesta"
+        (change)="toogle(respuesta)"
+      />
+      <!-- [name]="'respuesta-' + respuesta.id_respuesta" -->
+      <!-- <ng-template #unica>
+        <input
+          type="radio"
+          class="btn-check"
+          [id]="'respuesta-' + respuesta.id_respuesta"
+          [name]="'pregunta-' + pregunta.id_pregunta"
+          [checked]="respuesta.respuesta"
+          (change)="toogle(respuesta)"
+        />
+      </ng-template> -->
+      <label
+        class="btn btn-blanco"
+        [for]="'respuesta-' + respuesta.id_respuesta"
+        >{{ respuesta.descripcion_alternativa }}</label
+      >
+    </ng-container>
+  </div>
+</div>

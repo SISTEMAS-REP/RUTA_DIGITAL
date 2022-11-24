@@ -17,11 +17,11 @@ public class CapacitacionResultadoConsultaProxy : BaseProxy
     }
 
     public async Task<StatusResponse<IEnumerable<CapacitacionResultadoResponse>>>
-        ListarCapacitacionResultado(CapacitacionResultadoRequest request)
+        ListarCapacitacionesResultado(CapacitacionResultadoRequest request)
     {
         return await CallWebApiAsync<StatusResponse<IEnumerable<CapacitacionResultadoResponse>>>(
             HttpMethod.Get,
-            _url + "ListarCapacitacionResultado",
+            _url + "ListarCapacitacionesResultado",
             GetJsonParameters(request));
     }
 }

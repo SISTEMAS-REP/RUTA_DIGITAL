@@ -16,13 +16,13 @@ public class CapacitacionResultadoAplicacion : ICapacitacionResultadoAplicacion
     }
 
     public async Task<StatusResponse<IEnumerable<CapacitacionResultadoResponse>>>
-        ListarCapacitacionResultado(CapacitacionResultadoRequest request)
+        ListarCapacitacionesResultado(CapacitacionResultadoRequest request)
     {
         var resultado = new StatusResponse<IEnumerable<CapacitacionResultadoResponse>>();
         try
         {
             var data = await _uow
-                .ListarCapacitacionResultado(request);
+                .ListarCapacitacionesResultado(request);
 
             resultado.Success = true;
             resultado.Data = data;

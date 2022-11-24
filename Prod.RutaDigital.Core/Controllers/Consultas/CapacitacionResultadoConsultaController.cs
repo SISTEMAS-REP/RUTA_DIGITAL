@@ -18,11 +18,11 @@ public class CapacitacionResultadoConsultaController : ControllerBase
     }
 
     [HttpGet]
-    [Route("ListarCapacitacionResultado")]
-    public async Task<StatusResponse<IEnumerable<CapacitacionResultadoResponse>>> 
-        ListarCapacitacionResultado(CapacitacionResultadoRequest request)
+    [Route("ListarCapacitacionesResultado")]
+    public async Task<StatusResponse<IEnumerable<CapacitacionResultadoResponse>>>
+        ListarCapacitacionesResultado(CapacitacionResultadoRequest request)
     {
         return await _capacitacionAplicacion
-            .ListarCapacitacionResultado(request);
+            .ListarCapacitacionesResultado(request);
     }
 }

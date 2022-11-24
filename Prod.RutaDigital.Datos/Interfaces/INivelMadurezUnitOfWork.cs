@@ -6,6 +6,6 @@ namespace Prod.RutaDigital.Datos.Interfaces;
 
 public partial interface IUnitOfWork : IBaseUnitOfWork
 {
-    Task<IEnumerable<NivelMadurez>>
+    Task<IEnumerable<NivelMadurezResponse>>
         ListarNivelesMadurez();
 }

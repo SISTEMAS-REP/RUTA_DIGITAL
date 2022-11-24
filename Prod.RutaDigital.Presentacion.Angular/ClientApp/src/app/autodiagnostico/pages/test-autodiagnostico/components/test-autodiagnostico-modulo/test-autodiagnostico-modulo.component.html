@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <h1 class="titu_cap mb-4">{{ modulo.nombre }}</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-12" align="center">
+      <img
+        class="img-responsive"
+        src="assets/images/test_autodiagnostico/Herramientas_digitales_1.png"
+        alt=""
+      />
+    </div>
+  </div>
+
+  <app-test-autodiagnostico-pregunta
+    *ngFor="let pregunta of modulo.preguntas"
+    [pregunta]="pregunta"
+  >
+  </app-test-autodiagnostico-pregunta>
+
+  <div class="row justify-content-between" *ngIf="!last">
+    <div class="col" *ngIf="!first">
+      <button class="btn btn-verde" cdkStepperPrevious>
+        <!-- (click)="onPrevious()" -->
+        <i class="fa fa-arrow-circle-left"></i> Anterior
+      </button>
+    </div>
+    <div class="col" *ngIf="!last">
+      <button class="btn btn-verde float-end" (click)="onNext()">
+        <!-- cdkStepperNext -->
+        Siguiente <i class="fa fa-arrow-circle-right"></i>
+      </button>
+    </div>
+  </div>
+  <div class="row" *ngIf="last">
+    <div class="col-md-4 offset-md-8">
+      <button class="btn btn-verde float-end" (click)="onFinish()">
+        <!-- cdkStepperNext -->
+        Enviar test
+      </button>
+    </div>
+  </div>
+</div>

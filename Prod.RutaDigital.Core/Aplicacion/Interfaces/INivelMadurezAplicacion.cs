@@ -6,6 +6,6 @@ namespace Prod.RutaDigital.Core.Aplicacion.Interfaces;
 
 public interface INivelMadurezAplicacion
 {
-    Task<StatusResponse<IEnumerable<NivelMadurez>>>
+    Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
         ListarNivelesMadurez();
 }

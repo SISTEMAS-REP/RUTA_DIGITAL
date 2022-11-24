@@ -56,7 +56,47 @@ const PROXY_CONFIG = [
     },
   },
   {
-    context: ["/autodiagnostico"],
+    context: ["/autodiagnostico/VerificarAutodiagnostico"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
+  {
+    context: ["/autodiagnostico/ListarTestAutodiagnostico"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
+  {
+    context: ["/autodiagnostico/ActualizarRespuesta"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
+  {
+    context: ["/autodiagnostico/ValidarModulo"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
+  {
+    context: ["/autodiagnostico/ProcesarEvaluacion"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
+  {
+    context: ["/autodiagnostico/ListarResultadoAutodiagnostico"],
     target: target,
     secure: false,
     headers: {

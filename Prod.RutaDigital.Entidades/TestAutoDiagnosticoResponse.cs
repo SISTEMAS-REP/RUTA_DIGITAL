@@ -1,8 +1,8 @@
 ﻿namespace Prod.RutaDigital.Entidades;
 
-public class TestAutoDiagnosticoResponse
+public class TestAutodiagnosticoResponse
 {
     public EvaluacionResponse Evaluacion { get; set; }
     public IEnumerable<RespuestaResponse> Respuestas { get; set; }
-    public IEnumerable<ModuloResponse> Test { get; set; }
+    public IEnumerable<ModuloResponse> Modulos { get; set; }
 }

@@ -1,11 +1,6 @@
 ﻿using Prod.RutaDigital.Entidades;
 using Release.Helper;
-using Release.Helper.Proxy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Release.Helper.ProxyV2;
 
 namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys.AutoDiagnostico
 {

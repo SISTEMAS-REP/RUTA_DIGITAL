@@ -14,10 +14,10 @@ public class NivelMadureszAplicacion : INivelMadurezAplicacion
     {
         _uow = uow;
     }
-    public async Task<StatusResponse<IEnumerable<NivelMadurez>>> 
+    public async Task<StatusResponse<IEnumerable<NivelMadurezResponse>>> 
         ListarNivelesMadurez()
     {
-        var resultado = new StatusResponse<IEnumerable<NivelMadurez>>();
+        var resultado = new StatusResponse<IEnumerable<NivelMadurezResponse>>();
         try
         {
             var data = await _uow

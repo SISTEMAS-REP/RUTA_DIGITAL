@@ -7,7 +7,7 @@ namespace Prod.RutaDigital.Datos.Interfaces;
 public partial interface IUnitOfWork : IBaseUnitOfWork
 {
     Task<IEnumerable<CapacitacionResultadoResponse>>
-        ListarCapacitacionResultado(CapacitacionResultadoRequest request);
+        ListarCapacitacionesResultado(CapacitacionResultadoRequest request);
 
     Task<int>
         InsertarCapacitacionResultado(CapacitacionResultadoRequest request);

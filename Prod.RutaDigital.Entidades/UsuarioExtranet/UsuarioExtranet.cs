@@ -3,6 +3,9 @@
 public class UsuarioExtranet
 {
     public int id_usuario_extranet { get; set; }
-    public string user_name { get; set; }
-    public string email { get; set; }
+    public string? user_name { get; set; }    
+    public string? email { get; set; }
+
+    public int id_persona_natural { get; set; }
+    //public int id_persona_juridica { get; set; }
 }

@@ -9,12 +9,13 @@ namespace Prod.RutaDigital.Datos;
 public partial class UnitOfWork : IUnitOfWork
 {
     public async Task<IEnumerable<CapacitacionResultadoResponse>>
-        ListarCapacitacionResultado(CapacitacionResultadoRequest request)
+        ListarCapacitacionesResultado(CapacitacionResultadoRequest request)
     {
         var parms = new Parameter[]
         {
              new Parameter("@id_capacitacion_resultado", request.id_capacitacion_resultado),
              new Parameter("@id_resultado", request.id_resultado),
+             new Parameter("@id_usuario_extranet", request.id_usuario_extranet),
         };
 
         var result = ExecuteReader<CapacitacionResultadoResponse>(

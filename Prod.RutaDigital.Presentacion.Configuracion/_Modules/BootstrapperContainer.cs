@@ -24,5 +24,8 @@ public class BootstrapperContainer
         //Proxys  
         ProxyModule.AppConfig = appConfig;
         builder.RegisterModule<ProxyModule>();
+
+        //Extra
+        builder.RegisterModule<ExtraModule>();
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Release.Helper.Data.ICore;
 
-namespace Prod.RutaDigital.Datos.Interfaces
+namespace Prod.RutaDigital.Datos.Interfaces;
+
+public partial interface IUnitOfWork : IBaseUnitOfWork
 {
-    public partial interface IUnitOfWork : IBaseUnitOfWork
-    {
-    }
 }

@@ -15,6 +15,31 @@ public class ResultadoAplicacion : IResultadoAplicacion
         _uow = uow;
     }
 
+    public async Task<StatusResponse<IEnumerable<ResultadoResponse>>>
+        ListarResultados(ResultadoRequest request)
+    {
+        var resultado = new StatusResponse<IEnumerable<ResultadoResponse>>();
+
+        try
+        {
+            var data = await _uow
+                .ListarResultados(request);
+
+            resultado.Success = true;
+            resultado.Data = data;
+        }
+        catch (Exception ex)
+        {
+            resultado.Success = true;
+            resultado.Messages = new()
+            {
+                ex.Message
+            };
+        }
+
+        return resultado;
+    }
+
     public async Task<StatusResponse<int>>
         InsertarResultado(ResultadoRequest request)
     {

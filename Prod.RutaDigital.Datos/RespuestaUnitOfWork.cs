@@ -15,6 +15,8 @@ public partial class UnitOfWork : IUnitOfWork
         {
             new Parameter("@id_respuesta", request.id_respuesta),
             new Parameter("@id_evaluacion", request.id_evaluacion),
+            new Parameter("@id_modulo", request.id_modulo),
+            new Parameter("@id_pregunta", request.id_pregunta),
         };
 
         var result = ExecuteReader<RespuestaResponse>(

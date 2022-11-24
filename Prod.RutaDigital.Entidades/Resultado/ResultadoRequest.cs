@@ -2,5 +2,5 @@
 
 public class ResultadoRequest : Resultado
 {
-    public IEnumerable<ResultadoModuloRequest> modulos { get; set; }
+    public IEnumerable<ResultadoModuloRequest>? modulos { get; set; }
 }

@@ -1,0 +1,28 @@
+<section class="meetings-page">
+  <div class="container">
+    <div class="row">
+      <ng-stepper #stepper [linear]="true">
+        <cdk-step
+          *ngFor="
+            let modulo of test?.modulos;
+            let first = first;
+            let last = last
+          "
+        >
+          <ng-template cdkStepLabel>
+            <div class="step-bullet">{{ modulo.orden }}</div>
+          </ng-template>
+
+          <!-- (onStepperPrevious)="onStepperPrevious($event)" -->
+          <app-test-autodiagnostico-modulo
+            [first]="first"
+            [last]="last"
+            [modulo]="modulo"
+            (onStepperNext)="onStepperNext($event)"
+            (onStepperFinish)="onStepperFinish()"
+          ></app-test-autodiagnostico-modulo>
+        </cdk-step>
+      </ng-stepper>
+    </div>
+  </div>
+</section>

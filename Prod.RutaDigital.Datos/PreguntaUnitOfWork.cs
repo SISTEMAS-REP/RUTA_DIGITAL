@@ -13,6 +13,7 @@ public partial class UnitOfWork : IUnitOfWork
     {
         var parms = new Parameter[]
         {
+             new Parameter("@id_pregunta", request.id_pregunta),
              new Parameter("@id_tipo_test", request.id_tipo_test),
              new Parameter("@id_modulo", request.id_modulo),
              new Parameter("@id_recomendacion", request.id_recomendacion),

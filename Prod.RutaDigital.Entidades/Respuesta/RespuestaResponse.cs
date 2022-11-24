@@ -9,6 +9,8 @@ public class RespuestaResponse : Respuesta
     
     public int orden_pregunta { get; set; }
     public string? descripcion_pregunta { get; set; }
+    public int id_tipo_respuesta { get; set; }
+    public string? tipo_respuesta { get; set; }
 
     public int orden_alternativa { get; set; }
     public string? descripcion_alternativa { get; set; }

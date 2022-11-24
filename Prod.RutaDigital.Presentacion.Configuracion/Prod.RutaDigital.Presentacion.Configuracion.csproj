@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="Prod.ServiciosExternos" Version="1.3.74" />
     <PackageReference Include="Release.Helper" Version="1.4.1" />
@@ -15,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Prod.RutaDigital.Entidades\Prod.RutaDigital.Entidades.csproj" />
+    <ProjectReference Include="..\Prod.RutaDigital.Enumerados\Prod.RutaDigital.Enumerados.csproj" />
   </ItemGroup>
 
 </Project>

@@ -19,7 +19,7 @@ public class NivelMadurezConsultaController : ControllerBase
 
     [HttpGet]
     [Route("ListarNivelesMadurez")]
-    public async Task<StatusResponse<IEnumerable<NivelMadurez>>>
+    public async Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
         ListarNivelesMadurez()
     {
         return await _nivelMadurezAplicacion

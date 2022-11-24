@@ -2,5 +2,5 @@
 
 public class ResultadoModuloRequest : ResultadoModulo
 {
-    public IEnumerable<ResultadoPregRequest> pregs { get; set; }
+    public IEnumerable<ResultadoPregRequest>? pregs { get; set; }
 }
