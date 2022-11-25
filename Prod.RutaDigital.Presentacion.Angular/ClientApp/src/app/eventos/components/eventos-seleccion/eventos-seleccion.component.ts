@@ -100,6 +100,7 @@ export class EventosSeleccionComponent implements OnInit {
         this.center['lng'] = null;
         this.center['lat'] = this.evento.latitud;
         this.center['lng'] = this.evento.longitud;
+        this.markerPositions.push({lat: this.evento.latitud, lng: this.evento.longitud})
       },
       error: (err) => {
         console.log('verEvento', err);

@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { CatalogoPremiosRepository } from '../catalogo-premios/catalogo-premios.repository';
 import { PremioResponse } from '../catalogo-premios/interfaces/premio.response';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CodGenero } from '../shared/enums/cod-genero.enum';
+import { ExtranetUser } from '../shared/interfaces/extranet-user';
+import { AutodiagnosticoRepository } from '../autodiagnostico/autodiagnostico.repository';
+import { ResultadoAutodiagnostico } from '../autodiagnostico/interfaces/resultado-autodiagnostico';
 
 @Component({
   selector: 'app-perfil-avance',
@@ -11,6 +15,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: [],
 })
 export class PerfilAvanceComponent implements OnInit {
+  usuario: ExtranetUser;
+  resultadoAutodiagnostico: ResultadoAutodiagnostico;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -42,10 +48,21 @@ export class PerfilAvanceComponent implements OnInit {
   constructor(
     private catalogoPremios: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,
-    private router: Router
-  ) {}
+    private router: Router,
+    private repository: AutodiagnosticoRepository
+  ) {
+    this.usuario = this.repository.obtenerUsuario();
+  }
 
     ngOnInit(): void {
+      debugger
+      this.repository
+      .listarResultadoAutodiagnostico()
+      .subscribe((data: ResultadoAutodiagnostico) => {
+        debugger
+        this.resultadoAutodiagnostico = data;
+      });
+      
     this.listarPremioNuevo();
     this.ListNivelAutodiagnostico = [
       {
@@ -167,4 +184,14 @@ export class PerfilAvanceComponent implements OnInit {
   verPremios = () => {
     this.router.navigate(['/catalogo-premios']);
   };
+
+  mostrarTituloPorGenero(codGenero: string) {
+    var articulo = CodGenero.MASCULINO.toString() == codGenero ? 'El' : 'La';
+    var sustantivo =
+      CodGenero.MASCULINO.toString() == codGenero
+        ? 'Emprendedor'
+        : 'Emprendedora';
+
+    return `${articulo} ${sustantivo}`;
+  }
 }

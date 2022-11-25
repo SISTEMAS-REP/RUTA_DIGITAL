@@ -14,8 +14,11 @@
         <div class="row">
             <div class="col-lg-9">
                 <div class="section-heading mb-5" align="left">
-                    <h4 class="pb-3">Hola Mariel</h4>
-                    <h2 class="mb-0 pb-0">La Aprendedora</h2>
+                    <h4 class="pb-3">Hola {{ usuario.nombres | titlecase }}</h4>
+                    <h2 class="mb-0 pb-0" *ngIf="usuario.cod_genero; else sinGenero">
+                      {{ mostrarTituloPorGenero(usuario.cod_genero) }}
+                    </h2>
+                    <ng-template #sinGenero> El/a Emprendedor/a </ng-template>
                     El nivel de digitalización de tu negocio va en:
                 </div>
             </div>
@@ -31,7 +34,8 @@
                         <div class="outer">
                         </div>
                         <div class="numb">
-                            0%</div>
+                            <!-- {{ resultadoAutodiagnostico.resultado.resultado * 100 || 0 }}% -->
+                        </div>
                         <div class="circle">
                             <div class="dot">
                                 <span></span>
