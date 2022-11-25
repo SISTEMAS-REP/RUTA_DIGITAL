@@ -489,7 +489,7 @@ word-break: break-all;
 .section-heading h2 {
   line-height: 40px;
   margin-top: 0px;
-  margin-bottom: 50px; 
+  margin-bottom: 20px; 
   padding-bottom: 20px;
   font-size: 40px;
   font-weight: 700;
@@ -2208,7 +2208,7 @@ upcoming meetings page
 */
 
 section.meetings-page {
-  padding-top: 40px;
+  padding-top: 0px;
   padding-bottom: 0px;
 }
 
@@ -2657,6 +2657,95 @@ responsive
   }
 
 }
+.titulo-recomendacion 
+{
+  padding-bottom: 40px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 30px;
+  text-align: justify;
+  color: #1D71B8!important;
+  }
+  .sub-titulo-paso
+{
+  
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 12px;
+  text-align: justify;
+  color: #1D71B8!important;
+  }
+  .descripcion-paso{
+  
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: justify;
+    
+    color: #272424;
+  }
+  .subtitulo-recomendacion
+  {
+
+ 
+  
+    font-weight: bold;
+font-size: 22px;
+line-height: 27px;
+text-align: justify;
+
+color: #272424;
+}
+.ico-capacitacion{
+  width: 20;
+  height: 20px;
+}
+.video-recomendacion{
+  width: 300px;
+    height: 440px;
+  border-radius: 35px;
+}
+.button-container a:hover{
+  background-color:red;
+  cursor:pointer;
+  color:white;
+  }
+.corona-progress-bar{
+  border-width:4px;
+  border-color: #fff;
+  position:absolute;
+  height:30px;
+  width:30px;
+  bottom: 40px;
+  left :10px;
+  z-index: 1;
+}
+.p-recomendacion{
+font-weight: 400;
+font-size: 11px;
+line-height: 13px;
+text-align: center;
+color: #FFF;
+}
+
+
+
+.button-container{
+display:inline-block;
+position:relative;
+}
+
+.button-container a{
+position: absolute;
+bottom:4em;
+right:4em;
+background-color:#8F0005;
+border-radius:1.5em;
+color:white;
+text-transform:uppercase;
+padding:1em 1.5em;
+}
 
 @media (max-width: 767px) {
 	section.our-courses {
@@ -2684,7 +2773,6 @@ responsive
   .header-area .main-nav .nav li ul.sub-menu li a {
     color: #1f272b;
   }
-
 
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';

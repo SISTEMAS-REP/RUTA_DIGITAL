@@ -13,6 +13,7 @@ public partial class UnitOfWork : IUnitOfWork
     {
         var parms = new Parameter[]
         {
+             new Parameter("@id_modulo", request.id_modulo),
         };
 
         var result = ExecuteReader<ModuloResponse>(

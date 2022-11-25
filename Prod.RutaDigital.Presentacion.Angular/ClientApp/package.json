@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^14.2.9",
     "@angular/platform-server": "^14.2.9",
     "@angular/router": "^14.2.9",
+    "@angular/youtube-player": "^15.0.0",
     "@popperjs/core": "^2.11.6",
     "angular-ng-stepper": "^2.0.0",
     "bootstrap": "^5.2.2",

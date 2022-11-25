@@ -2,9 +2,9 @@
 
 public class ModuloResponse : Modulo
 {
-    public IEnumerable<PreguntaResponse> preguntas { get; set; }
+    public IEnumerable<PreguntaResponse>? preguntas { get; set; }
 
-    public IEnumerable<NivelMadurezResponse> niveles { get; set; }
+    public IEnumerable<NivelMadurezResponse>? niveles { get; set; }
 
-    public IEnumerable<CapacitacionResultadoResponse> capacitaciones { get; set; }
+    public IEnumerable<CapacitacionResultadoResponse>? capacitaciones { get; set; }
 }

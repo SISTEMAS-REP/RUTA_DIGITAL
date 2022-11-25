@@ -6,7 +6,6 @@ public class Recurso
     public int id_recomendacion { get; set; }
     public string? codigo { get; set; }
     public string? descripcion { get; set; }
-    public string? id_proveedor { get; set; }
     public string? icono { get; set; }
     public string? enlace_ruta { get; set; }
     public string? red_social { get; set; }

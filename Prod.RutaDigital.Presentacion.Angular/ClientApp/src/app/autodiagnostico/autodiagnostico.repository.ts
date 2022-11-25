@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AutodiagnosticoService } from './autodiagnostico.service';
 import { AuthorizeService } from '../authorization/authorize.service';
 import { TestAutodiagnostico } from './interfaces/test-autodiagnostico';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, tap, throwError, concat, of } from 'rxjs';
 import { RespuestaRequest } from './interfaces/request/respuesta.request';
 import { Respuesta } from './interfaces/respuesta';
 import { ModuloRequest } from './interfaces/request/modulo.request';
@@ -22,6 +22,22 @@ export class AutodiagnosticoRepository {
     const usuario = this.authorizeService.user;
     console.log('autodiagnostico-repository/obtenerUsuario', usuario);
     return usuario;
+  };
+
+  verificarAutodiagnostico = (): Observable<boolean> => {
+    return this.autodiagnosticoService.verificarAutodiagnostico().pipe(
+      tap((response) =>
+        console.log(
+          'autodiagnostico-repository/verificarAutodiagnostico',
+          response
+        )
+      ),
+      map((response) => {
+        var data = response.data;
+        return data?.concluido ?? false;
+      }),
+      catchError(() => of(false))
+    );
   };
 
   listarTestAutodiagnostico = (): Observable<TestAutodiagnostico> => {

@@ -14,6 +14,7 @@ public partial class UnitOfWork : IUnitOfWork
         var parms = new Parameter[]
         {
              new Parameter("@id_tipo_test", request.id_tipo_test),
+             new Parameter("@id_modulo", request.id_modulo),
         };
 
         var result = ExecuteReader<AlternativaResponse>(

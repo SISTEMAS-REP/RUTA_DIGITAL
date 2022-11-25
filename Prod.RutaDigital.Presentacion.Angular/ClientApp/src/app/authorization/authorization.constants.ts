@@ -22,7 +22,7 @@ export const LogoutActions = {
 
 export const LoginActions = {
   LoginPerson: 'login-person',
-  LoginCompany: 'login-person',
+  LoginCompany: 'login-company',
   LoginCallback: 'login-callback',
   LoginFailed: 'login-failed',
   Profile: 'profile',

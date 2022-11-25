@@ -3,7 +3,10 @@
 
 <app-header></app-header>
 <app-produce-mas-bar [isAutenticated]="isAuthenticated"></app-produce-mas-bar>
-<app-nav-menu [isAutenticated]="isAuthenticated"></app-nav-menu>
+<app-nav-menu
+  [isAutenticated]="isAuthenticated"
+  [verificacionAutodiagnostico]="verificacionAutodiagnostico"
+></app-nav-menu>
 
 <div>
   <router-outlet #o="outlet"></router-outlet>

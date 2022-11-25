@@ -3,6 +3,8 @@ import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthorizeService } from './authorization/authorize.service';
 import { AppService } from './shared/services/app.service';
+import { AutodiagnosticoService } from './autodiagnostico/autodiagnostico.service';
+import { AutodiagnosticoRepository } from './autodiagnostico/autodiagnostico.repository';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +12,25 @@ import { AppService } from './shared/services/app.service';
 })
 export class AppComponent implements OnInit {
   isAuthenticated: boolean = false;
+  verificacionAutodiagnostico: boolean;
 
   constructor(
     private router: Router,
     private title: Title,
     private meta: Meta,
     private appService: AppService,
-    private authorizeService: AuthorizeService
+    private authorizeService: AuthorizeService,
+    private autodiagnosticoRepository: AutodiagnosticoRepository
   ) {
     this.authorizeService.isAuthenticated().subscribe((status) => {
       this.isAuthenticated = status;
     });
+
+    this.autodiagnosticoRepository
+      .verificarAutodiagnostico()
+      .subscribe((status) => {
+        this.verificacionAutodiagnostico = status;
+      });
   }
 
   public ngOnInit() {

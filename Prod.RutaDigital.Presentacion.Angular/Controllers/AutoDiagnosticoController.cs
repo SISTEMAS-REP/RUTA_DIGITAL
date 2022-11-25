@@ -262,7 +262,8 @@ public class AutodiagnosticoController : ControllerBase
         var respuestasResponse = await _respuestaConsultaProxy
             .ListarRespuestas(new()
             {
-                id_evaluacion = evaluacion.id_evaluacion
+                id_evaluacion = evaluacion.id_evaluacion,
+                //id_tipo_test = (int) TIPO_TEST.TEST_AUTODIAGNOSTICO
             });
 
         if (respuestasResponse is null
@@ -274,7 +275,7 @@ public class AutodiagnosticoController : ControllerBase
 
         var respuestas = respuestasResponse.Data;
 
-        // Organizar test de autodniagnóstico (estructurado)
+        // Organizar test de autodiagnóstico (estructurado)
         var modulos = respuestas
             .GroupBy(g1 => new
             {
@@ -319,30 +320,6 @@ public class AutodiagnosticoController : ControllerBase
 
                         respuesta = s3.respuesta
                     })
-                    /*.GroupBy(g3 => new
-                    {
-                        g3.id_respuesta,
-                        g3.id_evaluacion,
-                        g3.id_modulo,
-                        g3.id_pregunta,
-
-                        g3.id_alternativa,
-                        g3.orden_alternativa,
-                        g3.descripcion_alternativa,
-                    })
-                    .Select(s3 => new RespuestaResponse()
-                    {
-                        id_respuesta = s3.Key.id_respuesta,
-                        id_evaluacion = s3.Key.id_evaluacion,
-                        id_modulo = s3.Key.id_modulo,
-                        id_pregunta = s3.Key.id_pregunta,
-
-                        id_alternativa = s3.Key.id_alternativa,
-                        orden_alternativa = s3.Key.orden_alternativa,
-                        descripcion_alternativa = s3.Key.descripcion_alternativa,
-
-                        respuesta = s3.First().respuesta
-                    })*/
                 })
             });
 
@@ -371,7 +348,8 @@ public class AutodiagnosticoController : ControllerBase
         var respuestaResponse = await _respuestaConsultaProxy
             .ListarRespuestas(new()
             {
-                id_respuesta = request.id_respuesta
+                id_respuesta = request.id_respuesta,
+                //id_tipo_test = (int) TIPO_TEST.TEST_AUTODIAGNOSTICO,
             });
 
         if (respuestaResponse is null
@@ -411,6 +389,7 @@ public class AutodiagnosticoController : ControllerBase
                 id_evaluacion = evaluacion.id_evaluacion,
                 id_modulo = respuesta.id_modulo,
                 id_pregunta = respuesta.id_pregunta,
+                id_tipo_test = (int) TIPO_TEST.TEST_AUTODIAGNOSTICO,
             });
 
         if (respuestasResponse is null
@@ -579,7 +558,8 @@ public class AutodiagnosticoController : ControllerBase
             .ListarRespuestas(new()
             {
                 id_evaluacion = evaluacion.id_evaluacion,
-                id_modulo = request.id_modulo
+                id_modulo = request.id_modulo,
+                //id_tipo_test = (int) TIPO_TEST.TEST_AUTODIAGNOSTICO
             });
 
         if (respuestasResponse is null
@@ -689,7 +669,8 @@ public class AutodiagnosticoController : ControllerBase
             var respuestasResponse = await _respuestaConsultaProxy
                 .ListarRespuestas(new()
                 {
-                    id_evaluacion = evaluacion.id_evaluacion
+                    id_evaluacion = evaluacion.id_evaluacion,
+                    //id_tipo_test = (int) TIPO_TEST.TEST_AUTODIAGNOSTICO
                 });
 
             if (respuestasResponse is null
@@ -732,107 +713,54 @@ public class AutodiagnosticoController : ControllerBase
 
             // Evaluar test de autodiagnóstico
             var resultadoModulosRequest = modulos
-                .Select(s1 =>
+                .Select(modulo =>
                 {
-                    var resultadoPregsRequest = s1.preguntas
-                    .Select(s2 =>
-                    {
-                        var pesoPreg = 1.0m / s2.respuestas
+                    var nroPreguntasModulo = modulo.preguntas
                         .Count();
 
-                        var pesoAltSuma = s2.respuestas
+                    var resultadoPregsRequest = modulo.preguntas?
+                    .Select(pregunta =>
+                    {
+                        var pesoPreg = 1.0m 
+                            / nroPreguntasModulo;
+
+                        var pesoAltSuma = pregunta.respuestas
                             .Where(w => w.respuesta == true)
                             .Sum(s => s.peso_alt);
 
-                        var promResultPreg = pesoAltSuma / s2.respuestas.Count();
+                        pesoAltSuma = pesoAltSuma < 1.0m 
+                        ? pesoAltSuma 
+                        : 1.0m;
+
+                        var promResultPreg = pesoPreg * pesoAltSuma;
 
                         return new ResultadoPregRequest()
                         {
                             id_resultado_modulo = 0,
-                            id_pregunta = s2.id_pregunta,
+                            id_pregunta = pregunta.id_pregunta,
                             peso_preg = pesoPreg,
                             peso_alt_suma = pesoAltSuma,
                             prom_result_preg = promResultPreg,
                         };
                     });
 
-                    var cantPreg = resultadoPregsRequest
-                    .Count();
-
                     var resultadoModulo = resultadoPregsRequest
                         .Sum(s => s.prom_result_preg);
 
-                    var promResultModulo = s1.peso * resultadoModulo;
+                    var promResultModulo = modulo.peso * resultadoModulo;
 
                     return new ResultadoModuloRequest()
                     {
                         id_resultado = 0,
-                        id_modulo = s1.id_modulo,
-                        peso_modulo = s1.peso ?? 0,
-                        cant_preg = cantPreg,
+                        id_modulo = modulo.id_modulo,
+                        peso_modulo = modulo.peso ?? 0,
+                        cant_preg = nroPreguntasModulo,
                         resultado_modulo = resultadoModulo,
                         prom_result_modulo = promResultModulo ?? 0,
 
                         pregs = resultadoPregsRequest,
                     };
                 });
-
-            /*List<ResultadoModuloRequest> resultadoModulosRequest
-                = new List<ResultadoModuloRequest>();
-
-            // Evaluar test de autodiagnóstico
-            foreach (var modulo in modulos)
-            {
-                List<ResultadoPregRequest> resultadoPregsRequest 
-                    = new List<ResultadoPregRequest>();
-
-                foreach(var pregunta in modulo.preguntas)
-                {
-                    var pesoPreg = 1.0m / pregunta.respuestas
-                        .Count();
-
-                    var pesoAltSuma = pregunta.respuestas
-                        .Where(w => w.respuesta == true)
-                        .Sum(s => s.peso_alt);
-
-                    var promResultPreg = pesoAltSuma / pregunta.respuestas.Count();
-
-                    var resultadoPregRequest = new ResultadoPregRequest()
-                    {
-                        id_resultado_modulo = 0,
-                        id_pregunta = pregunta.id_pregunta,
-                        peso_preg = pesoPreg,
-                        peso_alt_suma = pesoAltSuma,
-                        prom_result_preg = promResultPreg,
-                    };
-
-                    resultadoPregsRequest
-                        .Add(resultadoPregRequest);
-                }
-
-                var cantPreg = resultadoPregsRequest
-                    .Count();
-
-                var resultadoModulo = resultadoPregsRequest
-                    .Sum(s => s.prom_result_preg);
-
-                var promResultModulo = modulo.peso * resultadoModulo;
-
-                var resultadoModuloRequest = new ResultadoModuloRequest()
-                {
-                    id_resultado = 0,
-                    id_modulo = modulo.id_modulo,
-                    peso_modulo = modulo.peso ?? 0,
-                    cant_preg = cantPreg,
-                    resultado_modulo = resultadoModulo,
-                    prom_result_modulo = promResultModulo ?? 0,
-
-                    pregs = resultadoPregsRequest,
-                };
-
-                resultadoModulosRequest
-                    .Add(resultadoModuloRequest);
-            }*/
 
             var resultado = resultadoModulosRequest
                 .Sum(s => s.prom_result_modulo);
@@ -926,10 +854,10 @@ public class AutodiagnosticoController : ControllerBase
             || capacitacionesResultado.Count() == 0)
         {
             var resultadoModulosResponse = await _resultadoModuloConsultaProxy
-            .ListarResultadoModulos(new()
-            {
-                id_resultado = idResultado
-            });
+                .ListarResultadoModulos(new()
+                {
+                    id_resultado = idResultado
+                });
 
             if (resultadoModulosResponse is null
                 || !resultadoModulosResponse.Success
@@ -956,9 +884,10 @@ public class AutodiagnosticoController : ControllerBase
             // Evaluar nivel de madures a resultado
             foreach (var resultadoModulo in resultadoModulos)
             {
+                // No considerar el nivel de madurez EXPERTO (5)
                 var resultadoNivelesMadurez = nivelesMadurez
-                    .Where(w => w.valor_min <= resultadoModulo.resultado_modulo/*
-                        && w.valor_max >= resultadoModulo.resultado_modulo*/);
+                    .Where(w => w.valor_max >= resultadoModulo.resultado_modulo
+                        && w.codigo != "5");
 
                 if (resultadoNivelesMadurez.Count() == 0)
                 {
@@ -1063,13 +992,21 @@ public class AutodiagnosticoController : ControllerBase
             .ListarNivelesMadurez();
 
         if (nivelesMadurezResponse is null
-                   || !nivelesMadurezResponse.Success
-                   || nivelesMadurezResponse.Data.Count() == 0)
+            || !nivelesMadurezResponse.Success
+            || nivelesMadurezResponse.Data.Count() == 0)
         {
             throw new Exception();
         }
 
         var nivelesMadurez = nivelesMadurezResponse.Data;
+
+        var nivelMadurezResultado = nivelesMadurez
+            .Where(w => w.valor_min <= resultado.resultado
+                    && resultado.resultado <= w.valor_max)
+            .First();
+
+        resultado.id_nivel_madurez = nivelMadurezResultado.id_nivel_madurez;
+        resultado.nombre_nivel_madurez = nivelMadurezResultado.nombre;
 
         nivelesMadurez
             .ToList()

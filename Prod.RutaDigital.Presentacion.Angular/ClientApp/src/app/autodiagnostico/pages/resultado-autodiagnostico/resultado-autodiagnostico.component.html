@@ -7,9 +7,7 @@
           <h2 class="mb-0 pb-0" *ngIf="usuario.cod_genero; else sinGenero">
             {{ mostrarTituloPorGenero(usuario.cod_genero) }}
           </h2>
-          <ng-template #sinGenero>
-            El/a Emprendedor/a
-          </ng-template>
+          <ng-template #sinGenero> El/a Emprendedor/a </ng-template>
           El nivel de digitalización de tu negocio va en:
         </div>
       </div>
@@ -71,6 +69,7 @@
             <div class="row">
               <div class="col-12" align="center">
                 <app-nivel-modulo
+                  [routerLink]="['/recomendaciones/modulo/' + resultadoModulo.id_modulo]"
                   [nivel]="resultadoModulo.nombre_nivel_madurez"
                   [modulo]="resultadoModulo.nombre_modulo"
                   [orden]="resultadoModulo.orden_modulo"
@@ -105,47 +104,6 @@
                     let nivelMadurez of resultadoAutodiagnostico.nivelesMadurez
                   "
                 ></app-nivel-madurez>
-
-                <!-- <div class="col-lg-2" align="center">
-                  <div class="new-niveles-on pb-3 mb-4">
-                    <div class="etiqueta_coronap pt-4"></div>
-                    <h6 class="text-white pt-0"><strong>Inicial</strong></h6>
-                  </div>
-                </div>
-
-                <div class="col-lg-2" align="center">
-                  <div class="new-niveles pb-3 mb-4">
-                    <div class="etiqueta_coronap">
-                      <img
-                        class=""
-                        src="assets/images/icon_coronap.png"
-                        alt=""
-                      />
-                    </div>
-                    <h6 class="text-white pt-0"><strong>Básico</strong></h6>
-                  </div>
-                </div>
-
-                <div class="col-lg-2" align="center">
-                  <div class="new-niveles-on pb-3 mb-4">
-                    <div class="etiqueta_coronap pt-4"></div>
-                    <h6 class="text-white pt-0"><strong>Intermedio</strong></h6>
-                  </div>
-                </div>
-
-                <div class="col-lg-2" align="center">
-                  <div class="new-niveles-on pb-3 mb-4">
-                    <div class="etiqueta_coronap pt-4"></div>
-                    <h6 class="text-white pt-0"><strong>Avanzado</strong></h6>
-                  </div>
-                </div>
-
-                <div class="col-lg-2" align="center">
-                  <div class="new-niveles-on pb-3 mb-4">
-                    <div class="etiqueta_coronap pt-4"></div>
-                    <h6 class="text-white pt-0"><strong>Experto</strong></h6>
-                  </div>
-                </div> -->
                 <div class="col-lg-1" align="center"></div>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BaseService } from 'src/app/shared/services/base.service';
 
 @Injectable({
@@ -6,6 +7,18 @@ import { BaseService } from 'src/app/shared/services/base.service';
 })
 export class RecomendacionesService extends BaseService {
   getControllerUrl(): string {
-    return 'recomendaciones';
+    return 'capacitacion';
   }
+
+  listarCapacitaciones = (request?: any): Observable<any> => {
+    return this.get('ListarCapacitaciones', {
+      params: request ? this.setParams(request) : {},
+    });
+  };
+
+  listarRecomendacion = (request?: any): Observable<any> => {
+    return this.get('ListarRecomendacion', {
+      params: request ? this.setParams(request) : {},
+    });
+  };
 }

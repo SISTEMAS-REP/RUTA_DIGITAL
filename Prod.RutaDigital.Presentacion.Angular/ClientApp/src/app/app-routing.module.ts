@@ -29,7 +29,9 @@ export const AppRoutes: Routes = [
   {
     path: 'perfil-avance',
     loadChildren: () =>
-      import('./perfil-avance/perfil-avance.module').then((m) => m.PerfilAvanceModule),
+      import('./perfil-avance/perfil-avance.module').then(
+        (m) => m.PerfilAvanceModule
+      ),
   },
   {
     path: 'catalogo-premios',

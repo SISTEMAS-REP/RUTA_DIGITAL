@@ -1,1 +1,120 @@
-<p>detalle-recomendacion works!</p>
+<section id="top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-regresar">
+        <i class="fa fa-arrow-left">
+          <a [routerLink]="['/recomendaciones']">
+            <span class="text-regresar">Regresar</span>
+          </a>
+        </i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="meetings-page" id="">
+  <div class="container">
+    <div
+      class="row"
+    >
+      <div class="col-lg-12">
+        <div class="section-heading redes1" align="left">
+          <p>Recomendación # {{ recomendacion.orden_modulo }}</p>
+          <h2>{{ recomendacion.nombre_modulo }}</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6" style="margin: left 20px">
+          <div class="row">
+            <h3 class="titulo-recomendacion text-justify mb-12"></h3>
+          </div>
+          <div class="row">
+            <div
+              class="col-lg-12"
+              *ngFor="
+                let capacitacion of recomendacion.detalle;
+                let x = index;
+                let first = first
+              "
+            >
+              <h3 class="subtitulo-recomendacion">
+                <img
+                  src=".\.\\src\assets\images\icon_avionverde.png"
+                  class="ico-capacitacion"
+                />&nbsp;{{ capacitacion.pregunta }}
+              </h3>
+              <p class="descripcion-recomendacion">
+                {{ capacitacion.respuesta }}
+              </p>
+            </div>
+            <div
+              class="col-lg-12"
+              *ngFor="
+                let recursos of recomendacion.recursos;
+                let i = index;
+                let first = first
+              "
+            >
+              <h3 class="subtitulo-recomendacion">
+                <img
+                  src=".\.\\src\assets\images\icon_idea.png"
+                  class="ico-capacitacion"
+                />&nbsp;
+              </h3>
+              <p class="descripcion-recomendacion">
+                {{ recursos.descripcion }}
+              </p>
+              <h3 class="sub-titulo-paso">PASO #0{{ i + 1 }} :</h3>
+              <div>
+                <p class="p-paso">
+                  <img
+                    src=".\.\\src\assets\images\icon_camaraverde.png"
+                    class="ico-capacitacion"
+                  />&nbsp;<span class="descripcion-paso">Mira el video:</span>
+                  {{ recursos.descripcion }}
+                </p>
+
+                <div class="“button-container”">
+                  <div class="col-xs-6 row justify-content-center">
+                    <iframe
+                      width="560"
+                      height="315"
+                      src="https://www.youtube.com/embed/IkVFBYW4egs"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+
+                  <a href="“”" alt="“”">Tickets</a>
+                </div>
+              </div>
+              <div
+                class="col-lg-12"
+                *ngFor="
+                  let recomendaciones of recomendacion.recursos;
+                  let x = index;
+                  let first = first
+                "
+              >
+                <p class="descripcion-recomendacion">
+                  También te recomendamos explorar las siguientes herramientas y
+                  recursos:
+                </p>
+                <p class="p-paso">
+                  <img
+                    src=".\.\\src\assets\images\icon_herrammienta.png"
+                    class="ico-capacitacion"
+                  />
+                  &nbsp;
+                  {{ recomendaciones.descripcion }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

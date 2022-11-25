@@ -10,11 +10,11 @@ namespace Prod.RutaDigital.Core.Controllers.Consultas;
 [Route("[controller]")]
 public class CapacitacionResultadoComandoController : ControllerBase
 {
-    private readonly ICapacitacionResultadoAplicacion _capacitacionAplicacion;
+    private readonly ICapacitacionResultadoAplicacion _capacitacionResultadoAplicacion;
 
-    public CapacitacionResultadoComandoController(ICapacitacionResultadoAplicacion capacitacionAplicacion)
+    public CapacitacionResultadoComandoController(ICapacitacionResultadoAplicacion capacitacionResultadoAplicacion)
     {
-        _capacitacionAplicacion = capacitacionAplicacion;
+        _capacitacionResultadoAplicacion = capacitacionResultadoAplicacion;
     }
 
     [HttpPost]
@@ -22,7 +22,7 @@ public class CapacitacionResultadoComandoController : ControllerBase
     public async Task<StatusResponse<int>>
         InsertarCapacitacionResultado(CapacitacionResultadoRequest request)
     {
-        return await _capacitacionAplicacion
+        return await _capacitacionResultadoAplicacion
             .InsertarCapacitacionResultado(request);
     }
 
@@ -31,7 +31,7 @@ public class CapacitacionResultadoComandoController : ControllerBase
     public async Task<StatusResponse<int>>
         ActualizarCapacitacionResultado(CapacitacionResultadoRequest request)
     {
-        return await _capacitacionAplicacion
+        return await _capacitacionResultadoAplicacion
             .ActualizarCapacitacionResultado(request);
     }
 }

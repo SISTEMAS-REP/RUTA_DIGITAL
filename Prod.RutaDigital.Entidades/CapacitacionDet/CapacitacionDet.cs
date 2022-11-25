@@ -1,6 +1,6 @@
 ﻿namespace Prod.RutaDigital.Entidades;
 
-public class CapacitacionDet
+public class CapacitacionDet : Auditoria
 {
     public int id_capacitacion_det { get; set; }
     public int id_capacitacion { get; set; }

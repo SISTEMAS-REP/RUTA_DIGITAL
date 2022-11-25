@@ -55,6 +55,7 @@ const PROXY_CONFIG = [
       Connection: "Keep-Alive",
     },
   },
+
   {
     context: ["/autodiagnostico/VerificarAutodiagnostico"],
     target: target,
@@ -97,6 +98,15 @@ const PROXY_CONFIG = [
   },
   {
     context: ["/autodiagnostico/ListarResultadoAutodiagnostico"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
+
+  {
+    context: ["/capacitacion"],
     target: target,
     secure: false,
     headers: {

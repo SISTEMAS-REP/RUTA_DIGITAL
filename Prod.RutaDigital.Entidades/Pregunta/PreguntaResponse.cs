@@ -2,6 +2,9 @@
 
 public class PreguntaResponse : Pregunta
 {
-    public string tipo_respuesta { get; set; }
-    public IEnumerable<RespuestaResponse> respuestas { get; set; }
+    public string? tipo_respuesta { get; set; }
+
+    public IEnumerable<RespuestaResponse>? respuestas { get; set; }
+
+    public IEnumerable<AlternativaResponse>? alternativas { get; set; }
 }
