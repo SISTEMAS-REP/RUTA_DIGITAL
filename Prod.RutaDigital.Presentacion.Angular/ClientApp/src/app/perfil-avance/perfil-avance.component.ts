@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CatalogoPremiosRepository } from '../catalogo-premios/catalogo-premios.repository';
 import { PremioResponse } from '../catalogo-premios/interfaces/premio.response';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-perfil-avance',
@@ -10,6 +11,30 @@ import { PremioResponse } from '../catalogo-premios/interfaces/premio.response';
   styleUrls: [],
 })
 export class PerfilAvanceComponent implements OnInit {
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    autoplay: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      400: {
+        items: 2,
+      },
+      740: {
+        items: 3,
+      },
+      940: {
+        items: 4,
+      },
+    },
+  };
   nuevosPremios: PremioResponse[];
   ListNivelAutodiagnostico: Array<any>;
   ListCapacitando: Array<any>;
@@ -137,5 +162,9 @@ export class PerfilAvanceComponent implements OnInit {
 
   loQuiero = (item) => {
     this.router.navigate(['/catalogo-premios/premio', item]);
+  };
+
+  verPremios = () => {
+    this.router.navigate(['/catalogo-premios']);
   };
 }
