@@ -1,5 +1,5 @@
 ﻿using Release.Helper;
-using Release.Helper.ProxyV2;
+using Release.Helper.Proxy;
 
 using Prod.RutaDigital.Entidades;
 
@@ -9,9 +9,7 @@ public class TipoTestConsultaProxy : BaseProxy
 {
     private readonly string _url;
 
-    public TipoTestConsultaProxy(AppConfig appConfig,
-        IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public TipoTestConsultaProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}TipoTestConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,7 +17,7 @@ public class TipoTestConsultaProxy : BaseProxy
     public async Task<StatusResponse<IEnumerable<TipoTestResponse>>>
         ListarTiposTest(TipoTestRequest request)
     {
-        return await CallWebApiAsync<StatusResponse<IEnumerable<TipoTestResponse>>>(
+        return await InvokeWebApiAsync<StatusResponse<IEnumerable<TipoTestResponse>>>(
             HttpMethod.Get,
             _url + "ListarTiposTest",
             GetJsonParameters(request));

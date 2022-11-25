@@ -32,7 +32,7 @@ public class AuthorizationController : ControllerBase
             || _httpContextAccessor.HttpContext is null
             || !_httpContextAccessor.HttpContext.User.Identity!.IsAuthenticated)
         {
-            response.StatusCode = HttpStatusCodes.Status401Unauthorized;
+            //response.StatusCode = StatusCodes.Status401Unauthorized;
             return new ObjectResult(response);
         }
 
@@ -51,11 +51,11 @@ public class AuthorizationController : ControllerBase
             || !usuarioResponse.Success
             || usuarioResponse.Data is null)
         {
-            response.StatusCode = HttpStatusCodes.Status404NotFound;
+            //response.StatusCode = StatusCodes.Status404NotFound;
             return new ObjectResult(response);
         }
 
-        response.StatusCode = HttpStatusCodes.Status200OK;
+        //response.StatusCode = StatusCodes.Status200OK;
         response.Success = true;
         response.Data = usuarioResponse.Data;
 

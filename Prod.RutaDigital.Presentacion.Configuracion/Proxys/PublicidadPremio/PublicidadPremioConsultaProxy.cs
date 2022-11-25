@@ -9,9 +9,7 @@ public class PublicidadPremioConsultaProxy : BaseProxy
 {
     private readonly string _url;
 
-    public PublicidadPremioConsultaProxy(AppConfig appConfig,
-        IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public PublicidadPremioConsultaProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}PublicidadPremioConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,8 +17,8 @@ public class PublicidadPremioConsultaProxy : BaseProxy
     public async Task<StatusResponse<IEnumerable<PublicidadPremio>>>
         ListarPublicidadPremio()
     {
-        return await CallWebApiAsync<StatusResponse<IEnumerable<PublicidadPremio>>>(
+        return await InvokeWebApiAsync<StatusResponse<IEnumerable<PublicidadPremio>>>(
             HttpMethod.Get, 
-            _url + "ListarPublicidadPremio");
+            _url + "ListarPublicidadPremio", null);
     }
 }

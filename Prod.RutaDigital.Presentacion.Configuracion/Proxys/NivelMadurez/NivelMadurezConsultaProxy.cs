@@ -9,9 +9,7 @@ public class NivelMadurezConsultaProxy : BaseProxy
 {
     private readonly string _url;
 
-    public NivelMadurezConsultaProxy(AppConfig appConfig,
-        IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public NivelMadurezConsultaProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}NivelMadurezConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,8 +17,8 @@ public class NivelMadurezConsultaProxy : BaseProxy
     public async Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
         ListarNivelesMadurez()
     {
-        return await CallWebApiAsync<StatusResponse<IEnumerable<NivelMadurezResponse>>>(
+        return await InvokeWebApiAsync<StatusResponse<IEnumerable<NivelMadurezResponse>>>(
             HttpMethod.Get, 
-            _url + "ListarNivelesMadurez");
+            _url + "ListarNivelesMadurez", null);
     }
 }

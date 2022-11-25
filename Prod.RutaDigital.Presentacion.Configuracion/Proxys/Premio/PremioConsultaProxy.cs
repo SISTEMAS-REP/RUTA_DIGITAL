@@ -9,9 +9,7 @@ public class PremioConsultaProxy : BaseProxy
 {
     private readonly string _url;
 
-    public PremioConsultaProxy(AppConfig appConfig,
-        IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public PremioConsultaProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}PremioConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,7 +17,7 @@ public class PremioConsultaProxy : BaseProxy
     public Task<StatusResponse<IEnumerable<PremioResponse>>>
         ListarPremios(PremioRequest request)
     {
-        return CallWebApiAsync<StatusResponse<IEnumerable<PremioResponse>>>(
+        return InvokeWebApiAsync<StatusResponse<IEnumerable<PremioResponse>>>(
             HttpMethod.Get, 
             _url + "ListarPremios", 
             GetJsonParameters(request));
@@ -28,8 +26,8 @@ public class PremioConsultaProxy : BaseProxy
     public Task<StatusResponse<IEnumerable<Premio>>>
         ListarPuntajesPremios()
     {
-        return CallWebApiAsync<StatusResponse<IEnumerable<Premio>>>(
+        return InvokeWebApiAsync<StatusResponse<IEnumerable<Premio>>>(
             HttpMethod.Get, 
-            _url + "ListarPuntajesPremios");
+            _url + "ListarPuntajesPremios", null);
     }
 }

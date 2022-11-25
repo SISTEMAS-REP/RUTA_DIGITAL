@@ -1,5 +1,5 @@
 ﻿using Release.Helper;
-using Release.Helper.ProxyV2;
+using Release.Helper.Proxy;
 
 using Prod.RutaDigital.Entidades;
 
@@ -9,9 +9,7 @@ public class WeatherForecastConsultaProxy : BaseProxy
 {
     private readonly string _url;
 
-    public WeatherForecastConsultaProxy(AppConfig appConfig, 
-        IHttpClientFactory httpClientFactory) 
-        : base(httpClientFactory)
+    public WeatherForecastConsultaProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}WeatherForecastConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,7 +17,7 @@ public class WeatherForecastConsultaProxy : BaseProxy
     public async Task<StatusResponse<List<WeatherForecastResponse>>>
         ListarWeatherForecast(WeatherForecastRequest request)
     {
-        return await CallWebApiAsync<StatusResponse<List<WeatherForecastResponse>>>(
+        return await InvokeWebApiAsync<StatusResponse<List<WeatherForecastResponse>>>(
                 verb: HttpMethod.Get,
                 urlAction: _url + "ListarWeatherForecast",
                 GetJsonParameters(request));

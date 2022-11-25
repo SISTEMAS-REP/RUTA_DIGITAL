@@ -1,5 +1,5 @@
 ﻿using Release.Helper;
-using Release.Helper.ProxyV2;
+using Release.Helper.Proxy;
 
 using Prod.RutaDigital.Entidades;
 
@@ -9,9 +9,7 @@ public class EventoConsultaProxy : BaseProxy
 {
     private readonly string _url;
 
-    public EventoConsultaProxy(AppConfig appConfig,
-        IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public EventoConsultaProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}EventoConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,7 +17,7 @@ public class EventoConsultaProxy : BaseProxy
     public async Task<StatusResponse<IEnumerable<EventoResponse>>> 
         ListarEventos(EventoRequest request)
     {
-        return await CallWebApiAsync<StatusResponse<IEnumerable<EventoResponse>>>(
+        return await InvokeWebApiAsync<StatusResponse<IEnumerable<EventoResponse>>>(
             HttpMethod.Get, 
             _url + "ListarEventos", 
             GetJsonParameters(request));

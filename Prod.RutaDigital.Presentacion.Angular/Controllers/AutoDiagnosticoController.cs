@@ -91,7 +91,7 @@ public class AutodiagnosticoController : ControllerBase
             || !evaluacionResponse.Success
             || evaluacionResponse.Data.Count() == 0)
         {
-            response.StatusCode = HttpStatusCodes.Status404NotFound;
+            //response.StatusCode = StatusCodes.Status404NotFound;
             return new ObjectResult(response);
         }
 

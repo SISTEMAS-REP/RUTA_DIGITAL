@@ -9,9 +9,7 @@ public class TipoPremioConsultaProxy : BaseProxy
 {
     private readonly string _url;
 
-    public TipoPremioConsultaProxy(AppConfig appConfig,
-        IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public TipoPremioConsultaProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}TipoPremioConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,8 +17,8 @@ public class TipoPremioConsultaProxy : BaseProxy
     public async Task<StatusResponse<IEnumerable<TipoPremio>>>
         ListarTiposPremio()
     {
-        return await CallWebApiAsync<StatusResponse<IEnumerable<TipoPremio>>>(
+        return await InvokeWebApiAsync<StatusResponse<IEnumerable<TipoPremio>>>(
             HttpMethod.Get, 
-            _url + "ListarTiposPremio");
+            _url + "ListarTiposPremio", null);
     }
 }

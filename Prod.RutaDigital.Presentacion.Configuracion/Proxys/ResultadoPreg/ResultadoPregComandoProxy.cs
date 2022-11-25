@@ -1,5 +1,5 @@
 ﻿using Release.Helper;
-using Release.Helper.ProxyV2;
+using Release.Helper.Proxy;
 
 using Prod.RutaDigital.Entidades;
 
@@ -9,9 +9,7 @@ public class ResultadoPregComandoProxy : BaseProxy
 {
     private readonly string _url;
 
-    public ResultadoPregComandoProxy(AppConfig appConfig,
-        IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public ResultadoPregComandoProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}ResultadoPregComando/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,7 +17,7 @@ public class ResultadoPregComandoProxy : BaseProxy
     public async Task<StatusResponse<int>>
         InsertarResultadoPreg(ResultadoPregRequest request)
     {
-        return await CallWebApiAsync<StatusResponse<int>>(
+        return await InvokeWebApiAsync<StatusResponse<int>>(
             HttpMethod.Post,
             _url + "InsertarResultadoPreg",
             GetJsonParameters(request));

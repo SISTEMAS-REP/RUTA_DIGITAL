@@ -38,10 +38,12 @@ public class AppController : ControllerBase
             Content = content,
         };
 
-        return Ok(new StatusResponse()
+        var result = new StatusResponse<ApplicationDataViewModel>()
         {
             Success = true,
-            Data = data
-        });
+            Data =data
+        };
+
+        return Ok(result);
     }
 }

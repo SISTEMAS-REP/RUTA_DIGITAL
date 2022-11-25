@@ -1,5 +1,5 @@
 ﻿using Release.Helper;
-using Release.Helper.ProxyV2;
+using Release.Helper.Proxy;
 
 using Prod.RutaDigital.Entidades;
 
@@ -9,9 +9,7 @@ public class RespuestaComandoProxy : BaseProxy
 {
     private readonly string _url;
 
-    public RespuestaComandoProxy(AppConfig appConfig,
-        IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public RespuestaComandoProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}RespuestaComando/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,7 +17,7 @@ public class RespuestaComandoProxy : BaseProxy
     public async Task<StatusResponse<int>>
         InsertarRespuesta(RespuestaRequest request)
     {
-        return await CallWebApiAsync<StatusResponse<int>>(
+        return await InvokeWebApiAsync<StatusResponse<int>>(
             HttpMethod.Post,
             _url + "InsertarRespuesta",
             GetJsonParameters(request));
@@ -28,7 +26,7 @@ public class RespuestaComandoProxy : BaseProxy
     public async Task<StatusResponse<int>>
         ActualizarRespuesta(RespuestaRequest request)
     {
-        return await CallWebApiAsync<StatusResponse<int>>(
+        return await InvokeWebApiAsync<StatusResponse<int>>(
             HttpMethod.Put,
             _url + "ActualizarRespuesta",
             GetJsonParameters(request));

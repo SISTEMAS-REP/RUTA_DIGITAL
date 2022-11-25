@@ -1,5 +1,5 @@
 ﻿using Release.Helper;
-using Release.Helper.ProxyV2;
+using Release.Helper.Proxy;
 
 using Prod.RutaDigital.Entidades;
 
@@ -9,9 +9,7 @@ public class ResultadoConsultaProxy : BaseProxy
 {
     private readonly string _url;
 
-    public ResultadoConsultaProxy(AppConfig appConfig,
-        IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public ResultadoConsultaProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}ResultadoConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,7 +17,7 @@ public class ResultadoConsultaProxy : BaseProxy
     public async Task<StatusResponse<IEnumerable<ResultadoResponse>>>
         ListarResultados(ResultadoRequest request)
     {
-        return await CallWebApiAsync<StatusResponse<IEnumerable<ResultadoResponse>>>(
+        return await InvokeWebApiAsync<StatusResponse<IEnumerable<ResultadoResponse>>>(
             HttpMethod.Get,
             _url + "ListarResultados",
             GetJsonParameters(request));
