@@ -4,6 +4,8 @@ import { PerfilAvanceComponent } from './perfil-avance.component';
 import { RouterModule } from '@angular/router';
 import { PerfilAvanceRoutingModule } from './perfil-avance-routing.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [PerfilAvanceComponent],
@@ -11,6 +13,12 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CommonModule, 
     RouterModule, 
     PerfilAvanceRoutingModule,
-    CarouselModule,],
+    CarouselModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+
+  ],
 })
 export class PerfilAvanceModule {}

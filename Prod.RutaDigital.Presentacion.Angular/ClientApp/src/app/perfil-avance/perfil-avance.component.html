@@ -119,8 +119,8 @@
                                 <div class="col-lg-1" align="center"></div>
                                 <div class="col-lg-2" align="center" *ngFor="let item of ListNivel; let i = index">
                                     <div class="new-niveles pb-3 mb-4">
-                                        <div class="etiqueta_coronap" *ngIf="item.flag"><img class="" src="assets/images/icon_coronap.png" alt=""></div>
-                                        <h6 class="text-white pt-0"><strong>{{ item.nivel }}</strong></h6>
+                                        <div class="etiqueta_coronap"><img class="" src="assets/images/icon_coronap.png" alt=""></div>     
+                                        <h6 class="text-white pt-0"><strong>{{ item.nivel }} </strong></h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-1" align="center"></div>
@@ -244,8 +244,25 @@
 
             <div class="col-lg-8 mb-5 p-4 box-avance mt-5">
 
-                <div class="col-lg-12 mb-5">
-                    <img class="img-fluid" src="assets/images/calendar.png">
+                <div class="col-lg-12 mb-5" [ngSwitch]="view">
+                        <mwl-calendar-month-view
+                          *ngSwitchCase="'month'"
+                          [viewDate]="viewDate"
+                          [events]="events"
+                        >
+                        </mwl-calendar-month-view>
+                        <mwl-calendar-week-view
+                          *ngSwitchCase="'week'"
+                          [viewDate]="viewDate"
+                          [events]="events"
+                        >
+                        </mwl-calendar-week-view>
+                        <mwl-calendar-day-view
+                          *ngSwitchCase="'day'"
+                          [viewDate]="viewDate"
+                          [events]="events"
+                        >
+                        </mwl-calendar-day-view>
                 </div>
 
                 <div class="col-lg-12">
@@ -444,5 +461,5 @@
             <div class="scroll-to-section"><a  class="scroll-to-section" (click)="verPremios()" >Ver todos los premios</a></div>
         </div>
     </div>
-
 </section>
+

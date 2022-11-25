@@ -8,11 +8,17 @@ import { CodGenero } from '../shared/enums/cod-genero.enum';
 import { ExtranetUser } from '../shared/interfaces/extranet-user';
 import { AutodiagnosticoRepository } from '../autodiagnostico/autodiagnostico.repository';
 import { ResultadoAutodiagnostico } from '../autodiagnostico/interfaces/resultado-autodiagnostico';
+import { CalendarEvent,CalendarDateFormatter,CalendarView} from 'angular-calendar';
+
 
 @Component({
   selector: 'app-perfil-avance',
   templateUrl: './perfil-avance.component.html',
-  styleUrls: [],
+  providers: [
+    {
+      provide: CalendarDateFormatter
+    },
+  ],
 })
 export class PerfilAvanceComponent implements OnInit {
   usuario: ExtranetUser;
@@ -41,10 +47,17 @@ export class PerfilAvanceComponent implements OnInit {
       },
     },
   };
+
   nuevosPremios: PremioResponse[];
   ListNivelAutodiagnostico: Array<any>;
   ListCapacitando: Array<any>;
   ListNivel: Array<any>;
+
+  view: CalendarView = CalendarView.Month;
+  viewDate: Date = new Date();
+  events: CalendarEvent[] = [];
+
+
   constructor(
     private catalogoPremios: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,
