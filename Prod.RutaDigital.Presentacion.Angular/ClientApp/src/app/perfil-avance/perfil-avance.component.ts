@@ -68,11 +68,9 @@ export class PerfilAvanceComponent implements OnInit {
   }
 
     ngOnInit(): void {
-      debugger
       this.repository
       .listarResultadoAutodiagnostico()
       .subscribe((data: ResultadoAutodiagnostico) => {
-        debugger
         this.resultadoAutodiagnostico = data;
       });
       

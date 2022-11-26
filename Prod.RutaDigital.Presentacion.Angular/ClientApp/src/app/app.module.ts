@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import LocalES from '@angular/common/locales/es';
 import { AuthorizationModule } from './authorization/authorization.module';
+import { FormsModule } from '@angular/forms';
 registerLocaleData(LocalES, 'es');
 
 @NgModule({
@@ -35,6 +36,7 @@ registerLocaleData(LocalES, 'es');
     }),
     AuthorizationModule,
     SharedModule,
+    FormsModule
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],

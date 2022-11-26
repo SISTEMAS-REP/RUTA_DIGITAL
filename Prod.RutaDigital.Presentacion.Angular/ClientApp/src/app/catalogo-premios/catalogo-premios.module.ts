@@ -7,6 +7,7 @@ import { InicioCatalogoPremiosComponent } from './pages/inicio-catalogo-premios/
 import { CategoriaPremiosComponent } from './pages/categoria-premios/categoria-premios.component';
 import { DetallePremioComponent } from './pages/detalle-premio/detalle-premio.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     RouterModule,
     CatalogoPremiosRoutingModule,
     CarouselModule,
+    FormsModule
   ],
 })
 export class CatalogoPremiosModule {}

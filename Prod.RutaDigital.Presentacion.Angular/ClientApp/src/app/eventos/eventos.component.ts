@@ -26,7 +26,6 @@ export class EventosComponent implements OnInit {
   }
 
   fnVerificacionCookies= () =>{
-    debugger;
     if(this.isAuthenticated){
         this.router.navigate(['/eventos']);
     }

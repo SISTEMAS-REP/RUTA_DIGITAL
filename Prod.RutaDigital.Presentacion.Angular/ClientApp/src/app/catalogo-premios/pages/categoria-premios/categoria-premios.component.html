@@ -48,10 +48,10 @@
                       <select
                         class="form-select form-select-sm"
                         aria-label=".form-select-sm example"
-
+                        [(ngModel)]="desdeSeleccionado"
                         name="Desdesomething"
                       >
-                        <option [value]="''">Desde</option>
+                        <option [value]="0">Desde</option>
                         <option
                           [value]="tipoDesde.puntos_produce"
                           *ngFor="let tipoDesde of puntajesPremio"
@@ -65,10 +65,10 @@
                       <select
                         class="form-select form-select-sm"
                         aria-label=".form-select-sm example"
-
+                        [(ngModel)]="hastaSeleccionado"
                         name="Hastasomething"
                       >
-                        <option [value]="''">Hasta</option>
+                        <option [value]="0">Hasta</option>
                         <option
                           [value]="tipoHasta.puntos_produce"
                           *ngFor="let tipoHasta of puntajesPremio"

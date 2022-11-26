@@ -25,8 +25,8 @@ export class CategoriaPremiosComponent implements OnInit {
   IdListCatalogo: number = 0;
   IdTipo: string = null;
 
-  desdeSeleccionado: PremioPuntajeResponse;
-  hastaSeleccionado: PremioPuntajeResponse;
+  desdeSeleccionado: number = 0;
+  hastaSeleccionado: number = 0;
 
   constructor(
     private repository: CatalogoPremiosRepository,
