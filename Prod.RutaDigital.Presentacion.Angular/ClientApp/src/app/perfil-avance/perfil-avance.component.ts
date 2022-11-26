@@ -9,6 +9,7 @@ import { ExtranetUser } from '../shared/interfaces/extranet-user';
 import { AutodiagnosticoRepository } from '../autodiagnostico/autodiagnostico.repository';
 import { ResultadoAutodiagnostico } from '../autodiagnostico/interfaces/resultado-autodiagnostico';
 import { CalendarEvent,CalendarDateFormatter,CalendarView} from 'angular-calendar';
+import { PerfilAvanceRepository } from './perfil-avance.repository';
 
 
 @Component({
@@ -62,7 +63,8 @@ export class PerfilAvanceComponent implements OnInit {
     private catalogoPremios: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private repository: AutodiagnosticoRepository
+    private repository: AutodiagnosticoRepository,
+    private repositoryPerfilAvance : PerfilAvanceRepository
   ) {
     this.usuario = this.repository.obtenerUsuario();
   }
@@ -75,6 +77,8 @@ export class PerfilAvanceComponent implements OnInit {
       });
       
     this.listarPremioNuevo();
+    this.ListarCalculoPuntosUsuario();
+    this.ListarPremioConsumoUsuario();
     this.ListNivelAutodiagnostico = [
       {
         numero_avance:"1",
@@ -164,6 +168,31 @@ export class PerfilAvanceComponent implements OnInit {
       }
     ];
   }
+
+
+  ListarCalculoPuntosUsuario = () => {
+    var request: any = {
+      id_usuario_extranet: this.usuario.id_usuario_extranet
+    };
+    this.repositoryPerfilAvance.ListarCalculoPuntosUsuario(request).subscribe({
+      next: (data: any[]) => {
+        debugger
+      },
+      error: (err) => {},
+    });
+  };
+
+  ListarPremioConsumoUsuario = () => {
+    var request: any = {
+      id_usuario_extranet: this.usuario.id_usuario_extranet
+    };
+    this.repositoryPerfilAvance.ListarPremioConsumoUsuario(request).subscribe({
+      next: (data: any[]) => {
+        debugger
+      },
+      error: (err) => {},
+    });
+  };
 
   listarPremioNuevo = () => {
     var request: any = {
