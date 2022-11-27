@@ -7,7 +7,7 @@ import { BaseService } from '../shared/services/base.service';
 })
 export class PerfilAvanceService extends BaseService {
   getControllerUrl(): string {
-    return 'perfil-avance';
+    return 'perfilAvance';
   }
 
   ListarCalculoPuntosUsuario = (request?: any): Observable<any> => {

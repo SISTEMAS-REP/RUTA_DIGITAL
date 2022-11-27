@@ -113,6 +113,24 @@ const PROXY_CONFIG = [
       Connection: "Keep-Alive",
     },
   },
+
+  {
+    context: ["/perfilAvance/ListarCalculoPuntosUsuario"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
+
+  {
+    context: ["/perfilAvance/ListarPremioConsumoUsuario"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
 ];
 
 module.exports = PROXY_CONFIG;

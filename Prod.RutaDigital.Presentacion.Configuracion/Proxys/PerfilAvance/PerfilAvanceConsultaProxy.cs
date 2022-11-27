@@ -16,14 +16,14 @@ namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys.PerfilAvance
         {
             return await InvokeWebApiAsync<StatusResponse<IEnumerable<CalculoPuntosResponse>>>(
                 HttpMethod.Get,
-                _url + "ListarNivelesMadurez", GetJsonParameters(request));
+                _url + "ListarCalculoPuntosUsuario", GetJsonParameters(request));
         }
 
         public async Task<StatusResponse<IEnumerable<PremioConsumoResponse>>> ListarPremioConsumoUsuario(UsuarioExtranet request)
         {
             return await InvokeWebApiAsync<StatusResponse<IEnumerable<PremioConsumoResponse>>>(
                 HttpMethod.Get,
-                _url + "ListarNivelesMadurez", GetJsonParameters(request));
+                _url + "ListarPremioConsumoUsuario", GetJsonParameters(request));
         }
 
     }

@@ -10,6 +10,7 @@ import { AutodiagnosticoRepository } from '../autodiagnostico/autodiagnostico.re
 import { ResultadoAutodiagnostico } from '../autodiagnostico/interfaces/resultado-autodiagnostico';
 import { CalendarEvent,CalendarDateFormatter,CalendarView} from 'angular-calendar';
 import { PerfilAvanceRepository } from './perfil-avance.repository';
+import { CalculoPuntosResponse } from './interfaces/calculo-puntos.response';
 
 
 @Component({
@@ -50,9 +51,10 @@ export class PerfilAvanceComponent implements OnInit {
   };
 
   nuevosPremios: PremioResponse[];
-  ListNivelAutodiagnostico: Array<any>;
-  ListCapacitando: Array<any>;
-  ListNivel: Array<any>;
+  calculoPuntos: CalculoPuntosResponse[];
+  ListarNivelAutodiagnostico: Array<any>;
+  ListarCapacitando: Array<any>;
+  ListarNivel: Array<any>;
 
   view: CalendarView = CalendarView.Month;
   viewDate: Date = new Date();
@@ -79,7 +81,7 @@ export class PerfilAvanceComponent implements OnInit {
     this.listarPremioNuevo();
     this.ListarCalculoPuntosUsuario();
     this.ListarPremioConsumoUsuario();
-    this.ListNivelAutodiagnostico = [
+    this.ListarNivelAutodiagnostico = [
       {
         numero_avance:"1",
         nivel:"Nivel Básico",
@@ -112,7 +114,7 @@ export class PerfilAvanceComponent implements OnInit {
       },
     ];
 
-    this.ListCapacitando = [
+    this.ListarCapacitando = [
       {
         nivel:"Nivel Básico",
         tipo_nivel:"Gestión Empresarial",
@@ -145,7 +147,7 @@ export class PerfilAvanceComponent implements OnInit {
       },
     ];
 
-    this.ListNivel = [
+    this.ListarNivel = [
       {
         nivel:"Inicial",
         flag:false,
@@ -171,12 +173,14 @@ export class PerfilAvanceComponent implements OnInit {
 
 
   ListarCalculoPuntosUsuario = () => {
+    debugger;
     var request: any = {
       id_usuario_extranet: this.usuario.id_usuario_extranet
     };
     this.repositoryPerfilAvance.ListarCalculoPuntosUsuario(request).subscribe({
-      next: (data: any[]) => {
-        debugger
+      next: (data: CalculoPuntosResponse[]) => {
+        debugger;
+        this.calculoPuntos = data;
       },
       error: (err) => {},
     });
