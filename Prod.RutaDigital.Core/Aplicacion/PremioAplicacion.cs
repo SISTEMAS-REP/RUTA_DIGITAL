@@ -73,9 +73,16 @@ public class PremioAplicacion : IPremioAplicacion
         {
             var data = await _uow
                 .CanjePremio(request);
-
-            resultado.Success = true;
-            resultado.Data = data;
+            if (data != null)
+            {
+                resultado.Success = true;
+                resultado.Data = data;
+            }
+            else
+            {
+                resultado.Success = false;
+            }
+           
         }
         catch (Exception ex)
         {

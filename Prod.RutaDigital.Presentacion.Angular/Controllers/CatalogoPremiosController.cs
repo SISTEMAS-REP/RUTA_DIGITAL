@@ -198,11 +198,14 @@ public class CatalogoPremiosController : ControllerBase
         var result = await _premioComandoProxy
             .CanjePremio(requests);
 
-        if (result.Success) 
+        if (result.Success)
         {
             var data = new
             {
-                cantidad = requests.cantidad
+                cantidad = requests.cantidad,
+                nombre = _appAuditoria.Usuario,
+                descripcion_premio = requests.descripcion_premio,
+                nombre_premio = requests.nombre_premio
             };
 
             await _emailSender.SendAsync(templateName: "CanjePremio",
@@ -210,7 +213,7 @@ public class CatalogoPremiosController : ControllerBase
                {
                    to = result.Data.email,
                    isBodyHtml = true,
-                   subject = $"prueba"
+                   subject = $"Canje de Premio - Ruta Digital"
                },
                data: data);
         }

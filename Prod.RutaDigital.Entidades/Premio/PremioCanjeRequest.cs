@@ -14,5 +14,6 @@ namespace Prod.RutaDigital.Entidades
         public string? usuario_registro { get; set; }
         public DateTime? fecha_registro { get; set; }
         public string? descripcion_premio { get; set; }
+        public string? nombre_premio { get; set; }
     }
 }
