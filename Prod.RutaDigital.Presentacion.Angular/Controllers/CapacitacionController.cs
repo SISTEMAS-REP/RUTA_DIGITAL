@@ -29,6 +29,7 @@ public class CapacitacionController : Controller
     private readonly CapacitacionComandoProxy _capacitacionComandoProxy;
     private readonly CapacitacionDetComandoProxy _capacitacionDetComandoProxy;
     private readonly CapacitacionConsultaProxy _capacitacionConsultaProxy;
+    private readonly CapacitacionResultadoComandoProxy _capacitacionResultadoComandoProxy;
 
     public CapacitacionController(CapacitacionResultadoConsultaProxy capacitacionResultadoConsultaProxy,
         CurrentUserService currentUserService,
@@ -43,7 +44,8 @@ public class CapacitacionController : Controller
         AppAuditoria appAuditoria,
         CapacitacionComandoProxy capacitacionComandoProxy,
         CapacitacionDetComandoProxy capacitacionDetComandoProxy,
-        CapacitacionConsultaProxy capacitacionConsultaProxy)
+        CapacitacionConsultaProxy capacitacionConsultaProxy,
+        CapacitacionResultadoComandoProxy capacitacionResultadoComandoProxy)
     {
         _capacitacionResultadoConsultaProxy = capacitacionResultadoConsultaProxy;
         _currentUserService = currentUserService;
@@ -59,6 +61,7 @@ public class CapacitacionController : Controller
         _capacitacionComandoProxy = capacitacionComandoProxy;
         _capacitacionDetComandoProxy = capacitacionDetComandoProxy;
         _capacitacionConsultaProxy = capacitacionConsultaProxy;
+        _capacitacionResultadoComandoProxy = capacitacionResultadoComandoProxy;
     }
 
     [HttpGet("ListarCapacitaciones")]
@@ -155,6 +158,115 @@ public class CapacitacionController : Controller
         response.Success = true;
         response.Data = modulos;
 
+        return Ok(response);
+    }
+
+    [HttpPut("IniciarCapacitacion")]
+    public async Task<IActionResult>
+        IniciarCapacitacion([FromBody] CapacitacionResultadoRequest request)
+    {
+        var response = new StatusResponse<bool>();
+        var fechaHoraOperacion = DateTime.Now;
+        var idUsuarioExtranet = int
+            .Parse(_currentUserService.User.IdUsuarioExtranet);
+
+        var capacitacionResultadoResponse = await _capacitacionResultadoConsultaProxy
+            .ListarCapacitacionesResultado(new()
+            {
+                id_capacitacion_resultado = request.id_capacitacion_resultado,
+                id_usuario_extranet = idUsuarioExtranet
+            });
+
+        if (capacitacionResultadoResponse is null
+           || !capacitacionResultadoResponse.Success
+           || capacitacionResultadoResponse.Data.Count() == 0)
+        {
+            throw new Exception();
+        }
+
+        var capacitacionResultado = capacitacionResultadoResponse.Data
+            .First();
+
+        var idCapacitacionResultado = await _capacitacionResultadoComandoProxy
+            .ActualizarCapacitacionResultado(new ()
+            {
+                id_capacitacion_resultado = capacitacionResultado.id_capacitacion_resultado,
+                fecha_inicio = fechaHoraOperacion,
+                progreso = 50m,
+                concluido = false,
+                calificacion = capacitacionResultado.calificacion,
+
+                usuario_modificacion = _appAuditoria.Usuario,
+                fecha_modificacion = fechaHoraOperacion
+            });
+
+        if (idCapacitacionResultado is null
+           || !idCapacitacionResultado.Success
+           || idCapacitacionResultado.Data <= 0)
+        {
+            throw new Exception();
+        }
+
+        response.Success = true;
+        response.Data = true;
+        return Ok(response);
+    }
+
+    [HttpPut("CalificarCapacitacion")]
+    public async Task<IActionResult>
+        CalificarCapacitacion([FromBody] CapacitacionResultadoRequest request)
+    {
+        var response = new StatusResponse<bool>();
+        var fechaHoraOperacion = DateTime.Now;
+        var idUsuarioExtranet = int
+            .Parse(_currentUserService.User.IdUsuarioExtranet);
+
+        if (request.calificacion <= 0 
+            || 5 < request.calificacion)
+        {
+            throw new Exception();
+        }
+
+        var capacitacionResultadoResponse = await _capacitacionResultadoConsultaProxy
+            .ListarCapacitacionesResultado(new()
+            {
+                id_capacitacion_resultado = request.id_capacitacion_resultado,
+                id_usuario_extranet = idUsuarioExtranet
+            });
+
+        if (capacitacionResultadoResponse is null
+           || !capacitacionResultadoResponse.Success
+           || capacitacionResultadoResponse.Data.Count() == 0)
+        {
+            throw new Exception();
+        }
+
+        var capacitacionResultado = capacitacionResultadoResponse.Data
+            .First();
+
+        var idCapacitacionResultado = await _capacitacionResultadoComandoProxy
+            .ActualizarCapacitacionResultado(new()
+            {
+                id_capacitacion_resultado = capacitacionResultado.id_capacitacion_resultado,
+                fecha_inicio = capacitacionResultado.fecha_inicio,
+                fecha_fin = capacitacionResultado.fecha_fin,
+                progreso = capacitacionResultado.progreso,
+                concluido = capacitacionResultado.concluido,
+                calificacion = request.calificacion,
+
+                usuario_modificacion = _appAuditoria.Usuario,
+                fecha_modificacion = fechaHoraOperacion
+            });
+
+        if (idCapacitacionResultado is null
+           || !idCapacitacionResultado.Success
+           || idCapacitacionResultado.Data <= 0)
+        {
+            throw new Exception();
+        }
+
+        response.Success = true;
+        response.Data = true;
         return Ok(response);
     }
 
@@ -467,73 +579,100 @@ public class CapacitacionController : Controller
         var capacitacionResultado = capacitacionResultadoResponse.Data
             .First();
 
-        var nroPreguntasCorrectas = request.respuestas
+        if (!capacitacionResultado.concluido)
+        {
+            var nroPreguntasCorrectas = request.respuestas
             .Where(w => w.respuesta == true)
             .GroupBy(g1 => g1.id_pregunta)
             //.Select(s1 => s1.Key)
             .Count();
 
-        var resupuestaCapacitacion = nroPreguntasCorrectas >= 2;
+            var resupuestaCapacitacion = nroPreguntasCorrectas >= 2;
 
-        var capacitacionRequest = new CapacitacionRequest() {
-            id_capacitacion_resultado = capacitacionResultado.id_capacitacion_resultado,
-            fecha = fechaHoraOperacion,
-            test_aprobado = resupuestaCapacitacion,
+            var capacitacionRequest = new CapacitacionRequest()
+            {
+                id_capacitacion_resultado = capacitacionResultado.id_capacitacion_resultado,
+                fecha = fechaHoraOperacion,
+                test_aprobado = resupuestaCapacitacion,
 
-            usuario_registro = _appAuditoria.Usuario,
-            fecha_registro = fechaHoraOperacion,
-            estado = true
-        };
+                usuario_registro = _appAuditoria.Usuario,
+                fecha_registro = fechaHoraOperacion,
+                estado = true
+            };
 
-        var idCapacitacionResponse = await _capacitacionComandoProxy
-            .InsertarCapacitacion(capacitacionRequest);
+            var idCapacitacionResponse = await _capacitacionComandoProxy
+                .InsertarCapacitacion(capacitacionRequest);
 
-        if (idCapacitacionResponse is null
-            || !idCapacitacionResponse.Success
-            || idCapacitacionResponse.Data == 0)
-        {
-            throw new Exception();
-        }
-
-        var idCapacitacion = idCapacitacionResponse.Data;
-
-        foreach(var respuesta in request.respuestas)
-        {
-            respuesta.id_capacitacion = idCapacitacion;
-
-            var idCapacitacionDetResponse = await _capacitacionDetComandoProxy
-                .InsertarCapacitacionDet(respuesta);
-
-            if (idCapacitacionDetResponse is null
-                    || !idCapacitacionDetResponse.Success
-                    || idCapacitacionDetResponse.Data == 0)
+            if (idCapacitacionResponse is null
+                || !idCapacitacionResponse.Success
+                || idCapacitacionResponse.Data == 0)
             {
                 throw new Exception();
             }
-        }
 
-        var capacitacionesResponse = await _capacitacionConsultaProxy
+            var idCapacitacion = idCapacitacionResponse.Data;
+
+            foreach (var respuesta in request.respuestas)
+            {
+                respuesta.id_capacitacion = idCapacitacion;
+
+                var idCapacitacionDetResponse = await _capacitacionDetComandoProxy
+                    .InsertarCapacitacionDet(respuesta);
+
+                if (idCapacitacionDetResponse is null
+                        || !idCapacitacionDetResponse.Success
+                        || idCapacitacionDetResponse.Data == 0)
+                {
+                    throw new Exception();
+                }
+            }
+
+            if (resupuestaCapacitacion)
+            {
+                var idActualizarCapacitacionResultado = await _capacitacionResultadoComandoProxy
+               .ActualizarCapacitacionResultado(new()
+               {
+                   id_capacitacion_resultado = capacitacionResultado.id_capacitacion_resultado,
+                   fecha_inicio = capacitacionResultado.fecha_inicio,
+                   fecha_fin = fechaHoraOperacion,
+                   concluido = true,
+                   calificacion = capacitacionResultado.calificacion,
+
+                   usuario_modificacion = _appAuditoria.Usuario,
+                   fecha_modificacion = fechaHoraOperacion
+               });
+
+                if (idActualizarCapacitacionResultado is null
+                    || !idActualizarCapacitacionResultado.Success
+                    || idActualizarCapacitacionResultado.Data == 0)
+                {
+                    throw new Exception();
+                }
+            }
+
+            var capacitacionesResponse = await _capacitacionConsultaProxy
             .ListarCapacitaciones(new()
             {
                 id_capacitacion_resultado = request.id_capacitacion_resultado
             });
 
-        if (capacitacionesResponse is null
-           || !capacitacionesResponse.Success)
-        {
-            throw new Exception();
-        }
+            if (capacitacionesResponse is null
+               || !capacitacionesResponse.Success)
+            {
+                throw new Exception();
+            }
 
-        var nroCapacitacionesErradas = capacitacionesResponse.Data
-            .Where(w => w.fecha >= fechaHoraOperacion.AddHours(-1)
-                && w.test_aprobado == false)
-            .Count();
+            var nroCapacitacionesErradas = capacitacionesResponse.Data
+                .Where(w => w.fecha >= fechaHoraOperacion.AddHours(-1)
+                    && w.test_aprobado == false)
+                .Count();
 
-        if (!resupuestaCapacitacion)
-        {
-            response.Success = true;
-            response.Data = nroCapacitacionesErradas;
-            return Ok(response);
+            if (!resupuestaCapacitacion)
+            {
+                response.Success = true;
+                response.Data = nroCapacitacionesErradas;
+                return Ok(response);
+            }
         }
 
         response.Success = true;

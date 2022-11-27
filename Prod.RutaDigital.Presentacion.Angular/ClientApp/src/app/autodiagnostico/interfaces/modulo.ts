@@ -16,4 +16,6 @@ export interface Modulo {
   niveles?: NivelMadurez[];
 
   capacitaciones?: CapacitacionResultadoRequest[];
+
+  completado?: boolean;
 }

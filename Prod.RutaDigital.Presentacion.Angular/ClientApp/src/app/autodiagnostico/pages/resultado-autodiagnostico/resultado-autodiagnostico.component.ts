@@ -25,7 +25,11 @@ export class ResultadoAutodiagnosticoComponent implements OnInit {
       });
   }
 
-  mostrarTituloPorGenero(codGenero: string) {
+  mostrarTituloPorGenero(codGenero?: string) {
+    if (!codGenero) {
+      return 'El/a Emprendedor/a';
+    }
+
     var articulo = CodGenero.MASCULINO.toString() == codGenero ? 'El' : 'La';
     var sustantivo =
       CodGenero.MASCULINO.toString() == codGenero

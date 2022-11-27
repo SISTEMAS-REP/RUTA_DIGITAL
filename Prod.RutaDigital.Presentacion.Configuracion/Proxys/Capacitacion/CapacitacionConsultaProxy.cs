@@ -1,5 +1,5 @@
 ﻿using Release.Helper;
-using Release.Helper.ProxyV2;
+using Release.Helper.Proxy;
 
 using Prod.RutaDigital.Entidades;
 
@@ -9,9 +9,7 @@ public class CapacitacionConsultaProxy : BaseProxy
 {
     private readonly string _url;
 
-    public CapacitacionConsultaProxy(AppConfig appConfig,
-        IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public CapacitacionConsultaProxy(AppConfig appConfig)
     {
         _url = string.Format("{0}CapacitacionConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
     }
@@ -19,7 +17,7 @@ public class CapacitacionConsultaProxy : BaseProxy
     public async Task<StatusResponse<IEnumerable<CapacitacionResponse>>>
         ListarCapacitaciones(CapacitacionRequest request)
     {
-        return await CallWebApiAsync<StatusResponse<IEnumerable<CapacitacionResponse>>>(
+        return await InvokeWebApiAsync<StatusResponse<IEnumerable<CapacitacionResponse>>>(
             HttpMethod.Get,
             _url + "ListarCapacitaciones",
             GetJsonParameters(request));

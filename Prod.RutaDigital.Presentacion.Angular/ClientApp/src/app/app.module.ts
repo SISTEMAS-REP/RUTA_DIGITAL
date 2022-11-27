@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import LocalES from '@angular/common/locales/es';
 import { AuthorizationModule } from './authorization/authorization.module';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 import { FormsModule } from '@angular/forms';
 registerLocaleData(LocalES, 'es');
 
@@ -33,6 +34,27 @@ registerLocaleData(LocalES, 'es');
     AppRoutingModule,
     ToastrModule.forRoot({
       preventDuplicates: false,
+    }),
+    NgCircleProgressModule.forRoot({
+      showSubtitle: false,
+      clockwise: true,
+
+      radius: 60,
+
+      outerStrokeWidth: 20,
+      space: -20,
+      innerStrokeWidth: 20,
+      outerStrokeLinecap: 'inherit',
+
+      titleFontSize: '60',
+      unitsFontSize: '60',
+      titleFontWeight: '550',
+      unitsFontWeight: '550',
+
+      outerStrokeColor: '#0072bc',
+      innerStrokeColor: '#ebebeb',
+
+      animationDuration: 1000,
     }),
     AuthorizationModule,
     SharedModule,

@@ -11,6 +11,7 @@ import { TestAutodiagnosticoPreguntasComponent } from './pages/test-autodiagnost
 import { TestAutodiagnosticoModuloComponent } from './pages/test-autodiagnostico/components/test-autodiagnostico-modulo/test-autodiagnostico-modulo.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,8 @@ import { SharedModule } from '../shared/shared.module';
     AutodiagnosticoRoutingModule,
     CdkStepperModule,
     NgStepperModule,
+
+    NgCircleProgressModule,
 
     SharedModule
   ],

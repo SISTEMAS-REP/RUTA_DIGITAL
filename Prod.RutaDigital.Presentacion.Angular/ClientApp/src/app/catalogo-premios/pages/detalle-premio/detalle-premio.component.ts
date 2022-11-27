@@ -127,6 +127,7 @@ export class DetallePremioComponent implements OnInit {
       id_premio: this.premio.id_premio,
       id_usuario_extranet: this.id_usuario_extranet,
       cantidad: this.premio.puntos_produce,
+      nombre_premio :this.premio.nombre,
       descripcion_premio: this.premio.descripcion_corta
     };
     this.repository.CanjePremio(request).subscribe({

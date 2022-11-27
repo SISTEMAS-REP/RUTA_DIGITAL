@@ -31,7 +31,7 @@ export class TestAutodiagnosticoComponent implements OnInit {
     this.listarTestAutodiagnostico();
   }
 
-  validarModulo(idModulo: number) {
+  validarModulo(idModulo: number, index) {
     const modulo = this.test.modulos.find((x) => x.id_modulo == idModulo);
 
     var request: RespuestaRequest = {
@@ -55,40 +55,34 @@ export class TestAutodiagnosticoComponent implements OnInit {
       });
   }
 
-  /*onStepperPrevious($event: Modulo) {
-    var request: RespuestaRequest = {
-      id_evaluacion: this.test?.evaluacion.id_evaluacion,
-      id_modulo: $event.id_modulo
-    }
+  /* validarCompletado(index: number): boolean {
+    return this.test.modulos[index]?.completado ?? false;
+  } */
 
-    return this.repository
-      .validarModulo(request)
-      .subscribe((data: boolean) => {
-        if (data) {
-          this.stepper.previous();
-        }
-        return data;
-      });
-  }*/
-
-  onStepperNext($event: Modulo) {
+  onStepperNext($event: Modulo, index: number, last: boolean) {
+    console.log('$event', $event);
     var request: ModuloRequest = {
       id_modulo: $event.id_modulo,
     };
 
     return this.repository.validarModulo(request).subscribe((data: boolean) => {
-      console.log('onStepperNext', data)
+      this.stepper.steps.get(index).completed = data ?? false;
+
       if (data) {
         this.stepper.next();
+        if (last) {
+          this.onStepperFinish();
+        }
       }
-      return data;
     });
   }
 
   onStepperFinish() {
     return this.repository.procesarEvaluacion().subscribe((data: boolean) => {
       if (data) {
-        this.toastService.success('Test de autodiagnóstico finalizado correctamente');
+        this.toastService.success(
+          'Test de autodiagnóstico finalizado correctamente'
+        );
         this.router.navigate(['/autodiagnostico/resultado']);
       }
       return data;

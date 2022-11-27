@@ -1,15 +1,15 @@
-<div class="new-niveles pb-3 mb-4" *ngIf="seleccionado; else noSeleccionado">
+<div class="new-niveles pb-4 mb-4" *ngIf="seleccionado; else noSeleccionado">
   <div class="etiqueta_coronap">
     <img class="" src="assets/images/icon_coronap.png" alt="" />
   </div>
-  <h6 class="text-white pt-0">
+  <h6 class="text-white pt-0"  style="font-weight: 500; font-size: 25px;">
     <strong>{{ nivel | titlecase }}</strong>
   </h6>
 </div>
 <ng-template #noSeleccionado>
-  <div class="new-niveles-on pb-3 mb-4">
+  <div class="new-niveles-on pb-4 mb-4">
     <div class="etiqueta_coronap pt-4"></div>
-    <h6 class="text-white pt-0">
+    <h6 class="text-white pt-0" style="font-weight: 500; font-size: 25px;">
       <strong>{{ nivel | titlecase }}</strong>
     </h6>
   </div>

@@ -54,13 +54,13 @@ public partial class UnitOfWork : IUnitOfWork
 
     public async Task<int>
         ActualizarCapacitacionResultado(CapacitacionResultadoRequest request)
-    {
+    {   
         var parms = new Parameter[]
         {
              new Parameter("@id_capacitacion_resultado", request.id_capacitacion_resultado),
              //new Parameter("@id_resultado", request.id_resultado),
              //new Parameter("@id_recomendacion", request.id_recomendacion),
-             //new Parameter("@fecha_inicio", request.fecha_inicio),
+             new Parameter("@fecha_inicio", request.fecha_inicio),
              new Parameter("@fecha_fin", request.fecha_fin),
              new Parameter("@progreso", request.progreso),
              new Parameter("@concluido", request.concluido),

@@ -9,7 +9,7 @@ import { Modulo } from 'src/app/autodiagnostico/interfaces/modulo';
 export class TestAutodiagnosticoModuloComponent implements OnInit {
   //@Output() onStepperPrevious: EventEmitter<any> = new EventEmitter();
   @Output() onStepperNext: EventEmitter<any> = new EventEmitter();
-  @Output() onStepperFinish: EventEmitter<any> = new EventEmitter();
+  //@Output() onStepperFinish: EventEmitter<any> = new EventEmitter();
 
   @Input() modulo: Modulo;
 
@@ -28,7 +28,7 @@ export class TestAutodiagnosticoModuloComponent implements OnInit {
     this.onStepperNext.emit(this.modulo);
   }
 
-  onFinish() {
+  /*onFinish() {
     this.onStepperFinish.emit();
-  }
+  }*/
 }

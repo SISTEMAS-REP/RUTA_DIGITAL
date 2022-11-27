@@ -918,8 +918,13 @@ public class AutodiagnosticoController : ControllerBase
                         var capacitacionResultadoRequest = new CapacitacionResultadoRequest()
                         {
                             id_resultado = idResultado,
+                            id_modulo = resultadoModulo.id_modulo,
                             id_recomendacion = recomendacion.id_recomendacion,
+                            //fecha_inicio = null,
+                            //fecha_fin = null,
                             progreso = 0,
+                            concluido = false,
+                            calificacion = 0,
 
                             usuario_registro = _appAuditoria.Usuario,
                             fecha_registro = fechaHoraOperacion,

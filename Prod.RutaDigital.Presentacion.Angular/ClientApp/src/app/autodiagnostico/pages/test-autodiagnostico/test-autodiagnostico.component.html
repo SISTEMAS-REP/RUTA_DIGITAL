@@ -1,12 +1,22 @@
 <section class="meetings-page">
   <div class="container">
-    <div class="row">
+    <div class="row pt-4">
+      <div class="section-heading" align="left">
+        <h2 style="margin-bottom: 0; padding-bottom: 10px">
+          Test de Autodiagnóstico
+        </h2>
+      </div>
+    </div>
+    <div class="row pt-4">
       <ng-stepper #stepper [linear]="true">
+        <!-- [completed]="validarCompletado(index)" -->
         <cdk-step
+          [completed]="modulo.completado"
           *ngFor="
             let modulo of test?.modulos;
             let first = first;
-            let last = last
+            let last = last;
+            let index = index
           "
         >
           <ng-template cdkStepLabel>
@@ -18,7 +28,7 @@
             [first]="first"
             [last]="last"
             [modulo]="modulo"
-            (onStepperNext)="onStepperNext($event)"
+            (onStepperNext)="onStepperNext($event, index, last)"
             (onStepperFinish)="onStepperFinish()"
           ></app-test-autodiagnostico-modulo>
         </cdk-step>
