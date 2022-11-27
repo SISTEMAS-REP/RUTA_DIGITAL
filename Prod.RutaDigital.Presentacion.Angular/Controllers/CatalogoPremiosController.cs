@@ -22,15 +22,15 @@ public class CatalogoPremiosController : ControllerBase
     private readonly NivelMadurezConsultaProxy _nivelMadurezConsultaProxy;
     private readonly AppVariables _appVariables;
     private readonly AppAuditoria _appAuditoria;
-    //private readonly IEmailSender _emailSender;
+    private readonly IEmailSender _emailSender;
     public CatalogoPremiosController(PublicidadPremioConsultaProxy publicidadPremioConsultaProxy,
         PremioConsultaProxy premioConsultaProxy,
         PremioComandoProxy premioComandoProxy,
         TipoPremioConsultaProxy tipoPremioConsultaProxy,
         NivelMadurezConsultaProxy nivelMadurezConsultaProxy,
         AppVariables appVariables,
-        AppAuditoria appAuditoria)
-        //IEmailSender emailSender)
+        AppAuditoria appAuditoria,
+        IEmailSender emailSender)
     {
         _publicidadPremioConsultaProxy = publicidadPremioConsultaProxy;
         _premioConsultaProxy = premioConsultaProxy;
@@ -39,7 +39,7 @@ public class CatalogoPremiosController : ControllerBase
         _nivelMadurezConsultaProxy = nivelMadurezConsultaProxy;
         _appVariables = appVariables;
         _appAuditoria = appAuditoria;
-        //_emailSender = emailSender;
+        _emailSender = emailSender;
     }
 
     [HttpGet("ListarPublicidadPremio")]
@@ -194,7 +194,7 @@ public class CatalogoPremiosController : ControllerBase
     public async Task<IActionResult>
         CanjePremio([FromQuery] PremioCanjeRequest requests)
     {
-        requests.usuario_registro = "usuario_prueba"; //_appAuditoria.Usuario;
+        requests.usuario_registro = _appAuditoria.Usuario;
         var result = await _premioComandoProxy
             .CanjePremio(requests);
 
@@ -205,14 +205,14 @@ public class CatalogoPremiosController : ControllerBase
                 cantidad = requests.cantidad
             };
 
-            //await _emailSender.SendAsync(templateName: "CanjePremio",
-            //   request: new()
-            //   {
-            //       to = result.Data.email,
-            //       isBodyHtml = true,
-            //       subject = $"prueba"
-            //   },
-            //   data: data);
+            await _emailSender.SendAsync(templateName: "CanjePremio",
+               request: new()
+               {
+                   to = result.Data.email,
+                   isBodyHtml = true,
+                   subject = $"prueba"
+               },
+               data: data);
         }
 
         return Ok(result);
