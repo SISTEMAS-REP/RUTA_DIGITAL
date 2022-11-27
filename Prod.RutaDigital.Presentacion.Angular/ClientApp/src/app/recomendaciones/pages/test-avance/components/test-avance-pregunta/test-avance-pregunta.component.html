@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-12">
+    <div class="pb-5" style="z-index: 5">
+      <div style="
+          background-color: #1d71b8;
+          height: 2px;
+          width: 100%;
+          position: relative;
+          top: 20px;
+        "></div>
+      <a class="btn btn-azulredondo rounded-circle" role="button" aria-disabled="true">{{ pregunta.orden }}</a>
+      <div class="btn-bordeazul rounded-circle position-relative float-end"></div>
+    </div>
+  </div>
+  <p class="fs-3 pb-5">{{ pregunta.descripcion }}</p>
+</div>
+<div class="row mb-5">
+  <div class="col-12" align="center">
+    <ng-container *ngFor="let alternativa of pregunta.alternativas; let i = index">
+      <input type="checkbox" class="btn-check" [id]="'alternativa-' + alternativa.id_alternativa"
+        [name]="'alternativa-' + alternativa.id_alternativa" [checked]="alternativa.respuesta" (change)="toogle(alternativa)" />
+      <label class="btn btn-blanco" [for]="'alternativa-' + alternativa.id_alternativa">{{ alternativa.descripcion
+        }}</label>
+    </ng-container>
+  </div>
+</div>

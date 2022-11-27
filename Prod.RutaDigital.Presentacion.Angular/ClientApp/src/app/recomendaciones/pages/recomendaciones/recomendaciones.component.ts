@@ -18,7 +18,6 @@ export class RecomendacionesComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.params.subscribe((params) => {
-      console.log('params', params);
       this.idModulo = params['idModulo'];
     });
   }

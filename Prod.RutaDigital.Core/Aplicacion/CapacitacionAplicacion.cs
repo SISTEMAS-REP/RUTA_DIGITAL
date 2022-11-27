@@ -15,6 +15,30 @@ public class CapacitacionAplicacion : ICapacitacionAplicacion
         _uow = uow;
     }
 
+    public async Task<StatusResponse<IEnumerable<CapacitacionResponse>>>
+        ListarCapacitaciones(CapacitacionRequest request)
+    {
+        var resultado = new StatusResponse<IEnumerable<CapacitacionResponse>>();
+        try
+        {
+            var data = await _uow
+                .ListarCapacitaciones(request);
+
+            resultado.Success = true;
+            resultado.Data = data;
+        }
+        catch (Exception ex)
+        {
+            resultado.Success = true;
+            resultado.Messages = new()
+            {
+                ex.Message
+            };
+        }
+
+        return resultado;
+    }
+
     public async Task<StatusResponse<int>>
         InsertarCapacitacion(CapacitacionRequest request)
     {

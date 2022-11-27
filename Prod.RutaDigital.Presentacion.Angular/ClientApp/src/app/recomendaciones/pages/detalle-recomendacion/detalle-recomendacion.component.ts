@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RecomendacionesRepository } from '../../repositories/recomendaciones.repository';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CapacitacionResultadoRequest } from '../../interfaces/request/capacitacion-resultado.request';
 import { Recomendacion } from '../../interfaces/recomendacion';
-import { Modulo } from 'src/app/autodiagnostico/interfaces/modulo';
+
 
 @Component({
   selector: 'app-detalle-recomendacion',
@@ -12,11 +13,13 @@ import { Modulo } from 'src/app/autodiagnostico/interfaces/modulo';
 })
 export class DetalleRecomendacionComponent implements OnInit {
   idCapacitacionResultado: number;
-
-  recomendacion: Recomendacion;
-
+  recomendacion?: Recomendacion;
+  sanitizedURL: DomSanitizer;
+  
   constructor(
+    private router: Router,
     private repository: RecomendacionesRepository,
+    private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.params.subscribe((params) => {
@@ -29,16 +32,27 @@ export class DetalleRecomendacionComponent implements OnInit {
     this.listarRecomendacion();
   }
 
-  listarRecomendacion = () => {
+  link(item: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(item);
+  }
+
+  verTest() {
+    this.router.navigate([
+      `/recomendaciones/${this.recomendacion.id_recomendacion}/test`,
+    ]);
+  };
+
+  listarRecomendacion() {
     var request: CapacitacionResultadoRequest = {
       id_capacitacion_resultado: this.idCapacitacionResultado,
     };
 
     this.repository.listarRecomendacion(request).subscribe({
       next: (data: Recomendacion) => {
+        //console.log(data);
         this.recomendacion = data;
       },
-      error: (err) => {},
+      error: (err) => { },
     });
   };
 }

@@ -2703,14 +2703,41 @@ color: #272424;
 }
 .video-recomendacion{
   width: 300px;
-    height: 440px;
+  height: 440px;
   border-radius: 35px;
+  align-content: center;
 }
-.button-container a:hover{
-  background-color:red;
-  cursor:pointer;
-  color:white;
+.button-container-video{
+  width: 300px;
+  height: 440px;
+  border-radius: 35px;
+  display:inline-block;
+  position:relative;
+  
   }
+  
+  .ico-facebook{
+    height: 50px;
+    width: 50px;
+  position: absolute;
+  bottom:0.3em;
+  right:0.4em;
+  
+  }
+.ico-instagram a:hover{
+  cursor:pointer;
+  }
+  .ico-instagram{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom:0.3em;
+    right:3.5em;
+    
+    }
+  .ico-facebook a:hover{
+    cursor:pointer;
+    }
 .corona-progress-bar{
   border-width:4px;
   border-color: #fff;

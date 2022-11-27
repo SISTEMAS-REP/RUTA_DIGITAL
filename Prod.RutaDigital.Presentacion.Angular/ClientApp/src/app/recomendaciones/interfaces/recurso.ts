@@ -8,5 +8,7 @@ export interface Recurso {
   enlace_ruta: string;
   hashtag: string;
 
+  red_social: string;
+
   detalle: RecursoDet[]
 }

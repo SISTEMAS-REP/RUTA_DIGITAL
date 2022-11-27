@@ -5,7 +5,7 @@ export interface Recomendacion {
   id_recomendacion: number;
   id_modulo: number;
   id_nivel_madurez: number;
-  orden: number;
+  orden?: number;
   codigo: string;
   descripcion: string;
   puntos_produce: number;

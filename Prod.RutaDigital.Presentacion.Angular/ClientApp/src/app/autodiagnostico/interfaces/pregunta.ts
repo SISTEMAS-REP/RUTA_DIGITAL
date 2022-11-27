@@ -1,5 +1,6 @@
 import { Respuesta } from './respuesta';
 import { TipoRespuesta } from '../../shared/enums/tipo-respuesta.enum';
+import { Alternativa } from './alternativa';
 
 export interface Pregunta {
   id_pregunta?: number;
@@ -12,4 +13,6 @@ export interface Pregunta {
   descripcion?: string;
 
   respuestas?: Respuesta[];
+
+  alternativas?: Alternativa[];
 }

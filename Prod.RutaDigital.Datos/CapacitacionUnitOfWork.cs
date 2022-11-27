@@ -8,6 +8,22 @@ namespace Prod.RutaDigital.Datos;
 
 public partial class UnitOfWork : IUnitOfWork
 {
+    public async Task<IEnumerable<CapacitacionResponse>>
+        ListarCapacitaciones(CapacitacionRequest request)
+    {
+        var parms = new Parameter[]
+        {
+             new Parameter("@id_capacitacion", request.id_capacitacion),
+             new Parameter("@id_capacitacion_resultado", request.id_capacitacion_resultado),
+        };
+
+        var result = ExecuteReader<CapacitacionResponse>(
+            "USP_DAT_CAPACITACION_LISTAR",
+            CommandType.StoredProcedure, ref parms);
+
+        return await Task.FromResult(result);
+    }
+
     public async Task<int>
         InsertarCapacitacion(CapacitacionRequest request)
     {

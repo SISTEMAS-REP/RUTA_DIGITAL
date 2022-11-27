@@ -6,6 +6,7 @@ using Prod.RutaDigital.Enumerados;
 using Prod.RutaDigital.Presentacion.Configuracion;
 using Prod.RutaDigital.Presentacion.Configuracion.Proxys;
 using Release.Helper;
+using System.Linq;
 
 namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
 
@@ -27,6 +28,7 @@ public class CapacitacionController : Controller
     private readonly AppAuditoria _appAuditoria;
     private readonly CapacitacionComandoProxy _capacitacionComandoProxy;
     private readonly CapacitacionDetComandoProxy _capacitacionDetComandoProxy;
+    private readonly CapacitacionConsultaProxy _capacitacionConsultaProxy;
 
     public CapacitacionController(CapacitacionResultadoConsultaProxy capacitacionResultadoConsultaProxy,
         CurrentUserService currentUserService,
@@ -40,7 +42,8 @@ public class CapacitacionController : Controller
         ResultadoConsultaProxy resultadoConsultaProxy,
         AppAuditoria appAuditoria,
         CapacitacionComandoProxy capacitacionComandoProxy,
-        CapacitacionDetComandoProxy capacitacionDetComandoProxy)
+        CapacitacionDetComandoProxy capacitacionDetComandoProxy,
+        CapacitacionConsultaProxy capacitacionConsultaProxy)
     {
         _capacitacionResultadoConsultaProxy = capacitacionResultadoConsultaProxy;
         _currentUserService = currentUserService;
@@ -55,6 +58,7 @@ public class CapacitacionController : Controller
         _appAuditoria = appAuditoria;
         _capacitacionComandoProxy = capacitacionComandoProxy;
         _capacitacionDetComandoProxy = capacitacionDetComandoProxy;
+        _capacitacionConsultaProxy = capacitacionConsultaProxy;
     }
 
     [HttpGet("ListarCapacitaciones")]
@@ -376,11 +380,72 @@ public class CapacitacionController : Controller
         return Ok(response);
     }
 
+    [HttpPost("ValidarCapacitacionResultado")]
+    public async Task<IActionResult>
+        ValidarCapacitacionResultado([FromBody] CapacitacionResultadoRequest request)
+    {
+        var response = new StatusResponse<bool>();
+        var idUsuarioExtranet = int
+            .Parse(_currentUserService.User.IdUsuarioExtranet);
+
+        var capacitacionResultadoResponse = await _capacitacionResultadoConsultaProxy
+            .ListarCapacitacionesResultado(new()
+            {
+                id_capacitacion_resultado = request.id_capacitacion_resultado,
+                id_usuario_extranet = idUsuarioExtranet
+            });
+
+        if (capacitacionResultadoResponse is null
+           || !capacitacionResultadoResponse.Success
+           || capacitacionResultadoResponse.Data.Count() == 0)
+        {
+            throw new Exception();
+        }
+
+        var capacitacionResultado = capacitacionResultadoResponse.Data
+            .First();
+
+        response.Success = true;
+        response.Data = capacitacionResultado.concluido;
+        return Ok(response);
+    }
+
+    [HttpPost("ValidarCapacitacionesErradas")]
+    public async Task<IActionResult>
+        ValidarCapacitacionesErradas([FromBody] CapacitacionRequest request)
+    {
+        var response = new StatusResponse<int>();
+        var fechaHoraOperacion = DateTime.Now;
+        var idUsuarioExtranet = int
+            .Parse(_currentUserService.User.IdUsuarioExtranet);
+
+        var capacitacionesResponse = await _capacitacionConsultaProxy
+            .ListarCapacitaciones(new()
+            {
+                id_capacitacion_resultado = request.id_capacitacion_resultado
+            });
+
+        if (capacitacionesResponse is null
+           || !capacitacionesResponse.Success)
+        {
+            throw new Exception();
+        }
+
+        var nroCapacitacionesErradas = capacitacionesResponse.Data
+            .Where(w => w.fecha >= fechaHoraOperacion.AddHours(-1)
+                && w.test_aprobado == false)
+            .Count();
+
+        response.Success = true;
+        response.Data = nroCapacitacionesErradas;
+        return Ok(response);
+    }
+
     [HttpPost("ProcesarAvance")]
     public async Task<IActionResult>
         ProcesarAvance([FromBody] TestAvanceRequest request)
     {
-        var response = new StatusResponse<bool>();
+        var response = new StatusResponse<int>();
         var fechaHoraOperacion = DateTime.Now;
         var idUsuarioExtranet = int
             .Parse(_currentUserService.User.IdUsuarioExtranet);
@@ -402,10 +467,18 @@ public class CapacitacionController : Controller
         var capacitacionResultado = capacitacionResultadoResponse.Data
             .First();
 
+        var nroPreguntasCorrectas = request.respuestas
+            .Where(w => w.respuesta == true)
+            .GroupBy(g1 => g1.id_pregunta)
+            //.Select(s1 => s1.Key)
+            .Count();
+
+        var resupuestaCapacitacion = nroPreguntasCorrectas >= 2;
+
         var capacitacionRequest = new CapacitacionRequest() {
             id_capacitacion_resultado = capacitacionResultado.id_capacitacion_resultado,
             fecha = fechaHoraOperacion,
-            test_aprobado = true,
+            test_aprobado = resupuestaCapacitacion,
 
             usuario_registro = _appAuditoria.Usuario,
             fecha_registro = fechaHoraOperacion,
@@ -439,8 +512,32 @@ public class CapacitacionController : Controller
             }
         }
 
+        var capacitacionesResponse = await _capacitacionConsultaProxy
+            .ListarCapacitaciones(new()
+            {
+                id_capacitacion_resultado = request.id_capacitacion_resultado
+            });
+
+        if (capacitacionesResponse is null
+           || !capacitacionesResponse.Success)
+        {
+            throw new Exception();
+        }
+
+        var nroCapacitacionesErradas = capacitacionesResponse.Data
+            .Where(w => w.fecha >= fechaHoraOperacion.AddHours(-1)
+                && w.test_aprobado == false)
+            .Count();
+
+        if (!resupuestaCapacitacion)
+        {
+            response.Success = true;
+            response.Data = nroCapacitacionesErradas;
+            return Ok(response);
+        }
+
         response.Success = true;
-        response.Data = true;
+        response.Data = 0;
         return Ok(response);
     }
 }
