@@ -142,7 +142,7 @@
             </div>
 
             <div class="col-lg-12">
-                <div class="row">
+                <div class="row" *ngFor="let puntos of calculoPuntos; let i = index">
                     <div class="col-lg-2" align="center"></div>
                     <div class="col-lg-3" align="center">
                         <p class="pb-4"><img src="assets/images/icon_fuego.png"></p>
@@ -152,8 +152,8 @@
 
                     <div  class="col-lg-3" align="center">
                         <p class="pb-4"><img src="assets/images/icon_rayo.png"></p>
-                        <h2 class="num-estadisticas">1230</h2>
-                        <p class="texto-estadisticas">Puntos produce acumulados</p>
+                        <h2 class="num-estadisticas">{{ puntos.puntos_disponibles }}</h2>
+                        <p class="texto-estadisticas">Puntos produce disponibles</p>
                     </div>
 
                     <div class="col-lg-3" align="center">
@@ -238,8 +238,7 @@
             </div>
 
             <div class="col-lg-8 mb-5 p-4 box-avance mt-5">
-
-                <div class="col-lg-12 mb-5" [ngSwitch]="view">
+                <div class="col-lg-12 mb-4" [ngSwitch]="view">
                         <mwl-calendar-month-view
                           *ngSwitchCase="'month'"
                           [viewDate]="viewDate"

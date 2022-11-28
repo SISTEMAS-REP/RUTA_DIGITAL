@@ -2807,6 +2807,8 @@ padding:1em 1.5em;
 
 }
 
+
+/*Calendario*/
 .cal-month-view .cal-header {
   text-align: center;
   font-weight: bolder;
@@ -2854,7 +2856,7 @@ padding:1em 1.5em;
   pointer-events: all !important;
 }
 .cal-month-view .cal-day-cell {
-  min-height: 100px;
+  height: 48px;
 }
 .cal-month-view .cal-day-cell:not(:last-child) {
   border-right: 1px solid;
@@ -2920,7 +2922,7 @@ padding:1em 1.5em;
   cursor: default;
 }
 .cal-month-view .cal-day-cell.cal-today .cal-day-number {
-  font-size: 1.9em;
+  font-size: 1.2em;
 }
 .cal-month-view .cal-open-day-events {
   padding: 15px;
