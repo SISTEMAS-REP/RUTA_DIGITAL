@@ -11,5 +11,6 @@ namespace Prod.RutaDigital.Entidades
         public int puntos_canjeados { get; set; }
         public int puntos_obtenidos { get; set; }
         public int puntos_disponibles {get; set; }
+        public int premios_canjeados { get; set; }
     }
 }
