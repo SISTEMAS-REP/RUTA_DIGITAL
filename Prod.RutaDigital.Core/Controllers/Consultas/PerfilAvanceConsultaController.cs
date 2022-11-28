@@ -32,4 +32,30 @@ public class PerfilAvanceConsultaController : ControllerBase
         return await _perfilAvanceAplicacion
             .ListarPremioConsumoUsuario(request);
     }
+
+    [HttpGet]
+    [Route("ListarResultadosPerfilAvance")]
+    public async Task<StatusResponse<IEnumerable<ResultadoResponse>>>
+      ListarResultadosPerfilAvance(ResultadoRequest request)
+    {
+        return await _perfilAvanceAplicacion
+            .ListarResultadosPerfilAvance(request);
+    }
+
+    [HttpGet]
+    [Route("ListarResultadoModulosPerfilAvance")]
+    public async Task<StatusResponse<IEnumerable<ResultadoModuloResponse>>>
+       ListarResultadoModulosPerfilAvance(ResultadoModuloRequest request)
+    {
+        return await _perfilAvanceAplicacion
+            .ListarResultadoModulosPerfilAvance(request);
+    }
+    [HttpGet]
+    [Route("ListarNivelesMadurezPerfilAvance")]
+    public async Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
+       ListarNivelesMadurezPerfilAvance()
+    {
+        return await _perfilAvanceAplicacion
+            .ListarNivelesMadurezPerfilAvance();
+    }
 }

@@ -58,5 +58,76 @@ namespace Prod.RutaDigital.Core.Aplicacion
 
             return resultado;
         }
+
+        public async Task<StatusResponse<IEnumerable<ResultadoResponse>>>
+         ListarResultadosPerfilAvance(ResultadoRequest request)
+        {
+            var resultado = new StatusResponse<IEnumerable<ResultadoResponse>>();
+
+            try
+            {
+                var data = await _uow
+                    .ListarResultadosPerfilAvance(request);
+
+                resultado.Success = true;
+                resultado.Data = data;
+            }
+            catch (Exception ex)
+            {
+                resultado.Success = true;
+                resultado.Messages = new()
+            {
+                ex.Message
+            };
+            }
+
+            return resultado;
+        }
+        public async Task<StatusResponse<IEnumerable<ResultadoModuloResponse>>>
+        ListarResultadoModulosPerfilAvance(ResultadoModuloRequest request)
+        {
+            var resultado = new StatusResponse<IEnumerable<ResultadoModuloResponse>>();
+            try
+            {
+                var data = await _uow
+                    .ListarResultadoModulosPerfilAvance(request);
+
+                resultado.Success = true;
+                resultado.Data = data;
+            }
+            catch (Exception ex)
+            {
+                resultado.Success = true;
+                resultado.Messages = new()
+            {
+                ex.Message
+            };
+            }
+
+            return resultado;
+        }
+        public async Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
+       ListarNivelesMadurezPerfilAvance()
+        {
+            var resultado = new StatusResponse<IEnumerable<NivelMadurezResponse>>();
+            try
+            {
+                var data = await _uow
+                    .ListarNivelesMadurezPerfilAvance();
+
+                resultado.Success = true;
+                resultado.Data = data;
+            }
+            catch (Exception ex)
+            {
+                resultado.Success = true;
+                resultado.Messages = new()
+            {
+                ex.Message
+            };
+            }
+
+            return resultado;
+        }
     }
 }

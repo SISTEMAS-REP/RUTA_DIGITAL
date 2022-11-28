@@ -133,7 +133,6 @@ export class DetallePremioComponent implements OnInit {
     this.repository.CanjePremio(request).subscribe({
       next: (data: any) => {
        if(data.flag){
-        debugger;
         this.toastService.success("Se canjeó el premio", "Exito");
         this.Router.navigate(['/catalogo-premios']);
        }

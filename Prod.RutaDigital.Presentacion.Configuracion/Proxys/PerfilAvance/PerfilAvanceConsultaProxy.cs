@@ -25,6 +25,30 @@ namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys.PerfilAvance
                 HttpMethod.Get,
                 _url + "ListarPremioConsumoUsuario", GetJsonParameters(request));
         }
+        public async Task<StatusResponse<IEnumerable<ResultadoResponse>>>
+       ListarResultadosPerfilAvance(ResultadoRequest request)
+        {
+            return await InvokeWebApiAsync<StatusResponse<IEnumerable<ResultadoResponse>>>(
+                HttpMethod.Get,
+                _url + "ListarResultadosPerfilAvance",
+                GetJsonParameters(request));
+        }
 
+        public async Task<StatusResponse<IEnumerable<ResultadoModuloResponse>>>
+        ListarResultadoModulosPerfilAvance(ResultadoModuloRequest request)
+        {
+            return await InvokeWebApiAsync<StatusResponse<IEnumerable<ResultadoModuloResponse>>>(
+                HttpMethod.Get,
+                _url + "ListarResultadoModulosPerfilAvance",
+                GetJsonParameters(request));
+        }
+
+        public async Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
+        ListarNivelesMadurezPerfilAvance()
+        {
+            return await InvokeWebApiAsync<StatusResponse<IEnumerable<NivelMadurezResponse>>>(
+                HttpMethod.Get,
+                _url + "ListarNivelesMadurezPerfilAvance", null);
+        }
     }
 }
