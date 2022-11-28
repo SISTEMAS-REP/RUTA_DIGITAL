@@ -14,5 +14,6 @@ namespace Prod.RutaDigital.Entidades
         public string? foto { get; set; }
         public Int16? puntos_consumo { get; set; }
         public DateTime? fecha_consumo { get; set; }
+        public byte[]? numArray { get; set; }
     }
 }
