@@ -11,6 +11,8 @@ import { ResultadoAutodiagnostico } from '../autodiagnostico/interfaces/resultad
 import { CalendarEvent,CalendarDateFormatter,CalendarView} from 'angular-calendar';
 import { PerfilAvanceRepository } from './perfil-avance.repository';
 import { CalculoPuntosResponse } from './interfaces/calculo-puntos.response';
+import { PremioConsumoResponse } from './interfaces/premio-consumo.response';
+
 
 
 @Component({
@@ -52,6 +54,7 @@ export class PerfilAvanceComponent implements OnInit {
 
   nuevosPremios: PremioResponse[];
   calculoPuntos: CalculoPuntosResponse[];
+  premiosConsumo: PremioConsumoResponse[];
   ListarNivelAutodiagnostico: Array<any>;
   ListarCapacitando: Array<any>;
   ListarNivel: Array<any>;
@@ -187,12 +190,19 @@ export class PerfilAvanceComponent implements OnInit {
   };
 
   ListarPremioConsumoUsuario = () => {
+    debugger;
     var request: any = {
       id_usuario_extranet: this.usuario.id_usuario_extranet
     };
     this.repositoryPerfilAvance.ListarPremioConsumoUsuario(request).subscribe({
       next: (data: any[]) => {
-        debugger
+        debugger;
+        this.premiosConsumo = data.map((premio) => {
+          const objectURL = 'data:image/png;base64,' + premio.numArray;
+          premio.imagenPremio =
+            this.sanitizer.bypassSecurityTrustUrl(objectURL);
+          return premio;
+        });
       },
       error: (err) => {},
     });

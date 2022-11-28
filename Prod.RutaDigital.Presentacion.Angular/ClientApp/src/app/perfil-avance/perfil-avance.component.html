@@ -293,53 +293,29 @@
                 <div class="col-lg-12">
                     <div class="row">
 
-                        <div class="col-lg-6 pb-3">
+                        <div class="col-lg-6 pb-3"  *ngFor="let consumo of premiosConsumo; let i = index">
                             <div class="box_capacitacion p-0">
                                 <div class="col-lg-12 d-flex">
                                     <div class="col-lg-4">
-                                        <img class="img-fluid" src="assets/images/img_canje1.png">
+                                        <img class="img-fluid" [src]="consumo.imagenPremio" />
+                                        <!--<img class="img-fluid" src="assets/images/img_canje1.png">-->
                                     </div>
                                     <div class="col-lg-8 px-2">
-                                        <p class="titucred pt-3">CyberWOW</p>
-                                        <p class="textopeq">1 cupo por edición</p>
+                                        <p class="titucred pt-3">{{ consumo.nombre_premio }}</p>
+                                        <p class="textopeq">{{ consumo.descripcion }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 d-flex bg-azul rounded-bottom2 text-white py-1"
                                     style="font-size: .8rem">
                                     <div class="col-lg-6 px-2">
-                                        El 04/09/2022
+                                        El {{ consumo.fecha_consumo | date:'dd/MM/yyyy'}}
                                     </div>
                                     <div class="col-lg-6 pe-2" align="right">
-                                        Has gastado: 500 puntos
+                                        Has gastado: {{ consumo.puntos_consumo }} puntos
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-6">
-                            <div class="box_capacitacion p-0">
-                                <div class="col-lg-12 d-flex">
-                                    <div class="col-lg-4">
-                                        <img class="img-fluid" src="assets/images/img_canje2.png">
-                                    </div>
-                                    <div class="col-lg-8 px-2">
-                                        <p class="titucred pt-3">Museo de Arte Italiano </p>
-                                        <p class="textopeq">Entradas gratis para todo tu equipo</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 d-flex bg-azul rounded-bottom2 text-white py-1"
-                                    style="font-size: .8rem">
-                                    <div class="col-lg-6 px-2">
-                                        El 04/09/2022
-                                    </div>
-                                    <div class="col-lg-6 pe-2" align="right">
-                                        Has gastado: 500 puntos
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
                 </div>
 
