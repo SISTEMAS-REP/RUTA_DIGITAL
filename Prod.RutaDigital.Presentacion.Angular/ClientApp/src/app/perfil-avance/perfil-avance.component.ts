@@ -10,8 +10,8 @@ import { AutodiagnosticoRepository } from '../autodiagnostico/autodiagnostico.re
 import { ResultadoAutodiagnostico } from '../autodiagnostico/interfaces/resultado-autodiagnostico';
 import { CalendarEvent,CalendarDateFormatter,CalendarView} from 'angular-calendar';
 import { PerfilAvanceRepository } from './perfil-avance.repository';
-import { CalculoPuntosResponse } from './interfaces/calculo-puntos.response';
-import { PremioConsumoResponse } from './interfaces/premio-consumo.response';
+import { PerfilAvanceEstadisticaResponse } from './interfaces/perfil-avance-estadistica.response';
+import { PerfilAvancePremioConsumoResponse } from './interfaces/perfil-avance-premio-consumo.response';
 
 
 
@@ -53,8 +53,8 @@ export class PerfilAvanceComponent implements OnInit {
   };
 
   nuevosPremios: PremioResponse[];
-  calculoPuntos: CalculoPuntosResponse[];
-  premiosConsumo: PremioConsumoResponse[];
+  estadisticaPerfil: PerfilAvanceEstadisticaResponse[];
+  premioConsumo: PerfilAvancePremioConsumoResponse[];
   ListarNivelAutodiagnostico: Array<any>;
   ListarCapacitando: Array<any>;
   ListarNivel: Array<any>;
@@ -82,8 +82,8 @@ export class PerfilAvanceComponent implements OnInit {
       });
       
     this.listarPremioNuevo();
-    this.ListarCalculoPuntosUsuario();
-    this.ListarPremioConsumoUsuario();
+    this.ListarEstadisticaPerfilAvance();
+    this.ListarPremioConsumoPerfilAvance();
     this.ListarCapacitando = [
       {
         nivel:"Nivel Básico",
@@ -120,25 +120,27 @@ export class PerfilAvanceComponent implements OnInit {
   }
 
 
-  ListarCalculoPuntosUsuario = () => {
+  ListarEstadisticaPerfilAvance = () => {
+    debugger;
     var request: any = {
       id_usuario_extranet: this.usuario.id_usuario_extranet
     };
-    this.repositoryPerfilAvance.ListarCalculoPuntosUsuario(request).subscribe({
-      next: (data: CalculoPuntosResponse[]) => {
-        this.calculoPuntos = data;
+    this.repositoryPerfilAvance.ListarEstadisticaPerfilAvance(request).subscribe({
+      next: (data: PerfilAvanceEstadisticaResponse[]) => {
+        this.estadisticaPerfil = data;
       },
       error: (err) => {},
     });
   };
 
-  ListarPremioConsumoUsuario = () => {
+  ListarPremioConsumoPerfilAvance = () => {
+    debugger;
     var request: any = {
       id_usuario_extranet: this.usuario.id_usuario_extranet
     };
-    this.repositoryPerfilAvance.ListarPremioConsumoUsuario(request).subscribe({
+    this.repositoryPerfilAvance.ListarPremioConsumoPerfilAvance(request).subscribe({
       next: (data: any[]) => {
-        this.premiosConsumo = data.map((premio) => {
+        this.premioConsumo = data.map((premio) => {
           const objectURL = 'data:image/png;base64,' + premio.numArray;
           premio.imagenPremio =
             this.sanitizer.bypassSecurityTrustUrl(objectURL);

@@ -10,14 +10,14 @@ export class PerfilAvanceService extends BaseService {
     return 'perfilAvance';
   }
 
-  ListarCalculoPuntosUsuario = (request?: any): Observable<any> => {
-    return this.get('ListarCalculoPuntosUsuario', {
+  ListarEstadisticaPerfilAvance = (request?: any): Observable<any> => {
+    return this.get('ListarEstadisticaPerfilAvance', {
       params: request ? this.setParams(request) : {},
     });
   };
 
-  ListarPremioConsumoUsuario = (request?: any): Observable<any> => {
-    return this.get('ListarPremioConsumoUsuario', {
+  ListarPremioConsumoPerfilAvance = (request?: any): Observable<any> => {
+    return this.get('ListarPremioConsumoPerfilAvance', {
       params: request ? this.setParams(request) : {},
     });
   };

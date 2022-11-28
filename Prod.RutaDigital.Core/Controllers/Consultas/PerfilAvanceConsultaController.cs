@@ -18,19 +18,19 @@ public class PerfilAvanceConsultaController : ControllerBase
 
 
     [HttpGet]
-    [Route("ListarCalculoPuntosUsuario")]
-    public async Task<StatusResponse<IEnumerable<CalculoPuntosResponse>>> ListarCalculoPuntosUsuario(UsuarioExtranet request)
+    [Route("ListarEstadisticaPerfilAvance")]
+    public async Task<StatusResponse<IEnumerable<PerfilAvanceEstadisticaResponse>>> ListarEstadisticaPerfilAvance(UsuarioExtranet request)
     {
         return await _perfilAvanceAplicacion
-            .ListarCalculoPuntosUsuario(request);
+            .ListarEstadisticaPerfilAvance(request);
     }
 
     [HttpGet]
-    [Route("ListarPremioConsumoUsuario")]
-    public async Task<StatusResponse<IEnumerable<PremioConsumoResponse>>> ListarPremioConsumoUsuario(UsuarioExtranet request)
+    [Route("ListarPremioConsumoPerfilAvance")]
+    public async Task<StatusResponse<IEnumerable<PerfilAvancePremioConsumoResponse>>> ListarPremioConsumoPerfilAvance(UsuarioExtranet request)
     {
         return await _perfilAvanceAplicacion
-            .ListarPremioConsumoUsuario(request);
+            .ListarPremioConsumoPerfilAvance(request);
     }
 
     [HttpGet]

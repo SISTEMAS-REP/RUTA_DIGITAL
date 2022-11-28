@@ -1,6 +1,6 @@
 import { SafeUrl } from '@angular/platform-browser';
 
-export interface PremioConsumoResponse {
+export interface PerfilAvancePremioConsumoResponse {
   id_premio?: number;
   nombre_premio?: string;
   descripcion?: string;

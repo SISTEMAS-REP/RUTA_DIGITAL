@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Prod.RutaDigital.Entidades
 {
-    public class PremioConsumoResponse
+    public class PerfilAvancePremioConsumoResponse
     {
         public int? id_premio { get; set; }
         public string? nombre_premio { get; set; }

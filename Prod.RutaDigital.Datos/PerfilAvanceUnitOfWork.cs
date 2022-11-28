@@ -7,7 +7,7 @@ namespace Prod.RutaDigital.Datos
 {
     public partial class UnitOfWork : IUnitOfWork
     {
-        public async Task<IEnumerable<CalculoPuntosResponse>> ListarCalculoPuntosUsuario
+        public async Task<IEnumerable<PerfilAvanceEstadisticaResponse>> ListarEstadisticaPerfilAvance
             (UsuarioExtranet request)
         {
             var parms = new Parameter[]
@@ -15,14 +15,14 @@ namespace Prod.RutaDigital.Datos
                 new Parameter("@id_usuario_extranet", request.id_usuario_extranet),
             };
 
-            var result = ExecuteReader<CalculoPuntosResponse>(
-                "USP_CALCULO_PUNTOS_USUARIO_LISTAR",
+            var result = ExecuteReader<PerfilAvanceEstadisticaResponse>(
+                "USP_ESTADISTICA_PERFIL_AVANCE_LISTAR",
                 CommandType.StoredProcedure, ref parms);
 
             return await Task.FromResult(result);
         }
 
-        public async Task<IEnumerable<PremioConsumoResponse>> ListarPremioConsumoUsuario
+        public async Task<IEnumerable<PerfilAvancePremioConsumoResponse>> ListarPremioConsumoPerfilAvance
             (UsuarioExtranet request)
         {
             var parms = new Parameter[]
@@ -30,8 +30,8 @@ namespace Prod.RutaDigital.Datos
                 new Parameter("@id_usuario_extranet", request.id_usuario_extranet),
             };
 
-            var result = ExecuteReader<PremioConsumoResponse>(
-                "USP_DAT_PREMIO_CONSUMO_USUARIO_LISTAR",
+            var result = ExecuteReader<PerfilAvancePremioConsumoResponse>(
+                "USP_PREMIO_CONSUMO_PERFIL_AVANCE_LISTAR",
                 CommandType.StoredProcedure, ref parms);
 
             return await Task.FromResult(result);

@@ -5,8 +5,8 @@ namespace Prod.RutaDigital.Datos.Interfaces;
 
 public partial interface IUnitOfWork : IBaseUnitOfWork
 {
-    Task<IEnumerable<CalculoPuntosResponse>>ListarCalculoPuntosUsuario(UsuarioExtranet request);
-    Task<IEnumerable<PremioConsumoResponse>> ListarPremioConsumoUsuario(UsuarioExtranet request);
+    Task<IEnumerable<PerfilAvanceEstadisticaResponse>> ListarEstadisticaPerfilAvance(UsuarioExtranet request);
+    Task<IEnumerable<PerfilAvancePremioConsumoResponse>> ListarPremioConsumoPerfilAvance(UsuarioExtranet request);
     Task<IEnumerable<ResultadoResponse>> ListarResultadosPerfilAvance(ResultadoRequest request);
     Task<IEnumerable<ResultadoModuloResponse>> ListarResultadoModulosPerfilAvance(ResultadoModuloRequest request);
     Task<IEnumerable<NivelMadurezResponse>> ListarNivelesMadurezPerfilAvance();

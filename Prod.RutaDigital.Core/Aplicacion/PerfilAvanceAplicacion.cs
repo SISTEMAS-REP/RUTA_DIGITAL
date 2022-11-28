@@ -13,13 +13,13 @@ namespace Prod.RutaDigital.Core.Aplicacion
             this._uow = uow;
         }
 
-        public async Task<StatusResponse<IEnumerable<CalculoPuntosResponse>>> ListarCalculoPuntosUsuario(UsuarioExtranet request)
+        public async Task<StatusResponse<IEnumerable<PerfilAvanceEstadisticaResponse>>> ListarEstadisticaPerfilAvance(UsuarioExtranet request)
         {
-            var resultado = new StatusResponse<IEnumerable<CalculoPuntosResponse>>();
+            var resultado = new StatusResponse<IEnumerable<PerfilAvanceEstadisticaResponse>>();
             try
             {
                 var data = await _uow
-                    .ListarCalculoPuntosUsuario(request);
+                    .ListarEstadisticaPerfilAvance(request);
 
                 resultado.Success = true;
                 resultado.Data = data;
@@ -36,13 +36,13 @@ namespace Prod.RutaDigital.Core.Aplicacion
             return resultado;
         }
 
-        public async Task<StatusResponse<IEnumerable<PremioConsumoResponse>>> ListarPremioConsumoUsuario(UsuarioExtranet request)
+        public async Task<StatusResponse<IEnumerable<PerfilAvancePremioConsumoResponse>>> ListarPremioConsumoPerfilAvance(UsuarioExtranet request)
         {
-            var resultado = new StatusResponse<IEnumerable<PremioConsumoResponse>>();
+            var resultado = new StatusResponse<IEnumerable<PerfilAvancePremioConsumoResponse>>();
             try
             {
                 var data = await _uow
-                    .ListarPremioConsumoUsuario(request);
+                    .ListarPremioConsumoPerfilAvance(request);
 
                 resultado.Success = true;
                 resultado.Data = data;

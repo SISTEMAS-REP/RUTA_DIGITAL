@@ -8,15 +8,15 @@ import { PerfilAvanceService } from './perfil-avance.service';
 export class PerfilAvanceRepository {
   constructor(private perfilAvanceService: PerfilAvanceService) {}
 
-  ListarCalculoPuntosUsuario = (request: any): Observable<any[]> => {
+  ListarEstadisticaPerfilAvance = (request: any): Observable<any[]> => {
     return this.perfilAvanceService
-      .ListarCalculoPuntosUsuario(request)
+      .ListarEstadisticaPerfilAvance(request)
       .pipe(map((response) => response.data as any[]));
   };
 
-  ListarPremioConsumoUsuario = (request: any): Observable<any[]> => {
+  ListarPremioConsumoPerfilAvance = (request: any): Observable<any[]> => {
     return this.perfilAvanceService
-      .ListarPremioConsumoUsuario(request)
+      .ListarPremioConsumoPerfilAvance(request)
       .pipe(map((response) => response.data as any[]));
   };
 

@@ -123,7 +123,7 @@ const PROXY_CONFIG = [
   },
 
   {
-    context: ["/perfilAvance/ListarCalculoPuntosUsuario"],
+    context: ["/perfilAvance/ListarEstadisticaPerfilAvance"],
     target: target,
     secure: false,
     headers: {
@@ -132,7 +132,7 @@ const PROXY_CONFIG = [
   },
 
   {
-    context: ["/perfilAvance/ListarPremioConsumoUsuario"],
+    context: ["/perfilAvance/ListarPremioConsumoPerfilAvance"],
     target: target,
     secure: false,
     headers: {

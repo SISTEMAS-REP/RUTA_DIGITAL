@@ -23,19 +23,19 @@ namespace Prod.RutaDigital.Presentacion.Angular.Controllers
             _appVariables = appVariables;
         }
 
-        [HttpGet("ListarCalculoPuntosUsuario")]
-        public async Task<IActionResult> ListarCalculoPuntosUsuario([FromQuery] UsuarioExtranet request)
+        [HttpGet("ListarEstadisticaPerfilAvance")]
+        public async Task<IActionResult> ListarEstadisticaPerfilAvance([FromQuery] UsuarioExtranet request)
         {
             var result = await _perfilAvanceConsultaProxy
-                .ListarCalculoPuntosUsuario(request);
+                .ListarEstadisticaPerfilAvance(request);
             return Ok(result);
         }
 
-        [HttpGet("ListarPremioConsumoUsuario")]
-        public async Task<IActionResult> ListarPremioConsumoUsuario([FromQuery] UsuarioExtranet request)
+        [HttpGet("ListarPremioConsumoPerfilAvance")]
+        public async Task<IActionResult> ListarPremioConsumoPerfilAvance([FromQuery] UsuarioExtranet request)
         {
             var response = await _perfilAvanceConsultaProxy
-                .ListarPremioConsumoUsuario(request);
+                .ListarPremioConsumoPerfilAvance(request);
 
             var data = response.Data
             .Select(s =>
@@ -56,7 +56,7 @@ namespace Prod.RutaDigital.Presentacion.Angular.Controllers
                 return s;
             });
 
-            var result = new StatusResponse<IEnumerable<PremioConsumoResponse>>()
+            var result = new StatusResponse<IEnumerable<PerfilAvancePremioConsumoResponse>>()
             {
                 Success = true,
                 Data = data

@@ -12,18 +12,18 @@ namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys.PerfilAvance
             _url = string.Format("{0}PerfilAvanceConsulta/", appConfig.Urls.URL_RUTA_DIGITAL_CORE_API);
         }
 
-        public async Task<StatusResponse<IEnumerable<CalculoPuntosResponse>>> ListarCalculoPuntosUsuario(UsuarioExtranet request)
+        public async Task<StatusResponse<IEnumerable<PerfilAvanceEstadisticaResponse>>> ListarEstadisticaPerfilAvance(UsuarioExtranet request)
         {
-            return await InvokeWebApiAsync<StatusResponse<IEnumerable<CalculoPuntosResponse>>>(
+            return await InvokeWebApiAsync<StatusResponse<IEnumerable<PerfilAvanceEstadisticaResponse>>>(
                 HttpMethod.Get,
-                _url + "ListarCalculoPuntosUsuario", GetJsonParameters(request));
+                _url + "ListarEstadisticaPerfilAvance", GetJsonParameters(request));
         }
 
-        public async Task<StatusResponse<IEnumerable<PremioConsumoResponse>>> ListarPremioConsumoUsuario(UsuarioExtranet request)
+        public async Task<StatusResponse<IEnumerable<PerfilAvancePremioConsumoResponse>>> ListarPremioConsumoPerfilAvance(UsuarioExtranet request)
         {
-            return await InvokeWebApiAsync<StatusResponse<IEnumerable<PremioConsumoResponse>>>(
+            return await InvokeWebApiAsync<StatusResponse<IEnumerable<PerfilAvancePremioConsumoResponse>>>(
                 HttpMethod.Get,
-                _url + "ListarPremioConsumoUsuario", GetJsonParameters(request));
+                _url + "ListarPremioConsumoPerfilAvance", GetJsonParameters(request));
         }
         public async Task<StatusResponse<IEnumerable<ResultadoResponse>>>
        ListarResultadosPerfilAvance(ResultadoRequest request)
