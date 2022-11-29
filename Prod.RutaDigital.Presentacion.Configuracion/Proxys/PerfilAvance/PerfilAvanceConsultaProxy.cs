@@ -50,5 +50,12 @@ namespace Prod.RutaDigital.Presentacion.Configuracion.Proxys.PerfilAvance
                 HttpMethod.Get,
                 _url + "ListarNivelesMadurezPerfilAvance", null);
         }
+
+        public async Task<StatusResponse<IEnumerable<RecomendacionResponse>>> ListarCapacitacionPerfilAvance(UsuarioExtranet request)
+        {
+            return await InvokeWebApiAsync<StatusResponse<IEnumerable<RecomendacionResponse>>>(
+                HttpMethod.Get,
+                _url + "ListarCapacitacionPerfilAvance", GetJsonParameters(request));
+        }
     }
 }

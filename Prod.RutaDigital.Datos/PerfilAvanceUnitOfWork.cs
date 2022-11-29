@@ -86,5 +86,19 @@ namespace Prod.RutaDigital.Datos
 
             return await Task.FromResult(result);
         }
+
+        public async Task<IEnumerable<RecomendacionResponse>> ListarCapacitacionPerfilAvance(UsuarioExtranet request)
+        {
+            var parms = new Parameter[]
+            {
+                new Parameter("@id_usuario_extranet", request.id_usuario_extranet)
+            };
+
+            var result = ExecuteReader<RecomendacionResponse>(
+                "USP_DAT_CAPACITACION_PERFIL_AVANCE_LISTAR",
+                CommandType.StoredProcedure, ref parms);
+
+            return await Task.FromResult(result);
+        }
     }
 }

@@ -129,5 +129,28 @@ namespace Prod.RutaDigital.Core.Aplicacion
 
             return resultado;
         }
+
+        public async Task<StatusResponse<IEnumerable<RecomendacionResponse>>> ListarCapacitacionPerfilAvance(UsuarioExtranet request)
+        {
+            var resultado = new StatusResponse<IEnumerable<RecomendacionResponse>>();
+            try
+            {
+                var data = await _uow
+                    .ListarCapacitacionPerfilAvance(request);
+
+                resultado.Success = true;
+                resultado.Data = data;
+            }
+            catch (Exception ex)
+            {
+                resultado.Success = true;
+                resultado.Messages = new()
+            {
+                ex.Message
+            };
+            }
+
+            return resultado;
+        }
     }
 }

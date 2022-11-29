@@ -58,4 +58,12 @@ public class PerfilAvanceConsultaController : ControllerBase
         return await _perfilAvanceAplicacion
             .ListarNivelesMadurezPerfilAvance();
     }
+
+    [HttpGet]
+    [Route("ListarCapacitacionPerfilAvance")]
+    public async Task<StatusResponse<IEnumerable<RecomendacionResponse>>> ListarCapacitacionPerfilAvance(UsuarioExtranet request)
+    {
+        return await _perfilAvanceAplicacion
+            .ListarCapacitacionPerfilAvance(request);
+    }
 }

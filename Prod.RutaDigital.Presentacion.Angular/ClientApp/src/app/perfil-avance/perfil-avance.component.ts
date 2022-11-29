@@ -84,39 +84,7 @@ export class PerfilAvanceComponent implements OnInit {
     this.listarPremioNuevo();
     this.ListarEstadisticaPerfilAvance();
     this.ListarPremioConsumoPerfilAvance();
-    this.ListarCapacitando = [
-      {
-        nivel:"Nivel Básico",
-        tipo_nivel:"Gestión Empresarial",
-        recomendacion:"Recomendación #4",
-        porcentaje:"0%"
-      },
-      {
-        nivel:"Nivel Incial",
-        tipo_nivel:"Gestión Empresarial",
-        recomendacion:"Recomendación #33",
-        porcentaje:"10%"
-      },
-      {
-        nivel:"Nivel Básico",
-        tipo_nivel:"Gestión Empresarial",
-        recomendacion:"Recomendación #44",
-        porcentaje:"20%"
-      },
-      {
-        nivel:"Nivel Incial",
-        tipo_nivel:"Gestión Empresarial",
-        recomendacion:"Recomendación #24",
-        porcentaje:"30%"
-      },
-      {
-        nivel:"Nivel Básico",
-        tipo_nivel:"Gestión Empresarial",
-        recomendacion:"Recomendación #785",
-        porcentaje:"40%"
-      },
-    ];
-
+    this.ListarCapacitacionPerfilAvance();
   }
 
 
@@ -127,6 +95,19 @@ export class PerfilAvanceComponent implements OnInit {
     this.repositoryPerfilAvance.ListarEstadisticaPerfilAvance(request).subscribe({
       next: (data: PerfilAvanceEstadisticaResponse[]) => {
         this.estadisticaPerfil = data;
+      },
+      error: (err) => {},
+    });
+  };
+
+  ListarCapacitacionPerfilAvance = () => {
+    var request: any = {
+      id_usuario_extranet: this.usuario.id_usuario_extranet
+    };
+    this.repositoryPerfilAvance.ListarCapacitacionPerfilAvance(request).subscribe({
+      next: (data: any[]) => {
+        debugger
+        this.ListarCapacitando = data        // this.estadisticaPerfil = data;
       },
       error: (err) => {},
     });

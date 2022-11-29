@@ -11,4 +11,5 @@ public interface IPerfilAvanceAplicacion
     Task<StatusResponse<IEnumerable<ResultadoResponse>>> ListarResultadosPerfilAvance(ResultadoRequest request);
     Task<StatusResponse<IEnumerable<ResultadoModuloResponse>>> ListarResultadoModulosPerfilAvance(ResultadoModuloRequest request);
     Task<StatusResponse<IEnumerable<NivelMadurezResponse>>> ListarNivelesMadurezPerfilAvance();
+    Task<StatusResponse<IEnumerable<RecomendacionResponse>>> ListarCapacitacionPerfilAvance(UsuarioExtranet request);
 }

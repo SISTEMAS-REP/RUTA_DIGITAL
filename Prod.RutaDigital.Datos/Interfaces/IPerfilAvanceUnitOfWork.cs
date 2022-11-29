@@ -10,4 +10,5 @@ public partial interface IUnitOfWork : IBaseUnitOfWork
     Task<IEnumerable<ResultadoResponse>> ListarResultadosPerfilAvance(ResultadoRequest request);
     Task<IEnumerable<ResultadoModuloResponse>> ListarResultadoModulosPerfilAvance(ResultadoModuloRequest request);
     Task<IEnumerable<NivelMadurezResponse>> ListarNivelesMadurezPerfilAvance();
+    Task<IEnumerable<RecomendacionResponse>> ListarCapacitacionPerfilAvance(UsuarioExtranet request);
 }

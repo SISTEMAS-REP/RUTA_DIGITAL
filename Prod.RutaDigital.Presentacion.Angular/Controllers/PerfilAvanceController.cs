@@ -31,6 +31,14 @@ namespace Prod.RutaDigital.Presentacion.Angular.Controllers
             return Ok(result);
         }
 
+        [HttpGet("ListarCapacitacionPerfilAvance")]
+        public async Task<IActionResult> ListarCapacitacionPerfilAvance([FromQuery] UsuarioExtranet request)
+        {
+            var result = await _perfilAvanceConsultaProxy
+                .ListarCapacitacionPerfilAvance(request);
+            return Ok(result);
+        }
+
         [HttpGet("ListarPremioConsumoPerfilAvance")]
         public async Task<IActionResult> ListarPremioConsumoPerfilAvance([FromQuery] UsuarioExtranet request)
         {

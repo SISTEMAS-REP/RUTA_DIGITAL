@@ -20,4 +20,9 @@ export class PerfilAvanceRepository {
       .pipe(map((response) => response.data as any[]));
   };
 
+  ListarCapacitacionPerfilAvance = (request: any): Observable<any[]> => {
+    return this.perfilAvanceService
+      .ListarCapacitacionPerfilAvance(request)
+      .pipe(map((response) => response.data as any[]));
+  };
 }

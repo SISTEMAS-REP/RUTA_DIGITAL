@@ -138,7 +138,14 @@ const PROXY_CONFIG = [
       Connection: "Keep-Alive",
     },
   },
-
+  {
+    context: ["/perfilAvance/ListarCapacitacionPerfilAvance"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
   {
     context: ["/perfilAvance/ListarPremioConsumoPerfilAvance"],
     target: target,
