@@ -3,7 +3,6 @@ import { AutodiagnosticoRepository } from '../../autodiagnostico.repository';
 import { TestAutodiagnostico } from '../../interfaces/test-autodiagnostico';
 import { RespuestaRequest } from '../../interfaces/request/respuesta.request';
 import { map, take } from 'rxjs';
-import { Respuesta } from '../../interfaces/respuesta';
 import { CdkStepper } from '@angular/cdk/stepper';
 import { Modulo } from '../../interfaces/modulo';
 import { ModuloRequest } from '../../interfaces/request/modulo.request';
@@ -18,6 +17,8 @@ import { Router } from '@angular/router';
 export class TestAutodiagnosticoComponent implements OnInit {
   @ViewChild('stepper')
   stepper: CdkStepper;
+
+  currentStep: number;
 
   test?: TestAutodiagnostico;
 
@@ -52,12 +53,33 @@ export class TestAutodiagnosticoComponent implements OnInit {
       .listarTestAutodiagnostico()
       .subscribe((data: TestAutodiagnostico) => {
         this.test = data;
+        this.seleccionarModuloInicial();
       });
   }
 
-  /* validarCompletado(index: number): boolean {
-    return this.test.modulos[index]?.completado ?? false;
-  } */
+  seleccionarModuloInicial() {
+    var id_modulo = this.test.evaluacion.modulo_activo;
+    var id_pregunta = this.test.evaluacion.pregunta_activa;
+    var index = this.test.modulos.findIndex((f) => f.id_modulo == id_modulo);
+
+    setTimeout(() => {
+      console.log('start', this.stepper);
+      this.stepper.steps.map((s, i) => {
+        if (i < index) {
+          s.completed = true;
+          this.test.modulos[i].completado = true;
+        }
+      });
+      this.stepper.selectedIndex = index;
+
+      this.scrollOn(`pregunta-${id_pregunta}`);
+    });
+  }
+
+  onStepperPrevious($event: Modulo, index: number) {
+    this.stepper.previous();
+    this.scrollOn('title');
+  }
 
   onStepperNext($event: Modulo, index: number, last: boolean) {
     console.log('$event', $event);
@@ -65,11 +87,14 @@ export class TestAutodiagnosticoComponent implements OnInit {
       id_modulo: $event.id_modulo,
     };
 
-    return this.repository.validarModulo(request).subscribe((data: boolean) => {
+    this.repository.validarModulo(request).subscribe((data: boolean) => {
+      this.test.modulos[index].completado = data ?? false;
       this.stepper.steps.get(index).completed = data ?? false;
 
       if (data) {
         this.stepper.next();
+        this.scrollOn('title');
+
         if (last) {
           this.onStepperFinish();
         }
@@ -77,8 +102,20 @@ export class TestAutodiagnosticoComponent implements OnInit {
     });
   }
 
+  scrollOn(classElement: string) {
+    const element = document.querySelector(`.${classElement}`);
+    setTimeout(() => {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      });
+      console.log('scrollIntoView');
+    }, 250);
+  }
+
   onStepperFinish() {
-    return this.repository.procesarEvaluacion().subscribe((data: boolean) => {
+    this.repository.procesarEvaluacion().subscribe((data: boolean) => {
       if (data) {
         this.toastService.success(
           'Test de autodiagnóstico finalizado correctamente'

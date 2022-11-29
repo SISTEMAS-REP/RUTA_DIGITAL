@@ -24,7 +24,7 @@
       </div>
 
       <div class="row justify-content-center">
-        <div class="col-lg-6" style="margin: left 20px">
+        <div class="col-lg-12" style="margin: left 20px">
           <div class="row">
             <h3 class="titulo-recomendacion text-justify mb-12">{{ recomendacion?.descripcion }}</h3>
           </div>
@@ -32,50 +32,65 @@
           <div class="row" >
             <div class="col-lg-12" *ngFor="let detalle of recomendacion?.detalle; let x = index; let first = first">
               <h3 class="subtitulo-recomendacion">
-                <img src=".\.\\src\assets\images\icon_avionverde.png" class="ico-capacitacion" />&nbsp;{{
+                <img src=".\.\\src\assets\images\icon_avionverde.png" class="ico-capacitacion" style="vertical-align: middle;"  />&nbsp;{{
                 detalle.pregunta }}
               </h3>
+              <br>
               <p class="descripcion-recomendacion">
                 {{ detalle.respuesta }}
               </p>
+              <br>
             </div>
-
+            
             <div class="col-lg-12" *ngFor="let recurso of recomendacion?.recursos; let i = index; let first = first">
               <h3 class="subtitulo-recomendacion">
-                <img src=".\.\\src\assets\images\icon_idea.png" class="ico-capacitacion" />&nbsp;
+                
               </h3>
-              <p class="descripcion-recomendacion">
-                {{ recurso.descripcion }}
-              </p>
+              <!-- <p class="descripcion-recomendacion">
+                <img src=".\.\\src\assets\images\icon_idea.png" class="ico-capacitacion" />&nbsp; {{ recurso.descripcion }}
+              </p> -->
+              <br>
               <h3 class="sub-titulo-paso">PASO #0{{ i + 1 }} :</h3>
-              <div>
+              <br>
                 <p class="p-paso">
-                  <img class="ico-capacitacion" />&nbsp;<span class="descripcion-paso">Mira el video:</span>
+                  <img class="ico-capacitacion" src=".\.\\src\assets\images\icon_camaraverde.png" style="vertical-align: middle;" />&nbsp;<span class="descripcion-paso">Mira el video:</span>
                   {{ recurso.descripcion }}
 
                 </p>
-                <div class="col-xs-6 row justify-content-center ">
+                <br>
+                
+                <div class="col-xs-12 row justify-content-center ">
                   <div class="button-container-video">
-
+                    
                     <iframe [src]="link(recurso.enlace_ruta)" title="" frameborder="0" class="video-recomendacion"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowfullscreen></iframe>
-                    <a [href]="link(recurso.red_social)" alt="">{{recurso.red_social}}</a>
-                    <a [href]="link(recurso.hashtag)" alt="">{{recurso.hashtag}}</a>
+                    <a href="#" class="ico-red-social" alt="">{{recurso.red_social}}</a>
+                    <a href="#"  class="ico-instagram" alt="">{{recurso.hashtag}}</a>
                   </div>
                 </div>
-              </div>
-
+               
+                <br>
+            
+              <div class="col-lg-12">
+              <p class="descripcion-recomendacion">
+                También te recomendamos explorar las siguientes herramientas y recursos:
+              </p>
+            </div>
+            <br>
               <div class="col-lg-12" *ngFor="let recursoDetalle of recurso.detalle; let x = index; let first = first">
+                
                 <p class="descripcion-recomendacion">
-                  También te recomendamos explorar las siguientes herramientas y
-                  recursos:
-                </p>
-                <p class="p-paso">
-                  <img src=".\.\\src\assets\images\icon_herrammienta.png" class="ico-capacitacion" />
-                  &nbsp;
-                  {{ recursoDetalle.descripcion }}
-                </p>
+                  <img src=".\.\\src\assets\images\icon_herrammienta.png" class="ico-capacitacion" style="float: left;" />  
+                  
+                <a class="p-paso" [href]="recursoDetalle.enlace_ruta" style="font-weight: bold;color: black !important;" target="_blank">
+                  
+                  &nbsp;{{ recursoDetalle.nombre }}
+                </a>
+              <br>
+              &nbsp;{{ recursoDetalle.descripcion }}
+              </p>
+              <br>
               </div>
 
             </div>
@@ -84,16 +99,33 @@
           <div class="row justify-content-center">
             <div class="col-lg-12 justify-content-center" style=" text-align: center;">
               <a style=" padding-bottom: 20px; padding-top: 20px; margin-bottom: 20px; margin-top: 20px;"
-                class="btn btn-success justify-content-center" (click)="verTest()">¡Pon a prueba lo aprendido!</a>
+              [ngClass]="'btn btn-success justify-content-center' +(validarBotonTest()== true ? ' bloquear-item' : '')"  (click)="verTest()">¡Pon a prueba lo aprendido!</a>
               <p class="justify-content-center">Responde correctamente y gana puntos</p>
               <hr style=" padding-bottom: 10px;">
               <h3 class="subtitulo-recomendacion  justify-content-center" style=" text-align: center;">¿Qué tan útil fue
                 para ti esta recomendación?</h3>
+                <br>
+                <br>
+                <form class="calasificacion-form">
+                  <p class="clasificacion">
+                    <input id="radio1" type="radio" name="estrellas" value="5" (click)="validarCalificacion(5)">
+                    <label for="radio1" class="label-clasificacion">★</label>
+                    <input id="radio2" type="radio" name="estrellas"  value="4"  (click)="validarCalificacion(4)">
+                    <label for="radio2" class="label-clasificacion">★</label>
+                    <input id="radio3" type="radio" name="estrellas"  value="3"  (click)="validarCalificacion(3)">
+                    <label for="radio3" class="label-clasificacion" >★</label>
+                    <input id="radio4" type="radio" name="estrellas" value="2"  (click)="validarCalificacion(2)">
+                    <label for="radio4" class="label-clasificacion">★</label>
+                    <input id="radio5" type="radio" name="estrellas" value="1"  (click)="validarCalificacion(1)">
+                    <label for="radio5" class="label-clasificacion">★</label>
+                  </p>
+                </form>
+                <br>
             </div>
           </div>
         </div>
       </div>
-
     </div>
-  </div>
+    </div>
+ 
 </section>

@@ -7,6 +7,7 @@ import { TestAvance } from 'src/app/recomendaciones/interfaces/test-avance';
 import { RecomendacionRequest } from '../interfaces/request/recomendacion.request';
 import { Modulo } from 'src/app/autodiagnostico/interfaces/modulo';
 import { TestAvanceRequest } from '../interfaces/request/test-avance.request';
+import { CapacitacionDetalleRequest } from '../interfaces/request/capacitaciondet.request';
 
 @Injectable({
   providedIn: 'root',
@@ -37,10 +38,25 @@ export class RecomendacionesRepository {
         map((response) => response.data as TestAvance));
   };
 
-  procesarAvance(request: TestAvanceRequest): Observable<number> {
+  procesarAvance(request: CapacitacionDetalleRequest): Observable<number> {
     return this.recomendacionesService
       .procesarAvance(request)
       .pipe(tap((response) => console.log('RecomendacionesRepository/procesarAvance', response)),
-      map((response) => response.data as number));
+        map((response) => response.data as number));
   }
+
+  calificarCapacitacion(request: number): Observable<number> {
+    return this.recomendacionesService
+      .calificarCapacitacion(request)
+      .pipe(tap((response) => console.log('RecomendacionesRepository/CalificarCapacitacion', response)),
+        map((response) => response.data as number));
+  }
+
+  iniciarCapacitacion(request: number): Observable<number> {
+    return this.recomendacionesService
+      .iniciarCapacitacion(request)
+      .pipe(tap((response) => console.log('RecomendacionesRepository/IniciarCapacitacion', response)),
+        map((response) => response.data as number));
+  }
+
 }

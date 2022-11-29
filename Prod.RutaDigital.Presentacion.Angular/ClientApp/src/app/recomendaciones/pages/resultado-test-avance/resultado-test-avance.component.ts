@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResultadoTestAvance } from 'src/app/recomendaciones/interfaces/resultado-test-avance';
-import { TestAvanceRepository } from 'src/app/recomendaciones/repositories/test-avance.repository';
+import { RecomendacionesRepository } from 'src/app/recomendaciones/repositories/recomendaciones.repository';
 import { ExtranetUser } from '../../../shared/interfaces/extranet-user';
 import { CodGenero } from 'src/app/shared/enums/cod-genero.enum';
 
@@ -13,8 +13,8 @@ export class ResultadoAutodiagnosticoComponent implements OnInit {
   usuario: ExtranetUser;
   resultadoAutodiagnostico: ResultadoTestAvance;
 
-  constructor(private repository: TestAvanceRepository) {
-    this.usuario = this.repository.obtenerUsuario();
+  constructor(private repository: RecomendacionesRepository) {
+   
   }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 import { Pregunta } from './pregunta';
 import { NivelMadurez } from './nivel-madurez';
-import { CapacitacionResultadoRequest } from 'src/app/recomendaciones/interfaces/request/capacitacion-resultado.request';
+import { CapacitacionResultado } from 'src/app/recomendaciones/interfaces/capacitacion-resultado';
 
 export interface Modulo {
   id_modulo?: number;
@@ -15,7 +15,7 @@ export interface Modulo {
 
   niveles?: NivelMadurez[];
 
-  capacitaciones?: CapacitacionResultadoRequest[];
+  capacitaciones?: CapacitacionResultado[];
 
   completado?: boolean;
 }

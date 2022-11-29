@@ -44,7 +44,7 @@ export class LogoutComponent implements OnInit {
     switch (action.path) {
       case LogoutActions.Logout:
         //if (!!window.history.state.local) {
-          await this.logout(this.url, this.applicationId);
+          await this.logout();
         /*} else {
           // This prevents regular links to <app>/authentication/logout from triggering a logout
           this.message.next(
@@ -63,20 +63,30 @@ export class LogoutComponent implements OnInit {
     }
   }
 
-  private async logout(
-    returnUrl: string,
-    applicationId: string
-  ): Promise<void> {
-    const state: INavigationState = { returnUrl, applicationId };
+  private async logout(): Promise<void> {
+    //const state: INavigationState = { returnUrl, applicationId };
     const isAuthenticated = await this.authorizeService
       .isAuthenticated()
       .pipe(take(1))
       .toPromise();
     if (isAuthenticated) {
-      await this.redirectToLogout(state);
-    } else {
+      await this.redirectToLogout();
+    } /* else {
       this.message.next('You have successfully logged out!');
-    }
+    } */
+  }
+
+  redirectToLogout() {
+    const redirectUrl =
+      `${this.loginUnicoWebPath}${ApplicationPaths.IdentityLogout}` +
+      `?${ApplicationIdType}=${this.applicationId}` +
+      `&${ReturnUrlType}=${this.setReturnLogout()}`;
+
+    this.redirectToApiAuthorizationPath(redirectUrl);
+  }
+
+  private setReturnLogout() {
+    return encodeURI(this.BASE_URL + ApplicationPaths.LogOutCallback);
   }
 
   private async processLogoutCallback(): Promise<void> {
@@ -94,19 +104,6 @@ export class LogoutComponent implements OnInit {
       default:
         throw new Error('Invalid authentication result status.');
     }
-  }
-
-  redirectToLogout(state: INavigationState) {
-    const redirectUrl =
-      `${this.loginUnicoWebPath}${ApplicationPaths.IdentityLogout}` +
-      `?${ApplicationIdType}=${state.applicationId}` +
-      `&${ReturnUrlType}=${this.setReturnLogout()}`;
-
-    this.redirectToApiAuthorizationPath(redirectUrl);
-  }
-
-  private setReturnLogout() {
-    return encodeURI(this.BASE_URL + ApplicationPaths.LogOutCallback);
   }
 
   private async navigateToReturnUrl(returnUrl: string) {
@@ -134,7 +131,7 @@ export class LogoutComponent implements OnInit {
       );
     }
     return (
-      (state && state.returnUrl) || fromQuery || ApplicationPaths.LoggedOut
+      (state && state.returnUrl) || fromQuery || ApplicationPaths.DefaultLogoutRedirectPath
     );
   }
 

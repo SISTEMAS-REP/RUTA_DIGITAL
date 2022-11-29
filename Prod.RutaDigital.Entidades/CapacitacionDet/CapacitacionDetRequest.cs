@@ -2,4 +2,5 @@
 
 public class CapacitacionDetRequest : CapacitacionDet
 {
+    public int peso { get; set; }
 }

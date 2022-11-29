@@ -16,12 +16,13 @@
   <app-test-autodiagnostico-pregunta
     *ngFor="let pregunta of modulo.preguntas"
     [pregunta]="pregunta"
+    [ngClass]="'pregunta-' + pregunta.id_pregunta"
   >
   </app-test-autodiagnostico-pregunta>
 
   <div class="row justify-content-between" *ngIf="!last">
     <div class="col" *ngIf="!first">
-      <button class="btn btn-verde" cdkStepperPrevious>
+      <button class="btn btn-verde" (click)="onPrevious()">
         <!-- (click)="onPrevious()" -->
         <i class="fa fa-arrow-circle-left"></i> Anterior
       </button>

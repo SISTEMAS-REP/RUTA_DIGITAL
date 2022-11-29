@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BaseService } from 'src/app/shared/services/base.service';
-import { TestAvanceRequest } from '../interfaces/request/test-avance.request';
+import { CapacitacionDetalleRequest } from '../interfaces/request/capacitaciondet.request';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,13 @@ export class RecomendacionesService extends BaseService {
     });
   };
 
-  procesarAvance = (request: TestAvanceRequest): Observable<any> => {
-    return this.post('Procesaravance', request);
+  procesarAvance = (request: CapacitacionDetalleRequest): Observable<any> => {
+    return this.post('ProcesarAvance', request);
+  }
+  iniciarCapacitacion = (request: number): Observable<any> => {
+    return this.post('IniciarCapacitacion', request);
+  }
+  calificarCapacitacion = (request: number): Observable<any> => {
+    return this.post('CalificarCapacitacion', request);
   }
 }

@@ -582,7 +582,7 @@ public class CapacitacionController : Controller
         if (!capacitacionResultado.concluido)
         {
             var nroPreguntasCorrectas = request.respuestas
-            .Where(w => w.respuesta == true)
+            .Where(w => w.respuesta == true && w.peso == 1)
             .GroupBy(g1 => g1.id_pregunta)
             //.Select(s1 => s1.Key)
             .Count();
@@ -614,10 +614,18 @@ public class CapacitacionController : Controller
 
             foreach (var respuesta in request.respuestas)
             {
-                respuesta.id_capacitacion = idCapacitacion;
-
                 var idCapacitacionDetResponse = await _capacitacionDetComandoProxy
-                    .InsertarCapacitacionDet(respuesta);
+                    .InsertarCapacitacionDet(new CapacitacionDetRequest()
+                    {
+                        id_capacitacion = idCapacitacion,
+                        id_pregunta = respuesta.id_pregunta,
+                        id_alternativa = respuesta.id_alternativa,
+                        respuesta = respuesta.respuesta,
+
+                        usuario_registro = _appAuditoria.Usuario,
+                        fecha_registro = fechaHoraOperacion
+                    });
+
 
                 if (idCapacitacionDetResponse is null
                         || !idCapacitacionDetResponse.Success

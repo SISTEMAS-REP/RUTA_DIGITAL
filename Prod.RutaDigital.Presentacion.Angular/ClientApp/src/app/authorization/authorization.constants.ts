@@ -31,6 +31,7 @@ export const LoginActions = {
 
 let applicationPaths: ApplicationPathsType = {
   DefaultLoginRedirectPath: '/',
+  DefaultLogoutRedirectPath: '/',
 
   LoginPerson: `authentication/${LoginActions.LoginPerson}`,
   LoginCompany: `authentication/${LoginActions.LoginCompany}`,
@@ -77,6 +78,7 @@ applicationPaths = {
 
 interface ApplicationPathsType {
   readonly DefaultLoginRedirectPath: string;
+  readonly DefaultLogoutRedirectPath: string;
   //readonly ApiAuthorizationClientConfigurationUrl: string;
 
   readonly LoginPerson: string;

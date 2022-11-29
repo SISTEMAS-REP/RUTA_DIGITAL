@@ -1,4 +1,4 @@
-export interface CapacitacionResponse {
+export interface CapacitacionResultado {
   id_capacitacion_resultado: number;
   id_resultado: number;
   id_recomendacion: number;

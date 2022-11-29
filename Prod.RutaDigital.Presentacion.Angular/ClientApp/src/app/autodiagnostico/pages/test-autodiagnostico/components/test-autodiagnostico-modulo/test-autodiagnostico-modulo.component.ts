@@ -7,7 +7,7 @@ import { Modulo } from 'src/app/autodiagnostico/interfaces/modulo';
   styleUrls: [],
 })
 export class TestAutodiagnosticoModuloComponent implements OnInit {
-  //@Output() onStepperPrevious: EventEmitter<any> = new EventEmitter();
+  @Output() onStepperPrevious: EventEmitter<any> = new EventEmitter();
   @Output() onStepperNext: EventEmitter<any> = new EventEmitter();
   //@Output() onStepperFinish: EventEmitter<any> = new EventEmitter();
 
@@ -20,9 +20,9 @@ export class TestAutodiagnosticoModuloComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  /*onPrevious() {
-    this.onStepperNext.emit(this.modulo);
-  }*/
+  onPrevious() {
+    this.onStepperPrevious.emit(this.modulo);
+  }
 
   onNext() {
     this.onStepperNext.emit(this.modulo);

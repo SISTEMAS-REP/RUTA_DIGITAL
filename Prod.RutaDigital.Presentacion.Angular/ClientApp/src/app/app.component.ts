@@ -32,9 +32,9 @@ export class AppComponent implements OnInit {
       .subscribe((status) => {
         this.verificacionAutodiagnostico = status;
       });
-    
+
     this.autodiagnosticoRepository
-      .VerificarAutodiagnosticoHistorico()
+      .verificarAutodiagnosticoHistorico()
       .subscribe((status) => {
         this.verificacionAutodiagnosticoHistorico = status;
       });

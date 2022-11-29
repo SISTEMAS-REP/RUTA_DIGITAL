@@ -44,7 +44,7 @@ export class AutodiagnosticoRepository {
     return this.autodiagnosticoService.listarTestAutodiagnostico().pipe(
       tap((response) =>
         console.log(
-          'autodiagnostico-repository/listarPublicidadPremio',
+          'autodiagnostico-repository/listarTestAutodiagnostico',
           response
         )
       ),
@@ -82,8 +82,8 @@ export class AutodiagnosticoRepository {
     );
   };
 
-  VerificarAutodiagnosticoHistorico = (): Observable<boolean> => {
-    return this.autodiagnosticoService.VerificarAutodiagnosticoHistorico().pipe(
+  verificarAutodiagnosticoHistorico = (): Observable<boolean> => {
+    return this.autodiagnosticoService.verificarAutodiagnosticoHistorico().pipe(
       tap((response) =>
         console.log(
           'autodiagnostico-repository/VerificarAutodiagnosticoHistorico',

@@ -69,6 +69,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  private redirectToLogin(applicationPath: string): any {
+    const redirectUrl =
+      `${this.loginUnicoWebPath}${applicationPath}` +
+      `?${ApplicationIdType}=${this.applicationId}` +
+      `&${ReturnUrlType}=${this.setReturnLogin()}`;
+
+    this.redirectToApiAuthorizationPath(redirectUrl);
+  }
+
+  private setReturnLogin() {
+    return encodeURI(this.BASE_URL + ApplicationPaths.LoginCallback);
+  }
+
   private async processLoginCallback(): Promise<void> {
     const result = await this.authorizeService.completeSignIn();
     switch (result.status) {
@@ -82,19 +95,6 @@ export class LoginComponent implements OnInit {
         this.message.next(result.message);
         break;
     }
-  }
-
-  private redirectToLogin(applicationPath: string): any {
-    const redirectUrl =
-      `${this.loginUnicoWebPath}${applicationPath}` +
-      `?${ApplicationIdType}=${this.applicationId}` +
-      `&${ReturnUrlType}=${this.setReturnLogin()}`;
-
-    this.redirectToApiAuthorizationPath(redirectUrl);
-  }
-
-  private setReturnLogin() {
-    return encodeURI(this.BASE_URL + ApplicationPaths.LoginCallback);
   }
 
   private redirectToRegister() {

@@ -15,6 +15,7 @@ public partial class UnitOfWork : IUnitOfWork
         {
              new Parameter("@id_capacitacion_resultado", request.id_capacitacion_resultado),
              new Parameter("@id_resultado", request.id_resultado),
+             new Parameter("@id_recomendacion", request.id_recomendacion),
              new Parameter("@id_usuario_extranet", request.id_usuario_extranet),
         };
 

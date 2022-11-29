@@ -1,7 +1,7 @@
 <section class="meetings-page">
   <div class="container">
     <div class="row pt-4">
-      <div class="section-heading" align="left">
+      <div class="section-heading title" align="left">
         <h2 style="margin-bottom: 0; padding-bottom: 10px">
           Test de Autodiagnóstico
         </h2>
@@ -9,7 +9,6 @@
     </div>
     <div class="row pt-4">
       <ng-stepper #stepper [linear]="true">
-        <!-- [completed]="validarCompletado(index)" -->
         <cdk-step
           [completed]="modulo.completado"
           *ngFor="
@@ -23,11 +22,11 @@
             <div class="step-bullet">{{ modulo.orden }}</div>
           </ng-template>
 
-          <!-- (onStepperPrevious)="onStepperPrevious($event)" -->
           <app-test-autodiagnostico-modulo
             [first]="first"
             [last]="last"
             [modulo]="modulo"
+            (onStepperPrevious)="onStepperPrevious($event, index)"
             (onStepperNext)="onStepperNext($event, index, last)"
             (onStepperFinish)="onStepperFinish()"
           ></app-test-autodiagnostico-modulo>
