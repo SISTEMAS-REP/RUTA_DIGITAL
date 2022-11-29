@@ -16,11 +16,11 @@ export class CatalogoPremiosRepository {
   constructor(private catalogoPremiosService: CatalogoPremiosService,
     private authorizeService: AuthorizeService) {}
 
-  getUser = (): Observable<ExtranetUser> => {
-    return this.authorizeService
-      .getUser()
-      .pipe(map((response) => response as ExtranetUser));
-  };
+    obtenerUsuario = (): ExtranetUser => {
+      const usuario = this.authorizeService.user;
+      console.log('catalogo-premios-repository/obtenerUsuario', usuario);
+      return usuario;
+    };
 
   listarPublicidadPremio = (): Observable<PremioPublicidadResponse[]> => {
     return this.catalogoPremiosService

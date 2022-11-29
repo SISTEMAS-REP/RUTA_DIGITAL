@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ExtranetUser } from 'src/app/shared/interfaces/extranet-user';
 import { CatalogoPremiosRepository } from '../../catalogo-premios.repository';
 import { PremioTipoResponse } from '../../interfaces/premio-tipo.response';
 import { PremioResponse } from '../../interfaces/premio.response';
+import { PerfilAvanceRepository } from '../../../perfil-avance/perfil-avance.repository';
+import { PerfilAvanceEstadisticaResponse } from 'src/app/perfil-avance/interfaces/perfil-avance-estadistica.response';
+
 
 @Component({
   selector: 'app-inicio-catalogo-premios',
@@ -12,6 +16,7 @@ import { PremioResponse } from '../../interfaces/premio.response';
   styleUrls: [],
 })
 export class InicioCatalogoPremiosComponent implements OnInit {
+  usuario: ExtranetUser;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -40,17 +45,22 @@ export class InicioCatalogoPremiosComponent implements OnInit {
   tiposPremio: PremioTipoResponse[];
   nuevosPremios: PremioResponse[];
   nivelesPremios: PremioResponse[];
+  estadisticaPerfil: PerfilAvanceEstadisticaResponse[];
 
   constructor(
     private repository: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,
-    private router: Router
-  ) {}
+    private router: Router,
+    private repositoryPerfilAvance : PerfilAvanceRepository
+  ) {
+    this.usuario = this.repository.obtenerUsuario();
+  }
 
   ngOnInit(): void {
     this.listarTipoPremio();
     this.listarPremioNuevo();
     this.listarPremioNivel();
+    this.ListarEstadisticaPerfilAvance();
   }
 
   listarTipoPremio = () => {
@@ -109,6 +119,19 @@ export class InicioCatalogoPremiosComponent implements OnInit {
             this.sanitizer.bypassSecurityTrustUrl(objectURLTipo);
           return nivelPremio;
         });
+      },
+      error: (err) => {},
+    });
+  };
+
+  ListarEstadisticaPerfilAvance = () => {
+    debugger;
+    var request: any = {
+      id_usuario_extranet: this.usuario.id_usuario_extranet
+    };
+    this.repositoryPerfilAvance.ListarEstadisticaPerfilAvance(request).subscribe({
+      next: (data: PerfilAvanceEstadisticaResponse[]) => {
+        this.estadisticaPerfil = data;
       },
       error: (err) => {},
     });

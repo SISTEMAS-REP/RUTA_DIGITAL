@@ -2,12 +2,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-regresar">
-                <i class="fa fa-arrow-left"> <a href="index.html"><span class="text-regresar"> Regresar</span></a></i>
+              <i class="fa fa-arrow-left">
+                <a [routerLink]="['/']">
+                  <span class="text-regresar">Regresar</span>
+                </a>
+              </i>
             </div>
-        </div>
+          </div>
     </div>
 </section>
-
 
 <section class="meetings-page" id="meetings">
     <div class="container">
@@ -22,7 +25,7 @@
                     El nivel de digitalización de tu negocio va en:
                 </div>
             </div>
-            <div class="row">
+            <div class="col-lg-3">
                 <div class="col-xl-12 col-lg-6 mb-4" align="center">
                   <circle-progress
                     [percent]="resultadoAutodiagnostico.resultado.resultado * 100"
@@ -72,9 +75,9 @@
                                             <div class="circle-avance-verde">{{ item.orden_modulo }}</div>
                                         </div>
                                         <div class="mb-1 circle-avance" align="center">
-                                            <span class="subt-nivel mt-5">NIVEL<br>{{ item.nombre_nivel_madurez }}</span>
+                                            <span class="subt-nivel mt-5">Nivel<br>{{ item.nombre_nivel_madurez | titlecase }}</span>
                                         </div>
-                                        <span style="font-size: 1rem">{{ item.nombre_modulo }}</span>
+                                        <span style="font-size: 1rem">{{ item.nombre_modulo }} </span>
                                     </a>
                                 </div>
                             </div>
@@ -107,14 +110,14 @@
                                         <div class="etiqueta_coronap">
                                             <img class="" src="assets/images/icon_coronap.png" alt="" />
                                           </div>
-                                          <h6 class="text-white pt-0"  style="font-weight: 500; font-size: 25px;">
-                                            <strong>{{ item.nombre }}</strong>
+                                          <h6 class="text-white pt-0"  style="font-weight: 500; font-size: 20px;">
+                                            <strong>{{ item.nombre | titlecase}}</strong>
                                           </h6>
                                     </div>
-                                    <div class="new-niveles-on pb-4 mb-4" *ngIf="!item.seleccionado">
+                                    <div class="new-niveles-on pb-3 mb-4" *ngIf="!item.seleccionado">
                                         <div class="etiqueta_coronap pt-4"></div>
-                                        <h6 class="text-white pt-0" style="font-weight: 500; font-size: 25px;">
-                                          <strong>{{ item.nombre }}</strong>
+                                        <h6 class="text-white pt-0" style="font-weight: 500; font-size: 20px;">
+                                          <strong>{{ item.nombre | titlecase}}</strong>
                                         </h6>
                                       </div>
                                 </div>
@@ -219,25 +222,9 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row pt-5 pb-5">
-                    <div class="col-3" align="center"><img src="assets/images/icon_rayo.png" width="40px"></div>
-                    <div class="col-9 px-0">
-                        <h2 class="titu_cap">Tus puntos acumulados</h2>
-                    </div>
-                </div>
-
-                <div class="row pt-5 pb-5">
-                    <div class="col-3" align="center"><img src="assets/images/icon_maleta.png" width="40px"></div>
-                    <div class="col-9 px-0">
-                        <h2 class="titu_cap">Tus premios<br>
-                            canjeados</h2>
-                    </div>
-                </div>
-
             </div>
 
-            <div class="col-lg-8 mb-5 p-4 box-avance mt-5">
+            <div class="col-lg-8 mb-3 p-4 box-avance mt-5">
                 <div class="col-lg-12 mb-4" [ngSwitch]="view">
                         <mwl-calendar-month-view
                           *ngSwitchCase="'month'"
@@ -258,7 +245,29 @@
                         >
                         </mwl-calendar-day-view>
                 </div>
-                
+
+            </div>
+
+            <div class="col-lg-4 pt-0">
+             
+                <div class="row pt-5 pb-5">
+                    <div class="col-3" align="center"><img src="assets/images/icon_rayo.png" width="40px"></div>
+                    <div class="col-9 px-0">
+                        <h2 class="titu_cap">Tus puntos acumulados</h2>
+                    </div>
+                </div>
+
+                <div class="row pt-5 pb-5">
+                    <div class="col-3" align="center"><img src="assets/images/icon_maleta.png" width="40px"></div>
+                    <div class="col-9 px-0">
+                        <h2 class="titu_cap">Tus premios<br>
+                            canjeados</h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-8 mb-5 p-4 box-avance mt-0">                 
                 <div *ngFor="let puntos of estadisticaPerfil; let i = index">
                 <div class="col-lg-12" >
                     <div class="count-area-content mb-5">
@@ -314,22 +323,23 @@
                 </div>
 
             </div>
+            
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="section-heading mb-5" align="left">
+                    <div class="section-heading mb-5">
                         <h2 class="mb-0 pb-0">Sigue Capacitándote</h2>
                     </div>
-                </div>
+                    </div>
             </div>
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-4 mb-4" *ngFor="let item of ListarCapacitando; let i = index">
                         <div class="box_capacitacion_azul p-4">
                             <div class="col-lg-12 d-flex">
-                                <div class="col-lg-8">
-                                    <p class="text-white"><strong>{{ item.nivel }}</strong></p>
-                                    <p class="text-blanco"><strong>{{ item.tipo_nivel }}</strong></p>
-                                    <p class="text-white">{{ item.recomendacion }}</p>
+                                <div class="col-lg-9">
+                                    <p class="text-white"><strong>Nivel {{ item.nombre_nivel_madurez | titlecase }}</strong></p>
+                                    <p class="text-blanco"><strong>{{ item.nombre_modulo | titlecase }}</strong></p>
+                                    <p class="text-white">Recomendación #{{ item.orden }}</p>
                                     <div class="main-button-avance mt-3">
                                         <a href="#">Continuar</a>
                                     </div>
@@ -344,7 +354,7 @@
                                                 <div class="outer">
                                                 </div>
                                                 <div class="numb text-white">
-                                                    {{ item.porcentaje }}</div>
+                                                    {{ item.progreso }}%</div>
                                                 <div class="circle">
                                                     <div class="dot" style="background-color: #fff;">
                                                         <span style="background-color: #fff;"></span>
@@ -374,14 +384,14 @@
         </div>
 
  <section class="our-courses bg-white pb-0" id="">
-  <div class="container">
     <div class="row">
-      <div class="col-lg-6">
-        <div class="section-heading">
-          <h2>Descubre nuevos premios</h2>
+        <div class="col-lg-6">
+          <div class="section-heading">
+            <h2>Descubre nuevos premios</h2>
+          </div>
         </div>
-      </div>
-      <div class="col-lg-12">
+    <div class="container">  
+      <div class="col-lg-12" >
         <owl-carousel-o [options]="customOptions">
           <ng-container *ngFor="let nuevo of nuevosPremios; let i = index">
             <ng-template carouselSlide id="slide.id">
