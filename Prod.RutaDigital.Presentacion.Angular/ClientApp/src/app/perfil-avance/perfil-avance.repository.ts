@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { AuthorizeService } from '../authorization/authorize.service';
 import { PerfilAvanceService } from './perfil-avance.service';
 import { ExtranetUser } from '../shared/interfaces/extranet-user';
+import { ResultadoPerfil } from './interfaces/resultado-perfil';
 
 @Injectable({
   providedIn: 'root',
@@ -35,9 +36,10 @@ export class PerfilAvanceRepository {
       .pipe(map((response) => response.data as any[]));
   };
 
-  ListarResultadoPerfilAvance = (): Observable<any[]> => {
-    return this.perfilAvanceService
-      .ListarResultadoPerfilAvance()
-      .pipe(map((response) => response.data as any[]));
+
+  ListarResultadoPerfilAvance = (): Observable<ResultadoPerfil> => {
+    return this.perfilAvanceService.ListarResultadoPerfilAvance().pipe(
+      map((response) => response.data as ResultadoPerfil)
+    );
   };
 }

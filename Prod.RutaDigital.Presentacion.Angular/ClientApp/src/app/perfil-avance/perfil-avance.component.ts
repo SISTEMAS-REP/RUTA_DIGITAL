@@ -6,12 +6,11 @@ import { PremioResponse } from '../catalogo-premios/interfaces/premio.response';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CodGenero } from '../shared/enums/cod-genero.enum';
 import { ExtranetUser } from '../shared/interfaces/extranet-user';
-import { AutodiagnosticoRepository } from '../autodiagnostico/autodiagnostico.repository';
-import { ResultadoAutodiagnostico } from '../autodiagnostico/interfaces/resultado-autodiagnostico';
 import { CalendarEvent,CalendarDateFormatter,CalendarView} from 'angular-calendar';
 import { PerfilAvanceRepository } from './perfil-avance.repository';
 import { PerfilAvanceEstadisticaResponse } from './interfaces/perfil-avance-estadistica.response';
 import { PerfilAvancePremioConsumoResponse } from './interfaces/perfil-avance-premio-consumo.response';
+import { ResultadoPerfil } from './interfaces/resultado-perfil';
 
 
 
@@ -26,7 +25,7 @@ import { PerfilAvancePremioConsumoResponse } from './interfaces/perfil-avance-pr
 })
 export class PerfilAvanceComponent implements OnInit {
   usuario: ExtranetUser;
-  resultadoPerfilAvance: ResultadoAutodiagnostico;
+  resultadoPerfilAvance: ResultadoPerfil;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -66,16 +65,16 @@ export class PerfilAvanceComponent implements OnInit {
     private catalogoPremios: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private repository: AutodiagnosticoRepository,
     private repositoryPerfilAvance : PerfilAvanceRepository
   ) {
-    this.usuario = this.repositoryPerfilAvance.obtenerUsuario();
   }
 
     ngOnInit(): void {
+    this.usuario = this.repositoryPerfilAvance.obtenerUsuario();
       this.repositoryPerfilAvance
       .ListarResultadoPerfilAvance()
-      .subscribe((data: any) => {
+      .subscribe((data: ResultadoPerfil) => {
+        debugger;
         this.resultadoPerfilAvance = data;
       });
       
