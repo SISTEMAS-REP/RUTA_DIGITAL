@@ -27,4 +27,8 @@ export class PerfilAvanceService extends BaseService {
       params: request ? this.setParams(request) : {},
     });
   };
+
+  ListarResultadoPerfilAvance = (): Observable<any> => {
+    return this.get('ListarResultadoPerfilAvance', {});
+  };
 }
