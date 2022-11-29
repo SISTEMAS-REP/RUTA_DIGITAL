@@ -26,7 +26,7 @@ import { PerfilAvancePremioConsumoResponse } from './interfaces/perfil-avance-pr
 })
 export class PerfilAvanceComponent implements OnInit {
   usuario: ExtranetUser;
-  resultadoAutodiagnostico: ResultadoAutodiagnostico;
+  resultadoPerfilAvance: ResultadoAutodiagnostico;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -76,7 +76,7 @@ export class PerfilAvanceComponent implements OnInit {
       this.repositoryPerfilAvance
       .ListarResultadoPerfilAvance()
       .subscribe((data: any) => {
-        this.resultadoAutodiagnostico = data;
+        this.resultadoPerfilAvance = data;
       });
       
     this.listarPremioNuevo();
@@ -99,13 +99,11 @@ export class PerfilAvanceComponent implements OnInit {
   };
 
   ListarCapacitacionPerfilAvance = () => {
-    debugger;
     var request: any = {
       id_usuario_extranet: this.usuario.id_usuario_extranet
     };
     this.repositoryPerfilAvance.ListarCapacitacionPerfilAvance(request).subscribe({
       next: (data: any[]) => {
-        debugger
         this.ListarCapacitando = data;
       },
       error: (err) => {},

@@ -49,7 +49,7 @@ namespace Prod.RutaDigital.Datos
             };
 
             var result = ExecuteReader<ResultadoResponse>(
-                "USP_DAT_RESULTADO_LISTAR",
+                "USP_DAT_RESULTADO_PERFIL_AVANCE_LISTAR",
                 CommandType.StoredProcedure, ref parms);
 
             return await Task.FromResult(result);
@@ -66,7 +66,7 @@ namespace Prod.RutaDigital.Datos
             };
 
             var result = ExecuteReader<ResultadoModuloResponse>(
-                "USP_DAT_RESULTADO_MODULO_LISTAR",
+                "USP_DAT_RESULTADO_MODULO_PERFIL_AVANCE_LISTAR",
                 CommandType.StoredProcedure, ref parms);
 
             return await Task.FromResult(result);
