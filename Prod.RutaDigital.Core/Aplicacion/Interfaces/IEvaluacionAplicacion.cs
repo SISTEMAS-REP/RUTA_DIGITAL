@@ -14,4 +14,5 @@ public interface IEvaluacionAplicacion
 
     Task<StatusResponse<int>>
         ActualizarEvaluacion(EvaluacionRequest request);
+    Task<StatusResponse<IEnumerable<EvaluacionResponse>>> ListarEvaluacionHistorico(EvaluacionRequest request);
 }

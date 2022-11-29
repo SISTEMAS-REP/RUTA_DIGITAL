@@ -14,14 +14,14 @@
             <li>
               <a [routerLink]="['/']">Inicio</a>
             </li>
-            <!-- <li
+            <li
               class="nav-item text-white"
-              *ngIf="verificacionDiagnosticoHistorico && isAutenticated"
+              *ngIf="verificacionAutodiagnosticoHistorico && isAutenticated"
             >
               <a class="nav-link text-white" [routerLink]="['/']"
                 >Autodiagnóstico histórico</a
               >
-            </li> -->
+            </li>
 
             <li *ngIf="!verificacionAutodiagnostico">
               <a [routerLink]="['/autodiagnostico/test']"

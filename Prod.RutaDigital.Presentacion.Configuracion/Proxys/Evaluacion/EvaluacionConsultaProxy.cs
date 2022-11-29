@@ -22,4 +22,12 @@ public class EvaluacionConsultaProxy : BaseProxy
             _url + "ListarEvaluacion",
             GetJsonParameters(request));
     }
+    public async Task<StatusResponse<IEnumerable<EvaluacionResponse>>>
+        ListarEvaluacionHistorico(EvaluacionRequest request)
+    {
+        return await InvokeWebApiAsync<StatusResponse<IEnumerable<EvaluacionResponse>>>(
+            HttpMethod.Get,
+            _url + "ListarEvaluacionHistorico",
+            GetJsonParameters(request));
+    }
 }

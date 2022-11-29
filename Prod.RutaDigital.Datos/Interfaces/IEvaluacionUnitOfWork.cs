@@ -14,4 +14,5 @@ public partial interface IUnitOfWork : IBaseUnitOfWork
 
     Task<int>
         ActualizarEvaluacion(EvaluacionRequest request);
+    Task<IEnumerable<EvaluacionResponse>> ListarEvaluacionHistorico(EvaluacionRequest request);
 }

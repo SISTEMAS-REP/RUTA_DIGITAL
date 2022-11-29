@@ -13,6 +13,7 @@ import { AutodiagnosticoRepository } from './autodiagnostico/autodiagnostico.rep
 export class AppComponent implements OnInit {
   isAuthenticated: boolean = false;
   verificacionAutodiagnostico: boolean;
+  verificacionAutodiagnosticoHistorico: boolean;
 
   constructor(
     private router: Router,
@@ -30,6 +31,12 @@ export class AppComponent implements OnInit {
       .verificarAutodiagnostico()
       .subscribe((status) => {
         this.verificacionAutodiagnostico = status;
+      });
+    
+    this.autodiagnosticoRepository
+      .VerificarAutodiagnosticoHistorico()
+      .subscribe((status) => {
+        this.verificacionAutodiagnosticoHistorico = status;
       });
   }
 

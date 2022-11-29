@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NavMenuComponent implements OnInit {
   @Input() isAutenticated: boolean;
   @Input() verificacionAutodiagnostico: boolean;
-
+  @Input() verificacionAutodiagnosticoHistorico: boolean;
   constructor() {}
 
   ngOnInit(): void {}

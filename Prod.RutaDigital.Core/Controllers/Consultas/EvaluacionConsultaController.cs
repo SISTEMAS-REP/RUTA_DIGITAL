@@ -1,6 +1,5 @@
 ﻿using Release.Helper;
 using Microsoft.AspNetCore.Mvc;
-
 using Prod.RutaDigital.Core.Aplicacion.Interfaces;
 using Prod.RutaDigital.Entidades;
 
@@ -24,5 +23,14 @@ public class EvaluacionConsultaController : ControllerBase
     {
         return await _evaluacionAplicacion
             .ListarEvaluacion(request);
+    }
+
+    [HttpGet]
+    [Route("ListarEvaluacionHistorico")]
+    public async Task<StatusResponse<IEnumerable<EvaluacionResponse>>>
+        ListarEvaluacionHistorico(EvaluacionRequest request)
+    {
+        return await _evaluacionAplicacion
+            .ListarEvaluacionHistorico(request);
     }
 }

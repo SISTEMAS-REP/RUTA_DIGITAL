@@ -86,4 +86,27 @@ public class EvaluacionAplicacion : IEvaluacionAplicacion
 
         return resultado;
     }
+
+    public async Task<StatusResponse<IEnumerable<EvaluacionResponse>>>ListarEvaluacionHistorico(EvaluacionRequest request)
+    {
+        var resultado = new StatusResponse<IEnumerable<EvaluacionResponse>>();
+        try
+        {
+            var data = await _uow
+                .ListarEvaluacionHistorico(request);
+
+            resultado.Success = true;
+            resultado.Data = data;
+        }
+        catch (Exception ex)
+        {
+            resultado.Success = true;
+            resultado.Messages = new()
+            {
+                ex.Message
+            };
+        }
+
+        return resultado;
+    }
 }

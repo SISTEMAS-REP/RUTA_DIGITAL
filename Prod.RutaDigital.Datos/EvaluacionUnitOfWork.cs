@@ -76,4 +76,19 @@ public partial class UnitOfWork : IUnitOfWork
 
         return await Task.FromResult(result);
     }
+
+    public async Task<IEnumerable<EvaluacionResponse>>ListarEvaluacionHistorico(EvaluacionRequest request)
+    {
+        var parms = new Parameter[]
+        {
+             new Parameter("@id_evaluacion", request.id_evaluacion),
+             new Parameter("@id_usuario_extranet", request.id_usuario_extranet),
+        };
+
+        var result = ExecuteReader<EvaluacionResponse>(
+            "USP_DAT_EVALUACION_HISTORICA_LISTAR",
+            CommandType.StoredProcedure, ref parms);
+
+        return await Task.FromResult(result);
+    }
 }
