@@ -6,7 +6,7 @@ public class RecomendacionResponse : Recomendacion
     public string? nombre_modulo { get; set; }
     public int orden_modulo { get; set; }
     public string? nombre_nivel_madurez { get; set; }
-    public int? avance_recomendacion { get;set; }
+    public int? progreso { get;set; }
 
     public IEnumerable<RecomendacionDetResponse>? detalle { get; set; }
     public IEnumerable<RecursoResponse>? recursos { get; set; }

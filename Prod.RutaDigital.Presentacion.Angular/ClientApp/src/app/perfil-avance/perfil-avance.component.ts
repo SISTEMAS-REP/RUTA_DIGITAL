@@ -55,9 +55,7 @@ export class PerfilAvanceComponent implements OnInit {
   nuevosPremios: PremioResponse[];
   estadisticaPerfil: PerfilAvanceEstadisticaResponse[];
   premioConsumo: PerfilAvancePremioConsumoResponse[];
-  ListarNivelAutodiagnostico: Array<any>;
   ListarCapacitando: Array<any>;
-  ListarNivel: Array<any>;
 
   view: CalendarView = CalendarView.Month;
   viewDate: Date = new Date();
@@ -71,7 +69,7 @@ export class PerfilAvanceComponent implements OnInit {
     private repository: AutodiagnosticoRepository,
     private repositoryPerfilAvance : PerfilAvanceRepository
   ) {
-    this.usuario = this.repository.obtenerUsuario();
+    this.usuario = this.repositoryPerfilAvance.obtenerUsuario();
   }
 
     ngOnInit(): void {
@@ -101,13 +99,14 @@ export class PerfilAvanceComponent implements OnInit {
   };
 
   ListarCapacitacionPerfilAvance = () => {
+    debugger;
     var request: any = {
       id_usuario_extranet: this.usuario.id_usuario_extranet
     };
     this.repositoryPerfilAvance.ListarCapacitacionPerfilAvance(request).subscribe({
       next: (data: any[]) => {
         debugger
-        this.ListarCapacitando = data        // this.estadisticaPerfil = data;
+        this.ListarCapacitando = data;
       },
       error: (err) => {},
     });

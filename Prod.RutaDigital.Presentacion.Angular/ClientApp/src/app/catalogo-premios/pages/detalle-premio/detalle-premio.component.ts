@@ -6,6 +6,7 @@ import { PremioResponse } from '../../interfaces/premio.response';
 import { CatalogoPremiosRepository } from '../../catalogo-premios.repository';
 import { AuthorizeService } from 'src/app/authorization/authorize.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { ExtranetUser } from 'src/app/shared/interfaces/extranet-user';
 
 @Component({
   selector: 'app-detalle-premio',
@@ -14,7 +15,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 })
 export class DetallePremioComponent implements OnInit {
   isAuthenticated: boolean = false;
-  id_usuario_extranet: number = null;
+  usuario: ExtranetUser;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -41,7 +42,6 @@ export class DetallePremioComponent implements OnInit {
 
   premio: PremioResponse;
   premios: PremioResponse[];
-
   id_premio: number;
 
   constructor(
@@ -55,6 +55,7 @@ export class DetallePremioComponent implements OnInit {
     this.authorizeService.isAuthenticated().subscribe((status) => {
       this.isAuthenticated = status;
     });
+    this.usuario = this.repository.obtenerUsuario();
   }
 
   ngOnInit(): void {
@@ -65,9 +66,6 @@ export class DetallePremioComponent implements OnInit {
     this.fnVerificacionCookies();
     this.listarPremio();
     this.listarDescubrePremios();
-    this.repository.getUser().subscribe((user) => {
-      this.id_usuario_extranet = user.id_usuario_extranet;
-    });
   }
 
   fnVerificacionCookies= () =>{
@@ -125,7 +123,7 @@ export class DetallePremioComponent implements OnInit {
   fnCanjear= () =>{
     var request: any = {
       id_premio: this.premio.id_premio,
-      id_usuario_extranet: this.id_usuario_extranet,
+      id_usuario_extranet: this.usuario.id_usuario_extranet,
       cantidad: this.premio.puntos_produce,
       nombre_premio :this.premio.nombre,
       descripcion_premio: this.premio.descripcion_corta
