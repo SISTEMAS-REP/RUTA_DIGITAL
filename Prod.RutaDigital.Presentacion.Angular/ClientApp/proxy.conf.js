@@ -162,6 +162,24 @@ const PROXY_CONFIG = [
       Connection: "Keep-Alive",
     },
   },
+
+  {
+    context: ["/autodiagnostico-historico/VerificarAutodiagnosticoHistorico"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
+
+  {
+    context: ["/autodiagnostico-historico/ListarResultadoAutodiagnostico"],
+    target: target,
+    secure: false,
+    headers: {
+      Connection: "Keep-Alive",
+    },
+  },
 ];
 
 module.exports = PROXY_CONFIG;

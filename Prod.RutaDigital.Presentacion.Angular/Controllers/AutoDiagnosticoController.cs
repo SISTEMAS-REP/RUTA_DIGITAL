@@ -75,7 +75,7 @@ public class AutodiagnosticoController : ControllerBase
     [HttpPost("VerificarAutodiagnostico")]
     public async Task<IActionResult> 
         VerificarAutodiagnostico()
-    {
+     {
         var response = new StatusResponse<EvaluacionResponse>();
         var idUsuarioExtranet = int
             .Parse(_currentUserService.User.IdUsuarioExtranet);

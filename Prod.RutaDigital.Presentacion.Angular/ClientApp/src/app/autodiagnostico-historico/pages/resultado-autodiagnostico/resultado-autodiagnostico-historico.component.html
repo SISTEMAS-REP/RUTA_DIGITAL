@@ -1,0 +1,94 @@
+<section class="meetings-page" id="meetings">
+  <div class="container" *ngIf="resultadoAutodiagnosticoHistorico">
+    <div class="row pt-4 text-center">
+      <div class="section-heading">
+        <h4 class="pb-3">Hola {{ usuario.nombres | titlecase }}</h4>
+        <h2 class="mb-0 pb-0">
+          {{ mostrarTituloPorGenero(usuario.cod_genero) }}
+        </h2>
+        <div class="num-calendario pb-5 text-center" style="font-size: 1.3rem">
+          El nivel de digitalización de tu negocio va en:
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-12 col-lg-6 mb-4" align="center">
+        <circle-progress
+          [percent]="resultadoAutodiagnostico.resultado.resultado * 100"
+          [radius]="100"
+          [animation]="true"
+          [animationDuration]="1000"
+        ></circle-progress>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="new-students">
+          <div class="etiqueta_corona">
+            <img class="" src="assets/images/icon_corona.png" alt="" />
+          </div>
+          <h1 class="text-white mb-0 pb-0 pt-0">
+            <strong>{{
+              resultadoAutodiagnostico.resultado.nombre_nivel_madurez
+                | titlecase
+            }}</strong>
+          </h1>
+          <div class="count-title text-white pb-4">Nivel de digitalización</div>
+        </div>
+      </div>
+
+      <div class="col-lg-12 mb-5 p-4">
+        <div class="num-calendario pb-5 text-center" style="font-size: 1.3rem">
+          Te recomendamos seguir esta
+          <strong>ruta de capacitación</strong> para llegar al siguiente nivel
+        </div>
+
+        <div class="row">
+          <div class="col-12" align="center">
+            <app-nivel-modulo
+              [routerLink]="[
+                '/recomendaciones/modulo/' + resultadoModulo.id_modulo
+              ]"
+              [nivel]="resultadoModulo.nombre_nivel_madurez"
+              [modulo]="resultadoModulo.nombre_modulo"
+              [orden]="resultadoModulo.orden_modulo"
+              *ngFor="
+                let resultadoModulo of resultadoAutodiagnostico.resultadoModulos
+              "
+            ></app-nivel-modulo>
+          </div>
+        </div>
+
+        <div class="col-lg-12 pb-2" align="center">
+          <h5>
+            Recuerda que para subir de nivel debes completar las recomendaciones
+            del nivel más alto en el que te encuentres
+          </h5>
+        </div>
+
+        <div class="col-lg-12 pb-5" align="center">
+          <p>Estos son los 5 niveles en Ruta Digital</p>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-1" align="center"></div>
+
+            <app-nivel-madurez
+              class="col-lg-2"
+              align="center"
+              [nivel]="nivelMadurez.nombre"
+              [seleccionado]="nivelMadurez.seleccionado"
+              *ngFor="
+                let nivelMadurez of resultadoAutodiagnostico.nivelesMadurez
+              "
+            ></app-nivel-madurez>
+            <div class="col-lg-1" align="center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

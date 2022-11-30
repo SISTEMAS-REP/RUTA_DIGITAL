@@ -20,6 +20,13 @@ export const AppRoutes: Routes = [
       ),
   },
   {
+    path: 'autodiagnostico-historico',
+    loadChildren: () =>
+      import('./autodiagnostico-historico/autodiagnostico-historico.module').then(
+        (m) => m.AutodiagnosticoHistoricoModule
+      ),
+  },
+  {
     path: 'recomendaciones',
     loadChildren: () =>
       import('./recomendaciones/recomendaciones.module').then(
