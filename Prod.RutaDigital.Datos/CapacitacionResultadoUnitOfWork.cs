@@ -32,6 +32,7 @@ public partial class UnitOfWork : IUnitOfWork
         var parms = new Parameter[]
         {
              new Parameter("@id_resultado", request.id_resultado),
+             new Parameter("@id_modulo", request.id_modulo),
              new Parameter("@id_recomendacion", request.id_recomendacion),
              new Parameter("@fecha_inicio", request.fecha_inicio),
              new Parameter("@fecha_fin", request.fecha_fin),
@@ -41,9 +42,9 @@ public partial class UnitOfWork : IUnitOfWork
 
              new Parameter("@usuario_registro", request.usuario_registro),
              new Parameter("@fecha_registro", request.fecha_registro),
-             new Parameter("@usuario_modificacion", request.usuario_modificacion),
-             new Parameter("@fecha_modificacion", request.fecha_modificacion),
-             new Parameter("@estado", request.estado),
+             //new Parameter("@usuario_modificacion", request.usuario_modificacion),
+             //new Parameter("@fecha_modificacion", request.fecha_modificacion),
+             //new Parameter("@estado", request.estado),
         };
 
         var result = ExecuteScalar<int>(

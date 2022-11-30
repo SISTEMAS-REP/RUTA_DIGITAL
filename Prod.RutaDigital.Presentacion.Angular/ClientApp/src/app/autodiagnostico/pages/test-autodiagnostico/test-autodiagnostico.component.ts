@@ -76,12 +76,12 @@ export class TestAutodiagnosticoComponent implements OnInit {
     });
   }
 
-  onStepperPrevious($event: Modulo, index: number) {
+  onStepperPrevious() {
     this.stepper.previous();
     this.scrollOn('title');
   }
 
-  onStepperNext($event: Modulo, index: number, last: boolean) {
+  onStepperNext($event: Modulo, index: number) {
     console.log('$event', $event);
     var request: ModuloRequest = {
       id_modulo: $event.id_modulo,
@@ -94,10 +94,22 @@ export class TestAutodiagnosticoComponent implements OnInit {
       if (data) {
         this.stepper.next();
         this.scrollOn('title');
+      }
+    });
+  }
 
-        if (last) {
-          this.onStepperFinish();
-        }
+  onStepperFinish($event: Modulo, index: number) {
+    console.log('$event', $event);
+    var request: ModuloRequest = {
+      id_modulo: $event.id_modulo,
+    };
+
+    this.repository.validarModulo(request).subscribe((data: boolean) => {
+      this.test.modulos[index].completado = data ?? false;
+      this.stepper.steps.get(index).completed = data ?? false;
+
+      if (data) {
+        this.procesarEvaluacion();
       }
     });
   }
@@ -114,15 +126,15 @@ export class TestAutodiagnosticoComponent implements OnInit {
     }, 250);
   }
 
-  onStepperFinish() {
+  procesarEvaluacion() {
     this.repository.procesarEvaluacion().subscribe((data: boolean) => {
       if (data) {
         this.toastService.success(
           'Test de autodiagnóstico finalizado correctamente'
         );
-        this.router.navigate(['/autodiagnostico/resultado']);
+
+        location.href = '/autodiagnostico/resultado';
       }
-      return data;
     });
   }
 }

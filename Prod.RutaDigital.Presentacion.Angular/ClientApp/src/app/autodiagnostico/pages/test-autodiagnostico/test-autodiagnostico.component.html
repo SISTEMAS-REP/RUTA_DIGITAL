@@ -26,9 +26,9 @@
             [first]="first"
             [last]="last"
             [modulo]="modulo"
-            (onStepperPrevious)="onStepperPrevious($event, index)"
-            (onStepperNext)="onStepperNext($event, index, last)"
-            (onStepperFinish)="onStepperFinish()"
+            (onStepperPrevious)="onStepperPrevious()"
+            (onStepperNext)="onStepperNext($event, index)"
+            (onStepperFinish)="onStepperFinish($event, index)"
           ></app-test-autodiagnostico-modulo>
         </cdk-step>
       </ng-stepper>

@@ -921,64 +921,69 @@ public class AutodiagnosticoController : ControllerBase
             {
                 // No considerar el nivel de madurez EXPERTO (5)
                 var resultadoNivelesMadurez = nivelesMadurez
-                    .Where(w => w.valor_max >= resultadoModulo.resultado_modulo
-                        && w.codigo != "5");
+                    .Where(w => w.valor_max >= resultadoModulo.resultado_modulo/*
+                        && w.codigo != "5"*/);
 
-                if (resultadoNivelesMadurez.Count() == 0)
+                var resultadoNivelMadurez = resultadoNivelesMadurez
+                    .FirstOrDefault();
+
+                if (resultadoNivelMadurez is null)
                 {
                     throw new Exception();
                 }
 
-                foreach (var resultadoNivel in resultadoNivelesMadurez)
+                if (resultadoNivelMadurez.codigo != "5")
                 {
-                    // Obtener recomendacionas asociadas al nivel de madurez
-                    var recomendacionesResponse = await _recomendacionConsultaProxy
-                        .ListarRecomendaciones(new()
-                        {
-                            id_modulo = resultadoModulo.id_modulo,
-                            id_nivel_madurez = resultadoNivel.id_nivel_madurez
-                        });
-
-                    if (recomendacionesResponse is null
-                        || !recomendacionesResponse.Success)
+                    foreach (var resultadoNivel in resultadoNivelesMadurez)
                     {
-                        throw new Exception();
-                    }
+                        // Obtener recomendacionas asociadas al nivel de madurez
+                        var recomendacionesResponse = await _recomendacionConsultaProxy
+                            .ListarRecomendaciones(new()
+                            {
+                                id_modulo = resultadoModulo.id_modulo,
+                                id_nivel_madurez = resultadoNivel.id_nivel_madurez
+                            });
 
-                    var recomendaciones = recomendacionesResponse.Data;
-
-                    // Recorrer para insertar recomendaciones
-                    foreach (var recomendacion in recomendaciones)
-                    {
-                        var capacitacionResultadoRequest = new CapacitacionResultadoRequest()
-                        {
-                            id_resultado = idResultado,
-                            id_modulo = resultadoModulo.id_modulo,
-                            id_recomendacion = recomendacion.id_recomendacion,
-                            //fecha_inicio = null,
-                            //fecha_fin = null,
-                            progreso = 0,
-                            concluido = false,
-                            calificacion = 0,
-
-                            usuario_registro = _appAuditoria.Usuario,
-                            fecha_registro = fechaHoraOperacion,
-                            estado = true
-                        };
-
-                        var idCapacitacionResultadoResponse = await _capacitacionResultadoComandoProxy
-                            .InsertarCapacitacionResultado(capacitacionResultadoRequest);
-
-                        if (idCapacitacionResultadoResponse is null
-                            || !idCapacitacionResultadoResponse.Success
-                            || idCapacitacionResultadoResponse.Data <= 0)
+                        if (recomendacionesResponse is null
+                            || !recomendacionesResponse.Success)
                         {
                             throw new Exception();
                         }
 
-                        var idCapacitacionResultado = idCapacitacionResultadoResponse.Data;
+                        var recomendaciones = recomendacionesResponse.Data;
+
+                        // Recorrer para insertar recomendaciones
+                        foreach (var recomendacion in recomendaciones)
+                        {
+                            var capacitacionResultadoRequest = new CapacitacionResultadoRequest()
+                            {
+                                id_resultado = idResultado,
+                                id_modulo = resultadoModulo.id_modulo,
+                                id_recomendacion = recomendacion.id_recomendacion,
+                                progreso = 0,
+                                concluido = false,
+                                calificacion = 0,
+
+                                usuario_registro = _appAuditoria.Usuario,
+                                fecha_registro = fechaHoraOperacion
+                            };
+
+                            var idCapacitacionResultadoResponse = await _capacitacionResultadoComandoProxy
+                                .InsertarCapacitacionResultado(capacitacionResultadoRequest);
+
+                            if (idCapacitacionResultadoResponse is null
+                                || !idCapacitacionResultadoResponse.Success
+                                || idCapacitacionResultadoResponse.Data <= 0)
+                            {
+                                throw new Exception();
+                            }
+
+                            var idCapacitacionResultado = idCapacitacionResultadoResponse.Data;
+                        }
                     }
                 }
+
+                
             }
         }
 

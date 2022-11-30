@@ -32,7 +32,7 @@
           <div class="row" >
             <div class="col-lg-12" *ngFor="let detalle of recomendacion?.detalle; let x = index; let first = first">
               <h3 class="subtitulo-recomendacion">
-                <img src=".\.\\src\assets\images\icon_avionverde.png" class="ico-capacitacion" style="vertical-align: middle;"  />&nbsp;{{
+                <img src="assets/images/icon_avionverde.png" class="ico-capacitacion" style="vertical-align: middle;"  />&nbsp;{{
                 detalle.pregunta }}
               </h3>
               <br>
@@ -41,10 +41,10 @@
               </p>
               <br>
             </div>
-            
+
             <div class="col-lg-12" *ngFor="let recurso of recomendacion?.recursos; let i = index; let first = first">
               <h3 class="subtitulo-recomendacion">
-                
+
               </h3>
               <!-- <p class="descripcion-recomendacion">
                 <img src=".\.\\src\assets\images\icon_idea.png" class="ico-capacitacion" />&nbsp; {{ recurso.descripcion }}
@@ -58,10 +58,10 @@
 
                 </p>
                 <br>
-                
+
                 <div class="col-xs-12 row justify-content-center ">
                   <div class="button-container-video">
-                    
+
                     <iframe [src]="link(recurso.enlace_ruta)" title="" frameborder="0" class="video-recomendacion"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowfullscreen></iframe>
@@ -69,9 +69,9 @@
                     <a href="#"  class="ico-instagram" alt="">{{recurso.hashtag}}</a>
                   </div>
                 </div>
-               
+
                 <br>
-            
+
               <div class="col-lg-12">
               <p class="descripcion-recomendacion">
                 También te recomendamos explorar las siguientes herramientas y recursos:
@@ -79,12 +79,12 @@
             </div>
             <br>
               <div class="col-lg-12" *ngFor="let recursoDetalle of recurso.detalle; let x = index; let first = first">
-                
+
                 <p class="descripcion-recomendacion">
-                  <img src=".\.\\src\assets\images\icon_herrammienta.png" class="ico-capacitacion" style="float: left;" />  
-                  
+                  <img src=".\.\\src\assets\images\icon_herrammienta.png" class="ico-capacitacion" style="float: left;" />
+
                 <a class="p-paso" [href]="recursoDetalle.enlace_ruta" style="font-weight: bold;color: black !important;" target="_blank">
-                  
+
                   &nbsp;{{ recursoDetalle.nombre }}
                 </a>
               <br>
@@ -127,5 +127,5 @@
       </div>
     </div>
     </div>
- 
+
 </section>

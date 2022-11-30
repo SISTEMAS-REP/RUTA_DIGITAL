@@ -39,9 +39,9 @@ public partial class UnitOfWork : IUnitOfWork
 
              new Parameter("@usuario_registro", request.usuario_registro),
              new Parameter("@fecha_registro", request.fecha_registro),
-             new Parameter("@usuario_modificacion", request.usuario_modificacion),
-             new Parameter("@fecha_modificacion", request.fecha_modificacion),
-             new Parameter("@estado", request.estado),
+             //new Parameter("@usuario_modificacion", request.usuario_modificacion),
+             //new Parameter("@fecha_modificacion", request.fecha_modificacion),
+             //new Parameter("@estado", request.estado),
         };
 
         var result = ExecuteScalar<int>(
