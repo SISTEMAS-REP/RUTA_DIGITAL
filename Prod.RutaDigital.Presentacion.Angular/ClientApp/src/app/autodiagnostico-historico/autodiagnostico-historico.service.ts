@@ -7,15 +7,15 @@ import { BaseService } from '../shared/services/base.service';
 })
 export class AutodiagnosticoHistoricoService extends BaseService {
   getControllerUrl(): string {
-    return 'autodiagnostico-historico';
+    return 'autoDiagnosticoHistorico';
   }
 
   verificarAutodiagnosticoHistorico = (): Observable<any> => {
     return this.post('VerificarAutodiagnosticoHistorico', {});
   };
 
-  listarResultadoAutodiagnostico = (): Observable<any> => {
-    return this.get('ListarResultadoAutodiagnostico', {});
+  listarResultadoAutodiagnosticoHistorico = (): Observable<any> => {
+    return this.get('listarResultadoAutodiagnosticoHistorico', {});
   };
 
 }

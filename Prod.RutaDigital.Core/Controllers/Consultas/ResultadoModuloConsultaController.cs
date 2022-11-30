@@ -25,4 +25,13 @@ public class ResultadoModuloConsultaController : ControllerBase
         return await _resultadoModuloAplicacion
             .ListarResultadoModulos(request);
     }
+
+    [HttpGet]
+    [Route("ListarResultadoModulosHistorico")]
+    public async Task<StatusResponse<IEnumerable<ResultadoModuloResponse>>>
+        ListarResultadoModulosHistorico(ResultadoModuloRequest request)
+    {
+        return await _resultadoModuloAplicacion
+            .ListarResultadoModulosHistorico(request);
+    }
 }

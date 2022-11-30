@@ -40,6 +40,31 @@ public class ResultadoAplicacion : IResultadoAplicacion
         return resultado;
     }
 
+    public async Task<StatusResponse<IEnumerable<ResultadoResponse>>>
+       ListarResultadosHistorico(ResultadoRequest request)
+    {
+        var resultado = new StatusResponse<IEnumerable<ResultadoResponse>>();
+
+        try
+        {
+            var data = await _uow
+                .ListarResultadosHistorico(request);
+
+            resultado.Success = true;
+            resultado.Data = data;
+        }
+        catch (Exception ex)
+        {
+            resultado.Success = true;
+            resultado.Messages = new()
+            {
+                ex.Message
+            };
+        }
+
+        return resultado;
+    }
+
     public async Task<StatusResponse<int>>
         InsertarResultado(ResultadoRequest request)
     {

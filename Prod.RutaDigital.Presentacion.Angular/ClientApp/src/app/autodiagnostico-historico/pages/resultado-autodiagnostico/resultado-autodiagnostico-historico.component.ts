@@ -19,7 +19,7 @@ export class ResultadoAutodiagnosticoHistoricoComponent implements OnInit {
 
   ngOnInit(): void {
     this.repository
-      .listarResultadoAutodiagnostico()
+      .listarResultadoAutodiagnosticoHistorico()
       .subscribe((data: ResultadoAutodiagnosticoHistorico) => {
         this.resultadoAutodiagnosticoHistorico = data;
       });

@@ -26,6 +26,24 @@ public partial class UnitOfWork : IUnitOfWork
         return await Task.FromResult(result);
     }
 
+    public async Task<IEnumerable<ResultadoResponse>>
+       ListarResultadosHistorico(ResultadoRequest request)
+    {
+        var parms = new Parameter[]
+        {
+             new Parameter("@id_resultado", request.id_resultado),
+             new Parameter("@id_evaluacion", request.id_evaluacion),
+             new Parameter("@id_tipo_test", request.id_tipo_test),
+             new Parameter("@id_usuario_extranet", request.id_usuario_extranet)
+        };
+
+        var result = ExecuteReader<ResultadoResponse>(
+            "USP_DAT_RESULTADO_AUTODIAGNOSTICO_HISTORICO",
+            CommandType.StoredProcedure, ref parms);
+
+        return await Task.FromResult(result);
+    }
+
     public async Task<int>
         InsertarResultado(ResultadoRequest request)
     {

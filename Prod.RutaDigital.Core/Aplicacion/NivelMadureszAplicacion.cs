@@ -37,4 +37,28 @@ public class NivelMadureszAplicacion : INivelMadurezAplicacion
 
         return resultado;
     }
+
+    public async Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
+       ListarNivelesMadurezHistorico()
+    {
+        var resultado = new StatusResponse<IEnumerable<NivelMadurezResponse>>();
+        try
+        {
+            var data = await _uow
+                .ListarNivelesMadurezHistorico();
+
+            resultado.Success = true;
+            resultado.Data = data;
+        }
+        catch (Exception ex)
+        {
+            resultado.Success = true;
+            resultado.Messages = new()
+            {
+                ex.Message
+            };
+        }
+
+        return resultado;
+    }
 }

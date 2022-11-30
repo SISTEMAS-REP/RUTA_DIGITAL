@@ -8,7 +8,8 @@ public partial interface IUnitOfWork : IBaseUnitOfWork
 {
     Task<IEnumerable<ResultadoResponse>>
         ListarResultados(ResultadoRequest request);
-
+    Task<IEnumerable<ResultadoResponse>>
+       ListarResultadosHistorico(ResultadoRequest request);
     Task<int>
         InsertarResultado(ResultadoRequest request);
 }

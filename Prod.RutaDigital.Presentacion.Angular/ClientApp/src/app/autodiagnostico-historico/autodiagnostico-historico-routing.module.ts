@@ -6,7 +6,8 @@ import { ResultadoAutodiagnosticoHistoricoGuard } from './guards/resultado-autod
 export const AutodiagnosticoHistoricoRoutes: Routes = [
   {
     path: 'resultado-hist',
-    component: ResultadoAutodiagnosticoHistoricoComponent
+    component: ResultadoAutodiagnosticoHistoricoComponent,
+    canActivate: [ResultadoAutodiagnosticoHistoricoGuard],
   },
 ];
 

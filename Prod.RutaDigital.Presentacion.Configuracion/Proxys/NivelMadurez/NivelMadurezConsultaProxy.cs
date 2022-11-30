@@ -21,4 +21,12 @@ public class NivelMadurezConsultaProxy : BaseProxy
             HttpMethod.Get, 
             _url + "ListarNivelesMadurez", null);
     }
+
+    public async Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
+      ListarNivelesMadurezHistorico()
+    {
+        return await InvokeWebApiAsync<StatusResponse<IEnumerable<NivelMadurezResponse>>>(
+            HttpMethod.Get,
+            _url + "ListarNivelesMadurezHistorico", null);
+    }
 }

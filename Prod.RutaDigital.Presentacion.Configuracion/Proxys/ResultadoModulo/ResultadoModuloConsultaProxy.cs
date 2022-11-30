@@ -22,4 +22,13 @@ public class ResultadoModuloConsultaProxy : BaseProxy
             _url + "ListarResultadoModulos",
             GetJsonParameters(request));
     }
+
+    public async Task<StatusResponse<IEnumerable<ResultadoModuloResponse>>>
+       ListarResultadoModulosHistorico(ResultadoModuloRequest request)
+    {
+        return await InvokeWebApiAsync<StatusResponse<IEnumerable<ResultadoModuloResponse>>>(
+            HttpMethod.Get,
+            _url + "ListarResultadoModulosHistorico",
+            GetJsonParameters(request));
+    }
 }

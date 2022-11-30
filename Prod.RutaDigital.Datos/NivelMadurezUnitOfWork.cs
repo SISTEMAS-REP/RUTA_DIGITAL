@@ -22,4 +22,19 @@ public partial class UnitOfWork : IUnitOfWork
 
         return await Task.FromResult(result);
     }
+
+    public async Task<IEnumerable<NivelMadurezResponse>>
+        ListarNivelesMadurezHistorico()
+    {
+        var parms = new Parameter[]
+        {
+
+        };
+
+        var result = ExecuteReader<NivelMadurezResponse>(
+            "USP_CAT_NIVEL_MADUREZ_LISTAR",
+            CommandType.StoredProcedure, ref parms);
+
+        return await Task.FromResult(result);
+    }
 }

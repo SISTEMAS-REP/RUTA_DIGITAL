@@ -81,20 +81,4 @@ export class AutodiagnosticoRepository {
       map((response) => response.data as ResultadoAutodiagnostico)
     );
   };
-
-  verificarAutodiagnosticoHistorico = (): Observable<boolean> => {
-    return this.autodiagnosticoService.verificarAutodiagnosticoHistorico().pipe(
-      tap((response) =>
-        console.log(
-          'autodiagnostico-repository/VerificarAutodiagnosticoHistorico',
-          response
-        )
-      ),
-      map((response) => {
-        var data = response.data;
-        return data?.concluido ?? false;
-      }),
-      catchError(() => of(false))
-    );
-  };
 }

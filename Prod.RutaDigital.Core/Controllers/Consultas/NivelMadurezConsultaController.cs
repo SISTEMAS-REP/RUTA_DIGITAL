@@ -25,4 +25,13 @@ public class NivelMadurezConsultaController : ControllerBase
         return await _nivelMadurezAplicacion
             .ListarNivelesMadurez();
     }
+
+    [HttpGet]
+    [Route("ListarNivelesMadurezHistorico")]
+    public async Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
+        ListarNivelesMadurezHistorico()
+    {
+        return await _nivelMadurezAplicacion
+            .ListarNivelesMadurezHistorico();
+    }
 }

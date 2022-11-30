@@ -25,6 +25,23 @@ public partial class UnitOfWork : IUnitOfWork
         return await Task.FromResult(result);
     }
 
+    public async Task<IEnumerable<ResultadoModuloResponse>>
+       ListarResultadoModulosHistorico(ResultadoModuloRequest request)
+    {
+        var parms = new Parameter[]
+        {
+             new Parameter("@id_resultado_modulo", request.id_resultado_modulo),
+             new Parameter("@id_resultado", request.id_resultado),
+             new Parameter("@id_modulo", request.id_modulo),
+        };
+
+        var result = ExecuteReader<ResultadoModuloResponse>(
+            "USP_DAT_RESULTADO_MODULO_HISTORICO_LISTAR",
+            CommandType.StoredProcedure, ref parms);
+
+        return await Task.FromResult(result);
+    }
+
     public async Task<int>
         InsertarResultadoModulo(ResultadoModuloRequest request)
     {

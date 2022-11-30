@@ -36,8 +36,8 @@ export class AutodiagnosticoHistoricoRepository {
     );
   };
 
-  listarResultadoAutodiagnostico = (): Observable<ResultadoAutodiagnosticoHistorico> => {
-    return this.autodiagnosticoHistoricoService.listarResultadoAutodiagnostico().pipe(
+  listarResultadoAutodiagnosticoHistorico = (): Observable<ResultadoAutodiagnosticoHistorico> => {
+    return this.autodiagnosticoHistoricoService.listarResultadoAutodiagnosticoHistorico().pipe(
       tap((response) =>
         console.log(
           'autodiagnostico-historico-repository/listarResultadoAutodiagnosticoHistorico',

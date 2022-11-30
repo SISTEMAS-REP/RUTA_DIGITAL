@@ -108,40 +108,6 @@ public class AutodiagnosticoController : ControllerBase
         return Ok(response);
     }
 
-    [HttpPost("VerificarAutodiagnosticoHistorico")]
-    public async Task<IActionResult>
-        VerificarAutodiagnosticoHistorico()
-    {
-        var response = new StatusResponse<EvaluacionResponse>();
-        var idUsuarioExtranet = int.Parse(_currentUserService.User.IdUsuarioExtranet);
-
-        var evaluacionHistoricoResponse = await _evaluacionConsultaProxy
-            .ListarEvaluacionHistorico(new()
-            {
-                id_usuario_extranet = idUsuarioExtranet
-            });
-
-        if (evaluacionHistoricoResponse is null
-            || !evaluacionHistoricoResponse.Success
-            || evaluacionHistoricoResponse.Data.Count() == 0)
-        {
-            //response.StatusCode = StatusCodes.Status404NotFound;
-            return new ObjectResult(response);
-        }
-
-        var evaluacionHistorico = evaluacionHistoricoResponse!.Data!
-            .First();
-
-        response.Success = true;
-        response.Data = new EvaluacionResponse()
-        {
-            concluido = evaluacionHistorico.concluido,
-
-        };
-
-        return Ok(response);
-    }
-
     [HttpGet("ListarTestAutodiagnostico")]
     public async Task<IActionResult>
         ListarTestAutodiagnostico()

@@ -35,8 +35,4 @@ export class AutodiagnosticoService extends BaseService {
   listarResultadoAutodiagnostico = (): Observable<any> => {
     return this.get('ListarResultadoAutodiagnostico', {});
   };
-
-  verificarAutodiagnosticoHistorico = (): Observable<any> => {
-    return this.post('VerificarAutodiagnosticoHistorico', {});
-  };
 }

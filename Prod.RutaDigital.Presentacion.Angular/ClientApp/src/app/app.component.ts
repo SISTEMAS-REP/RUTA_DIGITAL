@@ -5,6 +5,7 @@ import { AuthorizeService } from './authorization/authorize.service';
 import { AppService } from './shared/services/app.service';
 import { AutodiagnosticoService } from './autodiagnostico/autodiagnostico.service';
 import { AutodiagnosticoRepository } from './autodiagnostico/autodiagnostico.repository';
+import { AutodiagnosticoHistoricoRepository } from './autodiagnostico-historico/autodiagnostico-historico.repository';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
     private meta: Meta,
     private appService: AppService,
     private authorizeService: AuthorizeService,
-    private autodiagnosticoRepository: AutodiagnosticoRepository
+    private autodiagnosticoRepository: AutodiagnosticoRepository,
+    private autodiagnosticoHistoricoRepository: AutodiagnosticoHistoricoRepository
   ) {
     this.authorizeService.isAuthenticated().subscribe((status) => {
       this.isAuthenticated = status;
@@ -33,7 +35,7 @@ export class AppComponent implements OnInit {
         this.verificacionAutodiagnostico = status;
       });
 
-    this.autodiagnosticoRepository
+    this.autodiagnosticoHistoricoRepository
       .verificarAutodiagnosticoHistorico()
       .subscribe((status) => {
         this.verificacionAutodiagnosticoHistorico = status;

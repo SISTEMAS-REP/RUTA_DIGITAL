@@ -8,4 +8,6 @@ public partial interface IUnitOfWork : IBaseUnitOfWork
 {
     Task<IEnumerable<NivelMadurezResponse>>
         ListarNivelesMadurez();
+    Task<IEnumerable<NivelMadurezResponse>>
+       ListarNivelesMadurezHistorico();
 }

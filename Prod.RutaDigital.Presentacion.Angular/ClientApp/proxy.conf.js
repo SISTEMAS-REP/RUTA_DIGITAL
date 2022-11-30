@@ -64,14 +64,14 @@ const PROXY_CONFIG = [
       Connection: "Keep-Alive",
     },
   },
-  {
-    context: ["/autodiagnostico/VerificarAutodiagnosticoHistorico"],
-    target: target,
-    secure: false,
-    headers: {
-      Connection: "Keep-Alive",
-    },
-  },
+  // {
+  //   context: ["/autodiagnostico/VerificarAutodiagnosticoHistorico"],
+  //   target: target,
+  //   secure: false,
+  //   headers: {
+  //     Connection: "Keep-Alive",
+  //   },
+  // },
   {
     context: ["/autodiagnostico/ListarTestAutodiagnostico"],
     target: target,
@@ -164,7 +164,7 @@ const PROXY_CONFIG = [
   },
 
   {
-    context: ["/autodiagnostico-historico/VerificarAutodiagnosticoHistorico"],
+    context: ["/autoDiagnosticoHistorico/VerificarAutodiagnosticoHistorico"],
     target: target,
     secure: false,
     headers: {
@@ -173,7 +173,7 @@ const PROXY_CONFIG = [
   },
 
   {
-    context: ["/autodiagnostico-historico/ListarResultadoAutodiagnostico"],
+    context: ["/autoDiagnosticoHistorico/listarResultadoAutodiagnosticoHistorico"],
     target: target,
     secure: false,
     headers: {

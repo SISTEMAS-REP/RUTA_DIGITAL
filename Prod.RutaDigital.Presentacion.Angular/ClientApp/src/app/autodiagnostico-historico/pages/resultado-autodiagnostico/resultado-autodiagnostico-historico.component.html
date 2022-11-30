@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-xl-12 col-lg-6 mb-4" align="center">
         <circle-progress
-          [percent]="resultadoAutodiagnostico.resultado.resultado * 100"
+          [percent]="resultadoAutodiagnosticoHistorico.resultado.resultado * 100"
           [radius]="100"
           [animation]="true"
           [animationDuration]="1000"
@@ -31,7 +31,7 @@
           </div>
           <h1 class="text-white mb-0 pb-0 pt-0">
             <strong>{{
-              resultadoAutodiagnostico.resultado.nombre_nivel_madurez
+              resultadoAutodiagnosticoHistorico.resultado.nombre_nivel_madurez
                 | titlecase
             }}</strong>
           </h1>
@@ -55,7 +55,7 @@
               [modulo]="resultadoModulo.nombre_modulo"
               [orden]="resultadoModulo.orden_modulo"
               *ngFor="
-                let resultadoModulo of resultadoAutodiagnostico.resultadoModulos
+                let resultadoModulo of resultadoAutodiagnosticoHistorico.resultadoModulos
               "
             ></app-nivel-modulo>
           </div>
@@ -82,7 +82,7 @@
               [nivel]="nivelMadurez.nombre"
               [seleccionado]="nivelMadurez.seleccionado"
               *ngFor="
-                let nivelMadurez of resultadoAutodiagnostico.nivelesMadurez
+                let nivelMadurez of resultadoAutodiagnosticoHistorico.nivelesMadurez
               "
             ></app-nivel-madurez>
             <div class="col-lg-1" align="center"></div>

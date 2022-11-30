@@ -8,4 +8,6 @@ public interface INivelMadurezAplicacion
 {
     Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
         ListarNivelesMadurez();
+    Task<StatusResponse<IEnumerable<NivelMadurezResponse>>>
+       ListarNivelesMadurezHistorico();
 }
