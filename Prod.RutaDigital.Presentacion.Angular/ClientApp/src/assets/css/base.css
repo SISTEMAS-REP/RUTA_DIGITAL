@@ -42,6 +42,7 @@ figure, header, nav, section, article, aside, footer, figcaption {
   border: 0;
   outline: 0;
 }
+
 a:hover { cursor: pointer; } 
 .text-blanco {
     color: #fff !important;
@@ -258,7 +259,7 @@ body {
     font-size: 16px;
     font-family: "Montserrat",sans-serif !important;
     padding-bottom: 2%;
-    padding-top: 0;
+    padding-top: 2%;
 }
 @media (max-width: 991px) {
   html, body {
@@ -623,7 +624,7 @@ white-space: nowrap;
 }
 
 .header-area .main-nav .nav li a {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 14px;
   color: #fff;
   height: 40px;
@@ -665,7 +666,6 @@ white-space: nowrap;
 }
 
 .header-area .main-nav .nav li.has-sub ul.sub-menu {
-  position: absolute;
   width: 200px;
   box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
   overflow: hidden;
@@ -1022,7 +1022,7 @@ color: #fff;
 
 @media (max-width: 767px) {
   .text-regresar {
-    padding-top: 30%;
+    padding-top: 5%;
 }
   section.heading-page {
     top: 100px;
@@ -1060,7 +1060,6 @@ color: #fff;
   }
   .header-area {
     background-color: #089F42;
-    position: absolute;
     left: 0;
     right: 0;
     z-index: 100;
@@ -1155,6 +1154,7 @@ color: #fff;
   .navbar-toggler-icon {
     display: none;
 }
+
   .header-area .main-nav .nav {
     display: flex !important;
   }
@@ -1535,11 +1535,11 @@ section.upcoming-meetings .categories .main-button-red a {
     background-color: #1D71B8; 
 	border-radius: 200px; 
 	border: 10px solid rgba(243, 243, 243, 1);
-	width: 130px;
-	height: 130px;
+	width: 150px;
+	height: 150px;
 	position: relative;
 	text-align: center;
-	padding-top: 30px;
+	padding: 35px 20px;
 }
 .circle-avance-verde {
     background-color: #089F42; 
@@ -1762,6 +1762,7 @@ section.our-courses {
 .our-courses .item .down-content {
   background-color: #fff;
 	padding: 0 15px;
+  text-align: left;
 }
 .our-courses.item .down-content .thumb .price {
     position: absolute;
@@ -2180,6 +2181,7 @@ section.heading-page h2 {
 }
 .niveles_autodiagnostico {
   width: 150px;
+  height: 198px;
 }
 /*
 ---------------------------------------------
@@ -2707,14 +2709,14 @@ color: #272424;
   padding-bottom: 40px;
 }
 .video-recomendacion{
-  width: 90%;
-  height: 550px;
+  width: 100%;
+  height: 440px;
   border-radius: 35px;
   align-content: center;
 }
 .button-container-video{
-  width: 90%;
-  height: 550px;
+  width: 100%;
+  height: 440px;
   border-radius: 35px;
   display:inline-block;
   position:relative;
@@ -2752,8 +2754,8 @@ color: #272424;
   position:absolute;
   height:30px;
   width:30px;
-  bottom: 28px;
-  left :13px;
+  bottom: 40px;
+  left :10px;
   z-index: 1;
 }
 .p-recomendacion{
@@ -2777,7 +2779,7 @@ color: #FFF;
     height: 299;
     position: absolute;
   z-index: 1;
-    
+
   } */
 
 .button-container{
@@ -3522,27 +3524,23 @@ scroll-snap-align: center;
   color: #fff;
   background-color: #000;
 }
-.bloquear-item
-{
-  display: none!important;
-}
-
 .ngx-pagination {
   padding-left: 0px !important;
 }
 
-.ngx-pagination .current,
-.btn-info {
-  background: #1D71B8 !important;
-  border: transparent !important;
-  border-radius: 20px !important;
-}
+  .ngx-pagination .current,
+  .btn-info {
+    background: #1D71B8 !important;
+    border: transparent !important;
+    border-radius: 20px !important;
+  }
 
-.ngx-pagination .current:hover {
-  background: #1D71B8 !important; 
-  border-radius: 20px !important; 
-  border: transparent !important;
-}
+    .ngx-pagination .current:hover {
+      background: #1D71B8 !important;
+      border-radius: 20px !important;
+      border: transparent !important;
+    }
+
 .progress-recomendaciones {
   height: 100px;
   width: 100px;
@@ -3565,3 +3563,6 @@ scroll-snap-align: center;
   font-weight: 600;
   font-size: 20px;
 }
+
+
+

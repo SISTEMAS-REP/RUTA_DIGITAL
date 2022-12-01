@@ -1,5 +1,5 @@
 <!-- ***** Header Area Start ***** -->
-<header class="header-area header-sticky">
+<header class="header-area header-sticky sticky-sm-top">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -32,16 +32,15 @@
 
             <li class="nav-item text-white"
                *ngIf="verificacionAutodiagnostico && isAutenticated">
-              <a
-                class="nav-link text-white"
+              <a                
                 [routerLink]="['/autodiagnostico/resultado']"
-                >Resultados Ruta Digital</a
+                >Resultados<br /> Ruta Digital</a
               >
             </li>
 
             <li *ngIf="verificacionAutodiagnostico && isAutenticated">
               <a [routerLink]="['/perfil-avance']"
-                >Tu avance en<br />Ruta Digital</a
+                >Tu avance <br />Ruta Digital</a
               >
             </li>
 
