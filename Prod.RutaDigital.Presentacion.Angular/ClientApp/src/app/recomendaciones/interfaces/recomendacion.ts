@@ -11,6 +11,10 @@ export interface Recomendacion {
   puntos_produce: number;
   imagen: string;
 
+  fecha_inicio?: Date;
+  calificacion: number;
+  concluido: boolean;
+
   nombre_modulo: string;
   orden_modulo: number;
   nombre_nivel_madurez: string;

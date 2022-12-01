@@ -5,9 +5,12 @@
         <div class="accordion accordion-flush" id="accordion_recomendaciones">
           <div
             class="accordion-item"
-            *ngFor="let modulo  of modulos ; let i = index; let first = first"
-          > 
-            <h2 class="accordion-header col-lg-12 col-sm-12 col-md-12 col-12" [attr.id]="'heading' + i">
+            *ngFor="let modulo of modulos; let i = index; let first = first"
+          >
+            <h2
+              class="accordion-header col-lg-12 col-sm-12 col-md-12 col-12"
+              [attr.id]="'heading' + i"
+            >
               <div class="row">
                 <div class="col-lg-8 col-sm-8 col-md-8 col-8">
                   <button
@@ -17,28 +20,30 @@
                     [attr.data-bs-target]="'#collapse' + i"
                     aria-expanded="false"
                     [attr.aria-controls]="'collapse' + i"
-                  >{{ modulo.nombre }}  
+                  >
+                    {{ modulo.nombre }}
                   </button>
                 </div>
-              <div class="col-lg-5 col-sm-5 col-md-5 col-5">
-                <div class="col-xl-6 col-lg-9 mb-4" align="center">
-                  <div class="">
-                    <div class="circular">
-                      <div class="col-lg-5 col-sm-5 col-md-5 col-5">
-                              <circle-progress
-                                [percent]="10"
-                                [radius]="100"
-                                [animation]="true"
-                                [animationDuration]="1000"
-                              ></circle-progress>       
-                      </div>
+                <div class="col-lg-3 col-sm-3 col-md-3 col-3" align="center">
+                  <div class="circular">
+                    <div class="col-lg-5 col-sm-5 col-md-5 col-5">
+                      <circle-progress
+                        class="rogress-recomendaciones"
+                        [percent]="moduloResuelto(2, modulo.id_modulo)"
+                        [radius]="30"
+                        [outerStrokeWidth]="15"
+                        [space]="-15"
+                        [innerStrokeWidth]="15"
+                        [titleFontSize]="20"
+                        [unitsFontSize]="20"
+                        [outerStrokeColor]="'#089F42'"
+                      ></circle-progress>
                     </div>
                   </div>
                 </div>
               </div>
-               </div>
             </h2>
-          
+
             <div
               [attr.id]="'collapse' + i"
               [ngClass]="
@@ -46,29 +51,63 @@
                 (moduloVisible() == modulo.id_modulo ? ' show' : '')
               "
               [attr.aria-labelledby]="'heading' + i"
-              data-bs-parent="#accordion_recomendaciones">
+              data-bs-parent="#accordion_recomendaciones"
+            >
               <div class="accordion-body">
                 <div class="row row-cols-6 row-cols-md-1 g-1">
                   <div class="alert alert-secondary" role="alert">
-                    recomendaciones completadas 0 de 5
+                    {{ moduloResuelto(1, modulo.id_modulo) }}
                   </div>
                 </div>
-                <div class="row row-cols-5 row-cols-md-5 g-5 card-body-cortinas" >
-                  <div *ngFor="
-                  let capacitacion of modulo.capacitaciones;
-                  let x = index
-                "
-                   [ngClass]="'col' +(moduloActivo(capacitacion.id_capacitacion_resultado)== false ? ' bloquear-item' : '')"
-                    
+                <div
+                  class="row row-cols-5 row-cols-md-5 g-5 card-body-cortinas"
+                >
+                  <div
+                    *ngFor="
+                      let capacitacion of modulo.capacitaciones;
+                      let x = index
+                    "
+                    [ngClass]="
+                      'col' +
+                      (moduloActivo(capacitacion.id_capacitacion_resultado) ==
+                      false
+                        ? ' bloquear-item'
+                        : '')
+                    "
                   >
                     <div
-                    [ngClass]="'card' +(moduloActivo(capacitacion.id_capacitacion_resultado)== false ? ' bloquear-item' : '')"
-                      (click)="verRecomendacion(capacitacion.id_capacitacion_resultado,capacitacion.orden_recomendacion)">
+                      [ngClass]="
+                        'card' +
+                        (moduloActivo(capacitacion.id_capacitacion_resultado) ==
+                        false
+                          ? ' bloquear-item'
+                          : '')
+                      "
+                      (click)="
+                        verRecomendacion(
+                          capacitacion.id_capacitacion_resultado,
+                          capacitacion.orden_recomendacion
+                        )
+                      "
+                    >
                       <img
-                        [attr.src]="'.\\.\\assets\\images\\r_' + x + '.PNG'"
+                        [src]="
+                          'assets/images/recomendaciones/' +
+                          (esActivo(capacitacion.id_capacitacion_resultado)
+                            ? capacitacion.imagen_recomendacion
+                            : 'candado.png')
+                        "
                         class="card-img-top"
-                        alt="..."
                       />
+                      <!-- <img
+                        *ngIf="
+                          !esActivo(capacitacion.id_capacitacion_resultado)
+                        "
+                        src="
+                      assets/images/recomendaciones/candado.png"
+                        class="card-img-top-candado"
+                      /> -->
+
                       <div
                         class="card-body"
                         style="
@@ -78,24 +117,25 @@
                       >
                         <div class="progress">
                           <img
-                            src=".\.\assets\images\icon_corona.png"
+                            src="assets/images/icon_corona.png"
                             alt="..."
                             class="corona-progress-bar"
                           />
-                         
+
                           <div
                             class="progress-bar bg-warning"
                             role="progressbar"
-                            [attr.aria-valuenow]="
-                              '' +50 + ''
-                            "
+                            [aria-valuenow]="capacitacion.progreso * 100"
                             aria-valuemin="0"
                             aria-valuemax="100"
-                            style="width: 0%"
+                           
                           ></div>
                         </div>
                         <p class="p-recomendacion">
-                          Recomendación #{{ capacitacion.id_nivel_madurez }}-{{ capacitacion.id_recomendacion }} --{{ capacitacion.id_capacitacion_resultado }}
+                          Recomendación #{{ capacitacion.id_nivel_madurez }}-{{
+                            capacitacion.id_recomendacion
+                          }}
+                          --{{ capacitacion.id_capacitacion_resultado }}
                         </p>
                       </div>
                     </div>

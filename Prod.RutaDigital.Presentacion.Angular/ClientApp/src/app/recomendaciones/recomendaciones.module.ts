@@ -12,7 +12,8 @@ import { TestAvanceComponent } from './pages/test-avance/test-avance.component';
 import { TestAvancePreguntaComponent } from 'src/app/recomendaciones/pages/test-avance/components/test-avance-pregunta/test-avance-pregunta.component';
 
 import { RecomendacionesRoutingModule } from './recomendaciones-routing.module';
-
+import { NgCircleProgressModule } from 'ng-circle-progress';
+    
 @NgModule({
     declarations: [
         RecomendacionesComponent,
@@ -28,7 +29,8 @@ import { RecomendacionesRoutingModule } from './recomendaciones-routing.module';
         RecomendacionesRoutingModule,
         CdkStepperModule,
         NgStepperModule,
-        SharedModule,
+        NgCircleProgressModule,
+        SharedModule
     ]
 })
 export class RecomendacionesModule {}

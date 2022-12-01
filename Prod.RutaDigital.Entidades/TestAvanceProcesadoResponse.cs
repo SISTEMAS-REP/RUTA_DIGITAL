@@ -3,5 +3,5 @@
 public class TestAvanceProcesadoResponse
 {
     public int errores { get; set; }
-    public int puntosProduce { get; set; }
+    public int puntos_produce { get; set; }
 }

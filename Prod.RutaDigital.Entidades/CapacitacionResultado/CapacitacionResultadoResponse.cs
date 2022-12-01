@@ -8,6 +8,7 @@ public class CapacitacionResultadoResponse : CapacitacionResultado
 
     public int id_nivel_madurez { get; set; }
     public string? nombre_nivel_madurez { get; set; }
+    public int id_nivel_sgte { get; set; }
 
     public int orden_recomendacion { get; set; }
     public string? descripcion_recomendacion { get; set; }

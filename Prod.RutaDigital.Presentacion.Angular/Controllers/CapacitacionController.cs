@@ -6,7 +6,6 @@ using Prod.RutaDigital.Enumerados;
 using Prod.RutaDigital.Presentacion.Configuracion;
 using Prod.RutaDigital.Presentacion.Configuracion.Proxys;
 using Release.Helper;
-using System.Linq;
 
 namespace Prod.RutaDigital.Presentacion.Angular.Controllers;
 
@@ -30,6 +29,7 @@ public class CapacitacionController : Controller
     private readonly CapacitacionDetComandoProxy _capacitacionDetComandoProxy;
     private readonly CapacitacionConsultaProxy _capacitacionConsultaProxy;
     private readonly CapacitacionResultadoComandoProxy _capacitacionResultadoComandoProxy;
+    private readonly AvanceModuloComandoProxy _avanceModuloComandoProxy;
 
     public CapacitacionController(CapacitacionResultadoConsultaProxy capacitacionResultadoConsultaProxy,
         CurrentUserService currentUserService,
@@ -45,7 +45,8 @@ public class CapacitacionController : Controller
         CapacitacionComandoProxy capacitacionComandoProxy,
         CapacitacionDetComandoProxy capacitacionDetComandoProxy,
         CapacitacionConsultaProxy capacitacionConsultaProxy,
-        CapacitacionResultadoComandoProxy capacitacionResultadoComandoProxy)
+        CapacitacionResultadoComandoProxy capacitacionResultadoComandoProxy,
+        AvanceModuloComandoProxy avanceModuloComandoProxy)
     {
         _capacitacionResultadoConsultaProxy = capacitacionResultadoConsultaProxy;
         _currentUserService = currentUserService;
@@ -62,6 +63,7 @@ public class CapacitacionController : Controller
         _capacitacionDetComandoProxy = capacitacionDetComandoProxy;
         _capacitacionConsultaProxy = capacitacionConsultaProxy;
         _capacitacionResultadoComandoProxy = capacitacionResultadoComandoProxy;
+        _avanceModuloComandoProxy = avanceModuloComandoProxy;
     }
 
     [HttpGet("ListarCapacitaciones")]
@@ -192,7 +194,7 @@ public class CapacitacionController : Controller
             {
                 id_capacitacion_resultado = capacitacionResultado.id_capacitacion_resultado,
                 fecha_inicio = fechaHoraOperacion,
-                progreso = 50m,
+                progreso = 0.5m,
                 concluido = false,
                 calificacion = capacitacionResultado.calificacion,
 
@@ -311,6 +313,9 @@ public class CapacitacionController : Controller
 
         var recomendacion = recomendacionResponse.Data
             .First();
+        recomendacion.fecha_inicio = capacitacionReultado.fecha_inicio;
+        recomendacion.calificacion = capacitacionReultado.calificacion;
+        recomendacion.concluido = capacitacionReultado.concluido;
 
         // Obtener detalle de recomendacion
         var recomendacionDetResponse = await _recomendacionDetConsultaProxy
@@ -524,17 +529,34 @@ public class CapacitacionController : Controller
 
     [HttpPost("ValidarCapacitacionesErradas")]
     public async Task<IActionResult>
-        ValidarCapacitacionesErradas([FromBody] CapacitacionRequest request)
+        ValidarCapacitacionesErradas([FromBody] RecomendacionRequest request)
     {
         var response = new StatusResponse<int>();
         var fechaHoraOperacion = DateTime.Now;
         var idUsuarioExtranet = int
             .Parse(_currentUserService.User.IdUsuarioExtranet);
 
+        var capacitacionResultadoResponse = await _capacitacionResultadoConsultaProxy
+            .ListarCapacitacionesResultado(new()
+            {
+                id_recomendacion = request.id_recomendacion,
+                id_usuario_extranet = idUsuarioExtranet
+            });
+
+        if (capacitacionResultadoResponse is null
+           || !capacitacionResultadoResponse.Success
+           || capacitacionResultadoResponse.Data.Count() == 0)
+        {
+            throw new Exception();
+        }
+
+        var capacitacionResultado = capacitacionResultadoResponse.Data
+            .First();
+
         var capacitacionesResponse = await _capacitacionConsultaProxy
             .ListarCapacitaciones(new()
             {
-                id_capacitacion_resultado = request.id_capacitacion_resultado
+                id_capacitacion_resultado = capacitacionResultado.id_capacitacion_resultado
             });
 
         if (capacitacionesResponse is null
@@ -562,22 +584,33 @@ public class CapacitacionController : Controller
         var idUsuarioExtranet = int
             .Parse(_currentUserService.User.IdUsuarioExtranet);
 
-        var capacitacionResultadoResponse = await _capacitacionResultadoConsultaProxy
+        var capacitacionesResultadoResponse = await _capacitacionResultadoConsultaProxy
             .ListarCapacitacionesResultado(new()
             {
-                id_capacitacion_resultado = request.id_capacitacion_resultado,
+                //id_capacitacion_resultado = request.id_capacitacion_resultado,
+                id_modulo = request.id_modulo,
                 id_usuario_extranet = idUsuarioExtranet,
             });
 
-        if (capacitacionResultadoResponse is null
-            || !capacitacionResultadoResponse.Success
-            || capacitacionResultadoResponse.Data.Count() == 0)
+        if (capacitacionesResultadoResponse is null
+            || !capacitacionesResultadoResponse.Success
+            || capacitacionesResultadoResponse.Data.Count() == 0)
         {
             throw new Exception();
         }
 
-        var capacitacionResultado = capacitacionResultadoResponse.Data
-            .First();
+        var capacitacionResultado = capacitacionesResultadoResponse.Data
+            .Where(w => w.id_capacitacion_resultado == request.id_capacitacion_resultado)
+            .FirstOrDefault();
+
+        if (capacitacionResultado is null)
+        {
+            throw new Exception();
+        }
+
+        var capacitacionesModuloNivel = capacitacionesResultadoResponse.Data
+            .Where(w => w.id_modulo == capacitacionResultado.id_modulo 
+                &&  w.id_nivel_madurez == capacitacionResultado.id_nivel_madurez);
 
         if (!capacitacionResultado.concluido)
         {
@@ -643,6 +676,7 @@ public class CapacitacionController : Controller
                    id_capacitacion_resultado = capacitacionResultado.id_capacitacion_resultado,
                    fecha_inicio = capacitacionResultado.fecha_inicio,
                    fecha_fin = fechaHoraOperacion,
+                   progreso = 1,
                    concluido = true,
                    calificacion = capacitacionResultado.calificacion,
 
@@ -681,9 +715,45 @@ public class CapacitacionController : Controller
                 response.Data = new()
                 {
                     errores = nroCapacitacionesErradas,
-                    puntosProduce = 0
+                    puntos_produce = 0
                 };
                 return Ok(response);
+            }
+        }
+
+        capacitacionesModuloNivel
+            .ToList()
+            .ForEach(x =>
+            {
+                if (x.id_capacitacion_resultado == capacitacionResultado.id_capacitacion_resultado)
+                {
+                    x.concluido = true;
+                }
+            });
+
+        // Evaluar si sube de nivel de madurez
+        var nroConcluidos = capacitacionesModuloNivel
+            .Where(w => w.concluido == true)
+            .Count();
+
+        if (nroConcluidos == capacitacionesModuloNivel.Count())
+        {
+            var inIdAvanceModulo = await _avanceModuloComandoProxy
+                .InsertarAvanceModulo(new()
+                {
+                    id_resultado = capacitacionResultado.id_resultado,
+                    id_modulo = capacitacionResultado.id_modulo,
+                    id_nivel_madurez = capacitacionResultado.id_nivel_sgte,
+
+                    usuario_registro = _appAuditoria.Usuario,
+                    fecha_registro = fechaHoraOperacion
+                });
+
+            if (inIdAvanceModulo is null
+                    || !inIdAvanceModulo.Success
+                    || inIdAvanceModulo.Data == 0)
+            {
+                throw new Exception();
             }
         }
 
@@ -691,7 +761,7 @@ public class CapacitacionController : Controller
         response.Data = new ()
         {
             errores = 0,
-            puntosProduce = capacitacionResultado.puntos_produce
+            puntos_produce = capacitacionResultado.puntos_produce
         };
         return Ok(response);
     }

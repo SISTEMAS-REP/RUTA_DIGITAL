@@ -2764,7 +2764,21 @@ text-align: center;
 color: #FFF;
 }
 
+/* .card-img-top{ 
+  width: 211;
+  height: 299;
 
+
+  }
+
+  .card-img-top-candado
+  {
+    width: 211;
+    height: 299;
+    position: absolute;
+  z-index: 1;
+    
+  } */
 
 .button-container{
 display:inline-block;
@@ -3528,4 +3542,26 @@ scroll-snap-align: center;
   background: #1D71B8 !important; 
   border-radius: 20px !important; 
   border: transparent !important;
+}
+.progress-recomendaciones {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  float: left;
+  margin-top: 3px;
+  margin-right: 10px;
+}
+
+#progress-value-recomendaciones {
+  display: block;
+  height: calc(100% - 4px);
+  width: calc(100% - 4px);
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 20px;
 }
