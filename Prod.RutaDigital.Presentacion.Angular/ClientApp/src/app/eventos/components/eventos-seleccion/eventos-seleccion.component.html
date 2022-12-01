@@ -11,7 +11,7 @@
 </div>
 <div class="row">
   <div class="col-4 pb-5">
-    <div class="meeting-item box-eventos" *ngFor="let evento of eventos">
+    <div class="meeting-item box-eventos" *ngFor="let evento of eventos | paginate: {itemsPerPage: 6, currentPage: page}" >
       <div
         class="down-content d-flex"
         (click)="seleccionarEvento(evento.id_evento)"
@@ -46,6 +46,9 @@
         </div>
       </div>
     </div>
+    <div class="col-12 mb-5 mt-3" align="left">
+      <pagination-controls class="clearfix" (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+    </div>   
   </div>
   <div *ngIf="is_verdetalle" class="col-lg-8 mb-5 p-4 box-eventos-detalle">
     <div>

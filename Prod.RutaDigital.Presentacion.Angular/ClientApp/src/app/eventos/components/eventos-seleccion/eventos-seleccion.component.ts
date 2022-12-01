@@ -16,20 +16,20 @@ export class EventosSeleccionComponent implements OnInit {
   latitud: number = 0;
   longitud: number = 0;
   is_ver_mapa: Boolean = false;
+
   center: google.maps.LatLngLiteral = {
     lat: 0,
     lng: 0,
   };
-
   zoom = 16;
-
   markerOptions: google.maps.MarkerOptions = {
     draggable: true,
   };
-
   markerPositions: google.maps.LatLngLiteral[] = [];
-
   is_verdetalle: boolean = true;
+
+  page!: number;
+
   constructor(
     private repository: EventosRepository,
     private router: ActivatedRoute,
