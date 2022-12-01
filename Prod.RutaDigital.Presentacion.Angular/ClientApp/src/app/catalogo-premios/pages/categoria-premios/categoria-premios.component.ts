@@ -28,6 +28,8 @@ export class CategoriaPremiosComponent implements OnInit {
   desdeSeleccionado: number = 0;
   hastaSeleccionado: number = 0;
 
+  page!: number;
+
   constructor(
     private repository: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,

@@ -139,7 +139,7 @@
               <div class="row">
                 <div
                   class="col-lg-4 mb-3"
-                  *ngFor="let premio of premios; let i = index"
+                  *ngFor="let premio of premios | paginate: {itemsPerPage: 6, currentPage: page} "
                 >
                   <div class="meeting-item fact-item">
                     <div class="thumb">
@@ -187,13 +187,9 @@
                 </div>
               </div>
 
-              <div class="col-12 mb-5 mt-3" align="center">
-                <div class="main-button-red">
-                  <div class="scroll-to-section">
-                   <!--<a href="#contact">¡Quiero iniciar mi test!</a>--> 
-                  </div>
-                </div>
-              </div>
+              <div class="col-12 mb-5 mt-3" align="right">
+                    <pagination-controls class="clearfix" (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+              </div>          
             </div>
           </div>
         </div>
