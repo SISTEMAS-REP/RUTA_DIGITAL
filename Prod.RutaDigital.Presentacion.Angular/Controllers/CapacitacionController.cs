@@ -557,7 +557,7 @@ public class CapacitacionController : Controller
     public async Task<IActionResult>
         ProcesarAvance([FromBody] TestAvanceRequest request)
     {
-        var response = new StatusResponse<int>();
+        var response = new StatusResponse<TestAvanceProcesadoResponse>();
         var fechaHoraOperacion = DateTime.Now;
         var idUsuarioExtranet = int
             .Parse(_currentUserService.User.IdUsuarioExtranet);
@@ -678,13 +678,21 @@ public class CapacitacionController : Controller
             if (!resupuestaCapacitacion)
             {
                 response.Success = true;
-                response.Data = nroCapacitacionesErradas;
+                response.Data = new()
+                {
+                    errores = nroCapacitacionesErradas,
+                    puntosProduce = 0
+                };
                 return Ok(response);
             }
         }
 
         response.Success = true;
-        response.Data = 0;
+        response.Data = new ()
+        {
+            errores = 0,
+            puntosProduce = capacitacionResultado.puntos_produce
+        };
         return Ok(response);
     }
 }
