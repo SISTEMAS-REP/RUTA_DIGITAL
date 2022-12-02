@@ -106,7 +106,6 @@ export class PerfilAvanceComponent implements OnInit {
     };
     this.repositoryPerfilAvance.ListarEstadisticaPerfilAvance(request).subscribe({
       next: (data: PerfilAvanceEstadisticaResponse[]) => {
-        debugger;
         this.estadisticaPerfil = data;
       },
       error: (err) => {},
