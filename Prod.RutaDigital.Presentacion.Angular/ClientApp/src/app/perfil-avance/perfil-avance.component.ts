@@ -77,7 +77,6 @@ export class PerfilAvanceComponent implements OnInit {
     }
   ];
 
-  // fecha_aprendedora:  Date = new Date('2013-07-20T18:30:00.000Z');
   constructor(
     private catalogoPremios: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,
@@ -87,13 +86,10 @@ export class PerfilAvanceComponent implements OnInit {
   }
 
     ngOnInit(): void {
-      debugger 
-    // this.viewDate = this.fecha_aprendedora;
     this.usuario = this.repositoryPerfilAvance.obtenerUsuario();
       this.repositoryPerfilAvance
       .ListarResultadoPerfilAvance()
       .subscribe((data: ResultadoPerfil) => {
-        debugger;
         this.resultadoPerfilAvance = data;
       });
       
@@ -110,6 +106,7 @@ export class PerfilAvanceComponent implements OnInit {
     };
     this.repositoryPerfilAvance.ListarEstadisticaPerfilAvance(request).subscribe({
       next: (data: PerfilAvanceEstadisticaResponse[]) => {
+        debugger;
         this.estadisticaPerfil = data;
       },
       error: (err) => {},

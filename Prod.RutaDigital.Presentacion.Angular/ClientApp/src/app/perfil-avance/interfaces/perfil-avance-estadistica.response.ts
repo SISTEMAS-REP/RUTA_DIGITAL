@@ -5,5 +5,6 @@ export interface PerfilAvanceEstadisticaResponse {
   puntos_obtenidos?: number;
   puntos_disponibles?: number;
   premios_canjeados?: number;
+  fecha_inicio_capacitacion?: Date;
 
 }
