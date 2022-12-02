@@ -11,6 +11,7 @@ import { PerfilAvanceRepository } from './perfil-avance.repository';
 import { PerfilAvanceEstadisticaResponse } from './interfaces/perfil-avance-estadistica.response';
 import { PerfilAvancePremioConsumoResponse } from './interfaces/perfil-avance-premio-consumo.response';
 import { ResultadoPerfil } from './interfaces/resultado-perfil';
+import { setHours, setMinutes } from 'date-fns';
 
 
 
@@ -55,12 +56,28 @@ export class PerfilAvanceComponent implements OnInit {
   estadisticaPerfil: PerfilAvanceEstadisticaResponse[];
   premioConsumo: PerfilAvancePremioConsumoResponse[];
   ListarCapacitando: Array<any>;
-
   view: CalendarView = CalendarView.Month;
   viewDate: Date = new Date();
-  events: CalendarEvent[] = [];
+  events: CalendarEvent[] = [
+    {
+      title: 'No event end date',
+      start: setHours(setMinutes(new Date('2022-12-20T18:30:00.000Z'), 0), 3),
+      color: {
+        primary:"0000",
+        secondary:"0000"
+      }
+    },
+    {
+      title: 'No event end date',
+      start: setHours(setMinutes(new Date('2022-12-20T18:30:00.000Z'), 0), 5),
+      color: {
+        primary:"0000",
+        secondary:"0000"
+      }
+    }
+  ];
 
-
+  // fecha_aprendedora:  Date = new Date('2013-07-20T18:30:00.000Z');
   constructor(
     private catalogoPremios: CatalogoPremiosRepository,
     private sanitizer: DomSanitizer,
@@ -70,6 +87,8 @@ export class PerfilAvanceComponent implements OnInit {
   }
 
     ngOnInit(): void {
+      debugger 
+    // this.viewDate = this.fecha_aprendedora;
     this.usuario = this.repositoryPerfilAvance.obtenerUsuario();
       this.repositoryPerfilAvance
       .ListarResultadoPerfilAvance()

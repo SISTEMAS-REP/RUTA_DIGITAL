@@ -227,6 +227,9 @@
             </div>
 
             <div class="col-lg-8 mb-3 p-4 box-avance mt-5">
+                <div class="col-md-4">
+                    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'es' }}</h3>
+                  </div>
                 <div class="col-lg-12 mb-4" [ngSwitch]="view">
                         <mwl-calendar-month-view
                           *ngSwitchCase="'month'"
