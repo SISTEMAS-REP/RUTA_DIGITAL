@@ -58,24 +58,7 @@ export class PerfilAvanceComponent implements OnInit {
   ListarCapacitando: Array<any>;
   view: CalendarView = CalendarView.Month;
   viewDate: Date = new Date();
-  events: CalendarEvent[] = [
-    {
-      title: 'No event end date',
-      start: setHours(setMinutes(new Date('2022-12-20T18:30:00.000Z'), 0), 3),
-      color: {
-        primary:"0000",
-        secondary:"0000"
-      }
-    },
-    {
-      title: 'No event end date',
-      start: setHours(setMinutes(new Date('2022-12-20T18:30:00.000Z'), 0), 5),
-      color: {
-        primary:"0000",
-        secondary:"0000"
-      }
-    }
-  ];
+  events: CalendarEvent[] = [];
 
   constructor(
     private catalogoPremios: CatalogoPremiosRepository,
@@ -107,6 +90,16 @@ export class PerfilAvanceComponent implements OnInit {
     this.repositoryPerfilAvance.ListarEstadisticaPerfilAvance(request).subscribe({
       next: (data: PerfilAvanceEstadisticaResponse[]) => {
         this.estadisticaPerfil = data;
+        this.viewDate = this.estadisticaPerfil[0].fecha_inicio_capacitacion;
+        this.events = [{
+          title: 'No event end date',
+          start: setHours(setMinutes(new Date(this.viewDate), 0), 0),
+          color: {
+            primary:"0000",
+            secondary:"0000"
+          }
+        }]
+
       },
       error: (err) => {},
     });
