@@ -14,25 +14,38 @@
 
 <section class="meetings-page">
   <div class="container">
-
     <div class="row">
       <h1 class="titu_cap mb-4">{{ test?.modulo?.nombre }}</h1>
     </div>
 
     <div class="row">
       <div class="col-12" align="center">
-        <img class="img-responsive" src="assets/images/test_autodiagnostico/Herramientas_digitales_1.png" alt="" />
+        <img
+          class="img-responsive"
+          [src]="'assets/images/modulos/' + test?.modulo?.imagen"
+          alt=""
+        />
       </div>
     </div>
 
-    <app-test-avance-pregunta [pregunta]="pregunta" *ngFor="let pregunta of test?.modulo?.preguntas"
-      (onToogle)="toogle($event)">
+    <app-test-avance-pregunta
+      [pregunta]="pregunta"
+      *ngFor="let pregunta of test?.modulo?.preguntas"
+      (onToogle)="toogle($event)"
+    >
     </app-test-avance-pregunta>
 
     <div class="row mb-5 mt-5">
-      <div class="col-12" align="center"><button class="btn btn-verde" role="button" aria-disabled="true"
-          (click)="enviarTest()"> Enviar
-          test </button></div>
+      <div class="col-12" align="center">
+        <button
+          class="btn btn-verde"
+          role="button"
+          aria-disabled="true"
+          (click)="enviarTest()"
+        >
+          Enviar test
+        </button>
+      </div>
     </div>
   </div>
 </section>

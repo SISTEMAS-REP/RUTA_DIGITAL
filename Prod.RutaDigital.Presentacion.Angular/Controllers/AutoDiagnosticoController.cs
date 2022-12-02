@@ -32,6 +32,7 @@ public class AutodiagnosticoController : ControllerBase
     private readonly CapacitacionResultadoComandoProxy _capacitacionResultadoComandoProxy;
     private readonly ResultadoConsultaProxy _resultadoConsultaProxy;
     private readonly CapacitacionResultadoConsultaProxy _capacitacionResultadoConsultaProxy;
+    private readonly AvanceModuloComandoProxy _avanceModuloComandoProxy;
 
     public AutodiagnosticoController(CurrentUserService currentUserService,
         EvaluacionConsultaProxy evaluacionConsultaProxy,
@@ -50,7 +51,8 @@ public class AutodiagnosticoController : ControllerBase
         RecomendacionConsultaProxy recomendacionConsultaProxy,
         CapacitacionResultadoComandoProxy capacitacionResultadoComandoProxy,
         ResultadoConsultaProxy resultadoConsultaProxy,
-        CapacitacionResultadoConsultaProxy capacitacionResultadoConsultaProxy)
+        CapacitacionResultadoConsultaProxy capacitacionResultadoConsultaProxy,
+        AvanceModuloComandoProxy avanceModuloComandoProxy)
     {
         _currentUserService = currentUserService;
         _evaluacionConsultaProxy = evaluacionConsultaProxy;
@@ -70,12 +72,13 @@ public class AutodiagnosticoController : ControllerBase
         _capacitacionResultadoComandoProxy = capacitacionResultadoComandoProxy;
         _resultadoConsultaProxy = resultadoConsultaProxy;
         _capacitacionResultadoConsultaProxy = capacitacionResultadoConsultaProxy;
+        _avanceModuloComandoProxy = avanceModuloComandoProxy;
     }
 
     [HttpPost("VerificarAutodiagnostico")]
-    public async Task<IActionResult> 
+    public async Task<IActionResult>
         VerificarAutodiagnostico()
-     {
+    {
         var response = new StatusResponse<EvaluacionResponse>();
         var idUsuarioExtranet = int
             .Parse(_currentUserService.User.IdUsuarioExtranet);
@@ -128,7 +131,8 @@ public class AutodiagnosticoController : ControllerBase
         // Insertar estructura para iniciar su test
         if (evaluacionResponse is null
             || !evaluacionResponse.Success
-            || evaluacionResponse.Data.Count() == 0) {
+            || evaluacionResponse.Data.Count() == 0)
+        {
 
             // Obtener plantilla
             var modulosResponse = await _moduloConsultaProxy
@@ -137,13 +141,13 @@ public class AutodiagnosticoController : ControllerBase
             var preguntasResponse = await _preguntaConsultaProxy
                 .ListarPreguntas(new()
                 {
-                    id_tipo_test = (int) TIPO_TEST.TEST_AUTODIAGNOSTICO
+                    id_tipo_test = (int)TIPO_TEST.TEST_AUTODIAGNOSTICO
                 });
 
             var alternativasResponse = await _alternativaConsultaProxy
                 .ListarAlternativas(new()
                 {
-                    id_tipo_test = (int) TIPO_TEST.TEST_AUTODIAGNOSTICO
+                    id_tipo_test = (int)TIPO_TEST.TEST_AUTODIAGNOSTICO
                 });
 
             if (modulosResponse is null
@@ -390,7 +394,7 @@ public class AutodiagnosticoController : ControllerBase
                 id_evaluacion = evaluacion.id_evaluacion,
                 id_modulo = respuesta.id_modulo,
                 id_pregunta = respuesta.id_pregunta,
-                id_tipo_test = (int) TIPO_TEST.TEST_AUTODIAGNOSTICO,
+                id_tipo_test = (int)TIPO_TEST.TEST_AUTODIAGNOSTICO,
             });
 
         if (respuestasResponse is null
@@ -422,7 +426,7 @@ public class AutodiagnosticoController : ControllerBase
         var idTipoRespuesta = pregunta.id_tipo_respuesta;
 
         // Si el tipo de pregunta es única
-        if (idTipoRespuesta == (int) TIPO_RESPUESTA.UNICA)
+        if (idTipoRespuesta == (int)TIPO_RESPUESTA.UNICA)
         {
             // Obtener una pregunta respondida
             var respondida = respuestasResponse.Data
@@ -431,7 +435,7 @@ public class AutodiagnosticoController : ControllerBase
                 .FirstOrDefault();
 
             // Si existe y es diferente a la que se requiere actualizar
-            if (respondida is not null 
+            if (respondida is not null
                 && respuesta.id_respuesta != respondida.id_respuesta)
             {
                 var actualizarOtraRespuestaRequest = new RespuestaRequest()
@@ -605,6 +609,7 @@ public class AutodiagnosticoController : ControllerBase
         var idUsuarioExtranet = int
             .Parse(_currentUserService.User.IdUsuarioExtranet);
 
+        // Obtener evaluación
         var evaluacionResponse = await _evaluacionConsultaProxy
             .ListarEvaluacion(new()
             {
@@ -622,31 +627,31 @@ public class AutodiagnosticoController : ControllerBase
         var evaluacion = evaluacionResponse.Data
             .First();
 
+        // Si no está concluido
         if (!evaluacion.concluido)
         {
-            var evaluacionActualizarRequest = new EvaluacionRequest()
-            {
-                id_evaluacion = evaluacion.id_evaluacion,
-                fecha_fin = fechaHoraOperacion,
-                modulo_activo = evaluacion.modulo_activo,
-                pregunta_activa = evaluacion.pregunta_activa,
-                concluido = true,
+            var idEvaluacionResponse = await _evaluacionComandoProxy
+                .ActualizarEvaluacion(new()
+                {
+                    id_evaluacion = evaluacion.id_evaluacion,
+                    fecha_fin = fechaHoraOperacion,
+                    modulo_activo = evaluacion.modulo_activo,
+                    pregunta_activa = evaluacion.pregunta_activa,
+                    concluido = true,
 
-                usuario_modificacion = _appAuditoria.Usuario,
-                fecha_modificacion = fechaHoraOperacion
-            };
+                    usuario_modificacion = _appAuditoria.Usuario,
+                    fecha_modificacion = fechaHoraOperacion
+                });
 
-            var evaluacionActualizarResponse = await _evaluacionComandoProxy
-                .ActualizarEvaluacion(evaluacionActualizarRequest);
-
-            if (evaluacionActualizarResponse is null
-                || !evaluacionActualizarResponse.Success
-                || evaluacionActualizarResponse.Data <= 0)
+            if (idEvaluacionResponse is null
+                || !idEvaluacionResponse.Success
+                || idEvaluacionResponse.Data <= 0)
             {
                 throw new Exception();
             }
         }
 
+        // Obtener Resultado
         var resultadoResponse = await _resultadoConsultaProxy
             .ListarResultados(new()
             {
@@ -660,18 +665,18 @@ public class AutodiagnosticoController : ControllerBase
             throw new Exception();
         }
 
+        // id de Resultado
         var idResultado = resultadoResponse.Data?
             .FirstOrDefault()?.id_resultado ?? 0;
 
-        // Resultado
+        // Si no hay resultado registrado
         if (idResultado <= 0)
         {
             // Obtener respuestas
             var respuestasResponse = await _respuestaConsultaProxy
                 .ListarRespuestas(new()
                 {
-                    id_evaluacion = evaluacion.id_evaluacion,
-                    //id_tipo_test = (int) TIPO_TEST.TEST_AUTODIAGNOSTICO
+                    id_evaluacion = evaluacion.id_evaluacion
                 });
 
             if (respuestasResponse is null
@@ -681,6 +686,7 @@ public class AutodiagnosticoController : ControllerBase
                 throw new Exception();
             }
 
+            // Respuestas
             var respuestas = respuestasResponse.Data;
 
             // Organizar test de autodniagnóstico (estructurado)
@@ -716,21 +722,21 @@ public class AutodiagnosticoController : ControllerBase
             var resultadoModulosRequest = modulos
                 .Select(modulo =>
                 {
-                    var nroPreguntasModulo = modulo.preguntas
+                    var nroPreguntasModulo = modulo.preguntas!
                         .Count();
 
-                    var resultadoPregsRequest = modulo.preguntas?
+                    var resultadoPregsRequest = modulo.preguntas!
                     .Select(pregunta =>
                     {
-                        var pesoPreg = 1.0m 
+                        var pesoPreg = 1.0m
                             / nroPreguntasModulo;
 
                         var pesoAltSuma = pregunta.respuestas
                             .Where(w => w.respuesta == true)
                             .Sum(s => s.peso_alt);
 
-                        pesoAltSuma = pesoAltSuma < 1.0m 
-                        ? pesoAltSuma 
+                        pesoAltSuma = pesoAltSuma < 1.0m
+                        ? pesoAltSuma
                         : 1.0m;
 
                         var promResultPreg = pesoPreg * pesoAltSuma;
@@ -763,6 +769,7 @@ public class AutodiagnosticoController : ControllerBase
                     };
                 });
 
+            // Resultado de todo el test
             var resultado = resultadoModulosRequest
                 .Sum(s => s.prom_result_modulo);
 
@@ -791,6 +798,7 @@ public class AutodiagnosticoController : ControllerBase
                 throw new Exception();
             }
 
+            // id de Resultado insertado
             idResultado = idResultadoResponse.Data;
 
             // Insertar módulos de resultado (test de autodiagnóstico)
@@ -800,7 +808,6 @@ public class AutodiagnosticoController : ControllerBase
 
                 moduloRequest.usuario_registro = _appAuditoria.Usuario;
                 moduloRequest.fecha_registro = fechaHoraOperacion;
-                moduloRequest.estado = true;
 
                 var idResultadoModuloResponse = await _resultadoModuloComandoProxy
                     .InsertarResultadoModulo(moduloRequest);
@@ -812,16 +819,16 @@ public class AutodiagnosticoController : ControllerBase
                     throw new Exception();
                 }
 
+                // id de ResultadoModulo insertado
                 var idResultadoModulo = idResultadoModuloResponse.Data;
 
                 // Insertar preguntas de resultado (test de autodiagnóstico)
-                foreach (var pregRequest in moduloRequest.pregs)
+                foreach (var pregRequest in moduloRequest!.pregs!)
                 {
                     pregRequest.id_resultado_modulo = idResultadoModulo;
 
                     pregRequest.usuario_registro = _appAuditoria.Usuario;
                     pregRequest.fecha_registro = fechaHoraOperacion;
-                    pregRequest.estado = true;
 
                     var idResultadoPregResponse = await _resultadoPregComandoProxy
                         .InsertarResultadoPreg(pregRequest);
@@ -836,6 +843,7 @@ public class AutodiagnosticoController : ControllerBase
             }
         }
 
+        // Obtener CapacitacionesResultado
         var capacitacionesResultadoResponse = await _capacitacionResultadoConsultaProxy
             .ListarCapacitacionesResultado(new()
             {
@@ -849,11 +857,14 @@ public class AutodiagnosticoController : ControllerBase
             throw new Exception();
         }
 
+        // CapacitacionesResultado
         var capacitacionesResultado = capacitacionesResultadoResponse.Data;
 
-        if (capacitacionesResultado is null 
+        // Si no hay CapacitacionesResultado
+        if (capacitacionesResultado is null
             || capacitacionesResultado.Count() == 0)
         {
+            // Listar ResultadoModulos
             var resultadoModulosResponse = await _resultadoModuloConsultaProxy
                 .ListarResultadoModulos(new()
                 {
@@ -867,39 +878,64 @@ public class AutodiagnosticoController : ControllerBase
                 throw new Exception();
             }
 
+            // ResultadoModulos
             var resultadoModulos = resultadoModulosResponse.Data;
 
-            // Obtener niveles de madurez
+            // Obtener NivelesMadurez
             var nivelesMadurezResponse = await _nivelMadurezConsultaProxy
                 .ListarNivelesMadurez();
 
             if (nivelesMadurezResponse is null
-                       || !nivelesMadurezResponse.Success
-                       || nivelesMadurezResponse.Data.Count() == 0)
+                || !nivelesMadurezResponse.Success
+                || nivelesMadurezResponse.Data.Count() == 0)
             {
                 throw new Exception();
             }
 
+            // NivelesMadurez
             var nivelesMadurez = nivelesMadurezResponse.Data;
 
-            // Evaluar nivel de madures a resultado
+            // Evaluar nivel de madurez a resultado
             foreach (var resultadoModulo in resultadoModulos)
             {
                 // No considerar el nivel de madurez EXPERTO (5)
                 var resultadoNivelesMadurez = nivelesMadurez
-                    .Where(w => w.valor_max >= resultadoModulo.resultado_modulo/*
-                        && w.codigo != "5"*/);
+                    .Where(w => w.valor_max >= resultadoModulo.resultado_modulo);
 
+                /*// Primer nivel de madurez
                 var resultadoNivelMadurez = resultadoNivelesMadurez
                     .FirstOrDefault();
 
                 if (resultadoNivelMadurez is null)
                 {
                     throw new Exception();
+                }*/
+
+                // Insertar Nivel de Madurez en Avance
+                var idAvanceModulo = await _avanceModuloComandoProxy
+                    .InsertarAvanceModulo(new()
+                    {
+                        id_resultado = idResultado,
+                        id_modulo = resultadoModulo.id_modulo,
+                        id_nivel_madurez = resultadoModulo.id_nivel_madurez,
+
+                        usuario_registro = _appAuditoria.Usuario,
+                        fecha_registro = fechaHoraOperacion
+                    });
+
+                if (idAvanceModulo is null
+                    || !idAvanceModulo.Success
+                    || idAvanceModulo.Data <= 0)
+                {
+                    throw new Exception();
                 }
 
-                if (resultadoNivelMadurez.codigo != "5")
+                // Si el primer nivel de madurez es diferente a EXPERTO
+                var codigoNivelExperto = (int)NIVEL_MADUREZ.EXPERTO;
+                if (!resultadoModulo.codigo_nivel_madurez!
+                    .Equals(codigoNivelExperto.ToString()))
                 {
+                    // Recorrer los niveles de madurez
                     foreach (var resultadoNivel in resultadoNivelesMadurez)
                     {
                         // Obtener recomendacionas asociadas al nivel de madurez
@@ -949,7 +985,7 @@ public class AutodiagnosticoController : ControllerBase
                     }
                 }
 
-                
+
             }
         }
 

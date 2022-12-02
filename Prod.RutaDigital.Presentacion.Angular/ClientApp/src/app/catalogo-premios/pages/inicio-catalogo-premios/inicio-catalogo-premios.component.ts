@@ -125,7 +125,6 @@ export class InicioCatalogoPremiosComponent implements OnInit {
   };
 
   ListarEstadisticaPerfilAvance = () => {
-    debugger;
     var request: any = {
       id_usuario_extranet: this.usuario.id_usuario_extranet
     };

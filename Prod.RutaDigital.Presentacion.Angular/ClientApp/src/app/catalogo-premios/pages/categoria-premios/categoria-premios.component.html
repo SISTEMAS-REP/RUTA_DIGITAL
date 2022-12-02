@@ -25,7 +25,7 @@
       <div class="col-lg-12">
         <div class="row">
           <div class="row">
-            <div class="col-lg-3 redes1">
+            <div class="col-lg-3 mb-5">
               <form>
                 <div class="box-buscador p-4 mx-3 pb-5">
                   <div class="d-flex pb-5 linea_inferior">
@@ -138,10 +138,10 @@
             <div class="col-lg-9">
               <div class="row">
                 <div
-                  class="col-lg-4 mb-3"
-                  *ngFor="let premio of premios; let i = index"
+                  class="col-lg-4 mb-4"
+                  *ngFor="let premio of premios | paginate: {itemsPerPage: 6, currentPage: page}"  align="center"
                 >
-                  <div class="meeting-item fact-item">
+                  <div class="meeting-item fact-item" style="height: 462px">
                     <div class="thumb">
                       <div class="position-absolute ms-4">
                         <div class="etiqueta_verde">
@@ -161,10 +161,10 @@
                         </button>
                       </div>
                     </div>
-                    <div class="down-content">
-                      <h5 class="mb-0">{{ premio.nombre }}</h5>
+                    <div class="down-content"  align="left">
+                      <h5 class="mb-0" style="margin: 20px 0; font-size: 1.5rem; padding: 5px 0; color: #1D71B8; font-weight: 700;">{{ premio.nombre }}</h5>
                       {{ premio.descripcion_corta }}
-                      <div class="info px-0">
+                      <div class="info px-0 pt-3">
                         <div class="row px-0 mx-0 subt-nuevospremios">
                           {{ premio.puntos_produce }}<br />
                           <strong class="p-0"
@@ -187,13 +187,9 @@
                 </div>
               </div>
 
-              <div class="col-12 mb-5 mt-3" align="center">
-                <div class="main-button-red">
-                  <div class="scroll-to-section">
-                   <!--<a href="#contact">¡Quiero iniciar mi test!</a>--> 
-                  </div>
-                </div>
-              </div>
+              <div class="col-12 mb-5 mt-5" align="center">
+                    <pagination-controls class="clearfix" (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+              </div>          
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DetalleRecomendacionComponent } from './pages/detalle-recomendacion/detalle-recomendacion.component';
 import { TestAvanceComponent } from './pages/test-avance/test-avance.component';
 import { RecomendacionesComponent } from './pages/recomendaciones/recomendaciones.component';
+import { ErroresTestAvanceGuard } from './guards/errores-test-avance.guard';
 
 export const RecomendacionesRoutes: Routes = [
   {
@@ -20,6 +21,7 @@ export const RecomendacionesRoutes: Routes = [
   {
     path: ':idRecomendacion/test',
     component: TestAvanceComponent,
+    canActivate: [ErroresTestAvanceGuard]
   },
   
  

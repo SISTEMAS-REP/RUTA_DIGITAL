@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BaseService } from 'src/app/shared/services/base.service';
+import { CapacitacionResultadoRequest } from '../interfaces/request/capacitacion-resultado.request';
 import { CapacitacionDetalleRequest } from '../interfaces/request/capacitaciondet.request';
+import { RecomendacionRequest } from '../interfaces/request/recomendacion.request';
 
 @Injectable({
   providedIn: 'root',
@@ -29,13 +31,25 @@ export class RecomendacionesService extends BaseService {
     });
   };
 
+  validarCapacitacionesErradas = (
+    request: RecomendacionRequest
+  ): Observable<any> => {
+    return this.post('ValidarCapacitacionesErradas', request);
+  };
+
   procesarAvance = (request: CapacitacionDetalleRequest): Observable<any> => {
     return this.post('ProcesarAvance', request);
-  }
-  iniciarCapacitacion = (request: number): Observable<any> => {
-    return this.post('IniciarCapacitacion', request);
-  }
-  calificarCapacitacion = (request: number): Observable<any> => {
-    return this.post('CalificarCapacitacion', request);
-  }
+  };
+  
+  iniciarCapacitacion = (
+    request: CapacitacionResultadoRequest
+  ): Observable<any> => {
+    return this.put('IniciarCapacitacion', request);
+  };
+
+  calificarCapacitacion = (
+    request: CapacitacionResultadoRequest
+  ): Observable<any> => {
+    return this.put('CalificarCapacitacion', request);
+  };
 }

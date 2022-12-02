@@ -7,6 +7,7 @@ import { InicioCatalogoPremiosComponent } from './pages/inicio-catalogo-premios/
 import { CategoriaPremiosComponent } from './pages/categoria-premios/categoria-premios.component';
 import { DetallePremioComponent } from './pages/detalle-premio/detalle-premio.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxPaginationModule } from 'ngx-pagination'; 
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     CatalogoPremiosRoutingModule,
     CarouselModule,
+    NgxPaginationModule,
     FormsModule
   ],
 })
