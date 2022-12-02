@@ -62,16 +62,13 @@
               "
             >
               <h3 class="subtitulo-recomendacion"></h3>
-              <!-- <p class="descripcion-recomendacion">
-                <img src=".\.\\src\assets\images\icon_idea.png" class="ico-capacitacion" />&nbsp; {{ recurso.descripcion }}
-              </p> -->
               <br />
               <h3 class="sub-titulo-paso">PASO #0{{ i + 1 }} :</h3>
               <br />
               <p class="p-paso">
                 <img
                   class="ico-capacitacion"
-                  [src]="'src/assets/images/recursos/' + recurso.icono"
+                  [src]="'assets/images/recursos/' + recurso.icono"
                   style="vertical-align: middle"
                 />&nbsp;<span class="descripcion-paso">Mira el video:</span>
                 {{ recurso.descripcion }}
@@ -116,7 +113,7 @@
               >
                 <p class="descripcion-recomendacion">
                   <img
-                    [src]="'src/assets/images/recursos/' + recursoDetalle.icono"
+                    [src]="'assets/images/recursos/' + recursoDetalle.icono"
                     class="ico-capacitacion"
                     style="float: left"
                   />
@@ -143,7 +140,7 @@
               style="text-align: center"
             >
               <a
-                *ngIf="!recomendacion.concluido"
+                *ngIf="!recomendacion?.concluido"
                 style="
                   padding-bottom: 20px;
                   padding-top: 20px;
@@ -155,7 +152,7 @@
                 >¡Pon a prueba lo aprendido!</a
               >
               <p
-                *ngIf="!recomendacion.concluido"
+                *ngIf="!recomendacion?.concluido"
                 class="justify-content-center"
               >
                 Responde correctamente y gana puntos

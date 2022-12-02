@@ -11,6 +11,7 @@ import { Observable, catchError } from 'rxjs';
 import { map, tap, mergeMap } from 'rxjs/operators';
 import { RecomendacionRequest } from '../interfaces/request/recomendacion.request';
 import { RecomendacionesService } from '../services/recomendaciones.service';
+import { DateAdapter } from 'angular-calendar';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class ErroresTestAvanceGuard implements CanActivate {
     private service: RecomendacionesService,
     private router: Router
   ) {}
+
   canActivate(
     _next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -34,8 +36,9 @@ export class ErroresTestAvanceGuard implements CanActivate {
     };
 
     return this.service.validarCapacitacionesErradas(request).pipe(
-      map((response) => {
-        if (response.data && response.data < 3) {
+      map((response) => response.data as number),
+      map((data) => {
+        if (data < 3) {
           return true;
         }
 

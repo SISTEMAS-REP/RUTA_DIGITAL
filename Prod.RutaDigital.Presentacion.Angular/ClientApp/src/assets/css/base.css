@@ -42,6 +42,10 @@ figure, header, nav, section, article, aside, footer, figcaption {
   border: 0;
   outline: 0;
 }
+.ngx-pagination a, .ngx-pagination button {
+  border-radius: 50px !important;
+  background-color: transparent !important;
+}
 
 a:hover { cursor: pointer; } 
 .text-blanco {
@@ -2193,10 +2197,10 @@ btn preguntas
   background-color: #fff;
   border-color: #fff;
 padding: 30px 10px;
-  width: 200px;
+  width: 180px;
 margin:  10px 10px ;
 position: relative!important;
-top: 20px;
+top: 30px;
   
 }
 .btn-check:active+.btn-blanco, .btn-check:checked+.btn-blanco, .btn-blanco.active, .btn-blanco.dropdown-toggle.show, .btnblanco:active {
