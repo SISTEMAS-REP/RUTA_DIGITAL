@@ -214,8 +214,9 @@
                             <div class="col-6 px-0">
                                 <span style="color: rgba(85, 85, 85, 0.58); font-size: .8rem; font-weight: 500"> La
                                     aprendedora</span> <br>
-                                <span style="color: rgba(0, 0, 0, 0.75); font-size: 1rem; font-weight: 500"> {{estadistica.fecha_inicio_capacitacion | date:'dd/MM/yyyy' }}
+                                <span *ngIf="estadistica.fecha_inicio_capacitacion != null" style="color: rgba(0, 0, 0, 0.75); font-size: 1rem; font-weight: 500"> {{estadistica.fecha_inicio_capacitacion | date:'dd/MM/yyyy' }}
                                     - Inicio de capacitación</span>
+                                <span  *ngIf="estadistica.fecha_inicio_capacitacion == null" style="color: rgba(0, 0, 0, 0.75); font-size: 1rem; font-weight: 500"> Aun no inicia</span>
                             </div>
                             <div class="col-2 px-0" align="center">
                                 <img src="assets/images/icon_check.png">

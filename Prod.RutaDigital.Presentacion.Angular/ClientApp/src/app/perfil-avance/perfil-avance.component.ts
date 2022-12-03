@@ -11,7 +11,7 @@ import { PerfilAvanceRepository } from './perfil-avance.repository';
 import { PerfilAvanceEstadisticaResponse } from './interfaces/perfil-avance-estadistica.response';
 import { PerfilAvancePremioConsumoResponse } from './interfaces/perfil-avance-premio-consumo.response';
 import { ResultadoPerfil } from './interfaces/resultado-perfil';
-import { setHours, setMinutes } from 'date-fns';
+import { endOfDay, setHours, setMinutes, startOfDay } from 'date-fns';
 
 
 
@@ -90,20 +90,38 @@ export class PerfilAvanceComponent implements OnInit {
     this.repositoryPerfilAvance.ListarEstadisticaPerfilAvance(request).subscribe({
       next: (data: PerfilAvanceEstadisticaResponse[]) => {
         this.estadisticaPerfil = data;
-        this.viewDate = this.estadisticaPerfil[0].fecha_inicio_capacitacion;
-        this.events = [{
-          title: 'No event end date',
-          start: setHours(setMinutes(new Date(this.viewDate), 0), 0),
-          color: {
-            primary:"0000",
-            secondary:"0000"
-          }
-        }]
-
+        if(data[0].fecha_inicio_capacitacion != null){
+          var myDate = new Date(this.estadisticaPerfil[0].fecha_inicio_capacitacion);
+          this.viewDate = myDate;
+          this.addEvent(this.estadisticaPerfil[0].fecha_inicio_capacitacion);
+        }
+       
       },
       error: (err) => {},
     });
   };
+
+  addEvent(item): void {
+    // this.viewDate = item;
+    debugger
+    this.events = [
+      ...this.events,
+      {
+        title: 'New event',
+        start: startOfDay(new Date(item)),
+        end: endOfDay(new Date(item)),
+        color: {
+          primary:"0000",
+          secondary:"0000"
+        },
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true,
+        },
+      },
+    ];
+  }
 
   ListarCapacitacionPerfilAvance = () => {
     var request: any = {
